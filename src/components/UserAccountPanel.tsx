@@ -32,27 +32,27 @@ export default function UserAccountPanel() {
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
         {/* 2. LIQUIDITY SECTION - Wolne środki */}
         <div className="p-4 border-b border-gray-900 bg-gradient-to-b from-black to-gray-950">
-          <div className="text-[8px] text-gray-600 uppercase font-black tracking-widest mb-2 italic">Available Liquidity</div>
+          <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-2 italic">Available Liquidity</div>
         <div className="flex justify-between items-baseline">
           <div className="flex flex-col">
-            <span className="text-2xl font-black text-yellow-500 tracking-tighter">{balances.freeBSR}</span>
-            <span className="text-[9px] text-yellow-800 font-bold uppercase tracking-widest">€BSR Balance</span>
+            <span className="text-2xl text-yellow-500 tracking-tighter">{balances.freeBSR}</span>
+            <span className="text-[9px] text-yellow-800 uppercase tracking-widest">€BSR Balance</span>
           </div>
           <div className="flex flex-col text-right">
-            <span className="text-xl font-black text-blue-500 tracking-tighter">{balances.freeEUR}</span>
-            <span className="text-[9px] text-blue-800 font-bold uppercase tracking-widest">eEURO Balance</span>
+            <span className="text-xl text-blue-500 tracking-tighter">{balances.freeEUR}</span>
+            <span className="text-[9px] text-blue-800 uppercase tracking-widest">eEURO Balance</span>
           </div>
         </div>
       </div>
 
       {/* 3. ENERGY INVENTORY - Twoje pozycje rynkowe */}
       <div className="flex-grow flex flex-col min-h-0">
-        <div className="text-[9px] text-gray-500 uppercase font-bold tracking-[0.3em] p-3 border-b border-gray-900 bg-black/40">
+        <div className="text-[9px] text-gray-500 uppercase tracking-[0.3em] p-3 border-b border-gray-900 bg-black/40">
           Energy Inventory
         </div>
         
         {/* Table Header */}
-        <div className="grid grid-cols-12 text-[7px] text-gray-700 uppercase font-black px-4 py-2 border-b border-gray-900">
+        <div className="grid grid-cols-12 text-[7px] text-gray-700 uppercase px-4 py-2 border-b border-gray-900">
           <div className="col-span-5 tracking-widest">Instrument</div>
           <div className="col-span-2 text-center tracking-widest">Side</div>
           <div className="col-span-2 text-right tracking-widest">Qty</div>
@@ -64,18 +64,18 @@ export default function UserAccountPanel() {
           {inventory.map((pos) => (
             <div key={pos.id} className="grid grid-cols-12 items-center py-3 px-4 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors">
               <div className="col-span-5">
-                <div className="text-[11px] font-black text-white leading-none mb-1">{pos.id}</div>
+                <div className="text-[11px] text-white leading-none mb-1">{pos.id}</div>
                 <div className="text-[8px] text-gray-600 uppercase tracking-tighter">{pos.name}</div>
               </div>
               <div className="col-span-2 text-center">
-                <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-[1px] ${pos.side === 'LONG' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                <span className={`text-[9px] px-1.5 py-0.5 rounded-[1px] ${pos.side === 'LONG' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                   {pos.side}
                 </span>
               </div>
               <div className="col-span-2 text-right">
-                <span className="text-[11px] font-bold text-gray-400">{pos.units}</span>
+                <span className="text-[11px] text-gray-400">{pos.units}</span>
               </div>
-              <div className={`col-span-3 text-right text-[11px] font-black ${pos.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>
+              <div className={`col-span-3 text-right text-[11px] ${pos.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>
                 {pos.pnl}%
               </div>
             </div>
@@ -85,15 +85,15 @@ export default function UserAccountPanel() {
 
       {/* 4. LOCKED DEPOSITS - Zablokowane pod marżę */}
       <div className="bg-gray-950/80 border-t border-gray-900 p-4">
-        <div className="text-[8px] text-gray-600 uppercase font-black tracking-widest mb-3">Locked Margin Deposits</div>
+        <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-3">Locked Margin Deposits</div>
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-[10px] text-gray-500 uppercase tracking-tighter">Margin €BSR</span>
-            <span className="text-[12px] font-bold text-yellow-600/80 tracking-tight">{balances.lockedBSR} €BSR</span>
+            <span className="text-[12px] text-yellow-600/80 tracking-tight">{balances.lockedBSR} €BSR</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-[10px] text-gray-500 uppercase tracking-tighter">Margin eEURO</span>
-            <span className="text-[12px] font-bold text-blue-500/80 tracking-tight">{balances.lockedEUR} EUR</span>
+            <span className="text-[12px] text-blue-500/80 tracking-tight">{balances.lockedEUR} EUR</span>
           </div>
         </div>
       </div>
@@ -102,14 +102,14 @@ export default function UserAccountPanel() {
       <div className="p-4 bg-black border-t border-gray-800">
         <div className="flex justify-between items-end">
           <div className="flex flex-col">
-            <span className="text-[8px] text-gray-600 uppercase font-black tracking-widest mb-1">H-Factor (Solvency)</span>
-            <span className={`text-3xl font-black italic tracking-tighter leading-none ${parseFloat(balances.hFactor) > 2 ? 'text-green-500' : 'text-yellow-500'}`}>
+            <span className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (Solvency)</span>
+            <span className={`text-3xl italic tracking-tighter leading-none ${parseFloat(balances.hFactor) > 2 ? 'text-green-500' : 'text-yellow-500'}`}>
               {balances.hFactor}
             </span>
           </div>
           <div className="text-right">
-            <div className="text-[8px] text-gray-600 uppercase font-black tracking-widest mb-1">Status</div>
-            <div className="text-[10px] font-black text-green-500 tracking-[0.2em] uppercase animate-pulse">
+            <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">Status</div>
+            <div className="text-[10px] text-green-500 tracking-[0.2em] uppercase animate-pulse">
               Excellent
             </div>
           </div>
