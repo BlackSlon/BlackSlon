@@ -20,14 +20,13 @@ export default function UserAccountPanel() {
   }
 
   return (
-    <div className="flex flex-col h-full bg-black font-mono text-white border border-gray-800 shadow-2xl overflow-hidden">
+    <div className="flex flex-col h-full bg-black font-mono text-white p-0">
       
-      {/* 1. HEADER - Styl identyczny jak w pozostałych panelach */}
-      <div className="bg-black pt-5 pb-1">
-        <div className="text-[10px] text-gray-600 uppercase tracking-[0.5em] font-bold text-center">
+      <div className="w-full pt-8 pb-2 flex flex-col items-center shrink-0">
+        <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold">
           USER'S ACCOUNT
         </div>
-        <div className="mx-8 border-b border-gray-900/50 mt-3"></div>
+        <div className="w-[80%] border-b border-gray-800 mt-4" />
       </div>
 
       {/* 2. LIQUIDITY SECTION - Wolne środki */}

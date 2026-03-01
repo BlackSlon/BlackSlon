@@ -21,14 +21,13 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
   const maxVol = Math.max(...buyOrders.map(o => o.volume), ...sellOrders.map(o => o.volume))
 
   return (
-    <div className="flex flex-col h-full bg-black font-mono text-white border border-gray-800 overflow-hidden">
+    <div className="flex flex-col h-full bg-black font-mono text-white p-0">
       
-      {/* Header */}
-      <div className="bg-black pt-5 pb-1">
-        <div className="text-[10px] text-gray-600 uppercase tracking-[0.5em] font-bold text-center">
+      <div className="w-full pt-8 pb-2 flex flex-col items-center shrink-0">
+        <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold">
           Virtual Market Panel
         </div>
-        <div className="mx-8 border-b border-gray-900/50 mt-3"></div>
+        <div className="w-[80%] border-b border-gray-800 mt-4" />
       </div>
 
       {/* 2. TYTUŁ INSTRUMENTU (Czerwony) */}
