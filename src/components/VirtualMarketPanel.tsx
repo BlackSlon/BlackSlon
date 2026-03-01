@@ -24,7 +24,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
     <div className="flex flex-col h-full bg-black font-mono text-white border border-gray-800 overflow-hidden">
       
       {/* Header */}
-      <div className="text-[10px] text-gray-500 uppercase font-bold text-center py-2 border-b border-gray-900 bg-black/40 mb-4" style={{ fontFamily: 'Montserrat, sans-serif', letterSpacing: '0.5em' }}>
+      <div className="text-[10px] text-gray-500 uppercase font-bold text-center py-2 border-b border-gray-900 bg-black/40 mb-4 font-mono" style={{ letterSpacing: '0.5em' }}>
         Virtual Market Panel
       </div>
 
