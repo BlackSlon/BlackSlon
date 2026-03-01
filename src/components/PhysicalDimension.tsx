@@ -18,10 +18,10 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
         <span>PHYSICAL MARKET DIMENSION</span>
       </div>
 
-      {/* TYTUŁ: BlackSlon Power Poland (BS-P-PL) */}
+      {/* TYTUŁ: BlackSlon Trading Zone (BSTZ) - Power Poland (BS-P-PL) */}
       <div className="text-center mb-4">
         <div className="text-[11px] tracking-[0.1em] text-red-600">
-          BlackSlon Power Poland <span className="uppercase">(BS-P-PL)</span>
+          BlackSlon Trading Zone (BSTZ) - Power Poland <span className="uppercase">(BS-P-PL)</span>
         </div>
       </div>
 
