@@ -50,8 +50,9 @@ export default function TradingPanel() {
   return (
     <div className="flex flex-col h-full p-4 bg-transparent pointer-events-auto relative z-10">
       
-      <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold text-center py-2 border-b border-gray-900 bg-black/40 mb-4">
-        <span>TRADING PANEL</span>
+      {/* Header */}
+      <div className="text-[10px] text-gray-400 uppercase font-normal text-center py-2 border-b border-gray-700 bg-gray-900/30 mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+        Order Panel
       </div>
 
       <div className="text-center mb-3 shrink-0">

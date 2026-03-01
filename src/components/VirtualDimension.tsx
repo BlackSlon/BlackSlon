@@ -23,9 +23,9 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
   return (
     <div className="flex flex-col h-full bg-black font-mono text-white overflow-hidden border border-gray-800">
       
-      {/* 1. KATEGORIA RYNKU */}
-      <div className="text-[10px] text-gray-600 uppercase tracking-[0.6em] font-bold text-center py-2 border-b border-gray-800 bg-black">
-        VIRTUAL MARKET DIMENSION
+      {/* Header */}
+      <div className="text-[10px] text-gray-400 uppercase font-normal text-center py-2 border-b border-gray-700 bg-gray-900/30 mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+        Virtual Market Panel
       </div>
 
       {/* 2. TYTUŁ INSTRUMENTU (Czerwony) */}
