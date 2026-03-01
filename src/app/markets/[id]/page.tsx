@@ -4,7 +4,7 @@ import React from "react"
 import PhysicalMarketPanel from "@/components/PhysicalMarketPanel"
 import VirtualMarketPanel from "@/components/VirtualMarketPanel"
 import TradingPanel from "@/components/TradingPanel"
-import PortfolioPanel from "@/components/PortfolioPanel"
+import UserAccountPanel from "@/components/UserAccountPanel"
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 
@@ -40,7 +40,7 @@ export default function MarketPage() {
 
         {/* PANEL 4: PORTFOLIO */}
         <section className="border border-yellow-600/30 bg-black/40 rounded-sm text-xs">
-          <PortfolioPanel />
+          <UserAccountPanel />
         </section>
 
       </div>

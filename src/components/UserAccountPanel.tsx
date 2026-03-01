@@ -1,6 +1,6 @@
 'use client'
 
-export default function PortfolioPanel() {
+export default function UserAccountPanel() {
   const monoStyle = { fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }
 
   return (
