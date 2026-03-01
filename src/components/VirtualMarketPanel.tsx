@@ -69,7 +69,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
       <div className="flex-grow flex min-h-0">
         
         {/* BUY SIDE */}
-        <div className="flex-1 flex flex-col border-r border-gray-800">
+        <div className="flex-1 flex flex-col border-l border-r border-gray-800 overflow-hidden">
           <div className="py-2 px-4 bg-green-950/20">
             <span className="text-[11px] text-green-500 tracking-widest">BUY ORDERS</span>
           </div>
@@ -90,7 +90,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
         </div>
 
         {/* SELL SIDE */}
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col border border-gray-800 overflow-hidden">
           <div className="py-2 px-4 border-b border-gray-800 bg-red-950/20 text-right">
             <span className="text-[11px] text-red-500 tracking-widest">SELL ORDERS</span>
           </div>
