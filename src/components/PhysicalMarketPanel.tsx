@@ -14,7 +14,7 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
   return (
     <div className="flex flex-col h-full p-4 bg-transparent font-mono text-white">
       {/* Header */}
-      <div className="text-[10px] text-gray-400 uppercase font-normal text-center py-2 border-b border-gray-700 bg-gray-900/30 mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+      <div className="text-[10px] text-gray-500 uppercase font-bold text-center py-2 border-b border-gray-900 bg-black/40 mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
         Physical Market Panel
       </div>
 
