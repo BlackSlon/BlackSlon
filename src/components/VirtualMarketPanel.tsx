@@ -38,7 +38,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
         {/* 2. TYTUŁ ORDER BOOK (Brązowy) */}
         <div className="p-4 bg-gradient-to-b from-black to-gray-950">
-          <div className="text-[14px] tracking-widest text-amber-700 mb-1">
+          <div className="text-[10px] tracking-widest text-amber-700 mb-1">
             BlackSlon Order Book
           </div>
           <div className="flex justify-between items-center">
