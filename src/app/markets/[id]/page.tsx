@@ -75,7 +75,8 @@ export default function MarketPage() {
         </section>
 
         {/* PANEL 4: PORTFOLIO */}
-        <section className="border border-yellow-600/30 bg-black/40 rounded-sm text-xs">
+        <section className="border border-yellow-600/30 bg-black/40 rounded-sm text-xs flex flex-col">
+          <div className="px-3 py-1 border-b border-gray-900/60" />
           <UserAccountPanel />
         </section>
 
