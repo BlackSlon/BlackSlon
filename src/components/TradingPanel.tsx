@@ -130,8 +130,8 @@ export default function TradingPanel() {
               <span className="text-[17px] font-mono text-amber-400" style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }}>{bsrReq} BSR</span>
             </div>
             <div className="flex flex-col pl-2 text-right">
-              <span className="text-[9px] text-gray-500 mb-1 tracking-tighter whitespace-nowrap">eEURO DEPOSIT VALUE:</span> 
-              <span className="text-[17px] font-mono text-gray-400" style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }}>{euroReq} EUR</span>
+              <span className="text-[9px] text-blue-500 uppercase mb-1 tracking-tighter whitespace-nowrap">eEURO DEPOSIT VALUE:</span> 
+              <span className="text-[17px] font-mono text-blue-400" style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }}>{euroReq} EUR</span>
             </div>
           </div>
         </div>
