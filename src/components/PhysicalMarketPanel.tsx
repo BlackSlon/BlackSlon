@@ -42,19 +42,19 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
               {/* Żółte wartości są teraz wyraźnie większe i ważniejsze (text-xl) */}
               <div className="flex flex-col items-center">
                 <span className="text-[7px] text-gray-500 uppercase mb-0">Min</span>
-                <span className="text-xl text-yellow-500">9.09</span>
+                <span className="text-lg text-yellow-500">9.09</span>
               </div>
               
               {/* Szary Anchor - mniejszy i mniej widoczny */}
               <div className="flex flex-col items-center">
                 <span className="text-[7px] text-gray-500 uppercase mb-0">Anchor</span>
-                <span className="text-[11px] text-gray-600">{currentPrice.toFixed(2)}</span>
+                <span className="text-lg text-gray-600">{currentPrice.toFixed(2)}</span>
                 <span className="text-[6px] text-gray-500">EUR/100kWh</span>
               </div>
               
               <div className="flex flex-col items-center">
                 <span className="text-[7px] text-gray-500 uppercase mb-0">Max</span>
-                <span className="text-xl text-yellow-500">11.11</span>
+                <span className="text-lg text-yellow-500">11.11</span>
               </div>
             </div>
           </div>

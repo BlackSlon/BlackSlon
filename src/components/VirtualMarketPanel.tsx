@@ -61,7 +61,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center">
             <span className="text-[7px] text-gray-500 uppercase mr-2">LAST PRICE:</span>
-            <span className="text-xl text-yellow-500 tracking-tighter leading-none">10.59</span>
+            <span className="text-lg text-yellow-500 tracking-tighter leading-none">10.59</span>
             <span className="text-[8px] text-gray-500 ml-1">EUR/100kWh</span>
           </div>
           <div className="flex items-center">
