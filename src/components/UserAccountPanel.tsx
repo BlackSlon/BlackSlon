@@ -91,27 +91,7 @@ export default function UserAccountPanel() {
           </div>
         </div>
 
-        {/* €BSR PRICE CHART */}
-        <div className="mb-4">
-          <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-2">€BSR/eEURO Rate</div>
-          <div className="bg-gray-900/30 border border-gray-800 rounded-sm p-3">
-            <div className="flex items-end justify-between h-12">
-              {bsrPriceHistory.map((price, index) => (
-                <div
-                  key={index}
-                  className="flex-1 bg-yellow-500/60 mx-0.5 rounded-t-sm"
-                  style={{ height: `${(price / Math.max(...bsrPriceHistory)) * 100}%` }}
-                />
-              ))}
-            </div>
-            <div className="flex justify-between mt-2">
-              <span className="text-[7px] text-gray-600">10.2</span>
-              <span className="text-[9px] text-yellow-500 text-center">{bsrPriceHistory[bsrPriceHistory.length - 1]}</span>
-              <span className="text-[7px] text-gray-600">11.2</span>
-            </div>
-          </div>
         </div>
-      </div>
 
       {/* RISK MANAGEMENT SECTION */}
       <div className="px-6 py-4 border-t border-gray-900 bg-black w-full sm:px-2">
