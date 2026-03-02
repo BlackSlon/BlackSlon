@@ -51,17 +51,26 @@ export default function MarketPage() {
       <div className="w-full max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[22%_26%_20%_28%] gap-4 min-h-[calc(100vh-100px)] py-4 pointer-events-auto">
         
         {/* PANEL 1: PHYSICAL (BSTZ) - Teraz z poprawną ceną 10.59 */}
-        <section className="border border-yellow-600/50 bg-black/40 rounded-sm overflow-hidden">
+        <section className="border border-yellow-600/50 bg-black/40 rounded-sm overflow-hidden flex flex-col">
+          <div className="flex items-center justify-end px-3 py-1 border-b border-gray-900/60">
+            <span className="text-[9px] text-yellow-500 uppercase tracking-widest">{selectedInstrument}</span>
+          </div>
           <PhysicalMarketPanel marketId={id} currentPrice={globalAnchorPrice} />
         </section>
 
         {/* PANEL 2: VIRTUAL (Order Book) */}
-        <section className="border border-yellow-600/50 bg-black/40 rounded-sm">
+        <section className="border border-yellow-600/50 bg-black/40 rounded-sm flex flex-col">
+          <div className="flex items-center justify-end px-3 py-1 border-b border-gray-900/60">
+            <span className="text-[9px] text-yellow-500 uppercase tracking-widest">{selectedInstrument}</span>
+          </div>
           <VirtualMarketPanel marketId={id} />
         </section>
 
         {/* PANEL 3: TRADING */}
-        <section className="border border-yellow-600/50 bg-black/80 rounded-sm text-xs relative z-50">
+        <section className="border border-yellow-600/50 bg-black/80 rounded-sm text-xs relative z-50 flex flex-col">
+          <div className="flex items-center justify-end px-3 py-1 border-b border-gray-900/60">
+            <span className="text-[9px] text-yellow-500 uppercase tracking-widest">{selectedInstrument}</span>
+          </div>
           <TradingPanel />
         </section>
 
