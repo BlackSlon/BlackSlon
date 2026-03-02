@@ -71,7 +71,7 @@ export default function UserAccountPanel() {
             {/* Table Rows */}
             {inventory.map((item, index) => (
               <div key={index} className="grid grid-cols-5 items-center py-1 px-2 border-b border-gray-900 w-full hover:bg-gray-900/40 transition-colors">
-                <div className={`w-[25%] text-[10px] ${item.color === 'yellow' ? 'text-yellow-500' : 'text-blue-500'}`}>{item.token}</div>
+                <div className={`w-[25%] text-[10px] ${item.color === 'yellow' ? 'text-yellow-500' : 'text-blue-500'} whitespace-nowrap`}>{item.token}</div>
                 <div className="w-[20%] text-center text-[9px] text-gray-400">{item.quantity}</div>
                 <div className="w-[15%] text-center text-[9px] text-gray-400">{item.avgPrice}</div>
                 <div className="w-[15%] text-center text-[9px] text-gray-400">{item.lastPrice}</div>
