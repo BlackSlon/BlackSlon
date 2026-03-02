@@ -22,10 +22,10 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
       </div>
 
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
-        {/* TYTUŁ: BlackSlon Trading Zone */}
+        {/* TYTUŁ: BlackSlon Settlement Zone */}
         <div className="p-4 bg-gradient-to-b from-black to-gray-950">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">
-            BlackSlon Trading Zone
+            BlackSlon Settlement Zone
           </div>
           <div className="flex justify-between items-center">
             <div className="flex gap-4">
