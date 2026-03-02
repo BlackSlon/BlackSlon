@@ -194,36 +194,36 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           {/* D-1 */}
           <div className="flex flex-col items-center text-center">
             <span className="text-[9px] text-gray-500">D-1</span>
-            <span className="text-[11px] text-gray-400">1,245,000</span>
-            <span className="text-[7px] text-gray-600">kWh</span>
+            <span className="text-[11px] text-gray-400">1,245</span>
+            <span className="text-[7px] text-gray-600">MWh</span>
           </div>
           
           {/* W-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">W-1</span>
-            <span className="text-[11px] text-gray-400">8,715,000</span>
-            <span className="text-[7px] text-gray-600">kWh</span>
+            <span className="text-[11px] text-gray-400">8,715</span>
+            <span className="text-[7px] text-gray-600">MWh</span>
           </div>
           
           {/* M-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">M-1</span>
-            <span className="text-[11px] text-gray-400">37,440,000</span>
-            <span className="text-[7px] text-gray-600">kWh</span>
+            <span className="text-[11px] text-gray-400">37,440</span>
+            <span className="text-[7px] text-gray-600">MWh</span>
           </div>
           
           {/* Q-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">Q-1</span>
-            <span className="text-[11px] text-gray-400">112,320,000</span>
-            <span className="text-[7px] text-gray-600">kWh</span>
+            <span className="text-[11px] text-gray-400">112,320</span>
+            <span className="text-[7px] text-gray-600">MWh</span>
           </div>
           
           {/* H-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">H-1</span>
-            <span className="text-[11px] text-gray-400">224,640,000</span>
-            <span className="text-[7px] text-gray-600">kWh</span>
+            <span className="text-[11px] text-gray-400">224,640</span>
+            <span className="text-[7px] text-gray-600">MWh</span>
           </div>
           
           {/* Y-1 */}
