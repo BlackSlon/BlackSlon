@@ -93,29 +93,26 @@ export default function UserAccountPanel() {
           </div>
         </div>
 
-        </div>
-
-      {/* RISK MANAGEMENT SECTION */}
-      <div className="px-6 py-4 border-t border-gray-900 bg-black w-full sm:px-2">
-        <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 mt-2">
-          BlackSlon Risk Management
-        </div>
-        
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex flex-col">
-            <span className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (H-BSTZ)</span>
-            <span className="text-lg text-green-500 tracking-tighter leading-tight">
-              {hFactor}
-            </span>
-          </div>
-          <div className="text-right">
-            <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">Status</div>
-            <div className="text-[10px] text-green-500 tracking-[0.2em] uppercase animate-pulse">
-              SAFE ZONE
+        {/* BLACKSLON RISK MANAGEMENT */}
+        <div className="mb-4">
+          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 mt-2">BlackSlon Risk Management</div>
+          
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col">
+              <span className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (H-BSTZ)</span>
+              <span className="text-lg text-green-500 tracking-tighter leading-tight">
+                {hFactor}
+              </span>
+            </div>
+            <div className="text-right">
+              <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">Status</div>
+              <div className="text-[10px] text-green-500 tracking-[0.2em] uppercase animate-pulse">
+                SAFE ZONE
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        </div>
 
       {/* CONNECT WALLET BUTTON */}
       <div className="px-6 py-4 w-full sm:px-2">
