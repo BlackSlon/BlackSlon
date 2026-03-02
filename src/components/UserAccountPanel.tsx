@@ -79,7 +79,7 @@ export default function UserAccountPanel() {
         </div>
 
         {/* BLACKSLON VAULT */}
-        <div className="mb-4">
+        <div className="mb-4 px-2">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 mt-2">BlackSlon Vault</div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 xs:grid-cols-1">
             <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-sm py-1.5 px-3">
@@ -94,7 +94,7 @@ export default function UserAccountPanel() {
         </div>
 
         {/* BLACKSLON RISK MANAGEMENT */}
-        <div className="mb-4">
+        <div className="mb-4 px-2">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 mt-2">BlackSlon Risk Management</div>
           
           <div className="flex justify-between items-center mb-4">
