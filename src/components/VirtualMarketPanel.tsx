@@ -229,8 +229,8 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           {/* Y-1 */}
           <div className="flex flex-col items-center text-center px-4">
             <span className="text-[9px] text-gray-500">Y-1</span>
-            <span className="text-[11px] text-gray-400">449,280,000</span>
-            <span className="text-[7px] text-gray-600">kWh</span>
+            <span className="text-[11px] text-gray-400">449,280</span>
+            <span className="text-[7px] text-gray-600">MWh</span>
           </div>
         </div>
       </div>
