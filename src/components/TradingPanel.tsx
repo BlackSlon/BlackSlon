@@ -99,7 +99,7 @@ export default function TradingPanel() {
           ${side === 'BUY' 
             ? 'border-green-500 text-green-500 hover:bg-green-500 hover:text-black' 
             : 'border-red-600 text-red-600 hover:bg-red-600 hover:text-white'}`}>
-          PUT {side} ORDER
+          CONFIRM {side} ORDER
         </button>
 
         <div className="space-y-3 mb-4 shrink-0 px-1 pointer-events-auto">
