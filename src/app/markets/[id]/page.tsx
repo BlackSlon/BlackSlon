@@ -20,8 +20,8 @@ export default function MarketPage() {
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center font-mono pointer-events-auto">
-      <header className="w-full py-4 flex justify-center border-b border-gray-900 shrink-0">
-        <Image src="/BS_image.jpg" alt="BlackSlon" width={40} height={40} className="h-10 w-auto" />
+      <header className="w-full py-4 flex justify-center shrink-0">
+        <Image src="/BS_image.jpg" alt="BlackSlon" width={80} height={80} className="h-20 w-auto" />
       </header>
 
       {/* INSTRUMENT SELECTOR BAR */}
