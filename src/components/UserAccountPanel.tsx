@@ -49,15 +49,24 @@ export default function UserAccountPanel() {
         
         {/* TABLE INVENTORY */}
         <div className="mb-4">
+          {/* Table Header */}
+          <div className="grid grid-cols-5 text-[7px] text-white uppercase px-2 py-1 border-b border-gray-900">
+            <div className="tracking-widest">Token</div>
+            <div className="text-center tracking-widest">Qty (kWh)</div>
+            <div className="text-center tracking-widest">Avg</div>
+            <div className="text-center tracking-widest">Last</div>
+            <div className="text-right tracking-widest">PnL (EUR)</div>
+          </div>
+
+          {/* Table Rows */}
           {inventory.map((item, index) => (
-            <div key={index} className="border border-gray-900/50 rounded-sm p-3 mb-2 hover:bg-gray-900/40 transition-colors">
-              <div className="flex justify-between items-center">
-                <div className={`text-[10px] ${item.color === 'yellow' ? 'text-yellow-500' : 'text-blue-500'}`}>{item.token}</div>
-                <div className="text-[9px] text-gray-400">{item.quantity} kWh</div>
-              </div>
-              <div className="flex justify-between items-center mt-1">
-                <div className="text-[9px] text-gray-400">Avg: {item.avgPrice} | Last: {item.lastPrice}</div>
-                <div className={`text-[9px] ${item.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>PnL: {item.pnl} EUR</div>
+            <div key={index} className="grid grid-cols-5 items-center py-1 px-2 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors">
+              <div className={`text-[10px] ${item.color === 'yellow' ? 'text-yellow-500' : 'text-blue-500'}`}>{item.token}</div>
+              <div className="text-center text-[9px] text-gray-400">{item.quantity}</div>
+              <div className="text-center text-[9px] text-gray-400">{item.avgPrice}</div>
+              <div className="text-center text-[9px] text-gray-400">{item.lastPrice}</div>
+              <div className={`text-right text-[9px] ${item.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>
+                {item.pnl}
               </div>
             </div>
           ))}
