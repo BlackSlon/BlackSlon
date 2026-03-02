@@ -88,7 +88,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
             <div className="text-center">
               <div>VOLUME</div>
-              <div className="text-gray-600">(kWh)</div>
+              <div className="text-gray-600 normal-case">(kWh)</div>
             </div>
             <div className="text-center">
               <div>UNIT</div>
@@ -96,7 +96,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
             </div>
             <div className="text-right">
               <div>PRICE</div>
-              <div className="text-gray-600">(EUR/100kWh)</div>
+              <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
             </div>
           </div>
           <div className="flex-grow overflow-hidden">
@@ -118,7 +118,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
             <div className="text-left">
               <div>PRICE</div>
-              <div className="text-gray-600">(EUR/100kWh)</div>
+              <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
             </div>
             <div className="text-center">
               <div>UNIT</div>
@@ -126,7 +126,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
             </div>
             <div className="text-right">
               <div>VOLUME</div>
-              <div className="text-gray-600">(kWh)</div>
+              <div className="text-gray-600 normal-case">(kWh)</div>
             </div>
           </div>
           <div className="flex-grow overflow-hidden">

@@ -74,7 +74,7 @@ export default function UserAccountPanel() {
               <div className="grid grid-cols-6 text-[7px] text-white uppercase px-2 py-1 border-b border-gray-900 w-full">
                 <div className="w-[20%] tracking-widest">Token</div>
                 <div className="w-[15%] text-center tracking-widest">Unit</div>
-                <div className="w-[20%] text-center tracking-widest">Volume (kWh)</div>
+                <div className="w-[20%] text-center tracking-widest normal-case">Volume (kWh)</div>
                 <div className="w-[15%] text-center tracking-widest">Avg<br/>Price</div>
                 <div className="w-[15%] text-center tracking-widest">Last<br/>Price</div>
                 <div className="w-[15%] text-right tracking-widest">PnL (EUR)</div>
