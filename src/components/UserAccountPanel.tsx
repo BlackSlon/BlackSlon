@@ -45,9 +45,9 @@ export default function UserAccountPanel() {
         <div className="pl-0 pr-0 pt-4 pb-2 bg-gradient-to-b from-black to-gray-950 w-full">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">Available Liquidity</div>
           <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:grid-cols-2 xs:grid-cols-1">
-            <div className="border border-amber-700 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-amber-700 uppercase tracking-widest mb-0">€BSR BALANCE</div>
-              <div className="text-lg text-amber-700 tracking-tighter leading-tight">3 200.00</div>
+            <div className="border border-amber-500 rounded-sm py-1 px-3 overflow-hidden w-fit">
+              <div className="text-[8px] text-amber-500 uppercase tracking-widest mb-0">€BSR BALANCE</div>
+              <div className="text-lg text-amber-500 tracking-tighter leading-tight">3 200.00</div>
             </div>
             <div className="border border-sky-400 rounded-sm py-1 px-3 overflow-hidden w-fit">
               <div className="text-[8px] text-sky-400 uppercase tracking-widest mb-0">eEURO BALANCE</div>
@@ -94,9 +94,9 @@ export default function UserAccountPanel() {
         <div className="mb-6 px-0">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 mt-2">BlackSlon Vault</div>
           <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:grid-cols-2 xs:grid-cols-1">
-            <div className="border border-amber-700 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-amber-700 uppercase tracking-widest mb-0">Locked €BSR</div>
-              <div className="text-lg text-amber-700 tracking-tighter leading-tight">{vaultLiquidity.lockedBSR}</div>
+            <div className="border border-amber-500 rounded-sm py-1 px-3 overflow-hidden w-fit">
+              <div className="text-[8px] text-amber-500 uppercase tracking-widest mb-0">Locked €BSR</div>
+              <div className="text-lg text-amber-500 tracking-tighter leading-tight">{vaultLiquidity.lockedBSR}</div>
             </div>
             <div className="border border-sky-400 rounded-sm py-1 px-3 overflow-hidden w-fit">
               <div className="text-[8px] text-sky-400 uppercase tracking-widest mb-0">Locked eEURO</div>
