@@ -14,7 +14,7 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
   return (
     <div className="flex flex-col h-full bg-black font-mono text-white p-0">
       
-      <div className="w-full pt-3 pb-2 flex flex-col items-center shrink-0">
+      <div className="w-full pt-1 pb-1 flex flex-col items-center shrink-0">
         <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold">
           Physical Market Panel
         </div>
@@ -23,7 +23,7 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
 
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
         {/* TYTUŁ: BlackSlon Settlement Zone */}
-        <div className="p-4 bg-gradient-to-b from-black to-gray-950 w-full">
+        <div className="pt-2 pb-1 bg-gradient-to-b from-black to-gray-950 w-full">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">
             BlackSlon Settlement Zone
           </div>

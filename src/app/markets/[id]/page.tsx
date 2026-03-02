@@ -20,12 +20,12 @@ export default function MarketPage() {
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center font-mono pointer-events-auto">
-      <header className="w-full py-4 flex justify-center shrink-0">
-        <Image src="/BS_image.jpg" alt="BlackSlon" width={80} height={80} className="h-20 w-auto" />
+      <header className="w-full py-2 flex justify-center shrink-0">
+        <Image src="/BS_image.jpg" alt="BlackSlon" width={60} height={60} className="h-14 w-auto" />
       </header>
 
       {/* INSTRUMENT SELECTOR BAR */}
-      <div className="w-full max-w-[1600px] mx-auto px-6 py-2 flex items-center gap-6 border-b border-gray-900">
+      <div className="w-full max-w-[1600px] mx-auto px-4 py-1 flex items-center gap-6 border-b border-gray-900">
         <span className="text-[9px] text-gray-600 uppercase tracking-widest">Instrument:</span>
         <div className="flex gap-2">
           {instruments.map(inst => (
@@ -43,12 +43,12 @@ export default function MarketPage() {
           ))}
         </div>
         <div className="flex items-center gap-2 ml-auto">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-          <span className="text-[10px] text-green-500 uppercase tracking-widest font-black">LIVE</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-green-700 animate-pulse"></div>
+          <span className="text-[10px] text-green-700 uppercase tracking-widest font-black">LIVE</span>
         </div>
       </div>
 
-      <div className="w-full max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[22%_26%_20%_28%] gap-4 min-h-[calc(100vh-100px)] py-4 pointer-events-auto">
+      <div className="w-full max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[22%_26%_20%_28%] gap-4 min-h-[calc(100vh-80px)] py-2 pointer-events-auto">
         
         {/* PANEL 1: PHYSICAL (BSTZ) - Teraz z poprawną ceną 10.59 */}
         <section className="border border-yellow-600/50 bg-black/40 rounded-sm overflow-hidden flex flex-col">
