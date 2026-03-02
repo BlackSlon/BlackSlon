@@ -106,7 +106,7 @@ export default function TradingPanel() {
           <div className="text-[9px] text-gray-500 uppercase tracking-tighter">Deposit Configuration</div>
           <div className="bg-gray-900/20 p-2 rounded-sm border border-gray-900">
             <div className="flex justify-between text-[9px] text-gray-500 tracking-[0.2em] mb-2"><span>€BSR RATIO</span><span>{bsrStake}%</span></div>
-            <input type="range" min="10" max="100" step="1" value={bsrStake} onChange={(e) => setBsrStake(parseInt(e.target.value))} className="w-full h-1 bg-gray-800 cursor-pointer pointer-events-auto" style={{ accentColor: '#f59e0b' }} />
+            <input type="range" min="10" max="100" step="1" value={bsrStake} onChange={(e) => setBsrStake(parseInt(e.target.value))} className="w-full h-1 bg-gray-800 cursor-pointer pointer-events-auto" style={{ accentColor: '#b45309' }} />
           </div>
           <div className="bg-gray-900/20 p-2 rounded-sm border border-gray-900">
             <div className="flex justify-between text-[9px] text-gray-500 tracking-[0.2em] mb-2"><span>eEURO RATIO</span><span>{euroStake}%</span></div> 
