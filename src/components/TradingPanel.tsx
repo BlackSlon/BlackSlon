@@ -71,9 +71,9 @@ export default function TradingPanel() {
           <div className="text-[9px] text-gray-500 font-normal mb-1">SET ORDER PRICE (EUR/100kWh)</div> 
           <div className="flex items-center justify-between">
             <div className="bg-zinc-800/70 border border-gray-700 rounded-sm flex items-center p-1 w-full">
-              <button onClick={() => setPrice(p => (parseFloat(p) - 0.01).toFixed(2))} className="text-2xl text-gray-600 hover:text-white px-2">-</button>
-              <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} className="bg-transparent text-xl text-white tracking-tighter leading-none text-center outline-none px-2 w-full" />
-              <button onClick={() => setPrice(p => (parseFloat(p) + 0.01).toFixed(2))} className="text-2xl text-gray-600 hover:text-white px-2">+</button>
+              <button onClick={() => setPrice(p => (parseFloat(p) - 0.01).toFixed(2))} className="text-base text-gray-600 hover:text-white px-2">-</button>
+              <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} className="bg-transparent text-sm text-white tracking-tighter leading-none text-center outline-none px-2 w-full" />
+              <button onClick={() => setPrice(p => (parseFloat(p) + 0.01).toFixed(2))} className="text-base text-gray-600 hover:text-white px-2">+</button>
             </div>
           </div>
         </div>
@@ -82,9 +82,9 @@ export default function TradingPanel() {
           <div className="text-[9px] text-gray-500 mb-1">SET QUANTITY (1 {marketId} TOKEN = 100kWh)</div> 
           <div className="flex items-center justify-between">
             <div className="bg-zinc-800/70 border border-gray-700 rounded-sm flex items-center p-1 w-full">
-              <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="text-2xl text-gray-600 hover:text-white px-2">-</button>
-              <input type="number" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value) || 1)} className="bg-transparent text-xl text-white tracking-tighter leading-none text-center outline-none px-2 w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-              <button onClick={() => setQuantity(q => q + 1)} className="text-2xl text-gray-600 hover:text-white px-2">+</button>
+              <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="text-base text-gray-600 hover:text-white px-2">-</button>
+              <input type="number" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value) || 1)} className="bg-transparent text-sm text-white tracking-tighter leading-none text-center outline-none px-2 w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+              <button onClick={() => setQuantity(q => q + 1)} className="text-base text-gray-600 hover:text-white px-2">+</button>
             </div>
           </div>
         </div>
