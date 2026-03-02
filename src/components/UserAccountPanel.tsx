@@ -5,9 +5,9 @@ import React, { useMemo } from 'react'
 export default function UserAccountPanel() {
   // Przykładowe dane portfela
   const inventory = [
-    { token: 'BS-P-PL', quantity: '150,000', avgPrice: 10.45, lastPrice: 10.89, pnl: '+4.20' },
-    { token: 'BS-G-DE', quantity: '80,000', avgPrice: 12.10, lastPrice: 11.96, pnl: '-1.15' },
-    { token: 'BS-W-FR', quantity: '200,000', avgPrice: 9.80, lastPrice: 11.02, pnl: '+12.40' },
+    { token: 'BS-P-PL', quantity: '150,000', avgPrice: 10.45, lastPrice: 10.89, pnl: '+630.00' },
+    { token: 'BS-G-DE', quantity: '80,000', avgPrice: 12.10, lastPrice: 11.96, pnl: '-112.00' },
+    { token: 'BS-W-FR', quantity: '200,000', avgPrice: 9.80, lastPrice: 11.02, pnl: '+244.00' },
   ]
 
   const vaultLiquidity = {
@@ -61,7 +61,7 @@ export default function UserAccountPanel() {
             <div className="text-center tracking-widest">Qty (kWh)</div>
             <div className="text-center tracking-widest">Avg</div>
             <div className="text-center tracking-widest">Last</div>
-            <div className="text-right tracking-widest">PnL%</div>
+            <div className="text-right tracking-widest">PnL (EUR)</div>
           </div>
 
           {/* Table Rows */}
