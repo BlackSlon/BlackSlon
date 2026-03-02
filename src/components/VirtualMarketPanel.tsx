@@ -144,49 +144,43 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           {/* D-1 */}
           <div className="flex flex-col items-center text-center">
             <span className="text-[9px] text-gray-500">D-1</span>
-            <span className="text-[11px] font-black text-white">10.59</span>
-            <span className="text-[11px] font-black text-green-500">+4.2%</span>
-            <span className="text-[7px] text-gray-600">EUR/100kWh</span>
+            <span className="text-[11px] text-gray-400">10.59</span>
+            <span className="text-[9px] text-green-500">+4.2%</span>
           </div>
           
           {/* W-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">W-1</span>
-            <span className="text-[11px] font-black text-white">10.45</span>
-            <span className="text-[11px] font-black text-green-500">+2.8%</span>
-            <span className="text-[7px] text-gray-600">EUR/100kWh</span>
+            <span className="text-[11px] text-gray-400">10.45</span>
+            <span className="text-[9px] text-green-500">+2.8%</span>
           </div>
           
           {/* M-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">M-1</span>
-            <span className="text-[11px] font-black text-white">10.32</span>
-            <span className="text-[11px] font-black text-red-600">-1.1%</span>
-            <span className="text-[7px] text-gray-600">EUR/100kWh</span>
+            <span className="text-[11px] text-gray-400">10.32</span>
+            <span className="text-[9px] text-red-600">-1.1%</span>
           </div>
           
           {/* Q-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">Q-1</span>
-            <span className="text-[11px] font-black text-white">10.28</span>
-            <span className="text-[11px] font-black text-green-500">+0.9%</span>
-            <span className="text-[7px] text-gray-600">EUR/100kWh</span>
+            <span className="text-[11px] text-gray-400">10.28</span>
+            <span className="text-[9px] text-green-500">+0.9%</span>
           </div>
           
           {/* H-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
             <span className="text-[9px] text-gray-500">H-1</span>
-            <span className="text-[11px] font-black text-white">10.15</span>
-            <span className="text-[11px] font-black text-red-600">-2.3%</span>
-            <span className="text-[7px] text-gray-600">EUR/100kWh</span>
+            <span className="text-[11px] text-gray-400">10.15</span>
+            <span className="text-[9px] text-red-600">-2.3%</span>
           </div>
           
           {/* Y-1 */}
           <div className="flex flex-col items-center text-center px-4">
             <span className="text-[9px] text-gray-500">Y-1</span>
-            <span className="text-[11px] font-black text-white">9.87</span>
-            <span className="text-[11px] font-black text-green-500">+5.8%</span>
-            <span className="text-[7px] text-gray-600">EUR/100kWh</span>
+            <span className="text-[11px] text-gray-400">9.87</span>
+            <span className="text-[9px] text-green-500">+5.8%</span>
           </div>
         </div>
       </div>
