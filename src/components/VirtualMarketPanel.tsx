@@ -50,6 +50,10 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
       </div>
 
       
+      {/* 3. LAST DEAL FRAME */}
+      <div className="mb-3 mx-3 p-3 border border-yellow-500/40 bg-yellow-500/5 rounded-sm">
+      </div>
+      
       {/* 4. MAIN ORDER BOOK GRID (Thin Lines) */}
       <div className="flex-grow flex min-h-0 overflow-hidden">
         
