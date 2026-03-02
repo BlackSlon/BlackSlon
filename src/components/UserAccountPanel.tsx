@@ -61,9 +61,9 @@ export default function UserAccountPanel() {
               <div className="text-[8px] text-blue-800 uppercase tracking-widest mb-0">eEURO BALANCE</div>
               <div className="text-lg text-blue-500 tracking-tighter leading-tight">12 450.00</div>
             </div>
-            <div className="border border-green-500/30 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-green-800 uppercase tracking-widest mb-0">Total Balance [EUR]</div>
-              <div className="text-lg text-green-500 tracking-tighter leading-tight">{totalEURWithBSR}</div>
+            <div className="border border-purple-500/30 rounded-sm py-1 px-3 overflow-hidden w-fit">
+              <div className="text-[8px] text-purple-800 uppercase tracking-widest mb-0">Total Balance [EUR]</div>
+              <div className="text-lg text-purple-400 tracking-tighter leading-tight">{totalEURWithBSR}</div>
             </div>
           </div>
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-0 mt-4">BlackSlon Tokens Portfolio</div>
@@ -110,9 +110,9 @@ export default function UserAccountPanel() {
               <div className="text-[8px] text-blue-800 uppercase tracking-widest mb-0">Locked eEURO</div>
               <div className="text-lg text-blue-500 tracking-tighter leading-tight">{vaultLiquidity.lockedEUR}</div>
             </div>
-            <div className="border border-green-500/30 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-green-800 uppercase tracking-widest mb-0">Total Locked Value [EUR]</div>
-              <div className="text-lg text-green-500 tracking-tighter leading-tight">{totalLockedEUR}</div>
+            <div className="border border-purple-500/30 rounded-sm py-1 px-3 overflow-hidden w-fit">
+              <div className="text-[8px] text-purple-800 uppercase tracking-widest mb-0">Total Locked Value [EUR]</div>
+              <div className="text-lg text-purple-400 tracking-tighter leading-tight">{totalLockedEUR}</div>
             </div>
           </div>
         </div>
