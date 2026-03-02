@@ -116,7 +116,7 @@ export default function TradingPanel() {
 
         <div className="mt-auto border-t border-gray-900 pt-2 shrink-0">
           <div className="text-center mb-1">
-            <span className="text-[9px] text-gray-500 uppercase tracking-tighter">REQUIRED MARGIN</span>
+            <span className="text-[9px] text-gray-400 uppercase tracking-tighter">REQUIRED MARGIN</span>
           </div>
           <div className="text-center mb-2">
             <span className="text-lg text-gray-400 leading-none">
