@@ -36,26 +36,25 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
         </div>
 
         {/* RANGES */}
-        <div className="mb-3 p-3 border border-yellow-500/40 rounded-sm">
-          <div className="flex flex-col">
-            <div className="flex items-center justify-between px-2">
-              {/* Żółte wartości są teraz wyraźnie większe i ważniejsze (text-xl) */}
-              <div className="flex flex-col items-center">
-                <span className="text-[7px] text-gray-500 uppercase mb-0">Min</span>
-                <span className="text-lg text-yellow-500">9.09</span>
-              </div>
-              
-              {/* Szary Anchor - mniejszy i mniej widoczny */}
-              <div className="flex flex-col items-center">
-                <span className="text-[7px] text-gray-500 uppercase mb-0">Anchor</span>
-                <span className="text-lg text-gray-600">{currentPrice.toFixed(2)}</span>
-                <span className="text-[6px] text-gray-500">EUR/100kWh</span>
-              </div>
-              
-              <div className="flex flex-col items-center">
-                <span className="text-[7px] text-gray-500 uppercase mb-0">Max</span>
-                <span className="text-lg text-yellow-500">11.11</span>
-              </div>
+        <div className="mb-3 px-2 py-2 border border-yellow-500/40 rounded-sm">
+          <div className="flex justify-between items-center mb-1">
+            <div className="text-[6px] text-gray-600 uppercase tracking-widest">EUR / 100kWh</div>
+            <div className="text-[6px] text-amber-700 uppercase tracking-widest">Valid today · 02.03.2026</div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col items-center">
+              <span className="text-[7px] text-gray-500 uppercase mb-0">Min</span>
+              <span className="text-lg text-yellow-500 leading-tight">9.09</span>
+            </div>
+            <div className="text-gray-800 text-[10px]">——</div>
+            <div className="flex flex-col items-center">
+              <span className="text-[7px] text-gray-500 uppercase mb-0">Anchor</span>
+              <span className="text-lg text-gray-600 leading-tight">{currentPrice.toFixed(2)}</span>
+            </div>
+            <div className="text-gray-800 text-[10px]">——</div>
+            <div className="flex flex-col items-center">
+              <span className="text-[7px] text-gray-500 uppercase mb-0">Max</span>
+              <span className="text-lg text-yellow-500 leading-tight">11.11</span>
             </div>
           </div>
         </div>
