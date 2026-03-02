@@ -108,28 +108,6 @@ export default function TradingPanel() {
           </div>
         </div>
 
-        {/* BSR <-> eEURO EXCHANGE */}
-        <div className="mb-2 shrink-0 px-1">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon €BSR Tokens</div>
-          <div className="border border-gray-900 rounded-sm px-2 py-1">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[8px] text-gray-600 uppercase tracking-widest">Rate</span>
-              <span className="text-[9px]">
-                <span className="text-amber-700">1 €BSR</span>
-                <span className="text-gray-700 mx-1">=</span>
-                <span className="text-sky-400">2.45 <span className="normal-case">e</span>EURO</span>
-              </span>
-            </div>
-            <div className="flex items-center gap-1 mb-1">
-              <input type="number" placeholder="0.00" className="bg-zinc-900 border border-gray-800 text-[10px] text-gray-300 text-center outline-none w-full py-0.5 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-            </div>
-            <div className="flex gap-1">
-              <button className="flex-1 py-0.5 border border-amber-700 text-amber-700 text-[8px] uppercase tracking-widest hover:bg-amber-700 hover:text-black transition-all rounded-sm">Buy €BSR</button>
-              <button className="flex-1 py-0.5 border border-sky-400 text-sky-400 text-[8px] uppercase tracking-widest hover:bg-sky-400 hover:text-black transition-all rounded-sm">Sell €BSR</button>
-            </div>
-          </div>
-        </div>
-
         <div className="mt-auto border-t border-gray-900 pt-2 shrink-0">
           <div className="text-center mb-1">
             <span className="text-[9px] text-gray-400 uppercase tracking-tighter">REQUIRED MARGIN</span>

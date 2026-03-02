@@ -144,6 +144,20 @@ export default function UserAccountPanel() {
               </button>
             </div>
           </div>
+
+          {/* BSR TOKEN EXCHANGE */}
+          <div className="mt-3">
+            <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon €BSR Tokens</div>
+            <div className="border border-gray-900 rounded-sm px-2 py-1">
+              <div className="flex items-center gap-1 mb-1">
+                <input type="number" placeholder="0.00" className="bg-zinc-900 border border-gray-800 text-[10px] text-gray-300 text-center outline-none w-full py-0.5 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+              </div>
+              <div className="flex gap-1">
+                <button className="flex-1 py-0.5 border border-amber-700 text-amber-700 text-[8px] uppercase tracking-widest hover:bg-amber-700 hover:text-black transition-all rounded-sm">Buy €BSR</button>
+                <button className="flex-1 py-0.5 border border-sky-400 text-sky-400 text-[8px] uppercase tracking-widest hover:bg-sky-400 hover:text-black transition-all rounded-sm">Sell €BSR</button>
+              </div>
+            </div>
+          </div>
         </div>
         </div>
 
