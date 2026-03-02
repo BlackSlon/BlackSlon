@@ -185,19 +185,58 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
         </div>
       </div>
 
-      {/* 6. FOOTER: BSEI & TURNOVER */}
-      <div className="grid grid-cols-2 border-t border-gray-800 bg-black py-4 px-6">
-        <div className="flex flex-col border-r border-gray-800 pr-6">
-          <div className="text-[9px] text-gray-600 uppercase font-bold mb-1 tracking-widest">BSEI-PL Index</div>
-          <span className="text-4xl font-black text-white italic tracking-tighter flex items-baseline gap-2">
-            10.59 <span className="text-[10px] text-gray-600 not-italic font-normal">EUR/100kWh</span>
-          </span>
+      {/* 6. BLACKSLON LIQUIDITY */}
+      <div className="px-6 py-4 border-t border-gray-800 bg-black">
+        <div className="text-[10px] tracking-widest text-amber-700 mb-3">
+          BlackSlon Liquidity
         </div>
-        <div className="pl-6 flex flex-col justify-center">
-          <div className="text-[9px] text-gray-600 uppercase font-bold mb-1 tracking-widest">Daily Turnover</div>
-          <div className="flex justify-between items-baseline">
-            <span className="text-yellow-600 font-black text-lg">124,500.00 €BSR</span>
-            <span className="text-blue-500/60 text-[11px] font-bold">1,245,000 kWh</span>
+        <div className="flex justify-between items-center font-mono">
+          {/* D-1 */}
+          <div className="flex flex-col items-center text-center">
+            <span className="text-[9px] text-gray-500">D-1</span>
+            <span className="text-[11px] text-gray-400">1,245,000</span>
+            <span className="text-[9px] text-blue-500">+8.2%</span>
+            <span className="text-[7px] text-gray-600">kWh</span>
+          </div>
+          
+          {/* W-1 */}
+          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
+            <span className="text-[9px] text-gray-500">W-1</span>
+            <span className="text-[11px] text-gray-400">8,715,000</span>
+            <span className="text-[9px] text-blue-500">+5.4%</span>
+            <span className="text-[7px] text-gray-600">kWh</span>
+          </div>
+          
+          {/* M-1 */}
+          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
+            <span className="text-[9px] text-gray-500">M-1</span>
+            <span className="text-[11px] text-gray-400">37,440,000</span>
+            <span className="text-[9px] text-red-600">-2.1%</span>
+            <span className="text-[7px] text-gray-600">kWh</span>
+          </div>
+          
+          {/* Q-1 */}
+          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
+            <span className="text-[9px] text-gray-500">Q-1</span>
+            <span className="text-[11px] text-gray-400">112,320,000</span>
+            <span className="text-[9px] text-blue-500">+3.7%</span>
+            <span className="text-[7px] text-gray-600">kWh</span>
+          </div>
+          
+          {/* H-1 */}
+          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4">
+            <span className="text-[9px] text-gray-500">H-1</span>
+            <span className="text-[11px] text-gray-400">224,640,000</span>
+            <span className="text-[9px] text-red-600">-1.8%</span>
+            <span className="text-[7px] text-gray-600">kWh</span>
+          </div>
+          
+          {/* Y-1 */}
+          <div className="flex flex-col items-center text-center px-4">
+            <span className="text-[9px] text-gray-500">Y-1</span>
+            <span className="text-[11px] text-gray-400">449,280,000</span>
+            <span className="text-[9px] text-blue-500">+12.3%</span>
+            <span className="text-[7px] text-gray-600">kWh</span>
           </div>
         </div>
       </div>
