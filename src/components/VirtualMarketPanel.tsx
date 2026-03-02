@@ -57,22 +57,25 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
 
       
       {/* 3. LAST DEAL FRAME */}
-      <div className="mb-3 mx-3 p-3 border border-yellow-500/40 rounded-sm">
-        <div className="flex items-center justify-between px-2 flex-nowrap gap-2">
-          <div className="flex items-center whitespace-nowrap shrink-0">
-            <span className="text-[7px] text-gray-500 uppercase mr-1">LAST PRICE:</span>
-            <span className="text-lg text-yellow-500 tracking-tighter leading-none">10.59</span>
-            <span className="text-[7px] text-gray-500 ml-1">EUR/100kWh</span>
+      <div className="mb-3 mx-3 px-2 py-2 border border-yellow-500/40 rounded-sm">
+        <div className="flex justify-between items-center mb-1">
+          <div className="text-[6px] text-red-700 uppercase tracking-widest">Last Trade · BS-P-PL</div>
+          <div className="text-[6px] text-gray-600 tracking-widest">EUR / 100kWh</div>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col items-center">
+            <span className="text-[7px] text-gray-500 uppercase mb-0">Price</span>
+            <span className="text-lg text-yellow-500 tracking-tighter leading-tight">10.59</span>
           </div>
-          <div className="flex items-center whitespace-nowrap shrink-0">
-            <span className="text-[7px] text-gray-500 uppercase mr-1">UNIT:</span>
-            <span className="text-sm text-gray-400">10</span>
-            <span className="text-[7px] text-gray-500 ml-1">BS-P-PL</span>
+          <div className="text-gray-800 text-[10px]">——</div>
+          <div className="flex flex-col items-center">
+            <span className="text-[7px] text-gray-500 uppercase mb-0">Unit</span>
+            <span className="text-lg text-gray-600 tracking-tighter leading-tight">10</span>
           </div>
-          <div className="flex items-center whitespace-nowrap shrink-0">
-            <span className="text-[7px] text-gray-500 uppercase mr-1">VOLUME:</span>
-            <span className="text-sm text-gray-400">1 000</span>
-            <span className="text-[7px] text-gray-500 ml-1">kWh</span>
+          <div className="text-gray-800 text-[10px]">——</div>
+          <div className="flex flex-col items-center">
+            <span className="text-[7px] text-gray-500 uppercase mb-0 normal-case">Volume (kWh)</span>
+            <span className="text-lg text-gray-600 tracking-tighter leading-tight">1 000</span>
           </div>
         </div>
       </div>
