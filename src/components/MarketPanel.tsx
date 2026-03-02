@@ -31,7 +31,7 @@ export default function MarketPanel({ currentPrice }: { currentPrice: number }) 
         <div className="flex justify-between items-baseline">
           <span className="text-[11px] text-gray-500 font-bold tracking-tighter uppercase">BSTZ PRICE INDEX</span>
           <span className="text-3xl font-bold text-yellow-500 font-mono tracking-tighter">
-            {currentPrice.toFixed(2)} <span className="text-[12px] text-gray-600 ml-1 font-sans">EUR / 100kWh</span>
+            {currentPrice.toFixed(2)} <span className="text-[12px] text-gray-600 ml-1 font-sans">EUR/100kWh</span>
           </span>
         </div>
       </div>

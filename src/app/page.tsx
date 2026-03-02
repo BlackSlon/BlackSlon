@@ -117,22 +117,22 @@ function MarketTile({ market, liveData }: { market: any; liveData: any }) {
         </h4>
       </div>
 
-      {/* CENA W EUR/100vkWh */}
+      {/* CENA W EUR/100kWh */}
       <div className="mb-6 p-4 bg-black border border-gray-900 text-center">
         <div className="text-[8px] text-gray-600 tracking-[0.3em] mb-2">Current Index Price</div>
         <div className={`text-2xl font-normal font-mono tracking-tighter ${priceColor}`}>
-          {iptPrice.toFixed(2)} <span className="text-[10px] text-gray-500 ml-1">EUR/100vkWh</span>
+          {iptPrice.toFixed(2)} <span className="text-[10px] text-gray-500 ml-1">EUR/100kWh</span>
         </div>
       </div>
 
       {/* POZYCJE */}
       <div className="grid grid-cols-2 gap-2 mb-6 text-center">
         <div className="border border-gray-900 py-3">
-            <div className="text-[7px] text-gray-600 mb-1 tracking-widest font-normal">Long (vkWh)</div>
+            <div className="text-[7px] text-gray-600 mb-1 tracking-widest font-normal">Long (kWh)</div>
             <div className="text-[10px] text-green-500 font-normal">1.2M</div>
         </div>
         <div className="border border-gray-900 py-3">
-            <div className="text-[7px] text-gray-600 mb-1 tracking-widest font-normal">Short (vkWh)</div>
+            <div className="text-[7px] text-gray-600 mb-1 tracking-widest font-normal">Short (kWh)</div>
             <div className="text-[10px] text-red-500 font-normal">0.8M</div>
         </div>
       </div>

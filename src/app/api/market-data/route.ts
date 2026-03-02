@@ -23,8 +23,8 @@ export async function GET() {
     id: 'IPT-P-PL',
     name: 'Power Poland',
     wholesalePrice: finalAnchor.toFixed(2),
-    currentBSEI: (finalAnchor / 10).toFixed(2), // Cena w EUR / vkWh
-    unit: 'EUR / vkWh',
+    currentBSEI: (finalAnchor / 10).toFixed(2), // Cena w EUR / kWh
+    unit: 'EUR / kWh',
     change: "+1.24%",
     corridor: {
       low: (finalAnchor * 0.9).toFixed(2),

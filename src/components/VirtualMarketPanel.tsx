@@ -58,7 +58,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           <div className="flex items-center">
             <span className="text-[7px] text-gray-500 uppercase mr-2">LAST PRICE:</span>
             <span className="text-xl text-yellow-500">10.59</span>
-            <span className="text-[8px] text-gray-500 ml-1">Eur/100kWh</span>
+            <span className="text-[8px] text-gray-500 ml-1">EUR/100kWh</span>
           </div>
           <div className="flex items-center">
             <span className="text-[7px] text-gray-500 uppercase mr-2">VOLUME:</span>
@@ -141,9 +141,9 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
       <div className="grid grid-cols-2 border-t border-gray-800 bg-black py-4 px-6">
         <div className="flex flex-col border-r border-gray-800 pr-6">
           <div className="text-[9px] text-gray-600 uppercase font-bold mb-1 tracking-widest">BSEI-PL Index</div>
-          <div className="text-4xl font-black text-white italic tracking-tighter flex items-baseline gap-2">
-            10.59 <span className="text-[10px] text-gray-600 not-italic font-normal">EUR/100vkWh</span>
-          </div>
+          <span className="text-4xl font-black text-white italic tracking-tighter flex items-baseline gap-2">
+            10.59 <span className="text-[10px] text-gray-600 not-italic font-normal">EUR/100kWh</span>
+          </span>
         </div>
         <div className="pl-6 flex flex-col justify-center">
           <div className="text-[9px] text-gray-600 uppercase font-bold mb-1 tracking-widest">Daily Turnover</div>

@@ -162,7 +162,7 @@ export default function TerminalPage() {
                                 <span style={{ fontSize: '20px', fontWeight: 'bold', color: getAccent() }}>
                                     {displayPrice(m.price)}
                                 </span>
-                                <span style={{ fontSize: '7px', color: '#444', marginLeft: '3px' }}>€/100 kWh eq</span>
+                                <span style={{ fontSize: '7px', color: '#444', marginLeft: '3px' }}>€/100kWh eq</span>
                             </div>
                             <div style={{ display: 'flex', gap: '4px', marginBottom: '10px' }}>
                                 <button 
