@@ -40,39 +40,24 @@ export default function UserAccountPanel() {
             </div>
           </div>
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-2 mt-3">Available Liquidity</div>
-          <div className="space-y-2">
-            <div className="border border-yellow-500/30 rounded-sm p-3">
-              <div className="text-[8px] text-yellow-800 uppercase tracking-widest mb-1">eEURO BALANCE</div>
-              <div className="text-lg text-yellow-500 tracking-tighter">12 450.00</div>
-            </div>
-            <div className="border border-yellow-500/30 rounded-sm p-3">
-              <div className="text-[8px] text-yellow-800 uppercase tracking-widest mb-1">€BSR BALANCE</div>
-              <div className="text-lg text-yellow-500 tracking-tighter">3 200.00</div>
-            </div>
+          <div className="flex justify-between items-center border border-yellow-500/30 rounded-sm p-3">
+            <div className="text-[8px] text-yellow-800 uppercase tracking-widest">eEURO BALANCE: <span className="text-lg text-yellow-500 tracking-tighter">12 450.00</span></div>
+            <div className="text-[8px] text-yellow-800 uppercase tracking-widest">€BSR BALANCE: <span className="text-lg text-yellow-500 tracking-tighter">3 200.00</span></div>
           </div>
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-2 mt-4">BlackSlon Tokens Portfolio</div>
         </div>
         
         {/* TABLE INVENTORY */}
         <div className="mb-4">
-          {/* Table Header */}
-          <div className="grid grid-cols-5 text-[7px] text-white uppercase px-2 py-1 border-b border-gray-900">
-            <div className="tracking-widest">Token</div>
-            <div className="text-center tracking-widest">Qty (kWh)</div>
-            <div className="text-center tracking-widest">Avg</div>
-            <div className="text-center tracking-widest">Last</div>
-            <div className="text-right tracking-widest">PnL (EUR)</div>
-          </div>
-
-          {/* Table Rows */}
           {inventory.map((item, index) => (
-            <div key={index} className="grid grid-cols-5 items-center py-1 px-2 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors">
-              <div className={`text-[10px] ${item.color === 'yellow' ? 'text-yellow-500' : 'text-blue-500'}`}>{item.token}</div>
-              <div className="text-center text-[9px] text-gray-400">{item.quantity}</div>
-              <div className="text-center text-[9px] text-gray-400">{item.avgPrice}</div>
-              <div className="text-center text-[9px] text-gray-400">{item.lastPrice}</div>
-              <div className={`text-right text-[9px] ${item.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>
-                {item.pnl}
+            <div key={index} className="border border-gray-900/50 rounded-sm p-3 mb-2 hover:bg-gray-900/40 transition-colors">
+              <div className="flex justify-between items-center">
+                <div className={`text-[10px] ${item.color === 'yellow' ? 'text-yellow-500' : 'text-blue-500'}`}>{item.token}</div>
+                <div className="text-[9px] text-gray-400">{item.quantity} kWh</div>
+              </div>
+              <div className="flex justify-between items-center mt-1">
+                <div className="text-[9px] text-gray-400">Avg: {item.avgPrice} | Last: {item.lastPrice}</div>
+                <div className={`text-[9px] ${item.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>PnL: {item.pnl} EUR</div>
               </div>
             </div>
           ))}
