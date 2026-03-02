@@ -33,10 +33,11 @@ export default function UserAccountPanel() {
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
         <div className="p-4 bg-gradient-to-b from-black to-gray-950">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Portfolio</div>
+          <div className="text-[8px] tracking-widest text-amber-700 mb-2">BlackSlon Available Liquidity</div>
           <div className="flex justify-between items-center">
             <div className="flex gap-4">
               <span className="text-[10px] text-gray-500 uppercase font-normal">UID: <span className="text-yellow-500">BS-PRO-001</span></span>
-              <span className="text-[10px] text-gray-500 uppercase font-normal">Type: <span className="text-green-500 animate-pulse font-black">INSTITUTIONAL</span></span>
+              <span className="text-[10px] text-gray-500 uppercase font-normal">Mode: <span className="text-green-500 animate-pulse font-black">CONNECTED</span></span>
             </div>
           </div>
         </div>
