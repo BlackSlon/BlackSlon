@@ -27,12 +27,6 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">
             BlackSlon Settlement Zone
           </div>
-          <div className="flex justify-between items-center">
-            <div className="flex gap-4">
-              <span className="text-[10px] text-gray-500 uppercase font-normal">Instrument: <span className="text-yellow-500">BS-P-PL</span></span>
-              <span className="text-[10px] text-gray-500 uppercase font-normal">Status: <span className="text-green-500 animate-pulse font-black">LIVE</span></span>
-            </div>
-          </div>
         </div>
 
         {/* RANGES */}
