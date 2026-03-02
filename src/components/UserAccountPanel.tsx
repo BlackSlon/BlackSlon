@@ -28,6 +28,7 @@ export default function UserAccountPanel() {
   const totalBSR = 3200 + 1250.40 // Available + Locked
   const totalEUR = (totalBSR * exchangeRate).toFixed(2)
   const totalEURWithBSR = fmt(12450 + (totalBSR * exchangeRate)) // eEURO + €BSR converted
+  const totalLockedEUR = fmt(1250.40 * exchangeRate + 450) // Locked €BSR + Locked eEURO
 
   return (
     <div className="flex flex-col h-full bg-black font-mono text-white p-0">
@@ -108,6 +109,10 @@ export default function UserAccountPanel() {
             <div className="bg-blue-500/10 border border-blue-500/30 rounded-sm py-1 px-3 overflow-hidden w-fit">
               <div className="text-[8px] text-blue-800 uppercase tracking-widest mb-0">Locked eEURO</div>
               <div className="text-lg text-blue-500 tracking-tighter leading-tight">{vaultLiquidity.lockedEUR}</div>
+            </div>
+            <div className="border border-green-500/30 rounded-sm py-1 px-3 overflow-hidden w-fit">
+              <div className="text-[8px] text-green-800 uppercase tracking-widest mb-0">Total Locked Value [EUR]</div>
+              <div className="text-lg text-green-500 tracking-tighter leading-tight">{totalLockedEUR}</div>
             </div>
           </div>
         </div>
