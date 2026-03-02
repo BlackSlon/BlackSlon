@@ -20,6 +20,11 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
 
   const maxVol = Math.max(...buyOrders.map(o => o.volume), ...sellOrders.map(o => o.volume))
 
+  // Function to format volume with spaces
+  const formatVolume = (vol: number) => {
+    return vol.toLocaleString('pl-PL')
+  }
+
   return (
     <div className="flex flex-col h-full bg-black font-mono text-white p-0">
       
@@ -72,19 +77,28 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
       <div className="flex-grow flex min-h-0 overflow-hidden">
         
         {/* BUY SIDE */}
-        <div className="flex-1 flex flex-col border-l border-r border-gray-800 overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden">
           <div className="py-2 px-4 bg-green-950/20">
             <span className="text-[11px] text-green-500 tracking-widest">BUY ORDERS</span>
           </div>
           <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
-            <div>VOLUME (kWh)</div>
-            <div className="text-center">UNIT (BS-P-PL)</div>
-            <div className="text-right">PRICE (Eur/100kWh)</div>
+            <div className="text-center">
+              <div>VOLUME</div>
+              <div className="text-gray-600">(kWh)</div>
+            </div>
+            <div className="text-center">
+              <div>UNIT</div>
+              <div className="text-gray-600">(BS-P-PL)</div>
+            </div>
+            <div className="text-right">
+              <div>PRICE</div>
+              <div className="text-gray-600">(EUR/100kWh)</div>
+            </div>
           </div>
           <div className="flex-grow overflow-hidden">
             {buyOrders.map((o, i) => (
               <div key={i} className="grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-green-500/10 transition-all group">
-                <div className={i === 0 ? "text-[11px] text-gray-400 self-center" : "text-[11px] text-gray-400 self-center"}>{o.volume.toLocaleString()}</div>
+                <div className={i === 0 ? "text-[11px] text-gray-400 self-center" : "text-[11px] text-gray-400 self-center"}>{formatVolume(o.volume)}</div>
                 <div className={i === 0 ? "text-center text-green-500 text-[11px] self-center" : "text-center text-green-500 text-[11px] self-center"}>{o.unit}</div>
                 <div className={i === 0 ? "text-xl text-green-500 tracking-tighter leading-none self-center" : "text-right text-[11px] text-green-500 self-center"}>{o.price.toFixed(2)}</div>
               </div>
@@ -93,21 +107,30 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
         </div>
 
         {/* SELL SIDE */}
-        <div className="flex-1 flex flex-col border border-gray-800 overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden">
           <div className="py-2 px-4 border-b border-gray-800 bg-red-950/20 text-right">
             <span className="text-[11px] text-red-500 tracking-widest">SELL ORDERS</span>
           </div>
           <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
-            <div>PRICE (Eur/100kWh)</div>
-            <div className="text-center">UNIT (BS-P-PL)</div>
-            <div className="text-right">VOLUME (kWh)</div>
+            <div className="text-left">
+              <div>PRICE</div>
+              <div className="text-gray-600">(EUR/100kWh)</div>
+            </div>
+            <div className="text-center">
+              <div>UNIT</div>
+              <div className="text-gray-600">(BS-P-PL)</div>
+            </div>
+            <div className="text-right">
+              <div>VOLUME</div>
+              <div className="text-gray-600">(kWh)</div>
+            </div>
           </div>
           <div className="flex-grow overflow-hidden">
             {sellOrders.map((o, i) => (
               <div key={i} className="grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-red-500/10 transition-all group">
                 <div className={i === 0 ? "text-xl text-red-500 tracking-tighter leading-none self-center" : "text-right text-[11px] text-red-500 self-center"}>{o.price.toFixed(2)}</div>
                 <div className={i === 0 ? "text-center text-red-500 text-[11px] self-center" : "text-center text-red-500 text-[11px] self-center"}>{o.unit}</div>
-                <div className={i === 0 ? "text-right text-[11px] text-gray-400 self-center" : "text-right text-[11px] text-gray-400 self-center"}>{o.volume.toLocaleString()}</div>
+                <div className={i === 0 ? "text-right text-[11px] text-gray-400 self-center" : "text-right text-[11px] text-gray-400 self-center"}>{formatVolume(o.volume)}</div>
               </div>
             ))}
           </div>
