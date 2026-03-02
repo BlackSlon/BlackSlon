@@ -63,7 +63,7 @@ export default function TradingPanel() {
         </div>
 
         <div className="flex justify-center gap-2 mb-3 shrink-0 pointer-events-auto relative z-10">
-          <button onClick={() => { console.log('BUY button clicked!'); setSide('BUY'); }} className={`flex-1 py-1.5 border font-normal uppercase tracking-widest text-[9px] transition-all rounded-sm pointer-events-auto relative z-10 ${side === 'BUY' ? 'border-green-600 bg-green-600/10 text-green-500' : 'border-gray-900 text-gray-700'}`}>BUY</button>
+          <button onClick={() => { console.log('BUY button clicked!'); setSide('BUY'); }} className={`flex-1 py-1.5 border font-normal uppercase tracking-widest text-[9px] transition-all rounded-sm pointer-events-auto relative z-10 ${side === 'BUY' ? 'border-green-700 bg-green-700/10 text-green-700' : 'border-gray-900 text-gray-700'}`}>BUY</button>
           <button onClick={() => setSide('SELL')} className={`flex-1 py-1.5 border font-normal uppercase tracking-widest text-[9px] transition-all rounded-sm pointer-events-auto relative z-10 ${side === 'SELL' ? 'border-red-600 bg-red-600/10 text-red-500' : 'border-gray-900 text-gray-700'}`}>SELL</button>
         </div>
 
@@ -91,7 +91,7 @@ export default function TradingPanel() {
 
         <button className={`w-full py-2 mb-4 border uppercase tracking-[0.3em] text-[10px] transition-all duration-300 rounded-sm shrink-0
           ${side === 'BUY' 
-            ? 'border-green-500 text-green-500 hover:bg-green-500 hover:text-black' 
+            ? 'border-green-700 text-green-700 hover:bg-green-700 hover:text-black' 
             : 'border-red-600 text-red-600 hover:bg-red-600 hover:text-white'}`}>
           CONFIRM {side} ORDER
         </button>

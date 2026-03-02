@@ -80,7 +80,7 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
         {/* BUY SIDE */}
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="py-2 px-4 border-b border-gray-800 bg-green-950/20">
-            <span className="text-[11px] text-green-500 tracking-widest">BUY ORDERS</span>
+            <span className="text-[11px] text-green-700 tracking-widest">BUY ORDERS</span>
           </div>
           <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
             <div className="text-center">
@@ -98,10 +98,10 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           </div>
           <div className="flex-grow overflow-hidden">
             {buyOrders.map((o, i) => (
-              <div key={i} className={i === 0 ? "grid grid-cols-3 py-0.5 px-4 border-b border-green-500/30 bg-green-500/10" : "grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-green-500/10 transition-all group"}>
+              <div key={i} className={i === 0 ? "grid grid-cols-3 py-0.5 px-4 border-b border-green-700/30 bg-green-700/10" : "grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-green-700/10 transition-all group"}>
                 <div className="text-[11px] text-gray-400 self-center">{formatVolume(o.volume)}</div>
-                <div className={`text-center text-[11px] self-center ${i === 0 ? 'text-green-400 font-bold' : 'text-green-500'}`}>{o.unit}</div>
-                <div className={`text-right text-[11px] self-center ${i === 0 ? 'text-green-400 font-bold' : 'text-green-500'}`}>{o.price.toFixed(2)}</div>
+                <div className={`text-center text-[11px] self-center ${i === 0 ? 'text-green-600 font-bold' : 'text-green-700'}`}>{o.unit}</div>
+                <div className={`text-right text-[11px] self-center ${i === 0 ? 'text-green-600 font-bold' : 'text-green-700'}`}>{o.price.toFixed(2)}</div>
               </div>
             ))}
           </div>
@@ -149,42 +149,42 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
           <div className="flex flex-col items-center text-center flex-shrink-0">
             <span className="text-[9px] text-gray-500">D-1</span>
             <span className="text-[11px] text-gray-400 sm:text-[10px]">10.59</span>
-            <span className="text-[9px] text-green-500">+4.2%</span>
+            <span className="text-[9px] text-green-700">+4.2%</span>
           </div>
           
           {/* W-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
             <span className="text-[9px] text-gray-500">W-1</span>
             <span className="text-[11px] text-gray-400 sm:text-[10px]">10.72</span>
-            <span className="text-[9px] text-green-500">+3.1%</span>
+            <span className="text-[9px] text-green-700">+3.1%</span>
           </div>
           
           {/* M-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
             <span className="text-[9px] text-gray-500">M-1</span>
             <span className="text-[11px] text-gray-400 sm:text-[10px]">10.85</span>
-            <span className="text-[9px] text-green-500">+2.4%</span>
+            <span className="text-[9px] text-green-700">+2.4%</span>
           </div>
           
           {/* Q-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
             <span className="text-[9px] text-gray-500">Q-1</span>
             <span className="text-[11px] text-gray-400 sm:text-[10px]">10.95</span>
-            <span className="text-[9px] text-green-500">+1.8%</span>
+            <span className="text-[9px] text-green-700">+1.8%</span>
           </div>
           
           {/* H-1 */}
           <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
             <span className="text-[9px] text-gray-500">H-1</span>
             <span className="text-[11px] text-gray-400 sm:text-[10px]">11.02</span>
-            <span className="text-[9px] text-green-500">+1.2%</span>
+            <span className="text-[9px] text-green-700">+1.2%</span>
           </div>
           
           {/* Y-1 */}
           <div className="flex flex-col items-center text-center flex-shrink-0">
             <span className="text-[9px] text-gray-500">Y-1</span>
             <span className="text-[11px] text-gray-400 sm:text-[10px]">9.87</span>
-            <span className="text-[9px] text-green-500">+5.8%</span>
+            <span className="text-[9px] text-green-700">+5.8%</span>
           </div>
         </div>
       </div>

@@ -81,7 +81,7 @@ export default function UserAccountPanel() {
                   <div className="w-[20%] text-center text-[11px] text-gray-400 whitespace-nowrap">{item.quantity}</div>
                   <div className="w-[15%] text-center text-[11px] text-gray-400">{item.avgPrice}</div>
                   <div className="w-[15%] text-center text-[11px] text-gray-400">{item.lastPrice}</div>
-                  <div className={`w-[15%] text-right text-[11px] ${item.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>
+                  <div className={`w-[15%] text-right text-[11px] ${item.pnl.startsWith('+') ? 'text-green-700' : 'text-red-600'}`}>
                     {item.pnl}
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function UserAccountPanel() {
             </div>
             <div className="text-right">
               <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">Status</div>
-              <div className="text-[10px] text-green-500 tracking-[0.2em] uppercase animate-pulse">
+              <div className="text-[10px] text-green-700 tracking-[0.2em] uppercase animate-pulse">
                 SAFE ZONE
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function UserAccountPanel() {
       <div className="px-6 py-2 w-full">
         <div className="flex justify-between items-center mb-2">
           <span className="text-[9px] text-gray-600 uppercase tracking-widest">UID: <span className="text-gray-400">BS-PRO-001</span></span>
-          <span className="text-[9px] text-gray-600 uppercase tracking-widest">Mode: <span className="text-green-500 animate-pulse font-black">CONNECTED</span></span>
+          <span className="text-[9px] text-gray-600 uppercase tracking-widest">Mode: <span className="text-green-700 animate-pulse font-black">CONNECTED</span></span>
         </div>
         <button className="w-full py-3 bg-gray-800 text-gray-400 uppercase tracking-[0.3em] text-[10px] border border-gray-700 hover:bg-gray-700 hover:text-gray-300 transition-all">
           CONNECT WALLET

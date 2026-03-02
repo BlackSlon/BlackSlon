@@ -74,7 +74,7 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
                 <div className="col-span-2 text-[11px] text-gray-500 text-center">{row.min.toFixed(2)}</div>
                 <div className="col-span-2 text-[11px] text-gray-600 text-center">{row.anchor.toFixed(2)}</div>
                 <div className="col-span-2 text-[11px] text-gray-500 text-center">{row.max.toFixed(2)}</div>
-                <div className={`col-span-3 text-[11px] text-right ${row.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                <div className={`col-span-3 text-[11px] text-right ${row.change >= 0 ? 'text-green-700' : 'text-red-600'}`}>
                   {row.change >= 0 ? '▲' : '▼'} {row.trend}
                 </div>
               </div>
