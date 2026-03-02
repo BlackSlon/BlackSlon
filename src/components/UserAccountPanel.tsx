@@ -66,13 +66,13 @@ export default function UserAccountPanel() {
 
           {/* Table Rows */}
           {inventory.map((item, index) => (
-            <div key={index} className="grid grid-cols-5 items-center py-2 px-2 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors">
+            <div key={index} className="grid grid-cols-5 items-center py-1 px-2 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors">
               <div className="text-[10px] text-white">{item.token}</div>
               <div className="text-center text-[9px] text-gray-400">{item.quantity}</div>
               <div className="text-center text-[9px] text-gray-400">{item.avgPrice}</div>
               <div className="text-center text-[9px] text-gray-400">{item.lastPrice}</div>
               <div className={`text-right text-[9px] ${item.pnl.startsWith('+') ? 'text-green-500' : 'text-red-600'}`}>
-                {item.pnl}%
+                {item.pnl}
               </div>
             </div>
           ))}
