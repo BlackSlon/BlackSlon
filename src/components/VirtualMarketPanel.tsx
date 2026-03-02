@@ -36,14 +36,14 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
       </div>
 
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
-        {/* 2. TYTUŁ INSTRUMENTU (Brązowy) */}
+        {/* 2. TYTUŁ ORDER BOOK (Brązowy) */}
         <div className="p-4 bg-gradient-to-b from-black to-gray-950">
           <div className="text-[12px] tracking-widest text-amber-700 mb-1">
-            BlackSlon Power Poland
+            BlackSlon Order Book
           </div>
         <div className="flex justify-between items-center mt-2">
           <div className="flex gap-4">
-            <span className="text-[10px] text-gray-500 uppercase font-normal">Instrument: <span className="text-gray-300">BS-P-PL</span></span>
+            <span className="text-[10px] text-gray-500 uppercase font-normal">Instrument: <span className="text-yellow-500">BS-P-PL</span></span>
             <span className="text-[10px] text-gray-500 uppercase font-normal">Status: <span className="text-green-500 animate-pulse font-black">LIVE</span></span>
           </div>
         </div>
