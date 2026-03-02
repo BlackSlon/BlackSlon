@@ -91,7 +91,7 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
 
         {/* FUNDAMENTALS OF PHYSICAL MARKET */}
         <div className="px-6 py-4 border-t border-gray-900 pt-5 mt-auto">
-          <div className="text-[10px] text-gray-600 uppercase tracking-[0.3em] font-bold mb-3">
+          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-3">
             Fundamentals of Physical Market
           </div>
           <div className="grid grid-cols-2 gap-4 font-mono">
