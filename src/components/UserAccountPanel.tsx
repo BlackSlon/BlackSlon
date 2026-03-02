@@ -103,8 +103,8 @@ export default function UserAccountPanel() {
         
         <div className="flex justify-between items-center mb-4">
           <div className="flex flex-col">
-            <span className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (BlackSlon Settlement Zone)</span>
-            <span className="italic font-black text-4xl text-green-500 leading-none">
+            <span className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (H-BSTZ)</span>
+            <span className="text-lg text-green-500 tracking-tighter leading-tight">
               {hFactor}
             </span>
           </div>
