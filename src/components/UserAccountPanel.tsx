@@ -55,8 +55,6 @@ export default function UserAccountPanel() {
         
         {/* TABLE INVENTORY */}
         <div className="mb-4">
-          <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-2">Inventory</div>
-          
           {/* Table Header */}
           <div className="grid grid-cols-5 text-[7px] text-gray-700 uppercase px-2 py-1 border-b border-gray-900">
             <div className="tracking-widest">Token</div>
