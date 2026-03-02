@@ -134,7 +134,7 @@ export default function UserAccountPanel() {
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0"></div>
-                <div className="text-[8px] text-gray-500 uppercase tracking-widest">LIVE</div>
+                <div className="text-[8px] text-amber-500 uppercase tracking-widest">LIVE</div>
                 <div className="text-lg text-amber-500 tracking-tighter leading-none">{bsrEurRate}</div>
               </div>
               <button className="ml-auto text-[7px] uppercase tracking-widest text-gray-600 border border-gray-800 px-2 py-0.5 hover:text-gray-400 hover:border-gray-600 transition-all rounded-sm">
