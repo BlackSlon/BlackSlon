@@ -116,7 +116,7 @@ export default function UserAccountPanel() {
           <div className="flex justify-between items-center mb-4">
             <div className="flex flex-col">
               <span className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (H-BSTZ)</span>
-              <span className="text-sm text-gray-300 tracking-tighter leading-tight">
+              <span className="text-sm text-green-700 tracking-tighter leading-tight">
                 {hFactor}
               </span>
             </div>
