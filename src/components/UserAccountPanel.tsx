@@ -5,9 +5,9 @@ import React, { useMemo } from 'react'
 export default function UserAccountPanel() {
   // Przykładowe dane portfela
   const inventory = [
-    { token: 'BLSN-E-PL', quantity: '150,000', avgPrice: 10.45, lastPrice: 10.89, pnl: '+4.20' },
-    { token: 'BLSN-G-DE', quantity: '80,000', avgPrice: 12.10, lastPrice: 11.96, pnl: '-1.15' },
-    { token: 'BLSN-W-FR', quantity: '200,000', avgPrice: 9.80, lastPrice: 11.02, pnl: '+12.40' },
+    { token: 'BS-P-PL', quantity: '150,000', avgPrice: 10.45, lastPrice: 10.89, pnl: '+4.20' },
+    { token: 'BS-G-DE', quantity: '80,000', avgPrice: 12.10, lastPrice: 11.96, pnl: '-1.15' },
+    { token: 'BS-W-FR', quantity: '200,000', avgPrice: 9.80, lastPrice: 11.02, pnl: '+12.40' },
   ]
 
   const vaultLiquidity = {
