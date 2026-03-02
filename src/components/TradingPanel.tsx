@@ -57,8 +57,8 @@ export default function TradingPanel() {
         <div className="w-[80%] border-b border-gray-800 mt-2" />
       </div>
 
-      <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
-        <div className="p-4 bg-gradient-to-b from-black to-gray-950">
+      <div className="flex-grow px-6 pb-6 flex flex-col min-h-0 sm:px-2">
+        <div className="p-4 bg-gradient-to-b from-black to-gray-950 w-full sm:p-4">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Trading Terminal</div>
           <div className="flex justify-between items-center">
             <div className="flex gap-4">

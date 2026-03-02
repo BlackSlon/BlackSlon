@@ -30,8 +30,8 @@ export default function UserAccountPanel() {
       </div>
 
       {/* BLACKSLON PORTFOLIO SECTION */}
-      <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
-        <div className="p-4 bg-gradient-to-b from-black to-gray-950">
+      <div className="flex-grow px-6 pb-6 flex flex-col min-h-0 sm:px-2">
+        <div className="p-4 bg-gradient-to-b from-black to-gray-950 w-full sm:p-4">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon User's Data</div>
           <div className="flex justify-between items-center">
             <div className="flex gap-4">
@@ -41,11 +41,11 @@ export default function UserAccountPanel() {
           </div>
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-2 mt-3">Available Liquidity</div>
           <div className="space-y-2">
-            <div className="border border-yellow-500/30 rounded-sm p-3">
-              <div className="text-[8px] text-yellow-800 uppercase tracking-widest mb-1">eEURO BALANCE: <span className="text-lg text-yellow-500 tracking-tighter">12 450.00</span></div>
+            <div className="border border-blue-500/30 rounded-sm p-3 overflow-hidden">
+              <div className="text-[8px] text-blue-800 uppercase tracking-widest mb-1 truncate">eEURO BALANCE: <span className="text-lg text-blue-500 tracking-tighter">12 450.00</span></div>
             </div>
-            <div className="border border-yellow-500/30 rounded-sm p-3">
-              <div className="text-[8px] text-yellow-800 uppercase tracking-widest mb-1">€BSR BALANCE: <span className="text-lg text-yellow-500 tracking-tighter">3 200.00</span></div>
+            <div className="border border-yellow-500/30 rounded-sm p-3 overflow-hidden">
+              <div className="text-[8px] text-yellow-800 uppercase tracking-widest mb-1 truncate">€BSR BALANCE: <span className="text-lg text-yellow-500 tracking-tighter">3 200.00</span></div>
             </div>
           </div>
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-2 mt-4">BlackSlon Tokens Portfolio</div>
@@ -79,14 +79,14 @@ export default function UserAccountPanel() {
         {/* VAULT LIQUIDITY */}
         <div className="mb-4">
           <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-2">Vault Liquidity</div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-sm p-3">
-              <div className="text-[8px] text-yellow-800 uppercase tracking-widest mb-1">Locked €BSR</div>
-              <div className="text-lg text-yellow-500 tracking-tighter">{vaultLiquidity.lockedBSR}</div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 xs:grid-cols-1">
+            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-sm py-1.5 px-3">
+              <div className="text-[8px] text-yellow-800 uppercase tracking-widest mb-0.5">Locked €BSR</div>
+              <div className="text-lg text-yellow-500 tracking-tighter leading-tight">{vaultLiquidity.lockedBSR}</div>
             </div>
-            <div className="bg-blue-500/10 border border-blue-500/30 rounded-sm p-3">
-              <div className="text-[8px] text-blue-800 uppercase tracking-widest mb-1">Locked eEURO</div>
-              <div className="text-lg text-blue-500 tracking-tighter">{vaultLiquidity.lockedEUR}</div>
+            <div className="bg-blue-500/10 border border-blue-500/30 rounded-sm py-1.5 px-3">
+              <div className="text-[8px] text-blue-800 uppercase tracking-widest mb-0.5">Locked eEURO</div>
+              <div className="text-lg text-blue-500 tracking-tighter leading-tight">{vaultLiquidity.lockedEUR}</div>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function UserAccountPanel() {
       </div>
 
       {/* RISK MANAGEMENT SECTION */}
-      <div className="px-6 py-4 border-t border-gray-900 bg-black">
+      <div className="px-6 py-4 border-t border-gray-900 bg-black w-full sm:px-2">
         <div className="text-[8px] text-red-600 uppercase tracking-widest mb-3">
           BLACKSLON RISK MANAGEMENT
         </div>
@@ -136,7 +136,7 @@ export default function UserAccountPanel() {
       </div>
 
       {/* CONNECT WALLET BUTTON */}
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 w-full sm:px-2">
         <button className="w-full py-3 bg-gray-800 text-gray-400 uppercase tracking-[0.3em] text-[10px] border border-gray-700 hover:bg-gray-700 hover:text-gray-300 transition-all">
           CONNECT WALLET
         </button>

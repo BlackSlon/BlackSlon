@@ -9,7 +9,7 @@ export default function MarketPanel({ currentPrice }: { currentPrice: number }) 
   const marketId = (params.id as string) || 'BS-P-PL'
 
   return (
-    <div className="flex flex-col h-full p-4 select-none bg-black/20">
+    <div className="flex flex-col h-full p-4 select-none bg-black/20 sm:p-2">
       <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold text-center py-2 border-b border-gray-900 bg-black/40 mb-4">
         <span>MARKET CONTROL PANEL</span>
       </div>
