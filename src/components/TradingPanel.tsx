@@ -99,11 +99,11 @@ export default function TradingPanel() {
         <div className="space-y-3 mb-4 shrink-0 px-1 pointer-events-auto">
           <div className="text-[9px] text-gray-500 uppercase tracking-tighter">Deposit Configuration</div>
           <div className="bg-gray-900/20 p-2 rounded-sm border border-gray-900">
-            <div className="flex justify-between text-[9px] text-gray-500 tracking-[0.2em] mb-2"><span>€BSR RATIO</span><span>{bsrStake}%</span></div>
+            <div className="flex justify-between text-[9px] tracking-[0.2em] mb-2"><span className="text-amber-700">€BSR RATIO</span><span className="text-amber-700">{bsrStake}%</span></div>
             <input type="range" min="10" max="100" step="1" value={bsrStake} onChange={(e) => setBsrStake(parseInt(e.target.value))} className="w-full h-1 bg-gray-800 cursor-pointer pointer-events-auto" style={{ accentColor: '#b45309' }} />
           </div>
           <div className="bg-gray-900/20 p-2 rounded-sm border border-gray-900">
-            <div className="flex justify-between text-[9px] tracking-[0.2em] mb-2"><span className="text-sky-400/70">eEURO RATIO</span><span className="text-sky-400">{euroStake}%</span></div> 
+            <div className="flex justify-between text-[9px] tracking-[0.2em] mb-2"><span className="text-sky-400">eEURO RATIO</span><span className="text-sky-400">{euroStake}%</span></div> 
             <input type="range" min="10" max="100" value={euroStake} readOnly className="w-full h-1 bg-gray-950" style={{ accentColor: '#38bdf8' }} />
           </div>
         </div>
@@ -119,11 +119,11 @@ export default function TradingPanel() {
           </div>
           
           <div className="flex flex-wrap gap-2 border-t border-gray-900/50 pt-2 pb-2">
-            <div className="border border-amber-500/30 rounded-sm py-1 px-3 w-fit">
-              <div className="text-[8px] text-amber-800 uppercase tracking-widest mb-0">€BSR Deposit Value</div>
-              <div className="text-lg text-amber-500 tracking-tighter leading-tight">{bsrReq} BSR</div>
+            <div className="border border-amber-700 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[8px] text-amber-700 uppercase tracking-widest mb-0">€BSR Deposit Value</div>
+              <div className="text-lg text-amber-700 tracking-tighter leading-tight">{bsrReq} BSR</div>
             </div>
-            <div className="border border-sky-400/30 rounded-sm py-1 px-3 w-fit ml-auto">
+            <div className="border border-sky-400 rounded-sm py-1 px-3 w-fit ml-auto">
               <div className="text-[8px] text-sky-400 uppercase tracking-widest mb-0">eEURO Deposit Value</div>
               <div className="text-lg text-sky-400 tracking-tighter leading-tight">{euroReq} EUR</div>
             </div>
