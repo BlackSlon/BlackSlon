@@ -37,17 +37,17 @@ export default function UserAccountPanel() {
         <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold">
           USER'S ACCOUNT PANEL
         </div>
-        <div className="w-[85%] border-b border-gray-900 mt-2" />
+        <div className="w-[85%] border-b border-gray-800 mt-2" />
       </div>
 
       {/* BLACKSLON PORTFOLIO SECTION */}
-      <div className="flex-grow px-6 pb-6 flex flex-col min-h-0 space-y-6">
+      <div className="flex-grow px-6 pb-6 flex flex-col min-h-0 space-y-3">
         <div className="pl-0 pr-0 pt-4 pb-2 bg-gradient-to-b from-black to-gray-950 w-full">
           <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">Available Liquidity</div>
           <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:grid-cols-2 xs:grid-cols-1">
-            <div className="border border-amber-500 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-amber-500 uppercase tracking-widest mb-0 font-normal">€BSR BALANCE</div>
-              <div className="text-sm text-amber-500 tracking-tighter leading-tight font-normal">3 200.00</div>
+            <div className="border border-amber-700 rounded-sm py-1 px-3 overflow-hidden w-fit">
+              <div className="text-[8px] text-amber-700 uppercase tracking-widest mb-0 font-normal">€BSR BALANCE</div>
+              <div className="text-sm text-amber-700 tracking-tighter leading-tight font-normal">3 200.00</div>
             </div>
             <div className="border border-sky-400 rounded-sm py-1 px-3 overflow-hidden w-fit">
               <div className="text-[8px] text-sky-400 uppercase tracking-widest mb-0 font-normal"><span className="normal-case">e</span>EURO BALANCE</div>
@@ -91,12 +91,12 @@ export default function UserAccountPanel() {
         </div>
 
         {/* BLACKSLON VAULT */}
-        <div className="mb-6 px-0">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 mt-2">BlackSlon Vault</div>
+        <div className="mb-3 px-0">
+          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Vault</div>
           <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:grid-cols-2 xs:grid-cols-1">
-            <div className="border border-amber-500 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-amber-500 uppercase tracking-widest mb-0">Locked €BSR</div>
-              <div className="text-sm text-amber-500 tracking-tighter leading-tight">{vaultLiquidity.lockedBSR}</div>
+            <div className="border border-amber-700 rounded-sm py-1 px-3 overflow-hidden w-fit">
+              <div className="text-[8px] text-amber-700 uppercase tracking-widest mb-0">Locked €BSR</div>
+              <div className="text-sm text-amber-700 tracking-tighter leading-tight">{vaultLiquidity.lockedBSR}</div>
             </div>
             <div className="border border-sky-400 rounded-sm py-1 px-3 overflow-hidden w-fit">
               <div className="text-[8px] text-sky-400 uppercase tracking-widest mb-0">Locked <span className="normal-case">e</span>EURO</div>
@@ -110,8 +110,8 @@ export default function UserAccountPanel() {
         </div>
 
         {/* BLACKSLON RISK MANAGEMENT */}
-        <div className="mb-6 px-0">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 mt-2">BlackSlon Risk Management</div>
+        <div className="mb-3 px-0">
+          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Risk Management</div>
           
           <div className="flex justify-between items-center mb-4">
             <div className="flex flex-col">
@@ -133,9 +133,9 @@ export default function UserAccountPanel() {
             <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Reserve (€BSR/EUR)</div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0"></div>
-                <div className="text-[8px] text-amber-500 uppercase tracking-widest">LIVE</div>
-                <span className="text-sm text-amber-500 tracking-tighter leading-none">1 €BSR</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-amber-700 animate-pulse shrink-0"></div>
+                <div className="text-[8px] text-amber-700 uppercase tracking-widest">LIVE</div>
+                <span className="text-sm text-amber-700 tracking-tighter leading-none">1 €BSR</span>
                 <span className="text-sm text-gray-600 tracking-tighter leading-none mx-1">=</span>
                 <span className="text-sm text-sky-400 tracking-tighter leading-none">2.45 eEURO</span>
               </div>

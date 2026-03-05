@@ -1,82 +1,78 @@
 ## **Ecosystem Solvency: Macro (System) level**
 
-While Risk Management (Micro-Stability) focuses on the solvency of single users, Ecosystem Solvency (Macro-Stability) ensures the integrity of the entire Protocol. It serves as the ultimate "High-Level Guardrail," monitoring the total capital adequacy of the system to guarantee that every unit of BSR and IPT is fully backed and redeemable.
+While Risk Management (Micro-Stability) focuses on the parameters of single User's Account, Ecosystem Solvency (Macro-Stability) ensures the integrity of the entire BlackSlon Ecosystem. It serves as the ultimate "High-Level Guardrail," monitoring the total capital adequacy of the Protocol to guarantee that every unit of €BSR and BS-P/G is fully backed and redeemable.
 
 The Ecosystem Solvency Index ($H_{solv}$) is the definitive metric for the Protocol’s macroeconomic health. It quantifies the ratio between the protocol's risk-adjusted capital base and its total outstanding obligations to participants.
 
-### The Core Solvency Formula:
-$$H_{solv} = \frac{V_{eEURO} + (V_{BSR} \cdot (1 - h_{BSR})) + \text{Hedge}_{PLP}}{\sum IPT_{C} + \sum BSR_{C} + \sum OVP}$$
+### 1. The Core Solvency Formula:
+$$H_{solv} = \frac{V_{eEURO} + (V_{BSR} \cdot (1 - h_{BSR})) + Hedge_{PLP}}{\sum BSR_{C} + \sum |Net \ PnL_{Systemic}| + \sum Reserve_{Op}}$$
 
 where:
 
-The Numerator (Adjusted Asset Base) represents the total value available to honor redemptions and settle market gains.
-- $V_{eEURO}$ (Vaulted $eEURO$): The total amount of 100% fiat-backed $eEURO$ held in the protocol's primary liquidity vaults. This is the "Hard Anchor" of the system ($Haircut = 0\%$).
-- $V_{BSR} \cdot (1 - h_{BSR})$ (Risk-Adjusted Reserve Valuation): This represents the conservative valuation of the protocol’s volatile reserve assets. 
-  - $V_{BSR}$ (Vaulted Assets): The gross market value of €BSR held within the non-custodial Reserve Vault. 
-  - $h_{BSR}$ (Collateral Haircut): A risk-mitigation discount (e.g., 10-20%) applied to the gross value to insulate the protocol to ensure Liquidity
-- $\text{Hedge}_{PLP}$ (Dynamic Delta Hedge): The valuation of the hedging positions maintained by the Physical Liquidity Provider(s) (PLP) to offset the Open Virtual Positions within the BlackSlon Protocol. Under Liquidity & Hedging Agreement with the Physical Liquidity Provider(s), this component offsets the total Open Virtual Positions of leveraged $IPT$. It ensures that systemic gains in $IPT$ value are hedged by contractual guarantees of Physical Liquidity Provider(s). Unlike static collateral, the $\text{Hedge}_{PLP}$ is a dynamic value that scales with the protocol’s total Open Virtual Positions. PLP Agreement(s) ensure that even if the market moves dynamically, the protocol has the physical market high-liquidity instruments ready to settle all outstanding IPT gains.
+**The Numerator: Adjusted Asset Base**
 
-The Denominator (Total Systemic Liabilities) represents the sum of all claims that users can exercise against the protocol.
-- $\sum IPT_{C}$ (Circulating $IPT$ Value): The total current market value of all outstanding Index Participation Tokens. This value includes the impact of leverage; it represents the total exposure the protocol must settle if all users closed their positions at the current market price. It is valued at 100% of its current market price without any discount.
-- $\sum BSR_{C}$ (Circulating $BSR$ Value): The total market value of all BlackSlon Reserve tokens currently held by users. Since users can redeem $BSR$ for underlying collateral, it is treated as a core systemic liability. It is valued at 100% of its current market price without any discount.
-- $\sum OVP$ (Open Virtual Positions): The total MtM value of all active open virtual positions, from both Long and Short positions. By including both directions, the BlackSlon Protocol guarantees it can facilitate Settlement for all 'In-the-Money' participants at any time.
+The Numerator represents the total liquidity available to honor redemptions and settle market gains.
 
-## The Solvency Integrity Layer (SIL)
+- $V_{eEURO}$ (Vaulted eEURO): Total 100% fiat-backed eEURO held in the protocol's liquidity vaults. This is the "Hard Anchor" (Haircut = 0%).
 
-The Solvency Integrity Layer (SIL) is a critical component of the BlackSlon Protocol. The SIL is the protocol’s automated oversight mechanism. While micro-level Risk Management is handled at the user level, the SIL operates at the ecosystem level. Its main job is to ensure that the Total Systemic Liabilities never outpace the Adjusted Vault Assets.
+- $V_{BSR} \cdot (1 - h_{BSR})$ (Risk-Adjusted Reserve): The conservative valuation of €BSR held in the Reserve Vault.
 
-The Solvency Integrity Layer (SIL) categorizes the protocol’s health into four distinct Solvency Tiers. These tiers define the macro-economic regimes of the ecosystem, governing the calibration of the Stabilizer $b$ and the magnitude of the BlackSlon Protocol parameters.
+- $h_{BSR}$ (Collateral Haircut): A 10-20% discount applied to insulate the protocol from €BSR price volatility.
+
+- $Hedge_{PLP}$ (Physical Liquidity Hedge only in Phase 2 of BlackSlon Project): The valuation of contractual guarantees from Physical Liquidity Providers (PLP). This dynamic component scales with the total Open Interest in BS-P/G. It ensures that virtual gains are offset by physical market instruments, guaranteeing delivery for 1MW+ industrial swaps.
 
 <br>
-<br>
 
-**The Solvency Resilience Tiers**
+**The Denominator: Total Systemic Liabilities**
 
-The **Ecosystem Solvency Index ($H_{solv}$)** determines the operational state of the protocol. These tiers define the **macro-economic regimes** of the ecosystem, governing the automated calibration of the **Stabilizer $b$** and the adaptive magnitude of the **BSEI** friction parameters
+The Denominator represents the sum of all potential claims against the protocol.
+
+- $\sum BSR_{C}$ (Circulating €BSR): The total market value of all €BSR tokens held by users (as they represent a claim on the ecosystem’s utility and collateral).
+
+- $\sum |Net \ PnL_{Systemic}|$ (Aggregate Net Profitable Exposure): The total unrealized profit across all In-the-Money (ITM) positions within the Open Book.
+
+- $\sum Reserve_{Op}$ (Systemic & PLP Performance Reserve only in Phase 2 of BlackSlon Project): A dedicated capital buffer maintained to ensure the continuous operation of the protocol's core functions. 
+    * **PLP Obligations:** Covers potential margin requirements and settlement fees owed to Physical Liquidity Providers to maintain physical hedge and liquidity.
+    * **Insurance Buffer:** Acts as the first line of defense against "Bad Debt" (negative equity events) to protect the main Liquidity Vault.
+    * **Core Infrastructure Realiability:** This reserve guarantees the continuous funding of high-performance matching engine nodes and decentralized oracle feeds, ensuring real-time transaction finality and pricing accuracy. It secures the computational power necessary for the entire system-wide risk monitoring and BSSZ anchor stability under all market conditions.
+
+### 2. The Solvency Integrity Layer (SIL): Liquidity Governance
+
+In the Open Book model, the protocol acts as the Central Clearing Counterparty (CCP). The SIL monitors the Ecosystem Solvency Index ($H_{solv}$) to ensure that the total systemic liabilities are always over-collateralized by high-quality assets.
+
+The Solvency Resilience Tiers
 
 | Tier | $H_{solv}$ Range | Regime State | Operational Logic & Automated Response |
 | :--- | :--- | :--- | :--- |
-| **Tier I** | $H_{solv} > 1.15$ | **Expansion** | **Optimal Environment.** Minimum friction in the **BSEI** formula. Optimized for capital inflow and rapid ecosystem growth. |
-| **Tier II** | $1.05 \le H_{solv} \le 1.15$ | **Equilibrium** | **Standard Operations.** Balanced **Liquidity** state. The system monitors EMA trends to maintain stability without active intervention. |
-| **Tier III** | $1.00 \le H_{solv} < 1.05$ | **Mitigation** | **Active Defense.** **Stabilizer $b$** is triggered. Progressive friction is applied to all new entries to protect systemic **Liquidity**. |
-| **Tier IV** | $H_{solv} < 1.00$ | **Safeguard** | **Systemic Hard Stop.** Suspension of new **IPT** issuance. The **Protocol** prioritizes debt reduction and capital preservation. |
-
-<br>
-
-**The Stabilizer b: Emergency Mitigation Protocol / Progressive Friction Mechanism**
-
-The Stabilizer b is an extraordinary regulatory mechanism that activates only when the Solvency Integrity Layer (SIL) detects that the protocol has entered Tier III (Mitigation). Its primary purpose is to protect the Vault Value by programmatically discouraging the creation of new liabilities during periods of systemic stress.
-
-- Standard State (Tier I & II): The parameter $b$ remains at its baseline value. Transactions are executed using the BSEI valuation, adjusted by a baseline protocol fee (e.g., 0.25 - 1.0%).
-- Emergency State (Tier III): When $1.00 \le H_{solv} < 1.05$, the Stabilizer b activates. The protocol applies Dynamic Friction to all new entries (IPT minting).
-
-In Tier III, the parameter $b$ (Volatility/Sensitivity) in the BSEI engine is no longer static. It becomes a dynamic function of the solvency deficit:
-
-$$b_{active} = b_{base} \cdot \left( 1 + \left( \frac{1.05 - H_{solv(EMA)}}{H_{solv(EMA)} - 1.00} \right) \cdot \lambda \right)$$
-
-where:
-
-- $b_{base}$: The initial volatility parameter calibrated for optimal market conditions. The baseline friction coefficient established for a specific market.
-- $b_{active}$ (Active Friction): The real-time friction value injected into the BSEI formula. This dictates the steepness of the pricing curve.
-- $H_{solv(EMA)}$ (Smoothed Solvency Index): The Ecosystem Solvency Index filtered through an Exponential Moving Average. This ensures the protocol reacts to sustained solvency trends rather than high-frequency market noise.
-- $1.05$ (Solvency Pivot Point): The mathematical threshold where the Mitigation Regime (Tier III) activates. When $H_{solv(EMA)}$ drops below 1.05, the hyperbolic multiplier increases the friction value, causing $b_{active}$ to rise.
-- $\lambda$ (Scaling Factor): The sensitivity coefficient. It determines the aggressive "braking force" of the protocol. A higher $\lambda$ results in a faster increase in friction per unit of solvency loss.
-
-Hyperbolic Friction: As $H_{solv(EMA)}$ drops toward 1.00, the hyperbolic function causes the friction to spike towards infinity, ensuring a systemic safeguard.
-New IPT issuance becomes programmatically more expensive, incentivizing participants to wait for a re-balancing or forcing a reduction in systemic leverage.
+| **Tier I** | $H_{solv} > 1.15$ | **Expansion** | **Full Flexibility.** Users can open positions using maximum €BSR ratios as defined in the Tiering Matrix. |
+| **Tier II** | $1.05 \le H_{solv} \le 1.15$ | **Equilibrium** | **Standard Operations.** Normal collateral mix. Protocol monitors €BSR volatility and eEURO vault depth. |
+| **Tier III** | $1.00 \le H_{solv} < 1.05$ | **Mitigation** | **Hard Liquidity Pivot.** New positions are restricted to **100% eEURO collateral**. €BSR Haircuts ($h_{BSR}$) are increased to force deleveraging. |
+| **Tier IV** | $H_{solv} < 1.00$ | **Safeguard** | **Systemic Hard Stop.** Suspension of all new position openings. Only "Reduce-Only" or "Add-eEURO" actions are permitted. |
 
 
+### 3. Strategic Stabilization Mechanisms
 
+When the protocol enters Tier III (Mitigation), the system activates the following automated protocols to prevent €BSR depreciation and bolster the eEURO Liquidity Vault:
 
+**A. The eEURO-Only Entry Mandate**
 
+To prevent the expansion of "soft" liabilities, the protocol temporarily disables €BSR as an initial margin for new trades.
 
+**Mechanism:** Every new BS-P/G position must be backed 100% by eEURO.
 
+**Impact:** This forces an immediate inflow of "Hard Anchor" liquidity into the system, directly improving the $H_{solv}$ numerator.
 
+**B. Dynamic €BSR Haircut Escalation**
 
+The protocol applies an aggressive Risk Discount (Haircut) to existing €BSR collateral within the vaults.
 
+**Mechanism:** If $H_{solv}$ drops, the system reduces the recognized value of €BSR (e.g., from 90% to 60%).
 
+**Impact:** Users with high €BSR exposure will see a drop in their individual Health Factor ($H_{BSSZ}$). This forces users to either deposit more eEURO or close positions, effectively deleveraging the system without triggering a massive market dump of €BSR.
 
-## The concept of "Hard Floor"
-Unlike speculative tokens, BaSe has two safety nets preventing it from going to zero:
-1.  **Utility Lock:** BaSe is required collateral for trading in BSTZ. As long as there is Open Interest in IPT, BaSe cannot be fully dumped.
-2.  **Liquidity Floor:** The token is backed by a eEURO liquidity pool.
+**C. Revenue Recirculation (Buy-back & Floor Support)**
+
+Fees collected in eEURO during Tier III/IV regimes are strategically funneled to support the ecosystem:
+
+- **70% to Insurance Fund:** Covers potential "Bad Debt" from underwater positions.
+- **30% to €BSR Floor Support:** Allocated for automated €BSR buy-backs once the system returns to Tier II, creating a programmatic "buy-wall" to support the token's value.

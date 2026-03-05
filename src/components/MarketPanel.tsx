@@ -9,12 +9,12 @@ export default function MarketPanel({ currentPrice }: { currentPrice: number }) 
   const marketId = (params.id as string) || 'BS-P-PL'
 
   return (
-    <div className="flex flex-col h-full p-4 select-none bg-black/20 sm:p-2">
+    <div className="flex flex-col h-full p-6 select-none bg-black/20 sm:p-4">
       <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold text-center py-2 border-b border-gray-900 bg-black/40 mb-4">
         <span>MARKET CONTROL PANEL</span>
       </div>
 
-      <div className="flex-grow grid grid-cols-[60%_40%] divide-x divide-gray-900 gap-4 mb-4 overflow-hidden">
+      <div className="flex-grow grid grid-cols-[55%_45%] divide-x divide-gray-900 gap-4 mb-4 overflow-hidden">
         <div className="pr-2 overflow-y-auto no-scrollbar">
           <PhysicalMarketPanel marketId={marketId} currentPrice={currentPrice} />
         </div>

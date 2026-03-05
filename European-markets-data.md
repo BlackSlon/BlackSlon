@@ -2,7 +2,7 @@
 
 ## Purpose
 This repository contains real-time and historical data from European Wholesale Power & Gas Markets, utilized for:
-- BSTZ (BlackSlon Trading Zone) price anchoring
+- BSSZ (BlackSlon Trading Zone) price anchoring
 - BSEI (BlackSlon Energy Index) calculations
 - Market volatility analysis
 - Risk management protocols
@@ -112,9 +112,9 @@ This repository contains real-time and historical data from European Wholesale P
 
 ## Usage Contexts
 
-### **BSTZ Formula Integration**
+### **BSSZ Formula Integration**
 ```
-BSTZ = (Spot × 0.10) + (FM × 0.40) + (FQ × 0.25) + (Cal × 0.25)
+BSSZ = (Spot × 0.10) + (FM × 0.40) + (FQ × 0.25) + (Cal × 0.25)
 ```
 
 ### **BSEI Calculation Support**

@@ -4,7 +4,7 @@
 
 - Key Functional Pillars:
   - Collateral Aggregation (The $k$-Loop):The Vault is the technical layer where individual collateral buckets are aggregated. It enables the protocol to track different BSR/eEURO ratios across the user’s portfolio to establish the total Initial Margin.
-  - Dynamic Valuation Engine:The Vault continuously monitors the market price of the BlackSlon Reserve (€BSR) token. It recalculates the total "hard value" of the account in real-time, which is essential for determining the Health Factor ($H_{BSTZ}$
+  - Dynamic Valuation Engine:The Vault continuously monitors the market price of the BlackSlon Reserve (€BSR) token. It recalculates the total "hard value" of the account in real-time, which is essential for determining the Health Factor ($H_{BSSZ}$
   - The 50/50 Settlement Clearinghouse:
     All realized losses, including those triggered by the LPS (Liquidation Priority Sequencing), are settled within the Vault. It enforces the 50/50 Rule, ensuring that the impact of market volatility is symmetrically absorbed by both the eEURO balance and the BlackSlon Reserve assets.
 
@@ -25,7 +25,7 @@
   - Integration with regulatory reporting frameworks.
 
 - **Integration & Interoperability:**
-  - Seamless connection with the BSTZ Engine for margin calculations.
+  - Seamless connection with the BSSZ Engine for margin calculations.
   - API access for third-party applications and services.
   - Cross-chain compatibility for multi-asset support.
 

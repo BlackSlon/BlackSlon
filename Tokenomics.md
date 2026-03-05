@@ -7,8 +7,8 @@ Genesis: Tworzysz 100 mln tokenów, ale... one są „zamknięte” w kontrakcie
 ## 7.1. BSR Token (The Ecosystem Foundation)
 * **Function:** Native utility currency, collateral, and value-capture mechanism.
 * **Role in Protocol:** **€BSR** is the primary fuel of the entire BlackSlon Ecosystem. It provides **Liquidity** necessary to mint energy instruments (**BS-IPT-P-PL**, **BS-IPT-P-DE**, **BS-IPT-G-NL**).
-* **Interaction with BSTZ:** While the **BSTZ** defines the "Safe Trading Corridor," the **BSR Vault** acts as the physical shock absorber. 
-  * When the price hits the ceiling of the **BSTZ**, the protocol uses **BaSe** to facilitate the creation of new supply.
+* **Interaction with BSSZ:** While the **BSSZ** defines the "Safe Trading Corridor," the **BSR Vault** acts as the physical shock absorber. 
+  * When the price hits the ceiling of the **BSSZ**, the protocol uses **BaSe** to facilitate the creation of new supply.
   * When the price hits the floor, the ecosystem uses **BaSe** reserves to support the buy-back and burn mechanism.
 
 ## 7.2. BS-IPT-PL / BS-IPT-DE / BS-IPT-NL (The Settlement Tokens)
