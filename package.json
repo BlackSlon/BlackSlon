@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cf-build": "next build && opennextjs-cloudflare build"
+    "cf-build": "next build && opennextjs-cloudflare"
   },
   "dependencies": {
     "@types/react-simple-maps": "^3.0.6",
