@@ -1,0 +1,39 @@
+{
+  "marketId": "BS-P-PL",
+  "marketName": "Polish Power Market",
+  "commodity": "Electricity",
+  "country": "Poland",
+  "currency": "EUR",
+  "unit": "100kWh",
+  "lastUpdate": "2026-03-09T13:00:00Z",
+  "historicalData": [
+    { "date": "2026-03-08", "price": 10.45, "volume": 125000 },
+    { "date": "2026-03-07", "price": 10.52, "volume": 118000 },
+    { "date": "2026-03-06", "price": 10.38, "volume": 132000 },
+    { "date": "2026-03-05", "price": 10.61, "volume": 115000 },
+    { "date": "2026-03-04", "price": 10.55, "volume": 128000 },
+    { "date": "2026-03-03", "price": 10.48, "volume": 122000 },
+    { "date": "2026-03-02", "price": 10.59, "volume": 119000 },
+    { "date": "2026-03-01", "price": 10.63, "volume": 127000 },
+    { "date": "2026-02-28", "price": 10.51, "volume": 121000 },
+    { "date": "2026-02-27", "price": 10.44, "volume": 116000 },
+    { "date": "2026-02-26", "price": 10.57, "volume": 129000 },
+    { "date": "2026-02-25", "price": 10.49, "volume": 123000 },
+    { "date": "2026-02-24", "price": 10.42, "volume": 118000 },
+    { "date": "2026-02-23", "price": 10.54, "volume": 125000 },
+    { "date": "2026-02-22", "price": 10.60, "volume": 120000 },
+    { "date": "2026-02-21", "price": 10.47, "volume": 117000 },
+    { "date": "2026-02-20", "price": 10.53, "volume": 124000 },
+    { "date": "2026-02-19", "price": 10.46, "volume": 119000 },
+    { "date": "2026-02-18", "price": 10.58, "volume": 126000 },
+    { "date": "2026-02-17", "price": 10.50, "volume": 121000 }
+  ],
+  "bsszCalculation": {
+    "anchor": 10.59,
+    "floor": 9.53,
+    "ceiling": 12.71,
+    "method": "20-day rolling average",
+    "floorFormula": "anchor * 0.90",
+    "ceilingFormula": "anchor * 1.20"
+  }
+}

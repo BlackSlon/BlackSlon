@@ -1,0 +1,524 @@
+{
+  "marketId": "BS-G-NL",
+  "marketName": "Dutch Gas Market",
+  "commodity": "Natural Gas",
+  "country": "Netherlands",
+  "currency": "EUR",
+  "unit": "EUR/100kWh",
+  "lastUpdate": "2026-03-09T15:00:00Z",
+  "_formula": {
+    "meridian": "0.10*DA + 0.40*FM + 0.25*FQ + 0.25*Cal",
+    "adr": "0.50*meridian(T-1) + 0.25*meridian(T-2) + 0.25*meridian(T-3)",
+    "floor": "anchor * 0.90",
+    "ceiling": "anchor * 1.20",
+    "trend": "(anchor_current - anchor_older) / anchor_older * 100"
+  },
+  "bsszPositions": [
+    {
+      "label": "D-1",
+      "refDate": "06.03.2026",
+      "_comment": "meridians: T1=48.51, T2=45.33, T3=44.94 → ADR=0.50*48.51+0.25*45.33+0.25*44.94",
+      "adrData": [
+        {
+          "date": "06.03.2026",
+          "dayAhead": 5.166,
+          "frontMonth": 5.332,
+          "month2": null,
+          "frontQuarter": 5.223,
+          "quarter2": 4.916,
+          "cal": 3.582,
+          "cal2": null,
+          "meridian": 4.851
+        },
+        {
+          "date": "05.03.2026",
+          "dayAhead": 4.987,
+          "frontMonth": 5.051,
+          "month2": null,
+          "frontQuarter": 4.862,
+          "quarter2": 4.416,
+          "cal": 3.194,
+          "cal2": null,
+          "meridian": 4.533
+        },
+        {
+          "date": "04.03.2026",
+          "dayAhead": 4.771,
+          "frontMonth": 4.872,
+          "month2": null,
+          "frontQuarter": 4.692,
+          "quarter2": 4.192,
+          "cal": 3.582,
+          "cal2": null,
+          "meridian": 4.494
+        }
+      ],
+      "bssz": {
+        "anchor": 4.682,
+        "floor": 4.214,
+        "ceiling": 5.618,
+        "trendPct": 1.83
+      }
+    },
+    {
+      "label": "D-2",
+      "refDate": "05.03.2026",
+      "_comment": "meridians: T1=45.33, T2=44.94, T3=48.30 → ADR=0.50*45.33+0.25*44.94+0.25*48.30",
+      "adrData": [
+        {
+          "date": "05.03.2026",
+          "dayAhead": 4.987,
+          "frontMonth": 5.051,
+          "month2": null,
+          "frontQuarter": 4.862,
+          "quarter2": 4.416,
+          "cal": 3.194,
+          "cal2": null,
+          "meridian": 4.533
+        },
+        {
+          "date": "04.03.2026",
+          "dayAhead": 4.771,
+          "frontMonth": 4.872,
+          "month2": null,
+          "frontQuarter": 4.692,
+          "quarter2": 4.192,
+          "cal": 3.582,
+          "cal2": null,
+          "meridian": 4.494
+        },
+        {
+          "date": "03.03.2026",
+          "dayAhead": 5.429,
+          "frontMonth": 5.429,
+          "month2": null,
+          "frontQuarter": 5.273,
+          "quarter2": 4.848,
+          "cal": 3.187,
+          "cal2": null,
+          "meridian": 4.83
+        }
+      ],
+      "bssz": {
+        "anchor": 4.598,
+        "floor": 4.138,
+        "ceiling": 5.518,
+        "trendPct": 3.02
+      }
+    },
+    {
+      "label": "D-3",
+      "refDate": "04.03.2026",
+      "_comment": "meridians: T1=44.94, T2=48.30, T3=40.33 → ADR=0.50*44.94+0.25*48.30+0.25*40.33",
+      "adrData": [
+        {
+          "date": "04.03.2026",
+          "dayAhead": 4.771,
+          "frontMonth": 4.872,
+          "month2": null,
+          "frontQuarter": 4.692,
+          "quarter2": 4.192,
+          "cal": 3.582,
+          "cal2": null,
+          "meridian": 4.494
+        },
+        {
+          "date": "03.03.2026",
+          "dayAhead": 5.429,
+          "frontMonth": 5.429,
+          "month2": null,
+          "frontQuarter": 5.273,
+          "quarter2": 4.848,
+          "cal": 3.187,
+          "cal2": null,
+          "meridian": 4.83
+        },
+        {
+          "date": "02.03.2026",
+          "dayAhead": 4.45,
+          "frontMonth": 4.45,
+          "month2": null,
+          "frontQuarter": 4.323,
+          "quarter2": 3.987,
+          "cal": 2.91,
+          "cal2": null,
+          "meridian": 4.033
+        }
+      ],
+      "bssz": {
+        "anchor": 4.463,
+        "floor": 4.017,
+        "ceiling": 5.356,
+        "trendPct": 6.51
+      }
+    },
+    {
+      "label": "D-4",
+      "refDate": "03.03.2026",
+      "_comment": "meridians: T1=48.30, T2=40.33, T3=30.66 → ADR=0.50*48.30+0.25*40.33+0.25*30.66",
+      "adrData": [
+        {
+          "date": "03.03.2026",
+          "dayAhead": 5.429,
+          "frontMonth": 5.429,
+          "month2": null,
+          "frontQuarter": 5.273,
+          "quarter2": 4.848,
+          "cal": 3.187,
+          "cal2": null,
+          "meridian": 4.83
+        },
+        {
+          "date": "02.03.2026",
+          "dayAhead": 4.45,
+          "frontMonth": 4.45,
+          "month2": null,
+          "frontQuarter": 4.323,
+          "quarter2": 3.987,
+          "cal": 2.91,
+          "cal2": null,
+          "meridian": 4.033
+        },
+        {
+          "date": "27.02.2026",
+          "dayAhead": 3.196,
+          "frontMonth": 3.196,
+          "month2": null,
+          "frontQuarter": 3.156,
+          "quarter2": 3.111,
+          "cal": 2.716,
+          "cal2": null,
+          "meridian": 3.066
+        }
+      ],
+      "bssz": {
+        "anchor": 4.19,
+        "floor": 3.771,
+        "ceiling": 5.028,
+        "trendPct": 17.89
+      }
+    },
+    {
+      "label": "D-5",
+      "refDate": "02.03.2026",
+      "_comment": "meridians: T1=40.33, T2=30.66, T3=30.83 → ADR=0.50*40.33+0.25*30.66+0.25*30.83",
+      "adrData": [
+        {
+          "date": "02.03.2026",
+          "dayAhead": 4.45,
+          "frontMonth": 4.45,
+          "month2": null,
+          "frontQuarter": 4.323,
+          "quarter2": 3.987,
+          "cal": 2.91,
+          "cal2": null,
+          "meridian": 4.033
+        },
+        {
+          "date": "27.02.2026",
+          "dayAhead": 3.196,
+          "frontMonth": 3.196,
+          "month2": null,
+          "frontQuarter": 3.156,
+          "quarter2": 3.111,
+          "cal": 2.716,
+          "cal2": null,
+          "meridian": 3.066
+        },
+        {
+          "date": "26.02.2026",
+          "dayAhead": 3.215,
+          "frontMonth": 3.215,
+          "month2": null,
+          "frontQuarter": 3.167,
+          "quarter2": 3.123,
+          "cal": 2.735,
+          "cal2": null,
+          "meridian": 3.083
+        }
+      ],
+      "bssz": {
+        "anchor": 3.554,
+        "floor": 3.199,
+        "ceiling": 4.265,
+        "trendPct": 16.52
+      }
+    },
+    {
+      "label": "D-6",
+      "refDate": "27.02.2026",
+      "_comment": "meridians: T1=30.66, T2=30.83, T3=29.85 → ADR=0.50*30.66+0.25*30.83+0.25*29.85",
+      "adrData": [
+        {
+          "date": "27.02.2026",
+          "dayAhead": 3.196,
+          "frontMonth": 3.196,
+          "month2": null,
+          "frontQuarter": 3.156,
+          "quarter2": 3.111,
+          "cal": 2.716,
+          "cal2": null,
+          "meridian": 3.066
+        },
+        {
+          "date": "26.02.2026",
+          "dayAhead": 3.215,
+          "frontMonth": 3.215,
+          "month2": null,
+          "frontQuarter": 3.167,
+          "quarter2": 3.123,
+          "cal": 2.735,
+          "cal2": null,
+          "meridian": 3.083
+        },
+        {
+          "date": "25.02.2026",
+          "dayAhead": 3.093,
+          "frontMonth": 3.093,
+          "month2": null,
+          "frontQuarter": 3.06,
+          "quarter2": 3.043,
+          "cal": 2.693,
+          "cal2": null,
+          "meridian": 2.985
+        }
+      ],
+      "bssz": {
+        "anchor": 3.05,
+        "floor": 2.745,
+        "ceiling": 3.66,
+        "trendPct": 0.76
+      }
+    },
+    {
+      "label": "W-1",
+      "refDate": "25.02.2026",
+      "_comment": "meridians: T1=29.85, T2=29.58, T3=30.34 → ADR=0.50*29.85+0.25*29.58+0.25*30.34",
+      "adrData": [
+        {
+          "date": "25.02.2026",
+          "dayAhead": 3.093,
+          "frontMonth": 3.093,
+          "month2": null,
+          "frontQuarter": 3.06,
+          "quarter2": 3.043,
+          "cal": 2.693,
+          "cal2": null,
+          "meridian": 2.985
+        },
+        {
+          "date": "24.02.2026",
+          "dayAhead": 3.055,
+          "frontMonth": 3.055,
+          "month2": null,
+          "frontQuarter": 3.028,
+          "quarter2": 3.012,
+          "cal": 2.695,
+          "cal2": null,
+          "meridian": 2.958
+        },
+        {
+          "date": "23.02.2026",
+          "dayAhead": 3.145,
+          "frontMonth": 3.145,
+          "month2": null,
+          "frontQuarter": 3.103,
+          "quarter2": 3.075,
+          "cal": 2.741,
+          "cal2": null,
+          "meridian": 3.034
+        }
+      ],
+      "bssz": {
+        "anchor": 2.991,
+        "floor": 2.692,
+        "ceiling": 3.589,
+        "trendPct": 0.27
+      }
+    },
+    {
+      "label": "M-1",
+      "refDate": "04.02.2026",
+      "_comment": "meridians: T1=29.92, T2=29.49, T3=29.98 → ADR=0.50*29.92+0.25*29.49+0.25*29.98",
+      "adrData": [
+        {
+          "date": "04.02.2026",
+          "dayAhead": 3.13,
+          "frontMonth": 3.13,
+          "month2": null,
+          "frontQuarter": 3.044,
+          "quarter2": 2.995,
+          "cal": 2.665,
+          "cal2": null,
+          "meridian": 2.992
+        },
+        {
+          "date": "03.02.2026",
+          "dayAhead": 3.088,
+          "frontMonth": 3.088,
+          "month2": null,
+          "frontQuarter": 3.001,
+          "quarter2": 2.944,
+          "cal": 2.619,
+          "cal2": null,
+          "meridian": 2.949
+        },
+        {
+          "date": "02.02.2026",
+          "dayAhead": 3.145,
+          "frontMonth": 3.145,
+          "month2": null,
+          "frontQuarter": 3.047,
+          "quarter2": 2.977,
+          "cal": 2.654,
+          "cal2": null,
+          "meridian": 2.998
+        }
+      ],
+      "bssz": {
+        "anchor": 2.983,
+        "floor": 2.685,
+        "ceiling": 3.58,
+        "trendPct": 12.48
+      }
+    },
+    {
+      "label": "Q-1",
+      "refDate": "04.12.2025",
+      "_comment": "meridians: T1=26.18, T2=26.98, T3=26.75 → ADR=0.50*26.18+0.25*26.98+0.25*26.75",
+      "adrData": [
+        {
+          "date": "04.12.2025",
+          "dayAhead": 2.643,
+          "frontMonth": 2.643,
+          "month2": null,
+          "frontQuarter": 2.628,
+          "quarter2": 2.641,
+          "cal": 2.558,
+          "cal2": null,
+          "meridian": 2.618
+        },
+        {
+          "date": "03.12.2025",
+          "dayAhead": 2.731,
+          "frontMonth": 2.731,
+          "month2": null,
+          "frontQuarter": 2.717,
+          "quarter2": 2.721,
+          "cal": 2.614,
+          "cal2": null,
+          "meridian": 2.698
+        },
+        {
+          "date": "02.12.2025",
+          "dayAhead": 2.708,
+          "frontMonth": 2.708,
+          "month2": null,
+          "frontQuarter": 2.687,
+          "quarter2": 2.699,
+          "cal": 2.597,
+          "cal2": null,
+          "meridian": 2.675
+        }
+      ],
+      "bssz": {
+        "anchor": 2.652,
+        "floor": 2.387,
+        "ceiling": 3.182,
+        "trendPct": -14.4
+      }
+    },
+    {
+      "label": "H-1",
+      "refDate": "04.09.2025",
+      "_comment": "meridians: T1=31.14, T2=30.93, T3=30.71 → ADR=0.50*31.14+0.25*30.93+0.25*30.71",
+      "adrData": [
+        {
+          "date": "04.09.2025",
+          "dayAhead": 3.18,
+          "frontMonth": 3.18,
+          "month2": null,
+          "frontQuarter": 3.146,
+          "quarter2": 3.139,
+          "cal": 2.951,
+          "cal2": null,
+          "meridian": 3.114
+        },
+        {
+          "date": "03.09.2025",
+          "dayAhead": 3.154,
+          "frontMonth": 3.154,
+          "month2": null,
+          "frontQuarter": 3.121,
+          "quarter2": 3.115,
+          "cal": 2.941,
+          "cal2": null,
+          "meridian": 3.093
+        },
+        {
+          "date": "02.09.2025",
+          "dayAhead": 3.131,
+          "frontMonth": 3.131,
+          "month2": null,
+          "frontQuarter": 3.097,
+          "quarter2": 3.092,
+          "cal": 2.924,
+          "cal2": null,
+          "meridian": 3.071
+        }
+      ],
+      "bssz": {
+        "anchor": 3.098,
+        "floor": 2.788,
+        "ceiling": 3.718,
+        "trendPct": -9.04
+      }
+    },
+    {
+      "label": "Y-1",
+      "refDate": "04.03.2025",
+      "_comment": "meridians: T1=33.15, T2=34.96, T3=34.96 → ADR=0.50*33.15+0.25*34.96+0.25*34.96",
+      "adrData": [
+        {
+          "date": "04.03.2025",
+          "dayAhead": 3.483,
+          "frontMonth": 3.483,
+          "month2": null,
+          "frontQuarter": 3.371,
+          "quarter2": 3.317,
+          "cal": 2.921,
+          "cal2": null,
+          "meridian": 3.315
+        },
+        {
+          "date": "03.03.2025",
+          "dayAhead": 3.683,
+          "frontMonth": 3.683,
+          "month2": null,
+          "frontQuarter": 3.566,
+          "quarter2": 3.49,
+          "cal": 3.05,
+          "cal2": null,
+          "meridian": 3.496
+        },
+        {
+          "date": "02.03.2025",
+          "dayAhead": 3.683,
+          "frontMonth": 3.683,
+          "month2": null,
+          "frontQuarter": 3.566,
+          "quarter2": 3.49,
+          "cal": 3.05,
+          "cal2": null,
+          "meridian": 3.496
+        }
+      ],
+      "bssz": {
+        "anchor": 3.406,
+        "floor": 3.065,
+        "ceiling": 4.087,
+        "trendPct": null
+      }
+    }
+  ]
+}

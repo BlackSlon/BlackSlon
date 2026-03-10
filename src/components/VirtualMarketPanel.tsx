@@ -1,39 +1,49 @@
 'use client'
+
 import React from 'react'
+import { useVirtual } from '@/store/blackslon'
+import { getMarketData } from '@/data/markets'
+import { generateOrderBook, generateBSEIHistory, generateLiquiditySnapshots } from '@/data/markets/orderBookGenerator'
+import { getMarketColors } from '@/lib/marketColors'
 
-export default function VirtualDimension({ marketId }: { marketId: string }) {
-  const buyOrders = [
-    { price: 10.55, unit: 150, volume: 15000 },
-    { price: 10.54, unit: 120, volume: 12000 },
-    { price: 10.53, unit: 180, volume: 18000 },
-    { price: 10.52, unit: 95, volume: 9500 },
-    { price: 10.51, unit: 200, volume: 20000 },
-    { price: 10.50, unit: 135, volume: 13500 },
-    { price: 10.49, unit: 165, volume: 16500 },
-    { price: 10.48, unit: 110, volume: 11000 }
-  ]
+const formatVolume = (vol: number) =>
+  vol.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
-  const sellOrders = [
-    { price: 10.60, unit: 110, volume: 11000 },
-    { price: 10.61, unit: 85, volume: 8500 },
-    { price: 10.62, unit: 140, volume: 14000 },
-    { price: 10.63, unit: 75, volume: 7500 },
-    { price: 10.64, unit: 160, volume: 16000 },
-    { price: 10.65, unit: 125, volume: 12500 },
-    { price: 10.66, unit: 190, volume: 19000 },
-    { price: 10.67, unit: 105, volume: 10500 }
-  ]
+interface Props {
+  selectedMarketId?: string
+}
 
-  const maxVol = Math.max(...buyOrders.map(o => o.volume), ...sellOrders.map(o => o.volume))
+export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props) {
+  const storeData = useVirtual()
+  const colors = getMarketColors(selectedMarketId)
 
-  // Function to format volume with spaces
-  const formatVolume = (vol: number) => {
-    return vol.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-  }
+  // Always generate order book from selected market data
+  const mData = getMarketData(selectedMarketId as any) as any
+  const anchor = mData?.bsszPositions?.[0]?.bssz?.anchor
+    ?? mData?.bsszCalculation?.anchor
+    ?? 10.59
+  const generated = generateOrderBook(anchor, selectedMarketId)
+  
+  // Merge generated orders with user orders from store (filter by current market)
+  const userBids = storeData.orderBook.bids.filter(o => o.ownedByUser && (o as any).marketId === selectedMarketId)
+  const userAsks = storeData.orderBook.asks.filter(o => o.ownedByUser && (o as any).marketId === selectedMarketId)
+  
+  const displayBids = [...generated.bids, ...userBids].sort((a, b) => b.price - a.price)
+  const displayAsks = [...generated.asks, ...userAsks].sort((a, b) => a.price - b.price)
+  const storeLastTrade = storeData.orderBook.lastTrade
+  const displayLastTrade = storeLastTrade && (Date.now() - storeLastTrade.timestamp < 86400000)
+    ? storeLastTrade
+    : { price: anchor, units: 10, volume: 1000, timestamp: Date.now() }
+  const displayBsei = { It: anchor, omega: 0.80, pRvwap: anchor * 0.999, anchor, history: generateBSEIHistory(anchor) }
+  const displayLiquidity = generateLiquiditySnapshots()
+  const displayMarketId = selectedMarketId
+
+  const { bids, asks, lastTrade } = { bids: displayBids, asks: displayAsks, lastTrade: displayLastTrade }
 
   return (
     <div className="flex flex-col h-full bg-black font-mono text-white p-0">
-      
+
+      {/* ── Header ── */}
       <div className="w-full pt-1 pb-1 flex flex-col items-center shrink-0">
         <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold">
           Virtual Market Panel
@@ -41,198 +51,249 @@ export default function VirtualDimension({ marketId }: { marketId: string }) {
         <div className="w-[80%] border-b border-gray-800 mt-2" />
       </div>
 
-      {/* 2. TYTUŁ ORDER BOOK (Brązowy) */}
+      {/* ── Order Book title ── */}
       <div className="px-6 pt-2 pb-1 bg-gradient-to-b from-black to-gray-950 w-full">
-        <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">
-          BlackSlon Order Book
+        <div className="flex items-center justify-center">
+          <div className={`text-[10px] tracking-widest font-bold ${colors.title}`}>
+            BlackSlon Order Book
+          </div>
+          <div className="flex items-center gap-1.5 ml-auto">
+            <div className={`w-1 h-1 rounded-full animate-pulse ${colors.pulse}`} />
+            <span className={`text-[8px] uppercase tracking-widest ${colors.title}`}>
+              I<sub>t</sub> = {displayBsei.It.toFixed(2)}
+            </span>
+          </div>
         </div>
       </div>
 
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0 sm:px-2">
 
-      
-      {/* 3. LAST DEAL FRAME */}
-      <div className="mb-3 mx-3 px-2 py-2 border border-amber-700/40 rounded-sm">
-        <div className="flex justify-between items-center mb-1">
-          <div className="text-[6px] text-red-700 uppercase tracking-widest">Last Trade · BS-P-PL</div>
+        <>
+        {/* ── Last Trade ── */}
+        <div className={`mb-3 mx-3 px-2 py-2 border rounded-sm ${colors.border}`}>
+          <div className="flex justify-between items-center mb-1">
+            <div className={`text-[6px] uppercase tracking-widest ${colors.label}`}>
+              Last Trade · {displayMarketId}
+            </div>
+            {lastTrade && (
+              <div className="text-[6px] text-gray-700 uppercase tracking-widest">
+                {new Date(lastTrade.timestamp).toLocaleTimeString('pl-PL')}
+              </div>
+            )}
+          </div>
+
+          {lastTrade ? (
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col items-center">
+                <span className="text-[7px] text-gray-500 uppercase mb-0">
+                  Price <span className="normal-case text-gray-600">(EUR/100kWh)</span>
+                </span>
+                <span className={`text-sm tracking-tighter leading-tight ${colors.value}`}>
+                  {lastTrade.price.toFixed(2)}
+                </span>
+              </div>
+              <div className="text-gray-800 text-[10px]">——</div>
+              <div className="flex flex-col items-center">
+                <span className="text-[7px] text-gray-500 uppercase mb-0">Unit</span>
+                <span className="text-sm text-gray-600 tracking-tighter leading-tight">
+                  {lastTrade.units}
+                </span>
+              </div>
+              <div className="text-gray-800 text-[10px]">——</div>
+              <div className="flex flex-col items-center">
+                <span className="text-[7px] text-gray-500 uppercase mb-0 normal-case">
+                  Volume (kWh)
+                </span>
+                <span className="text-sm text-gray-600 tracking-tighter leading-tight">
+                  {formatVolume(lastTrade.volume)}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="text-[10px] text-gray-700 text-center py-1">No trades yet</div>
+          )}
         </div>
-        <div className="flex items-center justify-between">
-          <div className="flex flex-col items-center">
-            <span className="text-[7px] text-gray-500 uppercase mb-0">Price <span className="normal-case text-gray-600">(EUR/100kWh)</span></span>
-            <span className="text-sm text-yellow-500 tracking-tighter leading-tight">10.59</span>
+
+        {/* ── Order Book Grid ── */}
+        <div className="flex-grow flex min-h-0 overflow-hidden">
+
+          {/* BUY SIDE */}
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
+              <div className="text-center">
+                <div>VOLUME</div>
+                <div className="text-gray-600 normal-case">(kWh)</div>
+              </div>
+              <div className="text-center">
+                <div>UNIT</div>
+                <div className="text-gray-600">({displayMarketId})</div>
+              </div>
+              <div className="text-right">
+                <div className="text-[11px] text-green-700 tracking-widest font-bold">BUY ORDERS</div>
+                <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
+              </div>
+            </div>
+            <div className="flex-grow overflow-hidden">
+              {bids.map((o, i) => (
+                <div
+                  key={o.id}
+                  className={
+                    i === 0
+                      ? 'grid grid-cols-3 py-0.5 px-4 border-b border-green-700/30 bg-green-700/10'
+                      : `grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-green-700/10 transition-all ${o.ownedByUser ? 'bg-green-900/20' : ''}`
+                  }
+                >
+                  <div className="text-[11px] text-gray-400 self-center">
+                    {formatVolume(o.volume)}
+                  </div>
+                  <div className="text-center text-[11px] self-center text-gray-400">
+                    {o.units}
+                  </div>
+                  <div className="text-right text-[11px] self-center text-green-700">
+                    {o.price.toFixed(2)}
+                    {o.ownedByUser && (
+                      <span className="ml-1 text-[7px] text-green-900">●</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+              {bids.length === 0 && (
+                <div className="text-[9px] text-gray-800 text-center py-4">No buy orders</div>
+              )}
+            </div>
           </div>
-          <div className="text-gray-800 text-[10px]">——</div>
-          <div className="flex flex-col items-center">
-            <span className="text-[7px] text-gray-500 uppercase mb-0">Unit</span>
-            <span className="text-sm text-gray-600 tracking-tighter leading-tight">10</span>
-          </div>
-          <div className="text-gray-800 text-[10px]">——</div>
-          <div className="flex flex-col items-center">
-            <span className="text-[7px] text-gray-500 uppercase mb-0 normal-case">Volume (kWh)</span>
-            <span className="text-sm text-gray-600 tracking-tighter leading-tight">1 000</span>
+
+          {/* SELL SIDE */}
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
+              <div className="text-left">
+                <div className="text-[11px] text-red-500 tracking-widest font-bold">SELL ORDERS</div>
+                <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
+              </div>
+              <div className="text-center">
+                <div>UNIT</div>
+                <div className="text-gray-600">({displayMarketId})</div>
+              </div>
+              <div className="text-right">
+                <div>VOLUME</div>
+                <div className="text-gray-600 normal-case">(kWh)</div>
+              </div>
+            </div>
+            <div className="flex-grow overflow-hidden">
+              {asks.map((o, i) => (
+                <div
+                  key={o.id}
+                  className={
+                    i === 0
+                      ? 'grid grid-cols-3 py-0.5 px-4 border-b border-red-500/30 bg-red-500/10'
+                      : `grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-red-500/10 transition-all ${o.ownedByUser ? 'bg-red-900/20' : ''}`
+                  }
+                >
+                  <div className="text-left text-[11px] self-center text-red-600">
+                    {o.price.toFixed(2)}
+                    {o.ownedByUser && (
+                      <span className="ml-1 text-[7px] text-red-900">●</span>
+                    )}
+                  </div>
+                  <div className="text-center text-[11px] self-center text-gray-400">
+                    {o.units}
+                  </div>
+                  <div className="text-right text-[11px] text-gray-400 self-center">
+                    {formatVolume(o.volume)}
+                  </div>
+                </div>
+              ))}
+              {asks.length === 0 && (
+                <div className="text-[9px] text-gray-800 text-center py-4">No sell orders</div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      
-      {/* 4. MAIN ORDER BOOK GRID (Thin Lines) */}
-      <div className="flex-grow flex min-h-0 overflow-hidden">
-        
-        {/* BUY SIDE */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
-            <div className="text-center">
-              <div>VOLUME</div>
-              <div className="text-gray-600 normal-case">(kWh)</div>
+
+        {/* ── BSEI Energy Index ── */}
+        <div className="px-6 py-4 border-t border-gray-800 bg-black sm:px-2">
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`text-[10px] tracking-widest font-bold ${colors.title}`}>
+              BlackSlon Energy Index
             </div>
-            <div className="text-center">
-              <div>UNIT</div>
-              <div className="text-gray-600">(BS-P-PL)</div>
-            </div>
-            <div className="text-right">
-              <div className="text-[11px] text-green-700 tracking-widest font-bold">BUY ORDERS</div>
-              <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
-            </div>
+            <span className={`text-[10px] uppercase tracking-widest ${colors.label}`}>
+              {displayMarketId}
+            </span>
+            <span className="text-[8px] text-gray-700 ml-auto">
+              ω = {displayBsei.omega.toFixed(2)}
+            </span>
           </div>
-          <div className="flex-grow overflow-hidden">
-            {buyOrders.map((o, i) => (
-              <div key={i} className={i === 0 ? "grid grid-cols-3 py-0.5 px-4 border-b border-green-700/30 bg-green-700/10" : "grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-green-700/10 transition-all group"}>
-                <div className="text-[11px] text-gray-400 self-center">{formatVolume(o.volume)}</div>
-                <div className="text-center text-[11px] self-center text-gray-400">{o.unit}</div>
-                <div className="text-right text-[11px] self-center text-green-700">{o.price.toFixed(2)}</div>
+          <div className="flex justify-between items-center font-mono overflow-hidden">
+            {displayBsei.history.map((snap, i) => (
+              <div
+                key={snap.label}
+                className={`flex flex-col items-center text-center flex-shrink-0 ${
+                  i > 0 && i < displayBsei.history.length
+                    ? 'border-r border-gray-900 px-4 sm:px-2'
+                    : ''
+                }`}
+              >
+                <span className="text-[9px] text-gray-500">{snap.label}</span>
+                <span className="text-[11px] text-gray-400 sm:text-[10px]">
+                  {snap.value.toFixed(2)}
+                </span>
+                <span className={`text-[9px] ${snap.changePct >= 0 ? 'text-green-700' : 'text-red-600'}`}>
+                  {snap.changePct >= 0 ? '+' : ''}{snap.changePct.toFixed(1)}%
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* R-VWAP vs anchor spread */}
+          <div className="mt-2 flex items-center gap-3 text-[8px] text-gray-700">
+            <span>P<sub>RVWAP</sub>: <span className="text-gray-500">{displayBsei.pRvwap.toFixed(2)}</span></span>
+            <span className="text-gray-800">·</span>
+            <span>Anchor: <span className="text-gray-500">{displayBsei.anchor.toFixed(2)}</span></span>
+            <span className="text-gray-800">·</span>
+            <span>
+              Spread:{' '}
+              <span className={
+                Math.abs(displayBsei.It - displayBsei.anchor) / displayBsei.anchor > 0.02
+                  ? 'text-amber-700'
+                  : 'text-gray-500'
+              }>
+                {((displayBsei.It - displayBsei.anchor) / displayBsei.anchor * 100).toFixed(2)}%
+              </span>
+            </span>
+          </div>
+        </div>
+
+        {/* ── Liquidity ── */}
+        <div className="px-6 py-4 border-t border-gray-800 bg-black sm:px-2">
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`text-[10px] tracking-widest font-bold ${colors.title}`}>
+              BlackSlon Liquidity
+            </div>
+            <span className={`text-[10px] uppercase tracking-widest ${colors.label}`}>
+              {displayMarketId}
+            </span>
+          </div>
+          <div className="flex justify-between items-center font-mono overflow-hidden">
+            {displayLiquidity.map((snap, i) => (
+              <div
+                key={snap.label}
+                className={`flex flex-col items-center text-center flex-shrink-0 ${
+                  i > 0 && i < displayLiquidity.length
+                    ? 'border-r border-gray-900 px-4 sm:px-2'
+                    : ''
+                }`}
+              >
+                <span className="text-[9px] text-gray-500">{snap.label}</span>
+                <span className="text-[11px] text-gray-400 sm:text-[10px]">
+                  {snap.value.toLocaleString('de-DE')}
+                </span>
+                <span className="text-[7px] text-gray-600">MWh</span>
               </div>
             ))}
           </div>
         </div>
+        </>
 
-        {/* SELL SIDE */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
-            <div className="text-left">
-              <div className="text-[11px] text-red-500 tracking-widest font-bold">SELL ORDERS</div>
-              <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
-            </div>
-            <div className="text-center">
-              <div>UNIT</div>
-              <div className="text-gray-600">(BS-P-PL)</div>
-            </div>
-            <div className="text-right">
-              <div>VOLUME</div>
-              <div className="text-gray-600 normal-case">(kWh)</div>
-            </div>
-          </div>
-          <div className="flex-grow overflow-hidden">
-            {sellOrders.map((o, i) => (
-              <div key={i} className={i === 0 ? "grid grid-cols-3 py-0.5 px-4 border-b border-red-500/30 bg-red-500/10" : "grid grid-cols-3 py-0.5 px-4 border-b border-gray-900/50 hover:bg-red-500/10 transition-all group"}>
-                <div className="text-left text-[11px] self-center text-red-600">{o.price.toFixed(2)}</div>
-                <div className="text-center text-[11px] self-center text-gray-400">{o.unit}</div>
-                <div className="text-right text-[11px] text-gray-400 self-center">{formatVolume(o.volume)}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* 5. BLACKSLON ENERGY INDEX BS-P-PL */}
-      <div className="px-6 py-4 border-t border-gray-800 bg-black sm:px-2">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold">BlackSlon Energy Index</div>
-          <span className="text-[10px] text-yellow-500 uppercase tracking-widest">BS-P-PL</span>
-        </div>
-        <div className="flex justify-between items-center font-mono overflow-hidden">
-          {/* D-1 */}
-          <div className="flex flex-col items-center text-center flex-shrink-0">
-            <span className="text-[9px] text-gray-500">D-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">10.59</span>
-            <span className="text-[9px] text-green-700">+4.2%</span>
-          </div>
-          
-          {/* W-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">W-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">10.72</span>
-            <span className="text-[9px] text-green-700">+3.1%</span>
-          </div>
-          
-          {/* M-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">M-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">10.85</span>
-            <span className="text-[9px] text-green-700">+2.4%</span>
-          </div>
-          
-          {/* Q-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">Q-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">10.95</span>
-            <span className="text-[9px] text-green-700">+1.8%</span>
-          </div>
-          
-          {/* H-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">H-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">11.02</span>
-            <span className="text-[9px] text-green-700">+1.2%</span>
-          </div>
-          
-          {/* Y-1 */}
-          <div className="flex flex-col items-center text-center flex-shrink-0">
-            <span className="text-[9px] text-gray-500">Y-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">9.87</span>
-            <span className="text-[9px] text-green-700">+5.8%</span>
-          </div>
-        </div>
-      </div>
-
-      {/* 6. BLACKSLON LIQUIDITY */}
-      <div className="px-6 py-4 border-t border-gray-800 bg-black sm:px-2">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold">BlackSlon Liquidity</div>
-          <span className="text-[10px] text-yellow-500 uppercase tracking-widest">BS-P-PL</span>
-        </div>
-        <div className="flex justify-between items-center font-mono overflow-hidden">
-          {/* D-1 */}
-          <div className="flex flex-col items-center text-center flex-shrink-0">
-            <span className="text-[9px] text-gray-500">D-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">1,245</span>
-            <span className="text-[7px] text-gray-600">MWh</span>
-          </div>
-          
-          {/* W-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">W-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">8,715</span>
-            <span className="text-[7px] text-gray-600">MWh</span>
-          </div>
-          
-          {/* M-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">M-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">37,440</span>
-            <span className="text-[7px] text-gray-600">MWh</span>
-          </div>
-          
-          {/* Q-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">Q-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">112,320</span>
-            <span className="text-[7px] text-gray-600">MWh</span>
-          </div>
-          
-          {/* H-1 */}
-          <div className="flex flex-col items-center text-center border-r border-gray-900 px-4 flex-shrink-0 sm:px-2">
-            <span className="text-[9px] text-gray-500">H-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">224,640</span>
-            <span className="text-[7px] text-gray-600">MWh</span>
-          </div>
-          
-          {/* Y-1 */}
-          <div className="flex flex-col items-center text-center flex-shrink-0">
-            <span className="text-[9px] text-gray-500">Y-1</span>
-            <span className="text-[11px] text-gray-400 sm:text-[10px]">449,280</span>
-            <span className="text-[7px] text-gray-600">MWh</span>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   )

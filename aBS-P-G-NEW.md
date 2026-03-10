@@ -15,14 +15,14 @@ They are not commodities. They are not securities. They are **virtual settlement
 | Property | Description |
 |:---|:---|
 | **Underlying** | 100 kWh of electric power (BS-P) or natural gas (BS-G) |
-| **Market Specificity** | Each token is dedicated to a specific national market |
+| **Market Specificity** | Each token is dedicated to a specific national/regional market |
 | **Perpetual** | No expiration date — no rollover costs, no contract management |
 | **Asymmetric Corridor** | Price bounded by BSSZ: $[a - 10\%, a + 20\%]$ relative to Physical Meridian |
 | **Minimum Unit** | 1 token = 100 kWh (granular access from any capital size) |
 | **Settlement Currency** | eEURO |
 | **Phase 1** | Virtual settlement only — no physical delivery |
 | **Phase 2** | Physical redemption available for 1MW+ industrial consumers |
-
+| **Phase 3** | Following the successful validation of the industrial tier, the redemption mechanism will be available to all participants |
 ---
 
 ## 3. Market Taxonomy
@@ -33,13 +33,14 @@ Each BS-P and BS-G token is identified by a standardized ticker that encodes its
 
 | Ticker | Instrument | Reference Market |
 |:---|:---|:---|
-| BS-G-NL | BlackSlon Gas — Netherlands | TTF (Title Transfer Facility) |
-| BS-G-DE | BlackSlon Gas — Germany | THE (Trading Hub Europe) |
-| BS-G-PL | BlackSlon Gas — Poland | TGE (Towarowa Giełda Energii) |
-| BS-P-DE | BlackSlon Power — Germany | EEX (European Energy Exchange) |
-| BS-P-FR | BlackSlon Power — France | EPEX SPOT |
-| BS-P-PL | BlackSlon Power — Poland | TGE |
-| BS-P-NL | BlackSlon Power — Netherlands | EPEX SPOT |
+| BS-G-NL | BlackSlon Gas — Netherlands |
+| BS-G-DE | BlackSlon Gas — Germany |
+| BS-G-PL | BlackSlon Gas — Poland |
+| BS-G-BG | BlackSlon Gas — Bulgaria |
+| BS-P-DE | BlackSlon Power — Germany |
+| BS-P-FR | BlackSlon Power — France |
+| BS-P-PL | BlackSlon Power — Poland |
+| BS-P-NL | BlackSlon Power — Netherlands |
 
 > Each market has its own isolated BSSZ corridor, its own Physical Meridian, and its own $b_{base}$ calibration in the Circuit Breaker. Markets do not cross-contaminate each other's price dynamics.
 

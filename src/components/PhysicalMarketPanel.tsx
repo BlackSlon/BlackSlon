@@ -1,19 +1,64 @@
 'use client'
-import React from 'react'
 
-export default function PhysicalDimension({ marketId, currentPrice }: { marketId: string, currentPrice: number }) {
-  const history = [
-    { label: 'D-1', date: '27.02.2026', min: 9.05, max: 11.05, anchor: 9.95, trend: '+6.0%', change: 6.0 },
-    { label: 'W-1', date: '21.02.2026', min: 8.80, max: 10.80, anchor: 9.80, trend: '+7.5%', change: 7.5 },
-    { label: 'M-1', date: '28.01.2026', min: 7.92, max: 9.68, anchor: 8.80, trend: '+16.9%', change: 16.9 },
-    { label: 'Q-1', date: '28.11.2025', min: 8.00, max: 10.00, anchor: 9.00, trend: '+15.0%', change: 15.0 },
-    { label: 'H-1', date: '28.08.2025', min: 7.50, max: 9.50, anchor: 8.50, trend: '+19.7%', change: 19.7 },
-    { label: 'Y-1', date: '28.02.2025', min: 7.00, max: 9.00, anchor: 8.00, trend: '+24.5%', change: 24.5 },
-  ]
+import React from 'react'
+import { getMarketData } from '@/data/markets'
+import { getMarketColors } from '@/lib/marketColors'
+
+interface Props {
+  selectedMarketId?: string
+}
+
+export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Props) {
+  const colors = getMarketColors(selectedMarketId)
+  const marketData = getMarketData(selectedMarketId as any) as any
+
+  // Resolve BSSZ data - handle both old format (BS-P-PL) and new format (BS-G-NL)
+  let bsszPositions: any[] = []
+  let currentAnchor = 0
+  let currentFloor = 0
+  let currentCeiling = 0
+  let isLocked = false
+
+  if (marketData?.bsszPositions?.length > 0) {
+    // New format: BS-G-NL etc.
+    bsszPositions = marketData.bsszPositions
+    currentAnchor = marketData.bsszPositions[0].bssz.anchor
+    currentFloor = marketData.bsszPositions[0].bssz.floor
+    currentCeiling = marketData.bsszPositions[0].bssz.ceiling
+  } else if (marketData?.bsszCalculation) {
+    // Old format: BS-P-PL
+    currentAnchor = marketData.bsszCalculation.anchor
+    currentFloor = marketData.bsszCalculation.floor
+    currentCeiling = marketData.bsszCalculation.ceiling
+    // Create synthetic BSSZ positions from historicalData
+    if (marketData.historicalData?.length > 0) {
+      const labels = ['D-1','D-2','D-3','D-4','D-5','D-6','D-7','W-1','M-1','Q-1','H-1','Y-1']
+      bsszPositions = marketData.historicalData.slice(0, labels.length).map((d: any, i: number, arr: any[]) => ({
+        label: labels[i],
+        refDate: d.date,
+        bssz: {
+          anchor: d.price,
+          floor: parseFloat((d.price * 0.90).toFixed(2)),
+          ceiling: parseFloat((d.price * 1.20).toFixed(2)),
+          trendPct: i < arr.length - 1
+            ? parseFloat(((d.price - arr[i + 1].price) / arr[i + 1].price * 100).toFixed(2))
+            : null,
+        },
+      }))
+    }
+  }
+
+  // Today's date for display
+  const today = new Date().toLocaleDateString('pl-PL', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  })
 
   return (
     <div className="flex flex-col h-full bg-black font-mono text-white p-0">
-      
+
+      {/* ── Header ── */}
       <div className="w-full pt-1 pb-1 flex flex-col items-center shrink-0">
         <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold">
           Physical Market Panel
@@ -22,69 +67,99 @@ export default function PhysicalDimension({ marketId, currentPrice }: { marketId
       </div>
 
       <div className="flex-grow px-6 pb-6 flex flex-col min-h-0">
-        {/* TYTUŁ: BlackSlon Settlement Zone */}
+
+        {/* ── Section title ── */}
         <div className="pt-2 pb-1 bg-gradient-to-b from-black to-gray-950 w-full">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">
+          <div className={`text-[10px] tracking-widest font-bold mb-1 text-center ${colors.title}`}>
             BlackSlon Settlement Zone
           </div>
         </div>
 
-        {/* RANGES */}
-        <div className="mb-3 px-2 py-2 border border-amber-700/40 rounded-sm">
+        {/* ── BSSZ Corridor ── */}
+        <div className={`mb-3 px-2 py-2 border rounded-sm ${isLocked ? 'border-red-500/60 bg-red-900/10' : colors.border}`}>
           <div className="flex justify-between items-center mb-1">
-            <div className="text-[6px] text-amber-700 uppercase tracking-widest">Valid today · 02.03.2026</div>
+            <div className={`text-[6px] uppercase tracking-widest ${colors.title}`}>
+              Valid today · {today}
+            </div>
             <div className="text-[6px] text-gray-600 tracking-widest">EUR / 100kWh</div>
           </div>
+
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-center">
-              <span className="text-[7px] text-gray-500 uppercase mb-0">Min</span>
-              <span className="text-sm text-yellow-500 leading-tight font-normal">9.09</span>
+              <span className="text-[7px] text-gray-500 uppercase mb-0">Min (−10%)</span>
+              <span className={`text-sm leading-tight font-normal ${colors.value}`}>
+                {currentFloor.toFixed(2)}
+              </span>
             </div>
+
             <div className="text-gray-800 text-[10px]">——</div>
+
             <div className="flex flex-col items-center">
               <span className="text-[7px] text-gray-500 uppercase mb-0">Anchor</span>
-              <span className="text-sm text-gray-600 leading-tight font-normal">{currentPrice.toFixed(2)}</span>
+              <span className="text-sm text-gray-300 leading-tight font-normal">
+                {currentAnchor.toFixed(2)}
+              </span>
+              <span className="text-[6px] text-gray-700 uppercase tracking-widest mt-0.5">
+                Physical Meridian
+              </span>
             </div>
+
             <div className="text-gray-800 text-[10px]">——</div>
+
             <div className="flex flex-col items-center">
-              <span className="text-[7px] text-gray-500 uppercase mb-0">Max</span>
-              <span className="text-sm text-yellow-500 leading-tight font-normal">11.11</span>
+              <span className="text-[7px] text-gray-500 uppercase mb-0">Max (+20%)</span>
+              <span className={`text-sm leading-tight font-normal ${colors.value}`}>
+                {currentCeiling.toFixed(2)}
+              </span>
             </div>
           </div>
         </div>
 
-        
-        {/* HISTORICAL TABLE */}
+        {/* ── Historical anchor table ── */}
         <div className="flex-grow overflow-hidden">
           <div className="grid grid-cols-12 text-[9px] uppercase pb-1 border-b border-gray-900 mb-2">
-            <div className="col-span-3 text-gray-400 font-bold">Ref / Date</div>
+            <div className="col-span-2 text-gray-400 font-bold">Ref</div>
+            <div className="col-span-2 text-gray-400 font-bold">Date</div>
             <div className="col-span-2 text-center text-gray-500 font-bold">Min</div>
             <div className="col-span-2 text-center text-gray-600 font-normal">Anchor</div>
             <div className="col-span-2 text-center text-gray-500 font-bold">Max</div>
-            <div className="col-span-3 text-right text-gray-500 font-bold">Trend</div>
+            <div className="col-span-2 text-right text-gray-500 font-bold">Trend</div>
           </div>
 
           <div className="space-y-1">
-            {history.map((row) => (
-              <div key={row.label} className="grid grid-cols-12 items-center py-0.5 border-b border-gray-900/30">
-                <div className="col-span-3 flex flex-col">
-                  <span className="text-[11px] text-gray-400">{row.label}</span>
-                  <span className="text-[8px] text-gray-500 leading-tight">{row.date}</span>
+            {bsszPositions.map((position) => {
+              const trendPct = position.bssz.trendPct
+              return (
+                <div key={position.label} className="grid grid-cols-12 items-center py-0.5 border-b border-gray-900/30">
+                  <div className="col-span-2 text-[11px] text-gray-400">
+                    {position.label}
+                  </div>
+                  <div className="col-span-2 text-[7px] text-gray-600">
+                    {position.refDate}
+                  </div>
+                  <div className="col-span-2 text-[11px] text-gray-500 text-center">
+                    {position.bssz.floor.toFixed(2)}
+                  </div>
+                  <div className="col-span-2 text-[11px] text-gray-600 text-center">
+                    {position.bssz.anchor.toFixed(2)}
+                  </div>
+                  <div className="col-span-2 text-[11px] text-gray-500 text-center">
+                    {position.bssz.ceiling.toFixed(2)}
+                  </div>
+                  <div className={`col-span-2 text-[11px] text-right ${
+                    trendPct === null ? 'text-gray-700' : trendPct >= 0 ? 'text-green-700' : 'text-red-600'
+                  }`}>
+                    {trendPct === null ? '—' : `${trendPct >= 0 ? '▲' : '▼'} ${Math.abs(trendPct).toFixed(1)}%`}
+                  </div>
                 </div>
-                <div className="col-span-2 text-[11px] text-gray-500 text-center">{row.min.toFixed(2)}</div>
-                <div className="col-span-2 text-[11px] text-gray-600 text-center">{row.anchor.toFixed(2)}</div>
-                <div className="col-span-2 text-[11px] text-gray-500 text-center">{row.max.toFixed(2)}</div>
-                <div className={`col-span-3 text-[11px] text-right ${row.change >= 0 ? 'text-green-700' : 'text-red-600'}`}>
-                  {row.change >= 0 ? '▲' : '▼'} {row.trend}
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
-        {/* FOOTER */}
+        {/* ── Footer ── */}
         <div className="mt-6 pt-2 border-t border-gray-900 text-[8px] text-gray-700 text-center tracking-widest uppercase">
-          BSTZ Protocol · ADR Stabilization Active
+          BSTZ Protocol · ADR Stabilization Active · {selectedMarketId}
         </div>
       </div>
     </div>

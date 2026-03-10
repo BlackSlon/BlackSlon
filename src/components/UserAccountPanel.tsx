@@ -1,174 +1,336 @@
 'use client'
 
-import React, { useMemo } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { useState, useEffect } from 'react'
+import { useUserAccount } from '@/store/blackslon'
+
+// ─── Solvency Tier Config ────────────────────────────────────────────────────
+const SOLVENCY_TIERS = [
+  { tier: 'I',   label: 'PRIME',    min: 0.85, color: '#22c55e', glow: 'rgba(34,197,94,0.4)',   bg: 'rgba(34,197,94,0.06)',   border: 'rgba(34,197,94,0.3)'   },
+  { tier: 'II',  label: 'SECURE',   min: 0.65, color: '#38bdf8', glow: 'rgba(56,189,248,0.4)',  bg: 'rgba(56,189,248,0.06)',  border: 'rgba(56,189,248,0.3)'  },
+  { tier: 'III', label: 'WATCH',    min: 0.40, color: '#b45309', glow: 'rgba(180,83,9,0.4)',    bg: 'rgba(180,83,9,0.06)',    border: 'rgba(180,83,9,0.3)'    },
+  { tier: 'IV',  label: 'CRITICAL', min: 0,    color: '#ef4444', glow: 'rgba(239,68,68,0.4)',   bg: 'rgba(239,68,68,0.06)',   border: 'rgba(239,68,68,0.3)'   },
+] as const
+
+function getSolvencyTier(s: number) {
+  return SOLVENCY_TIERS.find((t) => s >= t.min) ?? SOLVENCY_TIERS[3]
+}
+
+const fmt = (n: number) =>
+  n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    .replace(/\u202f/g, ' ')
+    .replace(/,/g, '.')
 
 export default function UserAccountPanel() {
-  // Przykładowe dane portfela
-  const fmt = (n: number) => n.toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }).replace(/\u202f/g, ' ').replace(/,/g, '.')
+  const {
+    user,
+    inventory,
+    vault,
+    solvency,
+    hFactor,
+    bsrEuroRate,
+    setWalletConnected,
+    checkLiquidation,
+    convertTokens,
+  } = useUserAccount()
 
-  const inventory = [
-    { token: 'BS-P-PL', unit: '30', quantity: '3 000', avgPrice: 10.45, lastPrice: 10.89, pnl: '+630.00', color: 'yellow' },
-    { token: 'BS-G-DE', unit: '45', quantity: '4 500', avgPrice: 12.10, lastPrice: 11.96, pnl: '-112.00', color: 'blue' },
-    { token: 'BS-W-FR', unit: '22', quantity: '2 200', avgPrice: 9.80, lastPrice: 11.02, pnl: '+244.00', color: 'yellow' },
-  ]
+  const [convertAmount, setConvertAmount] = useState('')
+  const [convertDirection, setConvertDirection] = useState<'BSR_TO_EURO' | 'EURO_TO_BSR'>('BSR_TO_EURO')
+  const [convertError, setConvertError] = useState<string | null>(null)
+  const [convertSuccess, setConvertSuccess] = useState(false)
+  const [liquidationRisk, setLiquidationRisk] = useState<boolean | null>(null)
+  const [checking, setChecking] = useState(false)
 
-  const vaultLiquidity = {
-    lockedBSR: '1 250.40',
-    lockedEUR: '450.00'
+  const activeTier = getSolvencyTier(solvency)
+  const pct = Math.round(solvency * 100)
+
+  const totalBSRinEUR = user.bsrBalance * bsrEuroRate
+  const totalBalance = user.eEuroBalance + totalBSRinEUR
+  const totalLockedEUR = vault.lockedBSR * bsrEuroRate + vault.lockedEuro
+
+  const shortAddress = user.walletAddress
+    ? `${user.walletAddress.slice(0, 6)}…${user.walletAddress.slice(-4)}`
+    : '─────────────'
+
+  const handleLiquidationCheck = async () => {
+    setChecking(true)
+    try {
+      const risk = await checkLiquidation()
+      setLiquidationRisk(risk)
+    } finally {
+      setChecking(false)
+    }
   }
 
-  const hFactor = '2.48'
-
-  const bsrEurRate = '1 €BSR = 2.45 eEURO'
-  const exchangeRate = 2.45
-
-  // Calculate total balance in EUR
-  const totalBSR = 3200 + 1250.40 // Available + Locked
-  const totalEUR = (totalBSR * exchangeRate).toFixed(2)
-  const totalEURWithBSR = fmt(12450 + (totalBSR * exchangeRate)) // eEURO + €BSR converted
-  const totalLockedEUR = fmt(1250.40 * exchangeRate + 450) // Locked €BSR + Locked eEURO
-
   return (
-    <div className="flex flex-col h-full bg-black font-mono text-white p-0">
-      
-      {/* HEADER */}
+    <div className="flex flex-col h-full bg-black font-mono text-white p-0 overflow-hidden">
+
+      {/* ── Header ── */}
       <div className="w-full pt-1 pb-1 flex flex-col items-center shrink-0">
         <div className="text-[10px] text-gray-500 uppercase tracking-[0.5em] font-bold">
-          USER'S ACCOUNT PANEL
+          User's Account Panel
         </div>
         <div className="w-[85%] border-b border-gray-800 mt-2" />
       </div>
 
-      {/* BLACKSLON PORTFOLIO SECTION */}
-      <div className="flex-grow px-6 pb-6 flex flex-col min-h-0 space-y-3">
-        <div className="pl-0 pr-0 pt-4 pb-2 bg-gradient-to-b from-black to-gray-950 w-full">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">Available Liquidity</div>
-          <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:grid-cols-2 xs:grid-cols-1">
-            <div className="border border-amber-700 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-amber-700 uppercase tracking-widest mb-0 font-normal">€BSR BALANCE</div>
-              <div className="text-sm text-amber-700 tracking-tighter leading-tight font-normal">3 200.00</div>
+      {/* ── Scrollable body ── */}
+      <div className="flex-grow overflow-y-auto px-6 pb-4 flex flex-col space-y-3 min-h-0">
+
+        {/* ── Section: Available Liquidity & Vault ── */}
+        <div className="pt-3">
+          <div className="grid grid-cols-2 gap-4 mb-2">
+            <div className="text-[10px] tracking-widest text-amber-700 font-bold text-center">
+              Available Liquidity
             </div>
-            <div className="border border-sky-400 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-sky-400 uppercase tracking-widest mb-0 font-normal"><span className="normal-case">e</span>EURO BALANCE</div>
-              <div className="text-sm text-sky-400 tracking-tighter leading-tight font-normal">12 450.00</div>
-            </div>
-            <div className="border border-gray-800 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-0 font-normal">Total Balance [EUR]</div>
-              <div className="text-sm text-gray-300 tracking-tighter leading-tight font-normal">{totalEURWithBSR}</div>
+            <div className="text-[10px] tracking-widest text-amber-700 font-bold text-center">
+              BlackSlon Vault
             </div>
           </div>
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-0 mt-4">BlackSlon Tokens Portfolio</div>
-          
-          {/* TABLE INVENTORY */}
-          <div className="mb-0">
-            {/* Table Header */}
-            <div className="table-fixed w-full">
-              <div className="grid grid-cols-6 text-[7px] text-gray-500 font-normal uppercase px-2 py-1 border-b border-gray-900 w-full">
-                <div className="w-[20%] tracking-widest">Token</div>
-                <div className="w-[15%] text-center tracking-widest">Unit</div>
-                <div className="w-[20%] text-center tracking-widest normal-case">Volume (kWh)</div>
-                <div className="w-[15%] text-center tracking-widest">Avg<br/>Price</div>
-                <div className="w-[15%] text-center tracking-widest">Last<br/>Price</div>
-                <div className="w-[15%] text-right tracking-widest">PnL (EUR)</div>
+          <div className="flex flex-wrap gap-2">
+            <div className="border border-amber-700 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[7px] text-amber-700 uppercase tracking-widest mb-0">€BSR Balance</div>
+              <div className="text-[11px] text-amber-700 leading-tight font-normal">{fmt(user.bsrBalance)}</div>
+            </div>
+            <div className="border border-sky-400 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[7px] text-sky-400 uppercase tracking-widest mb-0"><span className="normal-case">e</span>EURO Balance</div>
+              <div className="text-[11px] text-sky-400 leading-tight font-normal">{fmt(user.eEuroBalance)}</div>
+            </div>
+            <div className="border border-amber-700 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[7px] text-amber-700 uppercase tracking-widest mb-0">Locked €BSR</div>
+              <div className="text-[11px] text-amber-700 tracking-tighter leading-tight">{fmt(vault.lockedBSR)}</div>
+            </div>
+            <div className="border border-sky-400 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[7px] text-sky-400 uppercase tracking-widest mb-0">Locked <span className="normal-case">e</span>EURO</div>
+              <div className="text-[11px] text-sky-400 tracking-tighter leading-tight">{fmt(vault.lockedEuro)}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Section: Portfolio ── */}
+        <div>
+          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 text-center">
+            BlackSlon Tokens Portfolio
+          </div>
+          <div className="grid grid-cols-6 text-[7px] text-gray-500 uppercase px-2 py-1 border-b border-gray-900">
+            <div className="tracking-widest">Token</div>
+            <div className="text-center tracking-widest">Units</div>
+            <div className="text-center tracking-widest normal-case">Vol (kWh)</div>
+            <div className="text-center tracking-widest">Avg P.</div>
+            <div className="text-center tracking-widest">Last P.</div>
+            <div className="text-right tracking-widest">PnL (EUR)</div>
+          </div>
+          {inventory.map((item) => (
+            <div
+              key={item.token}
+              className="grid grid-cols-6 items-center py-1 px-2 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors"
+            >
+              <div className={`text-[10px] ${
+                item.token.startsWith('BS-G') ? 'text-blue-500' : 'text-yellow-500'
+              }`}>{item.token}</div>
+              <div className="text-center text-[11px] text-gray-400">{item.units}</div>
+              <div className="text-center text-[11px] text-gray-400">{item.quantity.toLocaleString('fr-FR').replace(/\u202f/g, ' ')}</div>
+              <div className="text-center text-[11px] text-gray-400">{item.avgPrice.toFixed(2)}</div>
+              <div className="text-center text-[11px] text-gray-400">{item.lastPrice.toFixed(2)}</div>
+              <div className={`text-right text-[11px] ${item.pnl >= 0 ? 'text-green-700' : 'text-red-600'}`}>
+                {item.pnl >= 0 ? '+' : ''}{item.pnl.toFixed(2)}
               </div>
-
-              {/* Table Rows */}
-              {inventory.map((item, index) => (
-                <div key={index} className="grid grid-cols-6 items-center py-1 px-2 border-b border-gray-900 w-full hover:bg-gray-900/40 transition-colors">
-                  <div className="w-[20%] text-[11px] text-gray-400 whitespace-nowrap">{item.token}</div>
-                  <div className="w-[15%] text-center text-[11px] text-gray-400">{item.unit}</div>
-                  <div className="w-[20%] text-center text-[11px] text-gray-400 whitespace-nowrap">{item.quantity}</div>
-                  <div className="w-[15%] text-center text-[11px] text-gray-400">{item.avgPrice}</div>
-                  <div className="w-[15%] text-center text-[11px] text-gray-400">{item.lastPrice}</div>
-                  <div className={`w-[15%] text-right text-[11px] ${item.pnl.startsWith('+') ? 'text-green-700' : 'text-red-600'}`}>
-                    {item.pnl}
-                  </div>
-                </div>
-              ))}
             </div>
+          ))}
+        </div>
+
+        {/* ── Section: Solvency ── */}
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <div className="text-[10px] tracking-widest text-amber-700 font-bold text-center">
+              BlackSlon Solvency Engine
+            </div>
+            <span className="text-[7px] text-gray-700 uppercase tracking-widest">(Protocol Level)</span>
+          </div>
+
+          {/* Current Tier */}
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-[9px] text-gray-600 uppercase tracking-widest">Current Tier</span>
+            <span className="text-[11px] font-black" style={{ color: activeTier.color }}>
+              T{activeTier.tier}
+            </span>
+          </div>
+
+          {/* Progress bar */}
+          <div className="flex justify-between items-center mb-1">
+            <span className="text-[9px] text-gray-600 uppercase tracking-widest">Solvency Index</span>
+            <span className="text-[11px] font-black" style={{ color: activeTier.color }}>
+              {pct}%
+            </span>
+          </div>
+          <div className="w-full h-1 rounded-full overflow-hidden bg-gray-900 border border-gray-800">
+            <div
+              className="h-full rounded-full transition-all duration-1000 ease-out"
+              style={{
+                width: `${pct}%`,
+                background: `linear-gradient(90deg, ${activeTier.color}80, ${activeTier.color})`,
+                boxShadow: `0 0 8px ${activeTier.glow}`,
+              }}
+            />
+          </div>
+          <div className="text-right text-[7px] mt-0.5" style={{ color: activeTier.color + '99' }}>
+            {activeTier.tier === 'I' ? 'Ultra-solvent' : activeTier.tier === 'II' ? 'Stable margin' : activeTier.tier === 'III' ? 'Margin pressure' : 'Liquidation risk'}
           </div>
         </div>
 
-        {/* BLACKSLON VAULT */}
-        <div className="mb-3 px-0">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Vault</div>
-          <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:grid-cols-2 xs:grid-cols-1">
-            <div className="border border-amber-700 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-amber-700 uppercase tracking-widest mb-0">Locked €BSR</div>
-              <div className="text-sm text-amber-700 tracking-tighter leading-tight">{vaultLiquidity.lockedBSR}</div>
+        {/* ── Section: Risk Management ── */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[10px] tracking-widest text-amber-700 font-bold text-center">
+              BlackSlon Risk Management
             </div>
-            <div className="border border-sky-400 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-sky-400 uppercase tracking-widest mb-0">Locked <span className="normal-case">e</span>EURO</div>
-              <div className="text-sm text-sky-400 tracking-tighter leading-tight">{vaultLiquidity.lockedEUR}</div>
-            </div>
-            <div className="border border-gray-800 rounded-sm py-1 px-3 overflow-hidden w-fit">
-              <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-0">Total Locked Value [EUR]</div>
-              <div className="text-sm text-gray-300 tracking-tighter leading-tight">{totalLockedEUR}</div>
-            </div>
+            <span className="text-[7px] text-gray-700 uppercase tracking-widest">(User's Level)</span>
           </div>
-        </div>
-
-        {/* BLACKSLON RISK MANAGEMENT */}
-        <div className="mb-3 px-0">
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Risk Management</div>
-          
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex flex-col">
-              <span className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (H-BSTZ)</span>
-              <span className="text-sm text-green-700 tracking-tighter leading-tight">
-                {hFactor}
-              </span>
+          <div className="flex justify-between items-center mb-3">
+            <div>
+              <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">H-Factor (H-BSTZ)</div>
+              <div className="text-sm text-green-700 tracking-tighter leading-tight">{hFactor.toFixed(2)}</div>
             </div>
             <div className="text-right">
               <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-1">Status</div>
               <div className="text-[10px] text-green-700 tracking-[0.2em] uppercase animate-pulse">
-                SAFE ZONE
+                {hFactor >= 1.5 ? 'SAFE ZONE' : hFactor >= 1.0 ? 'WATCH' : 'DANGER'}
               </div>
             </div>
-          </div>
-
-          {/* BLACKSLON RESERVE €BSR/EUR */}
-          <div className="mt-4">
-            <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon Reserve (€BSR/EUR)</div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-amber-700 animate-pulse shrink-0"></div>
-                <div className="text-[8px] text-amber-700 uppercase tracking-widest">LIVE</div>
-                <span className="text-sm text-amber-700 tracking-tighter leading-none">1 €BSR</span>
-                <span className="text-sm text-gray-600 tracking-tighter leading-none mx-1">=</span>
-                <span className="text-sm text-sky-400 tracking-tighter leading-none">2.45 eEURO</span>
-              </div>
-              <button className="ml-auto text-[7px] uppercase tracking-widest text-gray-600 border border-gray-800 px-2 py-0.5 hover:text-gray-400 hover:border-gray-600 transition-all rounded-sm">
-                HISTORY
+            {/* Liquidation check */}
+            <div className="flex flex-col items-end gap-1">
+              <button
+                onClick={handleLiquidationCheck}
+                disabled={checking}
+                className="text-[8px] uppercase tracking-widest px-2 py-1 border rounded-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{
+                  border: `1px solid ${checking ? 'rgba(71,85,105,0.3)' : 'rgba(239,68,68,0.35)'}`,
+                  color: checking ? '#475569' : '#ef4444',
+                  background: checking ? 'rgba(71,85,105,0.1)' : 'rgba(239,68,68,0.06)',
+                }}
+              >
+                {checking ? (
+                  <span className="flex items-center gap-1">
+                    <span className="inline-block h-2 w-2 rounded-full border border-slate-500 border-t-transparent animate-spin" />
+                    Scanning
+                  </span>
+                ) : '⚠ Liq. Check'}
               </button>
-            </div>
-          </div>
-
-          {/* BSR TOKEN EXCHANGE */}
-          <div className="mt-3">
-            <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1">BlackSlon €BSR Tokens</div>
-            <div className="border border-gray-900 rounded-sm px-2 py-1">
-              <div className="flex items-center gap-1 mb-1">
-                <input type="number" placeholder="0.00" className="bg-zinc-900 border border-gray-800 text-[10px] text-gray-300 text-center outline-none w-20 py-0.5 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-              </div>
-              <div className="flex gap-1">
-                <button className="flex-1 py-0.5 border border-amber-700 text-amber-700 text-[8px] uppercase tracking-widest hover:bg-amber-700 hover:text-black transition-all rounded-sm">CONVERT eEURO to €BSR</button>
-                <button className="flex-1 py-0.5 border border-sky-400 text-sky-400 text-[8px] uppercase tracking-widest hover:bg-sky-400 hover:text-black transition-all rounded-sm">CONVERT €BSR to eEURO</button>
-              </div>
+              {liquidationRisk !== null && !checking && (
+                <div className="text-[8px] tracking-widest uppercase"
+                  style={{ color: liquidationRisk ? '#ef4444' : '#22c55e' }}>
+                  {liquidationRisk ? '⚡ AT RISK' : '✓ SAFE'}
+                </div>
+              )}
             </div>
           </div>
         </div>
+
+        {/* ── Section: BSR Reserve & Exchange ── */}
+        <div>
+          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 text-center">
+            BlackSlon Reserve (€BSR/EUR)
+          </div>
+          <div className="border border-gray-900 rounded-sm px-3 py-1.5">
+            {/* Live rate */}
+            <div className="flex items-center gap-2 mb-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-700 animate-pulse shrink-0" />
+              <span className="text-[8px] text-amber-700 uppercase tracking-widest">LIVE</span>
+              <span className="text-[11px] text-amber-700 tracking-tighter">1 €BSR</span>
+              <span className="text-[11px] text-gray-600">=</span>
+              <span className="text-[11px] text-sky-400 tracking-tighter">{bsrEuroRate.toFixed(2)} eEURO</span>
+            </div>
+            {/* Exchange row */}
+            <div className="flex gap-1.5 items-center">
+              <input
+                type="number"
+                placeholder="0.00"
+                value={convertAmount}
+                onChange={(e) => {
+                  setConvertAmount(e.target.value)
+                  setConvertError(null)
+                  setConvertSuccess(false)
+                }}
+                className="bg-zinc-900 border border-gray-800 text-[10px] text-gray-300 text-center outline-none w-16 py-0.5 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+              <button
+                onClick={() => setConvertDirection(d => d === 'BSR_TO_EURO' ? 'EURO_TO_BSR' : 'BSR_TO_EURO')}
+                className="text-[8px] text-gray-500 hover:text-gray-300 transition-colors px-1 py-0.5 border border-gray-800 rounded-sm"
+              >
+                {convertDirection === 'BSR_TO_EURO' ? '€BSR → eEURO' : 'eEURO → €BSR'}
+              </button>
+              <span className="text-[8px] text-gray-600">
+                Receive: <span className={convertDirection === 'BSR_TO_EURO' ? 'text-sky-400' : 'text-amber-700'}>
+                  {convertAmount && !isNaN(parseFloat(convertAmount))
+                    ? convertDirection === 'BSR_TO_EURO'
+                      ? `${(parseFloat(convertAmount) * bsrEuroRate).toFixed(2)} eEURO`
+                      : `${(parseFloat(convertAmount) / bsrEuroRate).toFixed(2)} €BSR`
+                    : convertDirection === 'BSR_TO_EURO' ? '0.00 eEURO' : '0.00 €BSR'}
+                </span>
+              </span>
+              <button
+                onClick={() => {
+                  setConvertError(null)
+                  setConvertSuccess(false)
+                  const amount = parseFloat(convertAmount)
+                  if (isNaN(amount) || amount <= 0) return
+                  const error = convertTokens(convertDirection, amount)
+                  if (!error) {
+                    setConvertSuccess(true)
+                    setConvertAmount('')
+                    setTimeout(() => setConvertSuccess(false), 1500)
+                  } else {
+                    setConvertError(error)
+                  }
+                }}
+                className={`ml-auto px-2 py-0.5 text-[7px] uppercase tracking-widest border transition-all rounded-sm ${
+                  convertDirection === 'BSR_TO_EURO'
+                    ? 'border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-black'
+                    : 'border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-black'
+                }`}
+              >
+                CONVERT
+              </button>
+              {convertSuccess && <span className="text-[7px] text-green-700">✓</span>}
+            </div>
+            {convertError && (
+              <div className="text-[7px] text-red-600 mt-1">{convertError}</div>
+            )}
+          </div>
         </div>
 
-      {/* CONNECT WALLET BUTTON */}
-      <div className="px-6 py-2 w-full">
+      </div>
+
+      {/* ── Footer: Wallet ── */}
+      <div className="px-6 py-2 shrink-0 border-t border-gray-900">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-[9px] text-gray-600 uppercase tracking-widest">UID: <span className="text-gray-400">BS-PRO-001</span></span>
-          <span className="text-[9px] text-gray-600 uppercase tracking-widest">Mode: <span className="text-green-700 animate-pulse font-black">CONNECTED</span></span>
+          <span className="text-[9px] text-gray-600 uppercase tracking-widest">
+            UID: <span className="text-gray-400">{user.id}</span>
+          </span>
+          <div className="flex items-center gap-1.5">
+            <span
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: user.walletConnected ? '#22c55e' : '#ef4444' }}
+            />
+            <span className="text-[9px] uppercase tracking-widest"
+              style={{ color: user.walletConnected ? '#22c55e' : '#ef4444' }}>
+              {user.walletConnected ? 'CONNECTED' : 'DISCONNECTED'}
+            </span>
+          </div>
         </div>
-        <button className="w-full py-3 bg-gray-800 text-gray-400 uppercase tracking-[0.3em] text-[10px] border border-gray-700 hover:bg-gray-700 hover:text-gray-300 transition-all">
-          CONNECT WALLET
+        {user.walletConnected && (
+          <div className="text-[9px] text-gray-600 tracking-tight mb-1 text-center">
+            {shortAddress}
+          </div>
+        )}
+        <button
+          onClick={() => setWalletConnected(!user.walletConnected)}
+          className="w-full py-2 uppercase tracking-[0.3em] text-[10px] border transition-all rounded-sm"
+          style={{
+            border: `1px solid ${user.walletConnected ? 'rgba(239,68,68,0.35)' : 'rgba(34,197,94,0.35)'}`,
+            color: user.walletConnected ? '#ef4444' : '#22c55e',
+            background: user.walletConnected ? 'rgba(239,68,68,0.05)' : 'rgba(34,197,94,0.05)',
+          }}
+        >
+          {user.walletConnected ? 'Disconnect Wallet' : 'Connect Wallet'}
         </button>
       </div>
     </div>
