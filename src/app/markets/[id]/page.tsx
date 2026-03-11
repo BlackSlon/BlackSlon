@@ -76,9 +76,13 @@ export default function MarketPage() {
                 key={inst.id}
                 onClick={() => setSelectedInstrument(inst.id)}
                 className={`text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-sm border transition-all ${
-                  isActive
-                    ? ic.isGas ? 'border-blue-500/60 bg-transparent text-blue-400' : 'border-yellow-500/60 bg-transparent text-yellow-400'
-                    : ic.isGas ? 'border-gray-800 text-blue-800/60 hover:border-blue-500/40 hover:text-blue-400' : 'border-gray-800 text-yellow-800/60 hover:border-yellow-500/40 hover:text-yellow-400'
+                  ic.isGas
+                    ? isActive
+                      ? 'border-blue-300 bg-blue-500 text-black shadow-[0_0_12px_rgba(59,130,246,0.38)]'
+                      : 'border-blue-500/50 bg-blue-500/5 text-blue-400 hover:border-blue-400 hover:bg-blue-500/10 hover:text-blue-300'
+                    : isActive
+                      ? 'border-yellow-300 bg-yellow-500 text-black shadow-[0_0_12px_rgba(234,179,8,0.34)]'
+                      : 'border-yellow-500/50 bg-yellow-500/5 text-yellow-400 hover:border-yellow-400 hover:bg-yellow-500/10 hover:text-yellow-300'
                 }`}
                 title={inst.name}
               >
