@@ -95,7 +95,7 @@ function MarketTile({ market, liveData }: { market: any; liveData: any }) {
   const priceColor = market.type === 'Power' ? 'text-yellow-500' : 'text-blue-400'
   
   // Aktywny rynek ma wypełnienie, inne mają tło
-  const isActiveMarket = market.id === 'BS-P-PL'
+  const isActiveMarket = true
   const bgStyle = isActiveMarket ? 'bg-yellow-500/10' : 'bg-[#050505]'
 
   return (
