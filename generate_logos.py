@@ -64,7 +64,7 @@ def main():
     # Define colors
     colors = {
         'yellow': '#EAB308',      # Energy/power
-        'blue': '#87CEEB',        # Gas (sky blue - łagodny błękit nieba)
+        'blue': '#00BFFF',        # Gas (deep sky blue - wyrazisty błękit nieba)
         'amber': '#B45309',       # €BSR
         'gray': '#6B7280',        # Order/User panels (gray-500)
     }
