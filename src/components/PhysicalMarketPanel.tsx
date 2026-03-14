@@ -156,10 +156,46 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
           </div>
         </div>
 
-        {/* ── Footer ── */}
-        <div className="mt-6 pt-2 border-t border-gray-900 text-[8px] text-gray-700 text-center tracking-widest uppercase">
-          BlackSlon Protocol · ADR Stabilization Active · {selectedMarketId}
+        {/* ── Anchor Drivers ── */}
+        <div className="px-6 py-4 border-t border-gray-800 bg-black">
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`text-[10px] tracking-widest font-bold ${colors.title}`}>
+              Anchor Drivers
+            </div>
+            <span className={`text-[10px] uppercase tracking-widest ${colors.label}`}>
+              {selectedMarketId}
+            </span>
+            <span className="text-[8px] text-gray-700 ml-auto">
+              Active
+            </span>
+          </div>
+          <div className="flex justify-between items-center font-mono overflow-hidden">
+            {[
+              { label: 'SPOT', value: currentAnchor, changePct: 0.8 },
+              { label: 'FM', value: currentAnchor * 1.02, changePct: 1.5 },
+              { label: 'FQ', value: currentAnchor * 0.98, changePct: -0.3 },
+              { label: 'CAL', value: currentAnchor * 1.05, changePct: 2.1 },
+            ].map((driver, i) => (
+              <div
+                key={driver.label}
+                className={`flex flex-col items-center text-center flex-shrink-0 ${
+                  i > 0 && i < 4
+                    ? 'border-r border-gray-900 px-4'
+                    : ''
+                }`}
+              >
+                <span className="text-[9px] text-gray-500">{driver.label}</span>
+                <span className="text-[11px] text-gray-400">
+                  {driver.value.toFixed(2)}
+                </span>
+                <span className={`text-[9px] ${driver.changePct >= 0 ? 'text-green-700' : 'text-red-600'}`}>
+                  {driver.changePct >= 0 ? '▲' : '▼'} {Math.abs(driver.changePct).toFixed(1)}%
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
+
       </div>
     </div>
   )
