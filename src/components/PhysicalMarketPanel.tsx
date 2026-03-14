@@ -171,15 +171,17 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
           </div>
           <div className="flex justify-between items-center font-mono overflow-hidden">
             {[
-              { label: 'SPOT', value: currentAnchor, changePct: 0.8 },
-              { label: 'FM', value: currentAnchor * 1.02, changePct: 1.5 },
-              { label: 'FQ', value: currentAnchor * 0.98, changePct: -0.3 },
-              { label: 'CAL', value: currentAnchor * 1.05, changePct: 2.1 },
+              { label: 'D-1', value: currentAnchor, changePct: 4.2 },
+              { label: 'W-1', value: currentAnchor * 1.012, changePct: 3.1 },
+              { label: 'M-1', value: currentAnchor * 1.024, changePct: 2.4 },
+              { label: 'Q-1', value: currentAnchor * 1.034, changePct: 1.8 },
+              { label: 'H-1', value: currentAnchor * 1.041, changePct: 1.2 },
+              { label: 'Y-1', value: currentAnchor * 0.933, changePct: -6.7 },
             ].map((driver, i) => (
               <div
                 key={driver.label}
                 className={`flex flex-col items-center text-center flex-shrink-0 ${
-                  i > 0 && i < 4
+                  i > 0 && i < 6
                     ? 'border-r border-gray-900 px-4'
                     : ''
                 }`}
@@ -189,7 +191,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
                   {driver.value.toFixed(2)}
                 </span>
                 <span className={`text-[9px] ${driver.changePct >= 0 ? 'text-green-700' : 'text-red-600'}`}>
-                  {driver.changePct >= 0 ? '▲' : '▼'} {Math.abs(driver.changePct).toFixed(1)}%
+                  {driver.changePct >= 0 ? '+' : ''}{driver.changePct.toFixed(1)}%
                 </span>
               </div>
             ))}
