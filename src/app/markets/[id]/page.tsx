@@ -121,7 +121,7 @@ export default function MarketPage() {
         
         {/* PANEL 1: PHYSICAL (BSTZ) */}
         <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/40 rounded-sm overflow-hidden flex flex-col`}>
-          <div className="flex items-center justify-center px-3 py-1 border-b border-gray-900/60">
+          <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <PanelLogo />
           </div>
           <PhysicalMarketPanel selectedMarketId={selectedInstrument} />
@@ -129,7 +129,7 @@ export default function MarketPage() {
 
         {/* PANEL 2: VIRTUAL (Order Book) */}
         <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/40 rounded-sm flex flex-col`}>
-          <div className="flex items-center justify-center px-3 py-1 border-b border-gray-900/60">
+          <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <PanelLogo />
           </div>
           <VirtualMarketPanel selectedMarketId={selectedInstrument} />
@@ -137,7 +137,7 @@ export default function MarketPage() {
 
         {/* PANEL 3: TRADING */}
         <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/80 rounded-sm text-xs relative z-50 flex flex-col`}>
-          <div className="flex items-center justify-center px-3 py-1 border-b border-gray-900/60">
+          <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <PanelLogo />
           </div>
           <TradingPanel selectedMarketId={selectedInstrument} />
@@ -145,7 +145,7 @@ export default function MarketPage() {
 
         {/* PANEL 4: PORTFOLIO */}
         <section className="border border-amber-700/30 bg-black/40 rounded-sm text-xs flex flex-col">
-          <div className="flex items-center justify-center px-3 py-1 border-b border-gray-900/60">
+          <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <MainLogo />
           </div>
           <UserAccountPanel />

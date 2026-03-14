@@ -282,8 +282,8 @@ export default function UserAccountPanel() {
 
         {/* ── Section: BSR Reserve & Exchange ── */}
         <div>
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 text-center">
-            BlackSlon Reserve (€BSR/EUR)
+          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 text-left">
+            €BSR/eEURO Portal
           </div>
           <div className="border border-gray-900 rounded-sm px-3 py-1.5">
             {/* Live rate */}
