@@ -228,7 +228,7 @@ export default function UserAccountPanel() {
             <div className="text-[10px] tracking-widest text-amber-700 font-bold">
               BlackSlon Risk Management
             </div>
-            <span className="text-[7px] text-gray-700 uppercase tracking-widest">(User Level)</span>
+            <span className="text-[7px] text-gray-500 uppercase tracking-widest">(User Level)</span>
           </div>
 
           {/* H_BSSZ value + zone */}

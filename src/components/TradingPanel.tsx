@@ -437,18 +437,18 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
                       }`}>
                         {order.marketId}
                       </span>
-                      <span className="text-[9px] text-gray-400">
+                      <span className="text-[9px] text-gray-300">
                         {order.quantity} @ {order.price.toFixed(2)}
                       </span>
                     </div>
                     <button
                       onClick={() => cancelOrder(order.id)}
-                      className="text-[7px] text-gray-600 hover:text-red-500 uppercase tracking-widest transition-colors px-1"
+                      className="text-[7px] text-gray-400 hover:text-red-500 uppercase tracking-widest transition-colors px-1"
                     >
                       ✕ Cancel
                     </button>
                   </div>
-                  <div className="flex justify-between text-[7px] text-gray-600">
+                  <div className="flex justify-between text-[7px] text-gray-400">
                     <span>Margin: {order.marginPct}%</span>
                     <span>Locked: {order.bsrLocked.toFixed(2)} BSR + {order.eEuroLocked.toFixed(2)} EUR</span>
                   </div>

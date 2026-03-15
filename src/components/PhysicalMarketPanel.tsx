@@ -120,7 +120,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
             <div className="col-span-2 text-gray-400 font-bold">Ref</div>
             <div className="col-span-2 text-gray-400 font-bold">Date</div>
             <div className="col-span-2 text-center text-gray-500 font-bold">Floor</div>
-            <div className="col-span-2 text-center text-gray-600 font-normal">Anchor</div>
+            <div className="col-span-2 text-center text-gray-400 font-normal">Anchor</div>
             <div className="col-span-2 text-center text-gray-500 font-bold">Ceiling</div>
             <div className="col-span-2 text-right text-gray-500 font-bold">Trend</div>
           </div>
@@ -130,16 +130,16 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
               const trendPct = position.bssz.trendPct
               return (
                 <div key={position.label} className="grid grid-cols-12 items-center py-0.5 border-b border-gray-900/30">
-                  <div className="col-span-2 text-[11px] text-gray-400">
+                  <div className="col-span-2 text-[11px] text-gray-300">
                     {position.label}
                   </div>
-                  <div className="col-span-2 text-[7px] text-gray-600">
+                  <div className="col-span-2 text-[7px] text-gray-500">
                     {position.refDate}
                   </div>
                   <div className="col-span-2 text-[11px] text-gray-500 text-center">
                     {position.bssz.floor.toFixed(2)}
                   </div>
-                  <div className="col-span-2 text-[11px] text-gray-600 text-center">
+                  <div className="col-span-2 text-[11px] text-gray-400 text-center">
                     {position.bssz.anchor.toFixed(2)}
                   </div>
                   <div className="col-span-2 text-[11px] text-gray-500 text-center">
@@ -165,7 +165,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
             <span className={`text-[10px] uppercase tracking-widest ${colors.label}`}>
               {selectedMarketId}
             </span>
-            <span className="text-[8px] text-gray-700 ml-auto">
+            <span className="text-[8px] text-gray-500 ml-auto">
               Active
             </span>
           </div>

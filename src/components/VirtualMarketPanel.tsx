@@ -105,7 +105,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
             <div className="flex items-center justify-between">
               <div className="flex flex-col items-center">
                 <span className="text-[7px] text-gray-500 uppercase mb-0">
-                  Price <span className="normal-case text-gray-600">(EUR/100kWh)</span>
+                  Price <span className="normal-case text-gray-400">(EUR/100kWh)</span>
                 </span>
                 <span className={`text-sm tracking-tighter leading-tight ${colors.value}`}>
                   {lastTrade.price.toFixed(2)}
@@ -114,7 +114,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
               <div className="text-gray-800 text-[10px]">——</div>
               <div className="flex flex-col items-center">
                 <span className="text-[7px] text-gray-500 uppercase mb-0">Unit</span>
-                <span className="text-sm text-gray-600 tracking-tighter leading-tight">
+                <span className="text-sm text-gray-400 tracking-tighter leading-tight">
                   {lastTrade.units}
                 </span>
               </div>
@@ -123,7 +123,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
                 <span className="text-[7px] text-gray-500 uppercase mb-0 normal-case">
                   Volume (kWh)
                 </span>
-                <span className="text-sm text-gray-600 tracking-tighter leading-tight">
+                <span className="text-sm text-gray-400 tracking-tighter leading-tight">
                   {formatVolume(lastTrade.volume)}
                 </span>
               </div>
@@ -141,15 +141,15 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
             <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
               <div className="text-center">
                 <div>VOLUME</div>
-                <div className="text-gray-600 normal-case">(kWh)</div>
+                <div className="text-gray-400 normal-case">(kWh)</div>
               </div>
               <div className="text-center">
                 <div>UNIT</div>
-                <div className="text-gray-600">({displayMarketId})</div>
+                <div className="text-gray-400">({displayMarketId})</div>
               </div>
               <div className="text-right">
                 <div className="text-[11px] text-green-700 tracking-widest font-bold">BUY ORDERS</div>
-                <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
+                <div className="text-gray-400 normal-case">(EUR/100kWh)</div>
               </div>
             </div>
             <div className="flex-grow overflow-hidden">
@@ -185,15 +185,15 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
             <div className="grid grid-cols-3 text-[7px] text-gray-500 uppercase font-normal px-4 py-2 border-b border-gray-800 bg-black">
               <div className="text-left">
                 <div className="text-[11px] text-red-500 tracking-widest font-bold">SELL ORDERS</div>
-                <div className="text-gray-600 normal-case">(EUR/100kWh)</div>
+                <div className="text-gray-400 normal-case">(EUR/100kWh)</div>
               </div>
               <div className="text-center">
                 <div>UNIT</div>
-                <div className="text-gray-600">({displayMarketId})</div>
+                <div className="text-gray-400">({displayMarketId})</div>
               </div>
               <div className="text-right">
                 <div>VOLUME</div>
-                <div className="text-gray-600 normal-case">(kWh)</div>
+                <div className="text-gray-400 normal-case">(kWh)</div>
               </div>
             </div>
             <div className="flex-grow overflow-hidden">
@@ -306,7 +306,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
                 <span className="text-[11px] text-gray-400 sm:text-[10px]">
                   {snap.value.toLocaleString('de-DE')}
                 </span>
-                <span className="text-[7px] text-gray-600">MWh</span>
+                <span className="text-[7px] text-gray-400">MWh</span>
               </div>
             ))}
           </div>
