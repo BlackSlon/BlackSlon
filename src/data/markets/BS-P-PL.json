@@ -34,6 +34,118 @@
     { "date": "2026-02-18", "price": 10.58, "volume": 126000 },
     { "date": "2026-02-17", "price": 10.50, "volume": 121000 }
   ],
+  "bsszPositions": [
+    {
+      "label": "D-1",
+      "refDate": "08.03.2026",
+      "bssz": {
+        "floor": 9.53,
+        "anchor": 10.59,
+        "ceiling": 12.71,
+        "trendPct": 4.2
+      }
+    },
+    {
+      "label": "D-2",
+      "refDate": "07.03.2026",
+      "bssz": {
+        "floor": 9.41,
+        "anchor": 10.45,
+        "ceiling": 12.54,
+        "trendPct": 3.8
+      }
+    },
+    {
+      "label": "D-3",
+      "refDate": "06.03.2026",
+      "bssz": {
+        "floor": 9.34,
+        "anchor": 10.38,
+        "ceiling": 12.46,
+        "trendPct": 3.1
+      }
+    },
+    {
+      "label": "D-4",
+      "refDate": "05.03.2026",
+      "bssz": {
+        "floor": 9.55,
+        "anchor": 10.61,
+        "ceiling": 12.73,
+        "trendPct": 2.9
+      }
+    },
+    {
+      "label": "D-5",
+      "refDate": "04.03.2026",
+      "bssz": {
+        "floor": 9.50,
+        "anchor": 10.55,
+        "ceiling": 12.66,
+        "trendPct": 2.4
+      }
+    },
+    {
+      "label": "D-6",
+      "refDate": "03.03.2026",
+      "bssz": {
+        "floor": 9.43,
+        "anchor": 10.48,
+        "ceiling": 12.58,
+        "trendPct": 1.8
+      }
+    },
+    {
+      "label": "W-1",
+      "refDate": "01.03.2026",
+      "bssz": {
+        "floor": 9.53,
+        "anchor": 10.59,
+        "ceiling": 12.71,
+        "trendPct": 2.1
+      }
+    },
+    {
+      "label": "M-1",
+      "refDate": "08.02.2026",
+      "bssz": {
+        "floor": 9.57,
+        "anchor": 10.63,
+        "ceiling": 12.76,
+        "trendPct": 1.5
+      }
+    },
+    {
+      "label": "Q-1",
+      "refDate": "07.12.2025",
+      "bssz": {
+        "floor": 9.46,
+        "anchor": 10.51,
+        "ceiling": 12.61,
+        "trendPct": 0.8
+      }
+    },
+    {
+      "label": "H-1",
+      "refDate": "08.09.2025",
+      "bssz": {
+        "floor": 9.64,
+        "anchor": 10.70,
+        "ceiling": 12.84,
+        "trendPct": 1.2
+      }
+    },
+    {
+      "label": "Y-1",
+      "refDate": "08.03.2025",
+      "bssz": {
+        "floor": 8.72,
+        "anchor": 9.69,
+        "ceiling": 11.63,
+        "trendPct": -6.7
+      }
+    }
+  ],
   "bsszCalculation": {
     "anchor": 10.59,
     "floor": 9.53,
