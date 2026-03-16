@@ -163,15 +163,15 @@ Energy markets in the EU increasingly subject to retroactive Windfall Taxes and 
 
 In the legacy world of energy finance, banks and institutional investors still demand 15-to-30-year price projections to approve investments in nuclear, gas, or renewable assets. However, the reality on the trading floor is different.
 
-- The 3-Year Horizon: Beyond a 2-to-3-year window, there is no real market, even in the most liquid ones. You cannot get a fixed price per kWh — whether as a consumer buying or a producer selling. You can sign a 15 or 30-year contract, but only with price formulas that reference the spot market — the very instrument most sensitive to short-term shocks. 95% of actual trading happens in the near-term. Geopolitical shocks, rapid regulatory shifts, and the Green Transition have made long-term price discovery nothing more than reading tea leaves.
+**The 3-Year Horizon:** Beyond a 2-to-3-year window, there is no real market, even in the most liquid ones. You cannot get a fixed price per kWh — whether as a consumer buying or a producer selling. You can sign a 15 or 30-year contract, but only with price formulas that reference the spot market — the very instrument most sensitive to short-term shocks. 95% of actual trading happens in the near-term. Geopolitical shocks, rapid regulatory shifts, and the Green Transition have made long-term price discovery nothing more than reading tea leaves.
 
-- The Projection Paradox: Analysts still produce 20-year models, but they lack any merit-based foundation or proven predictive framework. These are paper realities built for banking compliance — completely disconnected from the actual risks that market participants face every day.
+**The Projection Paradox:** Analysts still produce 20-year models, but they lack any merit-based foundation or proven predictive framework. These are paper realities built for banking compliance — completely disconnected from the actual risks that market participants face every day.
 
-- The Spot-Centric Shift: Because seasonality is almost dead and risks are systemic, the entire energy market is collapsing into a continuous present. The distinction between front-month, quarter, and year-ahead prices is blurring — not as a temporary anomaly, but as a structural feature of a market permanently reshaped by geopolitics and the energy transition.
+**The Spot-Centric Shift:** Because seasonality is almost dead and risks are systemic, the entire energy market is collapsing into a continuous present. The distinction between front-month, quarter, and year-ahead prices is blurring — not as a temporary anomaly, but as a structural feature of a market permanently reshaped by geopolitics and the energy transition.
 
-- The Capital Paradox of Backwardation: Yet within this collapsing curve, one structural truth persists: European energy markets are backwardated — Cal+1 and Cal+2 contracts trade at a significant discount to spot and front months, embedding cheaper future energy into their price. Every sophisticated institutional player knows this. Every major utility, every investment-grade trading house actively harvests this discount — buying cheap forward exposure today, locking in margins that smaller participants cannot access. The minimum ticket to participate in this trade on EEX or ICE is not a market decision. It is a capital gate: hundreds of thousands of euros in posted guarantees, held idle for 12 to 24 months, just to hold the position. Only entities with investment-grade credit ratings and balance sheets large enough to absorb multi-year margin obligations can afford to play at that end of the curve. For everyone else, the cheapest and most structurally advantaged part of the forward market is simply out of reach — not because of a lack of market access, but because of the cost of money itself.
+**The Capital Paradox of Backwardation:** Yet within this collapsing curve, one structural truth persists: European energy markets are backwardated — Cal+1 and Cal+2 contracts trade at a significant discount to spot and front months, embedding cheaper future energy into their price. Every sophisticated institutional player knows this. Every major utility, every investment-grade trading house actively harvests this discount — buying cheap forward exposure today, locking in margins that smaller participants cannot access. The minimum ticket to participate in this trade on EEX or ICE is not a market decision. It is a capital gate: hundreds of thousands of euros in posted guarantees, held idle for 12 to 24 months, just to hold the position. Only entities with investment-grade credit ratings and balance sheets large enough to absorb multi-year margin obligations can afford to play at that end of the curve. For everyone else, the cheapest and most structurally advantaged part of the forward market is simply out of reach — not because of a lack of market access, but because of the cost of money itself.
 
-- The Democratisation of the Forward Curve: BlackSlon dissolves that gate entirely. The BS-P and BS-G token price is derived from the Physical Meridian — a weighted basket that permanently embeds 25% Calendar Year exposure into every token, regardless of size. Critically, both Cal+1 and Cal+2 are active components of this basket from July 1st — when the Dormant ADR activates and begins its weekly migration from Cal+1 toward Cal+2. The protocol is continuously rolling into the cheapest part of the forward curve, mechanically and without friction, harvesting the backwardation discount that institutional players spend millions in capital and legal overhead to access manually. When you buy 100 kWh of BS-G-NL for a few euros, you are not buying spot-price exposure. You are buying a blended instrument that already contains the structural discount of the forward curve — the same economic advantage that Goldman Sachs and Shell extract through multi-million euro Cal+1 and Cal+2 positions — compressed into a single token, accessible without a credit rating, without a bank guarantee, and without a six-month onboarding process.
+**The Democratisation of the Forward Curve:** BlackSlon dissolves that gate entirely. The BS-P and BS-G token price is derived from the Physical Meridian — a weighted basket that permanently embeds 25% Calendar Year exposure into every token, regardless of size. Critically, both Cal+1 and Cal+2 are active components of this basket from July 1st — when the Dormant ADR activates and begins its weekly migration from Cal+1 toward Cal+2. The protocol is continuously rolling into the cheapest part of the forward curve, mechanically and without friction, harvesting the backwardation discount that institutional players spend millions in capital and legal overhead to access manually. When you buy 100 kWh of BS-G-NL for a few euros, you are not buying spot-price exposure. You are buying a blended instrument that already contains the structural discount of the forward curve — the same economic advantage that Goldman Sachs and Shell extract through multi-million euro Cal+1 and Cal+2 positions — compressed into a single token, accessible without a credit rating, without a bank guarantee, and without a six-month onboarding process.
 
 For the first time, the cheapest part of the energy market is also the most accessible.
 
@@ -214,7 +214,7 @@ eEURO — our MiCA-compliant Euro stablecoin — settles positions in seconds. N
 
 **Institutional-Grade Risk Architecture** 
 
-The protocol operates a dual-layer risk framework: individual account health monitored in real time through the Health Factor ($H_{BSSZ}$), and systemic solvency tracked through the Ecosystem Solvency Index ($H_{solv}$). Smart Incremental Liquidation replaces catastrophic forced closures with surgical, 10% position reductions that protect both users and the protocol Vault simultaneously.
+The protocol operates a dual-layer risk framework: individual account health monitored in real time through the Health Factor ($H_{user}$), and systemic solvency tracked through the Ecosystem Solvency Index ($H_{solv}$). Smart Incremental Liquidation replaces catastrophic forced closures with surgical, 10% position reductions that protect both users and the protocol Vault simultaneously.
 
 **Physical Market Tether** 
 
@@ -309,7 +309,7 @@ Component Definitions:
 
 To ensure the Physical Meridian remains stable and does not suffer from "Price Cliffs" when energy contracts expire or there are Black Swan events during weekend or holiday trading gaps, the protocol implements ADR (Asymptotic Daily Rebalancing) — the "Smoothing Engine" of the protocol. 
 
-It ensures that all transitions — whether between expiring and incoming contracts or across volatility-heavy market gaps — are seamless. By integrating these shifts through a controlled mathematical curve, ADR prevents artificial or sudden jumps in the BSST.
+It ensures that all transitions — whether between expiring and incoming contracts or across volatility-heavy market gaps — are seamless. By integrating these shifts through a controlled mathematical curve, ADR prevents artificial or sudden jumps in the BSSZ.
 
 In energy markets, the price of a contract expiring today (FM, FQ, or Cal) can be significantly different from the contract for the next consecutive period. Without ADR, the Physical Meridian would "jump" at the moment of expiration, potentially pushing or collapsing the entire BSSZ.
 
@@ -386,7 +386,7 @@ This mirrors the historical evolution of financial benchmarks: instruments initi
 
 ### 9.1. The Nature of the BSEI
 
-The BlackSlon Energy Energy Index (BSEI) is the **transaction-derived settlement benchmark** of the BlackSlon Protocol. It is computed exclusively from executed BS-P/G trades on the Open Order Book — it is not an external benchmark nor a function of the Physical Meridian. It is the single source of data for Mark-to-Market valuation, margin requirements, and settlement integrity across all virtual energy market of BlackSlon Ecosystem.
+The BlackSlon Energy Index (BSEI) is the **transaction-derived settlement benchmark** of the BlackSlon Protocol. It is computed exclusively from executed BS-P/G trades on the Open Order Book — it is not an external benchmark nor a function of the Physical Meridian. It is the single source of data for Mark-to-Market valuation, margin requirements, and settlement integrity across all virtual energy market of BlackSlon Ecosystem.
 
 Unlike crude oil markets where the last executed deal becomes the settlement reference — amplifying noise from thin or distressed trading — and unlike traditional energy benchmarks that rely on static daily fixings (e.g., Platts, ICIS), **the BSEI is a perpetual, continuously recalculated index**
 
@@ -541,13 +541,13 @@ $$\omega_{BSR} = \frac{\text{Value of €BSR in Collateral Portfolio}}{\text{Tot
 
 **The Utility & Leverage Matrix**
 
-| BSR Ratio ($\omega_{BSR}$) | Margin net BUY | Margin net SELL | Leverage (L/S) | Trading Fee |
+| Collateral Mix (€BSR / eEURO) | Margin net BUY | Margin net SELL | Leverage (L/S) | Trading Fee |
 |:---|:---:|:---:|:---:|:---:|
-| **10%** BSR / 90% eEURO | 50% | 100% | 1:2.0 / 1:1.0 | 1.00% |
-| **25%** BSR / 75% eEURO | 45% | 90% | 1:2.2 / 1:1.1 | 0.85% |
-| **50%** BSR / 50% eEURO | 40% | 80% | 1:2.5 / 1:1.2 | 0.60% |
-| **75%** BSR / 25% eEURO | 30% | 60% | 1:3.3 / 1:1.6 | 0.35% |
-| **100%** BSR / 0% eEURO | **25%** | **50%** | **1:4.0 / 1:2.0** | **0.20%** |
+| **10% €BSR** / 90% eEURO (Min) | 50% | 100% | 1:2.0 / 1:1.0 | 1.00% |
+| **25% €BSR** / 75% eEURO | 45% | 90% | 1:2.2 / 1:1.1 | 0.85% |
+| **50% €BSR** / 50% eEURO | 40% | 80% | 1:2.5 / 1:1.2 | 0.60% |
+| **75% €BSR** / 25% eEURO | 30% | 60% | 1:3.3 / 1:1.6 | 0.35% |
+| **100% €BSR** / 0% eEURO (Max) | **25%** | **50%** | **1:4.0 / 1:2.0** | **0.20%** |
 
 **Portfolio Balancing & Hedge Dynamics**
 
@@ -583,74 +583,7 @@ The BlackSlon Protocol maintains a delta-neutral structural balance. When positi
 
 ---
 
-### 11.4. €BSR Stability Reserve (BSR-SR): The Shock Absorber
-
-**Reserve Funding (The Capital Stack)**
-
-The BSR-SR is funded from three self-sustaining sources:
-
-$$BSR\text{-}SR_{balance} = \sum(\text{Fees} \cdot 0.15) + \sum(\text{MintPremium} \cdot 0.20) + \sum(\text{LiqSurplus})$$
-
-| Source | Allocation | Trigger |
-|:---|:---:|:---|
-| Trading Fees | **15%** of all collected fees | Continuous, automatic |
-| Token Issuance Premium | **20%** of BSR mint premium | On every new BSR mint |
-| Liquidation Surplus | **100%** of surplus after liquidation | On every liquidation event |
-
-**Intervention Triggers (The Fuse System)**
-
-**Soft Fuse** (Monitoring Mode):
-
-$$\Delta P_{BSR} \leq -5\% \text{ in } \leq 24h$$
-
-Activates price monitoring. No capital deployment yet. Protocol logs the event and prepares reserve.
-
-**Hard Fuse** (Active Intervention):
-
-$$\Delta P_{BSR} \leq -15\% \text{ in } \leq 72h \quad \lor \quad BSR\text{-}SR_{balance} < \text{MinReserve}_{threshold}$$
-
-Triggers automatic buyback from open market.
-
-**The Buyback Engine (Tranched Deployment)**
-
-Capital is deployed in tranches — never all at once — to avoid panic and manipulation:
-
-$$Tranche_n = BSR\text{-}SR_{balance} \cdot R_n$$
-
-| Tranche | Reserve Deployed | Condition to Unlock Next |
-|:---|:---:|:---|
-| T1 | 10% of SR | Hard Fuse triggered |
-| T2 | 15% of SR | Price still ≤ -15% after 24h |
-| T3 | 25% of SR | Price still ≤ -20% after 48h |
-| T4 (Emergency) | 40% of SR | Protocol governance vote |
-
-The remaining 10% is never deployed — absolute floor reserve, untouchable except by governance.
-
-**Mint/Burn Stabilization (Elastic Supply)**
-
-**Deflationary Burn** (price falling):
-
-$$\text{If } \Delta P_{BSR} \leq -15\%: \quad Burn_{auto} = \frac{BSR\text{-}SR_{balance} \cdot 0.05}{P_{BSR}}$$
-
-**Inflationary Mint** (price overheating):
-
-$$\text{If } \Delta P_{BSR} \geq +30\%: \quad Mint_{auto} = \frac{\text{ExcessDemand}}{P_{BSR}} \cdot 0.10$$
-
-**The Anti-Death-Spiral Rule**
-
-The single most critical protection. If both conditions are simultaneously true:
-
-$$H_{BSSZ,avg} < 1.03 \quad \land \quad \Delta P_{BSR} \leq -10\%$$
-
-The protocol activates **Emergency Collateral Lock:**
-
-- All €BSR collateral is **frozen at T-24h price** for margin calculation purposes.
-- This breaks the feedback loop: falling $P_{BSR}$ → lower collateral → more liquidations → more €BSR selling → even lower $P_{BSR}$.
-- **Lock duration:** maximum 48 hours or until $H_{BSSZ,avg} > 1.10$.
-
----
-
-### 11.5. Governance
+### 11.4. Governance
 
 **Governance Framework: The Evolution of Control**
 
@@ -672,7 +605,7 @@ The BlackSlon Protocol is designed to transition from a managed launch to a full
 
 ---
 
-### 11.6. On-Chain Transparency: The Trustless Vault
+### 11.5. On-Chain Transparency: The Trustless Vault
 
 The integrity of the €BSR reserve is based on real-time, verifiable on-chain data — not promises.
 
@@ -748,7 +681,7 @@ All new BS-P/G positions must be collateralised with a minimum of **50% eEURO**.
 
 The protocol raises $h_{BSR}$ from 15% to 25%, reducing the recognised value of €BSR in the Asset Base calculation.
 
-**Effect:** Users with high €BSR exposure in their collateral will see their individual $H_{BSSZ}$ decline, incentivising them to deposit additional eEURO or reduce positions — organically deleveraging the system without forcing a market dump of €BSR.
+**Effect:** Users with high €BSR exposure in their collateral will see their individual $H_{user}$ decline, incentivising them to deposit additional eEURO or reduce positions — organically deleveraging the system without forcing a market dump of €BSR.
 
 **BSR-SR Soft Fuse Activation**
 
@@ -763,16 +696,16 @@ If $H_{solv}$ breaches 1.00, the protocol enters full Safeguard mode:
 1. **Hard Stop:** No new positions opened in any market
 2. **Reduce-Only:** All accounts restricted to position reduction or eEURO collateral addition
 3. **BSR-SR Hard Fuse:** Tranche deployment begins per the BSR-SR Framework (T1 → T2 → T3 as conditions require)
-4. **Anti-Death-Spiral Lock:** If $\Delta P_{BSR} \leq -10\%$ simultaneously, Emergency Collateral Lock activates — €BSR collateral frozen at T-24h price for all margin calculations. **Lock duration:** maximum 48 hours or until $H_{BSSZ,avg} > 1.10$.
+4. **Anti-Death-Spiral Lock:** If $\Delta P_{BSR} \leq -10\%$ simultaneously, Emergency Collateral Lock activates — €BSR collateral frozen at T-24h price for all margin calculations. **Lock duration:** maximum 48 hours or until $H_{user,avg} > 1.10$.
 5. **Governance Emergency Vote:** The Multisig Council (Phase 1) or DAO (Phase 2) is notified and convened within 24 hours to assess whether additional capital injection or parameter changes are required
 
 ---
 
 ### 12.6. The Relationship Between Macro and Micro
 
-$H_{solv}$ and $H_{BSSZ}$ are complementary but independent metrics:
+$H_{solv}$ and $H_{user}$ are complementary but independent metrics:
 
-| | $H_{BSSZ}$ (Micro) | $H_{solv}$ (Macro) |
+| | $H_{user}$ (Micro) | $H_{solv}$ (Macro) |
 |:---|:---|:---|
 | **Scope** | Single user account | Entire protocol |
 | **Numerator** | User's Equity (collateral + PnL) | Protocol's total adjusted assets |
@@ -780,7 +713,7 @@ $H_{solv}$ and $H_{BSSZ}$ are complementary but independent metrics:
 | **Trigger** | Smart Incremental Liquidation | Solvency Tier regime change |
 | **Response** | Position reduction | System-wide operational restrictions |
 
-A user can have a healthy $H_{BSSZ} > 1.10$ while the protocol is in Tier III — their individual account is safe but they cannot open new positions. Conversely, a protocol in Tier I can still liquidate individual accounts whose $H_{BSSZ}$ falls below 1.00. The two systems operate in parallel and reinforce each other.
+A user can have a healthy $H_{user} > 1.10$ while the protocol is in Tier III — their individual account is safe but they cannot open new positions. Conversely, a protocol in Tier I can still liquidate individual accounts whose $H_{user}$ falls below 1.00. The two systems operate in parallel and reinforce each other.
 
 ---
 
@@ -831,7 +764,7 @@ This creates a natural alignment between protocol sustainability (€BSR demand)
 
 To maintain **Cross-Collateral Integrity** and avoid fragmented risk valuation, the protocol aggregates all collateral and all floating profits/losses into a single, real-time value: **Total Equity**.
 
-This unified calculation is the foundation of the Health Factor ($H_{BSSZ}$) and all margin enforcement logic.
+This unified calculation is the foundation of the Health Factor ($H_{user}$) and all margin enforcement logic.
 
 **Full Expanded Form**
 
@@ -930,18 +863,18 @@ Losses incurred during position reduction are settled by deducting **equal value
 
 ### 13.5. Margin Monitoring & Alert System
 
-The BlackSlon Protocol continuously monitors the solvency of every position. The following **Health Zones**, based on $H_{BSSZ}$, define automated actions triggered during critical market conditions.
+The BlackSlon Protocol continuously monitors the solvency of every position. The following **Health Zones**, based on $H_{user}$, define automated actions triggered during critical market conditions.
 
-| Zone | $H_{BSSZ}$ Range | Protocol Action |
+| Zone | $H_{user}$ Range | Protocol Action |
 |:---|:---:|:---|
-| **SAFE** (Green) | $H > 1.10$ | **Full Operational Access.** No restrictions on trading. Users may open new BS-P/G positions and manage the Vault freely. |
-| **WARNING** (Yellow) | $1.05 < H \le 1.10$ | **Margin Call notification triggered.** User is alerted to reinforce the BlackSlon Reserve Vault by depositing additional €BSR or eEURO. |
-| **RESTRICTED** (Orange) | $1.00 < H \le 1.05$ | **Position Lock activated.** Existing exposures remain active. Account restricted to **Reduce-Only** or **Collateral-Add** actions. No new positions permitted. |
-| **INTERVENTION** (Red) | $H \le 1.00$ | **Smart De-risking Mechanism triggered.** System automatically initiates the Incremental Liquidation Mechanism (see Section 4). |
+| **SAFE ZONE** | $H_{user} > 1.10$ | **Full Operational Access.** No restrictions on trading. Users may open new BS-P/G positions and manage the Vault freely. |
+| **WARNING ZONE** | $1.05 < H_{user} \le 1.10$ | **Margin Call notification triggered.** User is alerted to reinforce the BlackSlon Reserve Vault by depositing additional €BSR or eEURO. |
+| **RESTRICTED ZONE** | $1.00 < H_{user} \le 1.05$ | **Position Lock activated.** Existing exposures remain active. Account restricted to **Reduce-Only** or **Collateral-Add** actions. No new positions permitted. |
+| **INTERVENTION ZONE** | $H_{user} \le 1.00$ | **Smart De-risking Mechanism triggered.** System automatically initiates the Incremental Liquidation Mechanism (see Section 4). |
 
 **Zone Continuity Note**
 
-The four zones are **mutually exclusive** and **collectively exhaustive**: every possible value of $H_{BSSZ}$ falls into exactly one zone. The zones form a contiguous, descending hierarchy from $H > 1.10$ (Safe) down to $H \le 1.00$ (Intervention).
+The four zones are **mutually exclusive** and **collectively exhaustive**: every possible value of $H_{user}$ falls into exactly one zone. The zones form a contiguous, descending hierarchy from $H > 1.10$ (Safe) down to $H \le 1.00$ (Intervention).
 
 The **0.5 constant** in the Health Factor formula (Section 3) establishes that $H = 1.0$ precisely corresponds to the point where **Equity equals 50% of Aggregate Initial Margin** — the Stop-out Threshold.
 
@@ -951,11 +884,11 @@ The User-Level Risk Engine operates in coordination with two higher-order system
 
 **BSSZ Corridor Enforcement**
 
-All orders and settlements must occur within the **BSSZ corridor** ($[A - 10\%, A + 20\%]$), where $A$ is the Settlement Anchor. Orders outside the BSSZ corridor cannot be placed — the Trading Panel/BlackSlon Trading Terminal enforces corridor boundaries at input level, making out-of-range submissions technically impossible. A secondary validation at the matching engine level provides an additional systemic safeguard.
+All orders and settlements must occur within the **BSSZ corridor** ($A - 10\%, A + 20\%$), where $A$ is the Settlement Anchor. Orders outside the BSSZ corridor cannot be placed — the Trading Panel/BlackSlon Trading Terminal enforces corridor boundaries at input level, making out-of-range submissions technically impossible. A secondary validation at the matching engine level provides an additional systemic safeguard.
 
 **Ecosystem Solvency Index ($H_{solv}$)**
 
-While $H_{BSSZ}$ monitors individual user health, the **Ecosystem Solvency Index** ($H_{solv}$) monitors the protocol's aggregate capital adequacy. When $H_{solv}$ drops into Tier III or IV, the protocol restricts new position openings **globally** — preventing further liquidity obligations from accumulating when the capital base is under stress.
+While $H_{user}$ monitors individual user health, the **Ecosystem Solvency Index** ($H_{solv}$) monitors the protocol's aggregate capital adequacy. When $H_{solv}$ drops into Tier III or IV, the protocol restricts new position openings **globally** — preventing further liquidity obligations from accumulating when the capital base is under stress.
 
 ---
 
@@ -976,7 +909,9 @@ $$Equity_{total} = 10,000 + 200 - 150 = 10,050\ EUR$$
 
 $$\sum IM_j = 2,625 + 1,250 = 3,875\ EUR$$
 
-$$H_{BSSZ} = \frac{10,050}{3,875 \times 0.5} = \frac{10,050}{1,937.5} = 5.19$$
+$$H_{user} = \frac{10,050}{3,875 \times 0.5}$$
+
+$H_{user} = \frac{10,050}{1,937.5} = 5.19$$
 
 **Result:** $H_{BSSZ} = 5.19$ → **SAFE Zone** (Green). User has full operational access.
 
@@ -984,20 +919,22 @@ $$H_{BSSZ} = \frac{10,050}{3,875 \times 0.5} = \frac{10,050}{1,937.5} = 5.19$$
 
 ### 13.8. Design Philosophy: Capital Preservation Over Punitive Liquidation
 
-Traditional clearing systems treat liquidation as a **binary event** — positions are closed in full, often at unfavorable prices, with little regard for capital preservation. The BlackSlon Protocol rejects this approach.
+Traditional clearing systems treat liquidation as a **binary event** — positions are closed in full, at unfavorable prices, with little regard for capital preservation. The BlackSlon Protocol rejects this approach.
 
 The Smart Incremental Liquidation Mechanism is designed to:
 - **Minimize realized losses** by closing only the minimum volume necessary to restore health.
 - **Preserve remaining positions** that may recover as markets stabilize.
 - **Avoid cascading liquidations** that amplify market volatility.
 
-This user-centric design aligns with the protocol's broader mission: to democratize access to professional energy markets while maintaining institutional-grade risk management standards.
+This matters more than it may appear. Across retail trading platforms — including those offering energy and commodity instruments — statistical data consistently shows that 70–80% of users lose capital. In the majority of cases, this is not because their directional view was wrong. It is because today's intraday volatility eliminates them before the market has time to prove them right. A correct thesis, liquidated too early, is indistinguishable from a wrong one.
+
+BlackSlon is designed to shift that ratio. By replacing binary liquidation with surgical, incremental de-risking, the protocol gives correct positions the time they need to mature. While an open order book is structurally a zero-sum environment, BlackSlon introduces two asymmetric value sources that work in the user's favour: exposure to the long-term structural appreciation of physical energy markets through the BlackSlon Settlement Zone, and the deflationary value accumulation of €BSR through the burn mechanism. The goal is not to eliminate risk — it is to ensure that the architecture no longer works against the user at the moment they need it most.
 
 **Conclusion**
 
 The BlackSlon Risk Management Framework represents a fundamental reimagining of how energy market mechanisms and protocols should protect participants. By combining continuous health monitoring, intelligent position management, and capital-efficient collateral incentives, the protocol delivers a risk engine that is simultaneously **safer for users** and **more stable for the ecosystem** than traditional clearing systems.
 
-This is not risk elimination — energy markets are inherently volatile. This is **risk intelligence**: a system that responds dynamically, proportionally, and transparently to protect capital while preserving market access.
+This is not risk elimination — energy markets are inherently volatile. This is **risk intelligence**: a system that responds dynamically, proportionally, and transparently to protect capital while preserving market trends.
 
 ---
 
@@ -1017,7 +954,10 @@ Liquidity is the foundational prerequisite of any trading platform/protocol. Wit
 | **Layer 2 — Institutional** | Physical Liquidity Providers (PLPs) | Professional market making + physical hedge backstop | Active from Day 1 |
 | **Layer 3 — Protocol** | Liquidity Vault (last resort) | Automated market making when Layer 1 + 2 depth is insufficient | Activated by $H_{solv}$ thresholds |
 
-Each layer is independent but complementary. Under normal conditions, Layer 1 handles the majority of flow. Layer 2 absorbs directional imbalances and provides institutional depth. Layer 3 intervenes only when combined organic and PLP liquidity is insufficient — and only within its hard exposure limit of 15% of total Vault value.
+Each layer is independent but complementary. Under normal conditions:
+- Layer 1 handles the majority of flow. 
+- Layer 2 absorbs directional imbalances and provides institutional depth — critically, it steps in to cover net open exposure when liquidation events create structural imbalances: if a wave of short positions is force-closed while physical gas or power prices continue to rise, the net long imbalance left behind has no natural counterparty on the Order Book. This is precisely the moment PLPs fulfil their core function — absorbing that residual exposure and hedging it on physical exchanges, preventing the imbalance from cascading into further volatility. 
+- Layer 3 intervenes only when combined organic and PLP liquidity is insufficient — and only within its hard exposure limit of 15% of total Vault value.
 
 ---
 
@@ -1046,7 +986,7 @@ The primary price discovery mechanism of the BlackSlon Protocol is the **Open Or
 Key properties:
 
 - **Transparent:** All bids and asks are visible to all participants in real time
-- **Fair:** No preferential order routing, no hidden liquidity tiers
+- **Fair:** - **Fair:** No preferential order routing, no hidden liquidity tiers. The Order Book operates on strict **Price-Time Priority (FIFO)** — orders are matched by best price first, and among orders at the same price level, by time of submission. The earliest order at any given price is always filled first.
 - **BSSZ-Constrained:** No order outside the $[A - 10\%, A + 20\%]$ corridor can be placed or executed — the protocol rejects them at the matching engine level
 
 The BSEI ($I_t$) serves as the Mark-to-Market reference for all open positions — not the last traded price on the Order Book. This insulates PnL calculations from thin-market manipulation.
@@ -1068,7 +1008,7 @@ Full PLP opportunity framework: Section [15].
 PLPs monitor aggregate net virtual imbalance across BlackSlon markets and manage their exposure through three channels:
 
 - **Hedge** — offset net virtual exposure on physical exchanges
-- **Hold** — carry the virtual counterparty position as part of an active book management strategy
+- **Hold** — carry the virtual counterparty position as part of its own active book management strategy
 - **Pass** — transfer oversized positions to the Protocol Vault
 
 This integration ensures that material virtual profits have a corresponding physical or capital backstop — the structural distinction between BlackSlon and purely synthetic protocols.
@@ -1100,24 +1040,22 @@ The Vault activates Layer 3 market making only when:
 
 In Tier III or Tier IV, the Vault suspends all new market making activity — preserving capital for solvency obligations rather than liquidity provision.
 
-In backwardated energy markets, the participant base exhibits a natural long bias — most users enter the protocol with a bullish energy thesis. As the market maker of last resort, the Vault absorbs the unmatched portion of this flow, accumulating a structurally short counterparty exposure. In backwardation, this is not a liability — it is a systematically advantaged position, as the roll decay embedded in the forward curve continuously works in favour of the short side.
-
 ---
 
 ### 14.7. Liquidity Across the Phase Roadmap
 
 **Phase 1 — Synthetic Liquidity (Bootstrap)**
 
-Phase 1 is deliberately scoped as a liquidity-building period — the primary objective is establishing sufficient Order Book depth and PLP participation to ensure continuous, fair pricing across all BSSZ markets before physical obligations are introduced.
+Phase 1 is deliberately scoped as a liquidity-building period — the primary objective is establishing sufficient Order Book depth and PLP participation to ensure continuous, fair pricing across all BlackSlon markets before physical obligations are introduced.
 
 - BS-P/G tokens are cash-settled virtual instruments — no physical delivery
-- PLP hedging is commercial and discretionary — physical coverage is not guaranteed for every position
+- PLP participation in Phase 1 is commercial and market-driven — PLPs hedge virtual exposure on physical exchanges at their discretion, capturing roll yield and arbitrage opportunities as described in Section 15. The physical tether is structural, not contractual, at this stage.
 - The Vault provides backstop liquidity within its 15% hard exposure cap
 - $H_{solv}$ monitoring ensures the protocol operates within its verified capital base at all times
 
 **Phase 2 — Physical Liquidity (Maturity)**
 
-In Phase 2, liquidity gains a physical dimension as BS-P/G tokens become redeemable for physical energy delivery for eligible industrial consumers (minimum 1MW annual baseload offtake capacity — establishing the operational and regulatory framework for progressive expansion to SMEs and, ultimately, individual households. The end state is a single open market accessible to every energy consumer in Europe, regardless of scale.)
+In Phase 2, liquidity gains a physical dimension as BS-P/G tokens become redeemable for physical energy delivery for eligible industrial consumers (minimum 1MW annual baseload offtake capacity — establishing the operational and regulatory framework for progressive expansion to SMEs and, ultimately, individual households. The end state is a single open market accessible to every energy consumer and producer in Europe, regardless of scale.)
 
 - PLPs evolve from market makers into physical delivery counterparties — a fundamental expansion of their role and revenue base
 - Physical hedge positions become verified protocol assets, strengthening the $H_{solv}$ capital base
@@ -1138,7 +1076,7 @@ Concentration risk is a structural consideration in any clearing infrastructure.
 
 **Open Interest Limit**
 
-As the protocol scales, no single participant should represent a dominant share of open interest in any single BSSZ market. The target threshold is **20% of total open interest** per participant — applied progressively as market depth develops:
+As the protocol scales, no single participant should represent a dominant share of open interest in any single BlackSlon market. The target threshold is **20% of total open interest** per participant — applied progressively as market depth develops:
 
 $$OI_{participant} \leq OI_{total} \cdot 0.20$$
 
@@ -1146,11 +1084,11 @@ This applies to individual accounts and any group of accounts identifiable as ac
 
 **PLP Market Share Limit**
 
-No single PLP should represent a dominant share of total protocol liquidity provision. The target threshold is **40% of aggregate PLP pool depth** per individual PLP:
+To ensure market resilience at scale, no single PLP should represent a dominant share of total protocol liquidity provision. The target threshold is **40% of aggregate PLP pool depth** per individual PLP:
 
 $$Liquidity_{PLP} \leq Liquidity_{total} \cdot 0.40$$
 
-This limit ensures that the withdrawal or distress of any single PLP — however large — cannot unilaterally compromise market continuity. Where a PLP's share approaches the threshold due to the exit of other providers, the protocol broadcasts an incentive signal to attract additional PLP participation before restrictions activate.
+This limit is applied progressively — it activates only when the PLP pool reaches a minimum of three active providers. During Phase 1 bootstrap, where the protocol may operate with a limited number of PLPs, concentration limits are monitored but not enforced, ensuring market continuity is never compromised by premature restrictions. As the ecosystem matures and PLP participation deepens, the limit becomes a hard constraint — ensuring that the withdrawal or distress of any single PLP cannot unilaterally compromise market continuity.
 
 **Collateral Concentration Limit**
 
@@ -1162,16 +1100,17 @@ In practice, this limit governs the balance between eEURO (issued by the BlackSl
 
 **Regulatory Alignment**
 
-The concentration framework is designed to align with the standards applied to **Central Counterparties (CCPs)** under **EMIR (EU 648/2012)** — the EU regulation governing OTC derivatives clearing. While the BlackSlon Protocol is not formally classified as a CCP under EMIR in Phase 1, proactively adopting equivalent concentration risk standards:
+The concentration framework is designed to reflect best practices in market infrastructure risk governance — drawing from the principles applied to **Central Counterparties (CCPs) under EMIR (EU 648/2012)**, adapted to the specific architecture of a decentralised virtual energy protocol. This alignment is intentional:
 
 - Demonstrates regulatory maturity to the NCA during CASP licensing
 - Establishes a credible risk governance baseline consistent with institutional counterparty expectations as physical settlement obligations grow in Phase 2
 - Provides institutional participants (PLPs, industrial hedgers) with the compliance assurance required by their own internal risk frameworks
 
+**The BlackSlon Protocol is not classified as, and does not seek classification as, a CCP under EMIR.** The adoption of equivalent risk principles is a governance choice — not a regulatory obligation at this stage.
+
 **Off-Hours Liquidity**
 
-During periods when physical exchanges are closed (weekends, holidays), the Settlement Anchor ($A$) is frozen at the last validated fixing. The BSSZ corridor remains active and trading 
-continues at unchanged boundaries — the anchor does not update until the next exchange session opens. This is a standard operating condition disclosed to all participants, and reflects the protocol's deliberate design: 24/7 trading access within a physically-anchored corridor, not 24/7 anchor recalculation.
+European spot energy markets publish Day-Ahead prices daily — including weekends and public holidays — through EPEX, TGE, and equivalent exchanges. The Day-Ahead component (10% weight) of the Physical Meridian therefore updates continuously. However, forward contract markets (Front Month, Front Quarter, Calendar Year) operate on standard business day sessions only. During weekends and holidays, the FM, FQ, and Cal components (90% combined weight) of the Physical Meridian are frozen at their last valid value.
 
 
 ---
@@ -1188,13 +1127,13 @@ A PLP is a licensed, professional energy market participant — a sales & tradin
 
 ### 15.2. The PLP Value Proposition
 
-The relationship between the BlackSlon Protocol and its PLPs is symbiotic, not extractive. PLPs are not passive liquidity pools — they are active market participants who capture roll yield, execute cross-market arbitrage, and build structurally advantaged positions precisely because they provide liquidity to a market with a persistent long bias.
+The relationship between the BlackSlon Protocol and its PLPs is symbiotic, not extractive. PLPs are not passive liquidity pools — they are active market participants who capture roll yield, execute cross-market arbitrage, and build structurally advantaged positions precisely because they provide liquidity to a market where the majority of participants naturally lean toward buying.
 
 European energy prices have trended structurally higher over the past decade, and that narrative drives the majority of participants toward the long (buy) side of BS-P/G tokens. This consensus creates a persistent, structural imbalance — and for a sophisticated PLP, imbalance is opportunity.
 
 A PLP providing liquidity on the short (sell) side is not betting against energy prices. They are harvesting the roll yield embedded in backwardated forward curves — earning a systematicreturn as the ADR mechanism mechanically rolls expiring contracts into cheaper long-dated ones, regardless of where spot prices move. In the current European gas market, this roll decay runs at 3–5% monthly on the FM cycle alone. In power, the structural decline from Cal27 to Cal29 represents an additional 23% of embedded decay over the Phase 2 redemption horizon.
 
-Layered on top of roll yield are three additional return streams that require no directional view: cross-market arbitrage between isolated BSSZ corridors with divergent curve structures, delta-neutral hedging with an anchor decay overlay that converts the roll into positive carry, and spark-spread positioning between BS-G and BS-P markets using the physical exchange access that PLP status provides.
+Layered on top of roll yield are three additional return streams that require no directional view: cross-market arbitrage between isolated BlackSlon markets with divergent curve structures, delta-neutral hedging with an anchor decay overlay that converts the roll into positive carry, and spark-spread positioning between BS-G and BS-P markets using the physical exchange access that PLP status provides.
 
 **Additional PLP Benefits**
 
@@ -1204,7 +1143,7 @@ Layered on top of roll yield are three additional return streams that require no
 | **Physical Hedge Efficiency** | BlackSlon Order Book as a zero-spread, zero-counterparty-risk hedging venue for existing physical exposure |
 | **Information Advantage** | Real-time aggregated virtual flow data as a leading indicator for physical market positioning |
 | **€BSR Genesis Allocation** | Preferential allocation aligning long-term PLP interests with protocol growth |
-| **Regulatory Simplicity** | Virtual settlement within BSSZ — no physical delivery obligations in Phase 1 |
+| **Regulatory Simplicity** | Virtual settlement within BlackSlon Protocol — no physical delivery obligations in Phase 1 |
 
 **PLP Risk Assessment:**
 The PLP evaluates the net virtual flow. If the aggregate virtual position (across all users) creates a significant directional imbalance, the PLP decides whether to:
@@ -1226,7 +1165,7 @@ To become a PLP, an entity must satisfy the following criteria:
 - **Regulatory Status:** Licensed energy trading entity under applicable EU energy regulations (REMIT compliance mandatory)
 - **Capital Requirement:** Minimum committed liquidity of **€500,000** in eEURO deposited to the PLP Vault
 - **Technical Integration:** API connectivity to the BlackSlon matching engine for real-time order flow
-- **KYC/AML:** Full institutional KYC/AML verification under MiCA CASP framework
+- **KYC/AML:** Full institutional KYC/AML verification under MiCA CASP framework.
 
 ---
 
@@ -1287,7 +1226,7 @@ The BlackSlon Protocol operates at the intersection of two heavily regulated ind
 | Tier | Participant | KYC Level | AML Monitoring |
 |:----:|:-----------|:----------:|:--------------|
 | 1 | Retail Users | None — permissionless wallet access | Automated on-chain screening |
-| 2 | Institutional Users | Enhanced Due Diligence — UBO, source of funds | Real-time on-chain + off-chain |
+| 2 | Institutional Users | Due Diligence — UBO, source of funds | Real-time on-chain + off-chain |
 | 3 | PLPs | Full institutional KYC + REMIT compliance + exchange membership | Continuous + ACER reporting |
 
 *Retail participants interact with the protocol via wallet connection only — no identity registration required. AML compliance at this tier is fulfilled through automated on-chain transaction monitoring, wallet clustering analysis, and pattern detection. Enhanced verification requirements activate proportionally upon breach of applicable MiCA reporting thresholds, consistent with a risk-based approach to AML obligations under EU law.*
@@ -1298,7 +1237,7 @@ Red flags monitored continuously:
 - **Structuring:** Multiple deposits just below reporting thresholds
 - **Layering:** Rapid cycling between eEURO and €BSR with no apparent trading purpose
 - **Velocity Anomalies:** Sudden large positions inconsistent with historical behaviour
-- **Cross-Market Manipulation:** Correlated spikes in virtual BlackSlon positions and physical TTF/EEX prices
+- **Cross-Market Manipulation:** Correlated spikes in virtual BlackSlon positions and physical prices
 
 ---
 
@@ -1312,9 +1251,9 @@ The BlackSlon Ecosystem operates a tri-token economy, where each asset is strict
 
 - **Definition:** Unlike stablecoins, €BSR does not purport to maintain a stable value relative to any external asset. Its price is a mathematical derivative of the Protocol Vault's net asset value, governed by the Valuation & Backing Formula:
 
-$$P_{BSR} = \frac{V_{eEURO}}{S_{BSR} \cdot RR}$$
+$$P_{BSR} = \frac{V_{eEURO} - \sum |PnL_{ITM}|}{S_{BSR} \cdot RR}$$
 
-Where $V_{eEURO}$ is the total liquid eEURO held in the Treasury Vault, $S_{BSR}$ is the current circulating supply, and $RR$ is the Reserve Ratio (safety multiplier, $\geq 1.0$).
+Where $V_{eEURO}$ is the total liquid eEURO held in the Treasury Vault, $\sum |PnL_{ITM}|$ represents the protocol's obligations to profitable users (these funds are already "promised" and do not belong to free Vault capital), $S_{BSR}$ is the current circulating supply, and $RR$ is the Reserve Ratio (safety multiplier, $\geq 1.0$). The ITM component must be deducted because MiCA requires real backing, not nominal backing — valuing €BSR on the entire $V_{eEURO}$ without subtracting these obligations would overstate the token value and create regulatory inconsistencies.
 
 - **Function:** €BSR serves as the native utility token of the BlackSlon Protocol — the primary collateral instrument for opening virtual positions (OVP) and a vehicle for trading fee discounts via the Tiering Matrix.
 
@@ -1324,7 +1263,7 @@ Where $V_{eEURO}$ is the total liquid eEURO held in the Treasury Vault, $S_{BSR}
 
 **eEURO (The Settlement Anchor) — EMT (Electronic Money Token, MiCA Title IV)**
 
-- **Definition:** eEURO is the "hard" currency of the system — a MiCA-compliant stablecoin pegged 1:1 to the Euro.
+- **Definition:** eEURO is the "hard" currency of the system — a MiCA-compliant stablecoin pegged 1:1 to the Euro. The protocol supports major regulated Euro stablecoins such as EURe (Monerium) or EURC (Circle).
 
 - **Function:** It serves as the liquid anchor in the Collateral Portfolio and as the settlement currency for physical market obligations.
 
@@ -1332,7 +1271,7 @@ Where $V_{eEURO}$ is the total liquid eEURO held in the Treasury Vault, $S_{BSR}
 
 - **Definition:** BS-P and BS-G are value-linked utility units. Each token represents the underlying value of 100 kWh of electric power or natural gas within a specific national/regional market in Europe.
 
-- **Regulatory Distinction (Not an ART):** BS-P and BS-G do not represent a stable peg to any single reference asset. Their value is determined by internal supply and demand dynamics within the BlackSlon Settlement Zone (BSSZ), constrained to an asymmetric corridor of $[a - 10\%, a + 20\%]$ relative to the physical Anchor ($a$). The Anchor itself is a weighted basket of market segments (Spot, Front Month, Front Quarter, Calendar Year) — not a direct peg to any single commodity price. Unlike ARTs, which aim for a fixed stability peg, BS-P/G are designed for price risk management within a strictly controlled virtual environment.
+- **Regulatory Distinction (Not an ART):** BS-P and BS-G do not represent a stable peg to any single reference asset. Their value is determined by internal supply and demand dynamics within the BlackSlon Settlement Zone (BSSZ), constrained to an asymmetric corridor of $[A - 10\%, A + 20\%]$ relative to the Settlement Anchor ($A$). The Anchor itself is a weighted basket of market segments (Spot, Front Month, Front Quarter, Calendar Year) — not a direct peg to any single commodity price. Unlike ARTs, which aim for a fixed stability peg, BS-P/G are utility tokens designed exclusively for participation in the BlackSlon Ecosystem — representing a standardised unit of energy value (100 kWh) within a strictly governed protocol environment, not a claim on any financial instrument, commodity delivery, or investment return.
 
 ---
 
@@ -1360,7 +1299,7 @@ In Phase 2, liquidity gains a physical dimension as BS-P/G tokens become redeema
 
 BS-P/G tokens serve as "Virtual Inventory" that is swapped directly into a physical delivery contract. The tokens effectively "fill" the physical contract with pre-accumulated energy value, transforming a virtual position into a physical supply agreement. The pre-locked token value covers the baseload profile of the supply contract. Additional balancing and variable costs are settled separately.
 
-**Regulatory Evolution:** As the BlackSlon Ecosystem evolves to supply physical energy, the BlackSlon Entity and its Strategic Partners will engage with National Regulatory Authorities (NRAs) to ensure compliance with local energy sales and trading requirements and, if necessary, transition the token classification to an **Asset-Referenced Token (ART)** framework, backed by 1:1 physical reserves.
+**Regulatory Evolution:** As the BlackSlon Ecosystem evolves toward physical energy delivery in Phase 2, the BlackSlon Entity and its Strategic Partners will proactively engage with National Regulatory Authorities (NRAs) and National Energy Regulators to ensure full compliance with applicable energy supply, trading, and digital asset regulations at each stage of development. Token classification will be reviewed in consultation with the relevant NCA as the protocol's functionality evolves — ensuring that the regulatory framework always reflects the protocol's actual operational reality.
 
 ---
 
@@ -1397,25 +1336,18 @@ The Managing Entity is responsible for the technical, mathematical, and regulato
 | Constant | Symbol | Value | Used In |
 |:---------|:------:|:-----:|:--------|
 | Epsilon buffer | ε | **0.02** | H_user, SIL |
-| BSEI decay constant | λ | ln(2)/6 ≈ 0.1155 | BSEI formula |
-| BSEI anchor guard lower | — | a × 0.85 | BSEI safeguard |
-| BSEI anchor guard upper | — | a × 1.25 | BSEI safeguard |
+| BSEI decay constant | λ_BSEI | ln(2)/6 ≈ 0.1155 | BSEI formula |
 | Physical Meridian weights | W | 10/40/25/25 | ADR |
 | ADR recursive weights | — | 50/25/25 | ADR |
-| BSSZ floor | — | a × 0.90 | BSSZ |
-| BSSZ ceiling | — | a × 1.20 | BSSZ |
-| BSEI anchor weight (deprecated) | ω | — | Replaced by WTSI-24h |
+| BSSZ floor | — | A × 0.90 | BSSZ |
+| BSSZ ceiling | — | A × 1.20 | BSSZ |
 | IM denominator factor | — | 0.50 | H_user |
 | SIL step size | SIL_step | 10% | SIL |
-| SIL round cap | SIL_max | 50% | SIL |
 | Intervention Threshold | H_INT | ≤ 1.00 | Zone IV |
 | SAFE zone lower bound | H_SAFE | > 1.10 | Zone I |
-| ADS trigger | ADS_threshold | **1.03** | ADS |
-| ADS rolling window | ADS_window | 3 blocks | ADS |
-| ADS pause duration | ADS_pause | 15 min | ADS |
-| Emergency Collateral Lock duration | — | max 48h | ADS |
-| Emergency Collateral Lock release | — | H_user,avg > 1.10 | ADS |
-| Vault exposure limit | λ_max | 15% | Layer 3 |
+| Emergency Collateral Lock duration | — | max 48h | Anti-Death-Spiral Lock |
+| Emergency Collateral Lock release | — | H_user,avg > 1.10 | Anti-Death-Spiral Lock |
+| Vault exposure limit | λ_vault | 15% | Layer 3 |
 | OI concentration limit | — | 20% per participant | Liquidity |
 | PLP market share limit | — | 40% per PLP | Liquidity |
 | Collateral concentration limit | — | 50% per issuer | Liquidity |
@@ -1426,7 +1358,6 @@ The Managing Entity is responsible for the technical, mathematical, and regulato
 | h_BSR Tier I | — | 10% | H_solv |
 | h_BSR Tier II | — | 15% | H_solv |
 | h_BSR Tier III | — | 25% | H_solv |
-| h_BSR Tier IV | — | 35% | H_solv |
 | BSR-SR fee allocation | — | 15% of fees | BSR-SR |
 | BSR-SR mint premium | — | 20% of premium | BSR-SR |
 | Trading fee: T1 (10% BSR) | φ | 1.00% | Tiering |
@@ -1434,11 +1365,9 @@ The Managing Entity is responsible for the technical, mathematical, and regulato
 | Protocol Vault fee share | — | 85% of fees | Treasury |
 | Maintenance fee | — | 0.1%/month | Treasury |
 | PLP min capital | — | €500,000 | PLP |
-| Liquidation fee | — | 0.10% of notional | SIL |
-| BSR-SR SIL contribution | — | 0.05% of notional | SIL |
 
 ---
 
-*BlackSlon Protocol — White Paper v2.0 | March 2026*  
+*BlackSlon Protocol — White Paper v3.0 | March 2026*  
 *This document supersedes all prior individual module documents.*  
 *© BlackSlon Protocol. All rights reserved.*

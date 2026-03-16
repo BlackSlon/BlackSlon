@@ -224,10 +224,10 @@ export default function UserAccountPanel() {
           {/* Zone labels below bar */}
           <div className="grid grid-cols-4 gap-0.5 mt-1">
             {[
-              { zone: 'INTERVENTION', threshold: '≤ 1.00', color: '#ef4444' },
-              { zone: 'RESTRICTED',   threshold: '> 1.00', color: '#f97316' },
-              { zone: 'WARNING',      threshold: '> 1.05', color: '#eab308' },
-              { zone: 'SAFE',         threshold: '> 1.10', color: '#22c55e' },
+              { zone: 'SAFE',         threshold: 'H > 1.10', color: '#22c55e' },
+              { zone: 'WARNING',      threshold: '1.05 < H ≤ 1.10', color: '#eab308' },
+              { zone: 'RESTRICTED',   threshold: '1.00 < H ≤ 1.05', color: '#f97316' },
+              { zone: 'INTERVENTION', threshold: 'H ≤ 1.00', color: '#ef4444' },
             ].map((z) => (
               <div
                 key={z.zone}
@@ -240,7 +240,7 @@ export default function UserAccountPanel() {
                 <div className="text-[6px] uppercase tracking-widest" style={{ color: z.color }}>
                   {z.zone}
                 </div>
-                <div className="text-[6px] text-gray-500">{z.threshold}</div>
+                <div className="text-[7px] text-gray-300 leading-tight">{z.threshold}</div>
               </div>
             ))}
           </div>

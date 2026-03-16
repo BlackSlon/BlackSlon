@@ -71,6 +71,7 @@ export interface Order {
   units: number
   volume: number
   ownedByUser: boolean
+  timestamp: number
 }
 
 export interface LastTrade {

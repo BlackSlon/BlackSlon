@@ -67,24 +67,24 @@ export const usePhysical = create<PhysicalState>(() => {
 export const useVirtual = create<VirtualState>(() => ({
   orderBook: {
     bids: [
-      { id: '1', price: 10.55, units: 150, volume: 15000, ownedByUser: false },
-      { id: '2', price: 10.54, units: 120, volume: 12000, ownedByUser: false },
-      { id: '3', price: 10.53, units: 180, volume: 18000, ownedByUser: false },
-      { id: '4', price: 10.52, units: 95,  volume: 9500,  ownedByUser: false },
-      { id: '5', price: 10.51, units: 200, volume: 20000, ownedByUser: false },
-      { id: '6', price: 10.50, units: 135, volume: 13500, ownedByUser: false },
-      { id: '7', price: 10.49, units: 165, volume: 16500, ownedByUser: false },
-      { id: '8', price: 10.48, units: 110, volume: 11000, ownedByUser: false },
+      { id: '1', price: 10.55, units: 150, volume: 15000, ownedByUser: false, timestamp: Date.now() - 8000 },
+      { id: '2', price: 10.54, units: 120, volume: 12000, ownedByUser: false, timestamp: Date.now() - 7000 },
+      { id: '3', price: 10.53, units: 180, volume: 18000, ownedByUser: false, timestamp: Date.now() - 6000 },
+      { id: '4', price: 10.52, units: 95,  volume: 9500,  ownedByUser: false, timestamp: Date.now() - 5000 },
+      { id: '5', price: 10.51, units: 200, volume: 20000, ownedByUser: false, timestamp: Date.now() - 4000 },
+      { id: '6', price: 10.50, units: 135, volume: 13500, ownedByUser: false, timestamp: Date.now() - 3000 },
+      { id: '7', price: 10.49, units: 165, volume: 16500, ownedByUser: false, timestamp: Date.now() - 2000 },
+      { id: '8', price: 10.48, units: 110, volume: 11000, ownedByUser: false, timestamp: Date.now() - 1000 },
     ],
     asks: [
-      { id: '9',  price: 10.60, units: 110, volume: 11000, ownedByUser: false },
-      { id: '10', price: 10.61, units: 85,  volume: 8500,  ownedByUser: false },
-      { id: '11', price: 10.62, units: 140, volume: 14000, ownedByUser: false },
-      { id: '12', price: 10.63, units: 75,  volume: 7500,  ownedByUser: false },
-      { id: '13', price: 10.64, units: 160, volume: 16000, ownedByUser: false },
-      { id: '14', price: 10.65, units: 125, volume: 12500, ownedByUser: false },
-      { id: '15', price: 10.66, units: 190, volume: 19000, ownedByUser: false },
-      { id: '16', price: 10.67, units: 105, volume: 10500, ownedByUser: false },
+      { id: '9',  price: 10.60, units: 110, volume: 11000, ownedByUser: false, timestamp: Date.now() - 8000 },
+      { id: '10', price: 10.61, units: 85,  volume: 8500,  ownedByUser: false, timestamp: Date.now() - 7000 },
+      { id: '11', price: 10.62, units: 140, volume: 14000, ownedByUser: false, timestamp: Date.now() - 6000 },
+      { id: '12', price: 10.63, units: 75,  volume: 7500,  ownedByUser: false, timestamp: Date.now() - 5000 },
+      { id: '13', price: 10.64, units: 160, volume: 16000, ownedByUser: false, timestamp: Date.now() - 4000 },
+      { id: '14', price: 10.65, units: 125, volume: 12500, ownedByUser: false, timestamp: Date.now() - 3000 },
+      { id: '15', price: 10.66, units: 190, volume: 19000, ownedByUser: false, timestamp: Date.now() - 2000 },
+      { id: '16', price: 10.67, units: 105, volume: 10500, ownedByUser: false, timestamp: Date.now() - 1000 },
     ],
     lastTrade: { price: 10.59, units: 10, volume: 1000, timestamp: Date.now() },
     lastTradeByMarket: {} as Record<string, any>,
@@ -133,8 +133,14 @@ function getFullOrderBook(marketId: string) {
   const userAsks = vs.orderBook.asks.filter(o => (o as any).marketId === marketId)
 
   return {
-    bids: [...genBids, ...userBids].sort((a, b) => b.price - a.price),
-    asks: [...genAsks, ...userAsks].sort((a, b) => a.price - b.price),
+    bids: [...genBids, ...userBids].sort((a, b) => {
+      if (b.price !== a.price) return b.price - a.price
+      return a.timestamp - b.timestamp // FIFO - earlier orders first
+    }),
+    asks: [...genAsks, ...userAsks].sort((a, b) => {
+      if (a.price !== b.price) return a.price - b.price
+      return a.timestamp - b.timestamp // FIFO - earlier orders first
+    }),
     anchor,
   }
 }
@@ -303,7 +309,10 @@ export const useTrading = create<TradingState>((set, get) => {
 
       if (side === 'BUY') {
         // Walk asks cheapest-first; match while ask.price <= buy.price
-        const sortedAsks = [...bookAsks].sort((a, b) => a.price - b.price)
+        const sortedAsks = [...bookAsks].sort((a, b) => {
+          if (a.price !== b.price) return a.price - b.price
+          return a.timestamp - b.timestamp // FIFO - earlier orders first
+        })
         const survivingUserAsks: typeof sortedAsks = []
 
         for (const ask of sortedAsks) {
@@ -338,14 +347,20 @@ export const useTrading = create<TradingState>((set, get) => {
         }
 
         if (remainingQty > 0) {
-          const resting = { id: `user-${Date.now()}`, price, units: remainingQty, volume: remainingQty * 100, ownedByUser: true, marketId }
-          useVirtual.setState(vs => ({ orderBook: { ...vs.orderBook, bids: [...vs.orderBook.bids, resting].sort((a, b) => b.price - a.price) } }))
+          const resting = { id: `user-${Date.now()}`, price, units: remainingQty, volume: remainingQty * 100, ownedByUser: true, marketId, timestamp: Date.now() }
+          useVirtual.setState(vs => ({ orderBook: { ...vs.orderBook, bids: [...vs.orderBook.bids, resting].sort((a, b) => {
+            if (b.price !== a.price) return b.price - a.price
+            return a.timestamp - b.timestamp // FIFO - earlier orders first
+          }) } }))
           set(s => ({ activeOrders: [...s.activeOrders, { id: resting.id, side, price, quantity: remainingQty, bsrStake, marginPct, bsrLocked: bsrNeeded * (remainingQty / quantity), eEuroLocked: eEuroDeposit * (remainingQty / quantity), timestamp: Date.now(), marketId: marketId as MarketId }] }))
         }
 
       } else {
         // SELL — walk bids highest-first; match while bid.price >= sell.price
-        const sortedBids = [...bookBids].sort((a, b) => b.price - a.price)
+        const sortedBids = [...bookBids].sort((a, b) => {
+          if (b.price !== a.price) return b.price - a.price
+          return a.timestamp - b.timestamp // FIFO - earlier orders first
+        })
         const survivingUserBids: typeof sortedBids = []
 
         for (const bid of sortedBids) {
@@ -376,8 +391,11 @@ export const useTrading = create<TradingState>((set, get) => {
         }
 
         if (remainingQty > 0) {
-          const resting = { id: `user-${Date.now()}`, price, units: remainingQty, volume: remainingQty * 100, ownedByUser: true, marketId }
-          useVirtual.setState(vs => ({ orderBook: { ...vs.orderBook, asks: [...vs.orderBook.asks, resting].sort((a, b) => a.price - b.price) } }))
+          const resting = { id: `user-${Date.now()}`, price, units: remainingQty, volume: remainingQty * 100, ownedByUser: true, marketId, timestamp: Date.now() }
+          useVirtual.setState(vs => ({ orderBook: { ...vs.orderBook, asks: [...vs.orderBook.asks, resting].sort((a, b) => {
+            if (a.price !== b.price) return a.price - b.price
+            return a.timestamp - b.timestamp // FIFO - earlier orders first
+          }) } }))
           set(s => ({ activeOrders: [...s.activeOrders, { id: resting.id, side, price, quantity: remainingQty, bsrStake, marginPct, bsrLocked: bsrNeeded * (remainingQty / quantity), eEuroLocked: eEuroDeposit * (remainingQty / quantity), timestamp: Date.now(), marketId: marketId as MarketId }] }))
         }
       }

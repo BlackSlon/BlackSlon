@@ -1,7 +1,6 @@
 # BlackSlon Protocol
 ### The New Architecture of European Energy Wholesale Markets
 
-<br>
 
 ## Preface: The Scale of the Problem
 
@@ -80,7 +79,7 @@ The Summer/Winter storage spread — the foundational carry trade of European ga
 
 Furthermore, the traditional Peak/Off-Peak regime in power markets has become obsolete. In the legacy world, the afternoon window from 13:00 to 15:00 was the "Daily Peak" — the most expensive hours of the day. Today, in the era of mass solar generation, these same hours during summer often witness negative prices across major European wholesale markets. Producers are forced to pay consumers to offload their energy, a phenomenon known as "Renewable Cannibalization."
 
-**The Forward Curve: Illusion, Reality, and Democratisation**
+**The Forward Curve: Illusion & Reality**
 
 In the legacy world of energy finance, banks and institutional investors still demand 15-to-30-year price projections to approve investments in nuclear, gas, or renewable assets. However, the reality on the trading floor is different.
 
@@ -92,9 +91,6 @@ In the legacy world of energy finance, banks and institutional investors still d
 
 - The Capital Paradox of Backwardation: Yet within this collapsing curve, one structural truth persists: European energy markets are backwardated — Cal+1 and Cal+2 contracts trade at a significant discount to spot, embedding cheaper future energy into their price. Every sophisticated institutional player knows this. Every major utility, every investment-grade trading house actively harvests this discount — buying cheap forward exposure today, locking in margins that smaller participants cannot access. The minimum ticket to participate in this trade on EEX or ICE is not a market decision. It is a capital gate: hundreds of thousands of euros in posted guarantees, held idle for 12 to 24 months, just to hold the position. Only entities with investment-grade credit ratings and balance sheets large enough to absorb multi-year margin obligations can afford to play at that end of the curve. For everyone else, the cheapest and most structurally advantaged part of the forward market is simply out of reach — not because of a lack of market access, but because of the cost of money itself.
 
-- The Democratisation of the Forward Curve: BlackSlon dissolves that gate entirely. The BS-P and BS-G token price is derived from the Physical Meridian — a weighted basket that permanently embeds 25% Calendar Year exposure into every token, regardless of size. Critically, both Cal+1 and Cal+2 are active components of this basket from July 1st — when the Dormant ADR activates and begins its weekly migration from Cal+1 toward Cal+2. The protocol is continuously rolling into the cheapest part of the forward curve, mechanically and without friction, harvesting the backwardation discount that institutional players spend millions in capital and legal overhead to access manually. When you buy 100 kWh of BS-G-NL for a few euros, you are not buying spot-price exposure. You are buying a blended instrument that already contains the structural discount of the forward curve — the same economic advantage that Goldman Sachs and Shell extract through multi-million euro Cal+1 and Cal+2 positions — compressed into a single token, accessible without a credit rating, without a bank guarantee, and without a six-month onboarding process.
-
-For the first time, the cheapest part of the energy market is also the most accessible.
 
 ## The BlackSlon Answer
 
@@ -102,9 +98,15 @@ For the first time, the cheapest part of the energy market is also the most acce
 
 BlackSlon is the first decentralised protocol built specifically for the European wholesale energy market. It does not attempt to replicate the legacy system on a blockchain. It eliminates the structural failures of the legacy system and replaces them with a mathematically governed, 24/7/365 open market infrastructure.
 
-**Democratised Access** 
+**Universal Market Access** 
 
 BlackSlon reduces the minimum entry threshold by four orders of magnitude. Instead of €744,600 for the smallest German yearly power contract (1 MW Baseload × 8,760 hours × €85/MWh), participation begins at **100 kWh** — the price of a small energy unit. The same market, accessible to any participant, anywhere, at any time.
+
+**The Democratisation of the Forward Curve**
+
+The BS-P and BS-G token price operates within a corridor anchored to physical market reality through the Physical Meridian — a weighted basket that permanently embeds 25% Calendar Year exposure into every token, regardless of size. Critically, both Cal+1 and Cal+2 are active components of this basket from July 1st — when the Dormant ADR activates and begins its weekly migration from Cal+1 toward Cal+2. The protocol is continuously rolling into the cheapest part of the forward curve, mechanically and without friction, harvesting the backwardation discount that institutional players spend millions in capital and legal overhead to access manually. When you buy 100 kWh of power token (ie. BS-P-DE) for a few euros, you are not buying spot-price exposure. You are buying utility token that already contains the structural discount of the forward curve — the same economic advantage that Goldman Sachs and Shell extract through multi-million euro Cal+1 and Cal+2 positions — compressed into a single token, accessible without a credit rating, without a bank guarantee, and without a six-month onboarding process.
+
+For the first time, the cheapest part of the energy market is also the most accessible.
 
 **Perpetual Instruments** 
 
@@ -124,9 +126,9 @@ eEURO — our MiCA-compliant Euro stablecoin — settles positions in seconds. N
 
 **Institutional-Grade Risk Architecture** 
 
-The protocol operates a dual-layer risk framework: individual account health monitored in real time through the Health Factor ($H_{BSSZ}$), and systemic solvency tracked through the Ecosystem Solvency Index ($H_{solv}$). Smart Incremental Liquidation replaces catastrophic forced closures with surgical, 10% position reductions that protect both users and the protocol Vault simultaneously.
+The protocol operates a dual-layer risk framework: individual account health monitored in real time through the Health Factor, and systemic solvency tracked through the Ecosystem Solvency Index. Smart Incremental Liquidation replaces catastrophic forced closures with surgical, 10% position reductions that protect both users and the protocol Vault simultaneously.
 
-**Physical Market Tether.** 
+**Physical Market Tether** 
 
 BlackSlon is not a purely synthetic protocol. The BSSZ — anchored daily to physical exchange/OTC prices via the weighted forward curve and Settlement Anchor — ensures that virtual token prices can never decouple from physical market reality. Physical Liquidity Providers — licensed European energy trading entities with direct access to TTF, EEX, EPEX, CEGH and TGE — will underpin every market. In Phase 2, BS-P/G tokens become redeemable for physical energy delivery. The virtual and physical markets are not separated — they are the same market, accessed through different interfaces.
 
@@ -160,7 +162,7 @@ Traditional energy markets are buried under layers of manufactured complexity: e
 
 **Zero Entry Barrier.** 100 kWh minimum. Any participant. Anywhere. Any time.
 
-*We don't add layers of complexity. We strip them away.*
+**BlackSlon doesn't add layers of complexity. It strip them away.**
 
 ## Founder's Heritage: Forged by the Markets He's Replacing
 
