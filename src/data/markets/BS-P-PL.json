@@ -38,6 +38,19 @@
     {
       "label": "D-1",
       "refDate": "08.03.2026",
+      "adrData": [
+        {
+          "date": "08.03.2026",
+          "dayAhead": 10.59,
+          "frontMonth": 10.65,
+          "month2": 10.72,
+          "frontQuarter": 10.80,
+          "quarter2": 10.85,
+          "cal": 10.90,
+          "cal2": 10.95,
+          "meridian": 11.00
+        }
+      ],
       "bssz": {
         "floor": 9.53,
         "anchor": 10.59,
@@ -48,6 +61,19 @@
     {
       "label": "D-2",
       "refDate": "07.03.2026",
+      "adrData": [
+        {
+          "date": "07.03.2026",
+          "dayAhead": 10.45,
+          "frontMonth": 10.52,
+          "month2": 10.58,
+          "frontQuarter": 10.65,
+          "quarter2": 10.72,
+          "cal": 10.78,
+          "cal2": 10.85,
+          "meridian": 10.90
+        }
+      ],
       "bssz": {
         "floor": 9.41,
         "anchor": 10.45,
@@ -58,6 +84,19 @@
     {
       "label": "D-3",
       "refDate": "06.03.2026",
+      "adrData": [
+        {
+          "date": "06.03.2026",
+          "dayAhead": 10.38,
+          "frontMonth": 10.44,
+          "month2": 10.50,
+          "frontQuarter": 10.58,
+          "quarter2": 10.65,
+          "cal": 10.72,
+          "cal2": 10.78,
+          "meridian": 10.85
+        }
+      ],
       "bssz": {
         "floor": 9.34,
         "anchor": 10.38,
@@ -68,46 +107,180 @@
     {
       "label": "D-4",
       "refDate": "05.03.2026",
+      "adrData": [
+        {
+          "date": "05.03.2026",
+          "dayAhead": 10.61,
+          "frontMonth": 10.68,
+          "month2": 10.75,
+          "frontQuarter": 10.82,
+          "quarter2": 10.90,
+          "cal": 10.95,
+          "cal2": 11.00,
+          "meridian": 11.05
+        }
+      ],
       "bssz": {
         "floor": 9.55,
         "anchor": 10.61,
         "ceiling": 12.73,
-        "trendPct": 2.9
+        "trendPct": 4.4
       }
     },
     {
       "label": "D-5",
       "refDate": "04.03.2026",
+      "adrData": [
+        {
+          "date": "04.03.2026",
+          "dayAhead": 10.55,
+          "frontMonth": 10.62,
+          "month2": 10.68,
+          "frontQuarter": 10.75,
+          "quarter2": 10.82,
+          "cal": 10.90,
+          "cal2": 10.95,
+          "meridian": 11.00
+        }
+      ],
       "bssz": {
-        "floor": 9.50,
+        "floor": 9.49,
         "anchor": 10.55,
         "ceiling": 12.66,
-        "trendPct": 2.4
+        "trendPct": 4.0
       }
     },
     {
       "label": "D-6",
       "refDate": "03.03.2026",
+      "adrData": [
+        {
+          "date": "03.03.2026",
+          "dayAhead": 10.48,
+          "frontMonth": 10.55,
+          "month2": 10.62,
+          "frontQuarter": 10.68,
+          "quarter2": 10.75,
+          "cal": 10.82,
+          "cal2": 10.90,
+          "meridian": 10.95
+        }
+      ],
       "bssz": {
         "floor": 9.43,
         "anchor": 10.48,
         "ceiling": 12.58,
-        "trendPct": 1.8
+        "trendPct": 3.6
       }
     },
     {
       "label": "W-1",
       "refDate": "01.03.2026",
+      "adrData": [
+        {
+          "date": "01.03.2026",
+          "dayAhead": 10.55,
+          "frontMonth": 10.62,
+          "month2": 10.68,
+          "frontQuarter": 10.75,
+          "quarter2": 10.82,
+          "cal": 10.90,
+          "cal2": 10.95,
+          "meridian": 11.00
+        }
+      ],
       "bssz": {
-        "floor": 9.53,
-        "anchor": 10.59,
-        "ceiling": 12.71,
-        "trendPct": 2.1
+        "floor": 9.49,
+        "anchor": 10.55,
+        "ceiling": 12.66,
+        "trendPct": 4.0
+      }
+    },
+    {
+      "label": "W-2",
+      "refDate": "24.02.2026",
+      "adrData": [
+        {
+          "date": "24.02.2026",
+          "dayAhead": 10.48,
+          "frontMonth": 10.55,
+          "month2": 10.62,
+          "frontQuarter": 10.68,
+          "quarter2": 10.75,
+          "cal": 10.82,
+          "cal2": 10.90,
+          "meridian": 10.95
+        }
+      ],
+      "bssz": {
+        "floor": 9.41,
+        "anchor": 10.48,
+        "ceiling": 12.58,
+        "trendPct": 3.6
+      }
+    },
+    {
+      "label": "W-3",
+      "refDate": "17.02.2026",
+      "adrData": [
+        {
+          "date": "17.02.2026",
+          "dayAhead": 10.42,
+          "frontMonth": 10.48,
+          "month2": 10.55,
+          "frontQuarter": 10.62,
+          "quarter2": 10.68,
+          "cal": 10.75,
+          "cal2": 10.82,
+          "meridian": 10.90
+        }
+      ],
+      "bssz": {
+        "floor": 9.34,
+        "anchor": 10.42,
+        "ceiling": 12.50,
+        "trendPct": 3.2
+      }
+    },
+    {
+      "label": "W-4",
+      "refDate": "10.02.2026",
+      "adrData": [
+        {
+          "date": "10.02.2026",
+          "dayAhead": 10.35,
+          "frontMonth": 10.42,
+          "month2": 10.48,
+          "frontQuarter": 10.55,
+          "quarter2": 10.62,
+          "cal": 10.68,
+          "cal2": 10.75,
+          "meridian": 10.82
+        }
+      ],
+      "bssz": {
+        "floor": 9.27,
+        "anchor": 10.35,
+        "ceiling": 12.42,
+        "trendPct": 2.8
       }
     },
     {
       "label": "M-1",
       "refDate": "08.02.2026",
+      "adrData": [
+        {
+          "date": "08.02.2026",
+          "dayAhead": 10.63,
+          "frontMonth": 10.70,
+          "month2": 10.75,
+          "frontQuarter": 10.82,
+          "quarter2": 10.90,
+          "cal": 10.95,
+          "cal2": 11.00,
+          "meridian": 11.05
+        }
+      ],
       "bssz": {
         "floor": 9.57,
         "anchor": 10.63,
@@ -118,6 +291,19 @@
     {
       "label": "Q-1",
       "refDate": "07.12.2025",
+      "adrData": [
+        {
+          "date": "07.12.2025",
+          "dayAhead": 10.51,
+          "frontMonth": 10.58,
+          "month2": 10.65,
+          "frontQuarter": 10.72,
+          "quarter2": 10.80,
+          "cal": 10.85,
+          "cal2": 10.90,
+          "meridian": 10.95
+        }
+      ],
       "bssz": {
         "floor": 9.46,
         "anchor": 10.51,
@@ -128,6 +314,19 @@
     {
       "label": "H-1",
       "refDate": "08.09.2025",
+      "adrData": [
+        {
+          "date": "08.09.2025",
+          "dayAhead": 10.70,
+          "frontMonth": 10.75,
+          "month2": 10.82,
+          "frontQuarter": 10.90,
+          "quarter2": 10.95,
+          "cal": 11.00,
+          "cal2": 11.05,
+          "meridian": 11.10
+        }
+      ],
       "bssz": {
         "floor": 9.64,
         "anchor": 10.70,
@@ -138,6 +337,19 @@
     {
       "label": "Y-1",
       "refDate": "08.03.2025",
+      "adrData": [
+        {
+          "date": "08.03.2025",
+          "dayAhead": 9.69,
+          "frontMonth": 9.75,
+          "month2": 9.82,
+          "frontQuarter": 9.90,
+          "quarter2": 9.95,
+          "cal": 10.00,
+          "cal2": 10.05,
+          "meridian": 10.10
+        }
+      ],
       "bssz": {
         "floor": 8.72,
         "anchor": 9.69,
