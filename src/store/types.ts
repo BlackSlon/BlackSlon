@@ -151,6 +151,13 @@ export interface TradingState {
   cancelOrder: (orderId: string) => void
 }
 
+export interface PositionTranche {
+  units: number
+  bsrStake: number
+  avgPrice: number
+  timestamp: number
+}
+
 export interface InventoryItem {
   token: string
   units: number
@@ -158,6 +165,7 @@ export interface InventoryItem {
   avgPrice: number
   lastPrice: number
   pnl: number
+  tranches: PositionTranche[] // all position tranches for weighted average
 }
 
 export interface VaultState {

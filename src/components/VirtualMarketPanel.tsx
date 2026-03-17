@@ -153,7 +153,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
               </div>
             </div>
             <div className="flex-grow overflow-hidden">
-              {bids.map((o, i) => (
+              {bids.slice(0, 5).map((o, i) => (
                 <div
                   key={o.id}
                   className={
@@ -197,7 +197,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
               </div>
             </div>
             <div className="flex-grow overflow-hidden">
-              {asks.map((o, i) => (
+              {asks.slice(0, 5).map((o, i) => (
                 <div
                   key={o.id}
                   className={

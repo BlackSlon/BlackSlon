@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { MarketPanelState, MarketId, SolvencyState, BSRReserveState, PhysicalState, VirtualState, TradingState, PendingOrder, UserAccountState } from './types'
+import type { MarketPanelState, MarketId, SolvencyState, BSRReserveState, PhysicalState, VirtualState, TradingState, PendingOrder, UserAccountState, PositionTranche } from './types'
 import { getMarketData } from '@/data/markets/loader'
 import { generateOrderBook } from '@/data/markets/orderBookGenerator'
 
@@ -403,20 +403,70 @@ export const useTrading = create<TradingState>((set, get) => {
       // ── Update user account ───────────────────────────────────────────────
       useUserAccount.setState(u => {
         let inv = [...u.inventory]
+        const pos = inv.find(p => p.token === marketId)
+        
         if (filledQty > 0) {
-          const pos = inv.find(p => p.token === marketId)
           if (pos) {
             const newUnits = side === 'BUY' ? pos.units + filledQty : pos.units - filledQty
             const newAvg   = side === 'BUY' ? (pos.avgPrice * pos.units + fillPrice * filledQty) / (newUnits || 1) : pos.avgPrice
+            
+            // Add new tranche for BUY orders
+            let newTranches = [...pos.tranches]
+            if (side === 'BUY') {
+              newTranches.push({ units: filledQty, bsrStake, avgPrice: fillPrice, timestamp: Date.now() })
+            }
+            
             inv = inv.map(p => p.token === marketId
-              ? { ...p, units: newUnits, quantity: Math.abs(newUnits) * 100, avgPrice: Math.abs(newAvg), lastPrice: fillPrice, pnl: (fillPrice - Math.abs(newAvg)) * newUnits }
+              ? { ...p, units: newUnits, quantity: Math.abs(newUnits) * 100, avgPrice: Math.abs(newAvg), lastPrice: fillPrice, pnl: (fillPrice - Math.abs(newAvg)) * newUnits, tranches: newTranches }
               : p)
           } else {
-            inv.push({ token: marketId, units: side === 'BUY' ? filledQty : -filledQty, quantity: filledQty * 100, avgPrice: fillPrice, lastPrice: fillPrice, pnl: 0 })
+            inv.push({ 
+              token: marketId, 
+              units: side === 'BUY' ? filledQty : -filledQty, 
+              quantity: filledQty * 100, 
+              avgPrice: fillPrice, 
+              lastPrice: fillPrice, 
+              pnl: 0,
+              tranches: side === 'BUY' ? [{ units: filledQty, bsrStake, avgPrice: fillPrice, timestamp: Date.now() }] : []
+            })
           }
         }
+        // Remove positions with zero units
+        inv = inv.filter(p => p.units !== 0)
+        
+        // Calculate weighted average BSR ratio for fee calculation
+        const getWeightedBsrStake = (tranches: PositionTranche[], closingUnits: number) => {
+          if (tranches.length === 0) return bsrStake
+          
+          let totalWeightedStake = 0
+          let totalUnits = 0
+          let remainingToClose = Math.abs(closingUnits)
+          
+          // For closing positions, calculate weighted average of all open tranches
+          for (const tranche of tranches) {
+            if (remainingToClose <= 0) break
+            const trancheUnits = Math.min(tranche.units, remainingToClose)
+            totalWeightedStake += tranche.bsrStake * trancheUnits
+            totalUnits += trancheUnits
+            remainingToClose -= trancheUnits
+          }
+          
+          return totalUnits > 0 ? totalWeightedStake / totalUnits : bsrStake
+        }
+        
+        const weightedBsrStake = getWeightedBsrStake(pos?.tranches || [], side === 'SELL' ? filledQty : 0)
+        
+        // Calculate and deduct trading fee from eEURO balance
+        const feePct =
+          weightedBsrStake >= 100 ? 0.0020 :
+          weightedBsrStake >= 75  ? 0.0035 :
+          weightedBsrStake >= 50  ? 0.0060 :
+          weightedBsrStake >= 25  ? 0.0085 : 0.0100
+        const feeInEUR = (fillPrice * filledQty) * feePct
+        const newEuroBalance = u.user.eEuroBalance - eEuroDeposit - feeInEUR
+        
         return {
-          user: { ...u.user, bsrBalance: u.user.bsrBalance - bsrNeeded, eEuroBalance: u.user.eEuroBalance - eEuroDeposit },
+          user: { ...u.user, bsrBalance: u.user.bsrBalance - bsrNeeded, eEuroBalance: newEuroBalance },
           inventory: inv,
           vault: { lockedBSR: newLockedBSR, lockedEuro: newLockedEuro },
           hFactor: newHFactor,
@@ -453,9 +503,12 @@ export const useUserAccount = create<UserAccountState>((set, get) => ({
     walletConnected: false, walletAddress: undefined,
   },
   inventory: [
-    { token: 'BS-P-PL', units: 30, quantity: 3000, avgPrice: 10.45, lastPrice: 10.59, pnl: 420.00 },
-    { token: 'BS-G-NL', units: 45, quantity: 4500, avgPrice: 4.80,  lastPrice: 4.85,  pnl: 225.00 },
-    { token: 'BS-G-DE', units: 22, quantity: 2200, avgPrice: 4.90,  lastPrice: 4.85,  pnl: -110.00 },
+    { token: 'BS-P-PL', units: 30, quantity: 3000, avgPrice: 10.45, lastPrice: 10.59, pnl: 420.00, 
+      tranches: [{ units: 30, bsrStake: 50, avgPrice: 10.45, timestamp: Date.now() - 86400000 }] },
+    { token: 'BS-G-NL', units: 45, quantity: 4500, avgPrice: 4.80,  lastPrice: 4.85,  pnl: 225.00,
+      tranches: [{ units: 45, bsrStake: 75, avgPrice: 4.80, timestamp: Date.now() - 172800000 }] },
+    { token: 'BS-G-DE', units: 22, quantity: 2200, avgPrice: 4.90,  lastPrice: 4.85,  pnl: -110.00,
+      tranches: [{ units: 22, bsrStake: 25, avgPrice: 4.90, timestamp: Date.now() - 259200000 }] },
   ],
   vault: { lockedBSR: 1250.40, lockedEuro: 450.00 },
   solvency: 1.25,   // H_solv ratio (Tier I > 1.15)

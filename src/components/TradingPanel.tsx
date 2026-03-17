@@ -358,17 +358,13 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
               ))}
             </div>
 
-            {/* Margin info for selected tier */}
-            <div className="mt-1.5 flex justify-between text-[7px] text-gray-500">
-              <span>
-                Margin: <span className="text-gray-500">
-                  {side === 'BUY'
-                    ? `${(currentTierData.marginLong * 100).toFixed(0)}% long`
-                    : `${(currentTierData.marginShort * 100).toFixed(0)}% short`}
-                </span>
-              </span>
+            {/* Fee info for selected tier */}
+            <div className="mt-1.5 text-[7px] text-gray-500 text-center">
               <span>
                 Fee: <span className="text-gray-500">{(currentTierData.fee * 100).toFixed(2)}%</span>
+                {pendingOrder && (
+                  <span className="text-gray-600"> ({(parseFloat(price.replace(',', '.')) * quantity * currentTierData.fee).toFixed(2)} eEURO)</span>
+                )}
               </span>
             </div>
           </div>

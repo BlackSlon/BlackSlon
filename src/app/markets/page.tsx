@@ -15,7 +15,7 @@ export default function MarketsPage() {
   const getCode        = (id: string)       => id.split('-')[2]
 
   return (
-    <div className="min-h-screen bg-black text-white p-8 font-mono">
+    <div className="min-h-screen bg-black text-white p-8">
 
       {/* ── Header ── */}
       <div className="text-center mb-12">
@@ -38,7 +38,7 @@ export default function MarketsPage() {
               <div className="w-20 h-20 mx-auto mb-3">
                 <Image src="/BSyellow_image.png" alt="Power Market" width={80} height={80} />
               </div>
-              <p className="text-yellow-500 text-sm font-semibold">{getCountryName(market.name)}</p>
+              <p className="text-yellow-500 text-sm">{getCountryName(market.name)}</p>
               <p className="text-yellow-400 text-[10px] opacity-80">{getMarketType(market.name)}</p>
             </div>
           </Link>
@@ -49,7 +49,7 @@ export default function MarketsPage() {
               <div className="w-20 h-20 mx-auto mb-3">
                 <Image src="/BSblue_image.png" alt="Gas Market" width={80} height={80} />
               </div>
-              <p className="text-blue-500 text-sm font-semibold">{getCountryName(market.name)}</p>
+              <p className="text-blue-400 text-sm">{getCountryName(market.name)}</p>
               <p className="text-blue-400 text-[10px] opacity-80">{getMarketType(market.name)}</p>
             </div>
           </Link>
@@ -61,12 +61,12 @@ export default function MarketsPage() {
         <div className="flex items-center gap-6">
           <div className="flex-1 border-t border-gray-800" />
           <div className="text-center shrink-0">
-            <div className="text-[8px] text-gray-700 uppercase tracking-[0.5em] mb-1">European Expansion</div>
-            <div className="text-[12px] text-gray-600 uppercase tracking-[0.35em] font-bold">Coming Soon</div>
+            <div className="text-[8px] text-gray-500 uppercase tracking-[0.5em] mb-1">European Expansion</div>
+            <div className="text-[12px] text-gray-400 uppercase tracking-[0.35em] font-bold">Coming Soon</div>
           </div>
           <div className="flex-1 border-t border-gray-800" />
         </div>
-        <p className="text-center text-[7px] text-gray-800 mt-3 tracking-[0.3em] uppercase">
+        <p className="text-center text-[7px] text-gray-600 mt-3 tracking-[0.3em] uppercase">
           {dormantPower.length + dormantGas.length} markets · Europe · Integration 2026–2027
         </p>
       </div>
@@ -74,8 +74,8 @@ export default function MarketsPage() {
       {/* ── Coming Soon — Power ── */}
       <div className="max-w-5xl mx-auto mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-1.5 h-1.5 rounded-full bg-yellow-900 opacity-40 shrink-0" />
-          <span className="text-[7px] text-yellow-900 uppercase tracking-[0.35em] shrink-0">Power Markets</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 opacity-40 shrink-0" />
+          <span className="text-[7px] text-yellow-500 uppercase tracking-[0.35em] shrink-0">Power Markets</span>
           <div className="flex-1 border-t border-gray-900" />
           <span className="text-[7px] text-gray-800 shrink-0">{dormantPower.length}</span>
         </div>
@@ -103,8 +103,8 @@ export default function MarketsPage() {
       {/* ── Coming Soon — Gas ── */}
       <div className="max-w-5xl mx-auto mb-12">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-900 opacity-40 shrink-0" />
-          <span className="text-[7px] text-blue-900 uppercase tracking-[0.35em] shrink-0">Gas Markets</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-40 shrink-0" />
+          <span className="text-[7px] text-blue-500 uppercase tracking-[0.35em] shrink-0">Gas Markets</span>
           <div className="flex-1 border-t border-gray-900" />
           <span className="text-[7px] text-gray-800 shrink-0">{dormantGas.length}</span>
         </div>
@@ -127,6 +127,28 @@ export default function MarketsPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* ── Documentation Links ── */}
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 max-w-5xl mx-auto mb-16">
+        <Link href="/whitepaper">
+          <div className="bg-black p-4 text-center transition-all hover:scale-110 cursor-pointer border border-gray-800 rounded-lg">
+            <div className="w-20 h-20 mx-auto mb-3">
+              <Image src="/BS_image.jpg" alt="Whitepaper" width={80} height={80} />
+            </div>
+            <p className="text-white text-sm font-semibold">White Paper</p>
+            <p className="text-gray-400 text-[10px] opacity-80">Protocol Documentation</p>
+          </div>
+        </Link>
+        <Link href="/executive-summary">
+          <div className="bg-black p-4 text-center transition-all hover:scale-110 cursor-pointer border border-gray-800 rounded-lg">
+            <div className="w-20 h-20 mx-auto mb-3">
+              <Image src="/BS_image.jpg" alt="Executive Summary" width={80} height={80} />
+            </div>
+            <p className="text-white text-sm font-semibold">Executive Summary</p>
+            <p className="text-gray-400 text-[10px] opacity-80">Project Overview</p>
+          </div>
+        </Link>
       </div>
 
       {/* ── Footer ── */}

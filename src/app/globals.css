@@ -48,3 +48,34 @@ html, body {
   transform: scale(1.1); 
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
+
+/* Math formula styles */
+.katex-display {
+  text-align: center !important;
+  margin: 1.5em 0 !important;
+}
+
+.katex {
+  font-size: 1.2em !important;
+  line-height: 1.4 !important;
+}
+
+/* Table styles for markdown */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+
+.prose th {
+  background-color: rgb(31, 41, 55);
+  border: 1px solid rgb(55, 65, 81);
+  padding: 0.75rem;
+  text-align: left;
+  color: rgb(251, 191, 36);
+}
+
+.prose td {
+  border: 1px solid rgb(55, 65, 81);
+  padding: 0.75rem;
+}

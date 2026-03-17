@@ -140,30 +140,46 @@ export default function UserAccountPanel() {
 
         {/* ── Section: Portfolio ── */}
         <div>
-          <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-1 text-center">
+          <div className="text-[9px] tracking-widest text-amber-700 font-bold mb-0.5 text-center">
             BlackSlon Tokens Portfolio
           </div>
-          <div className="grid grid-cols-6 text-[7px] text-gray-500 uppercase px-2 py-1 border-b border-gray-900">
+          
+          {/* P&L Total */}
+          <div className="mb-1 px-2 py-0.5 border border-gray-800 rounded-sm bg-gray-900/30">
+            <div className="flex justify-between items-center">
+              <span className="text-[8px] text-gray-500 uppercase tracking-widest">P&L Total</span>
+              <span className={`text-[9px] font-bold ${
+                inventory.filter(item => item.units !== 0).reduce((sum, item) => sum + item.pnl, 0) >= 0 
+                  ? 'text-green-700' 
+                  : 'text-red-600'
+              }`}>
+                {inventory.filter(item => item.units !== 0).reduce((sum, item) => sum + item.pnl, 0) >= 0 ? '+' : ''}
+                {inventory.filter(item => item.units !== 0).reduce((sum, item) => sum + item.pnl, 0).toFixed(2)} EUR
+              </span>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-6 text-[6px] text-gray-500 uppercase px-2 py-0.5 border-b border-gray-900">
             <div className="tracking-widest">Token</div>
             <div className="text-center tracking-widest">Units</div>
             <div className="text-center tracking-widest normal-case">Vol (kWh)</div>
             <div className="text-center tracking-widest">Avg P.</div>
-            <div className="text-center tracking-widest">BSEI</div>
+            <div className="text-center tracking-widest">Last Trade</div>
             <div className="text-right tracking-widest">PnL (EUR)</div>
           </div>
-          {inventory.map((item) => (
+          {inventory.filter(item => item.units !== 0).map((item) => (
             <div
               key={item.token}
-              className="grid grid-cols-6 items-center py-1 px-2 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors"
+              className="grid grid-cols-6 items-center py-0.5 px-2 border-b border-gray-900/50 hover:bg-gray-900/40 transition-colors"
             >
-              <div className={`text-[10px] ${
+              <div className={`text-[9px] ${
                 item.token.startsWith('BS-G') ? 'text-blue-500' : 'text-yellow-500'
               }`}>{item.token}</div>
-              <div className="text-center text-[11px] text-gray-400">{item.units}</div>
-              <div className="text-center text-[11px] text-gray-400">{item.quantity.toLocaleString('fr-FR').replace(/\u202f/g, ' ')}</div>
-              <div className="text-center text-[11px] text-gray-400">{item.avgPrice.toFixed(2)}</div>
-              <div className="text-center text-[11px] text-gray-400">{item.lastPrice.toFixed(2)}</div>
-              <div className={`text-right text-[11px] ${item.pnl >= 0 ? 'text-green-700' : 'text-red-600'}`}>
+              <div className="text-center text-[10px] text-gray-400">{item.units}</div>
+              <div className="text-center text-[10px] text-gray-400">{item.quantity.toLocaleString('fr-FR').replace(/\u202f/g, ' ')}</div>
+              <div className="text-center text-[10px] text-gray-400">{item.avgPrice.toFixed(2)}</div>
+              <div className="text-center text-[10px] text-gray-400">{item.lastPrice.toFixed(2)}</div>
+              <div className={`text-right text-[10px] ${item.pnl >= 0 ? 'text-green-700' : 'text-red-600'}`}>
                 {item.pnl >= 0 ? '+' : ''}{item.pnl.toFixed(2)}
               </div>
             </div>
@@ -240,7 +256,7 @@ export default function UserAccountPanel() {
                 <div className="text-[6px] uppercase tracking-widest" style={{ color: z.color }}>
                   {z.zone}
                 </div>
-                <div className="text-[7px] text-gray-300 leading-tight">{z.threshold}</div>
+                <div className="text-[9px] text-gray-300 leading-tight font-semibold">{z.threshold}</div>
               </div>
             ))}
           </div>
@@ -248,18 +264,11 @@ export default function UserAccountPanel() {
 
         {/* ── Section: Ecosystem Solvency (Protocol Level) ── */}
         <div>
-          <div className="flex items-center justify-between mb-1">
-            <div className="text-[10px] tracking-widest text-amber-700 font-bold">
-              Ecosystem Solvency Engine
-            </div>
-            <span className="text-[7px] text-gray-500 uppercase tracking-widest">(Protocol Level)</span>
-          </div>
-
           {/* H_solv value + tier */}
           <div className="flex justify-between items-center mb-2">
             <div>
-              <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-0.5">
-                H<sub>solv</sub> Index
+              <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-0.5">
+                Hsolv Index
               </div>
               <div className="text-sm font-black tracking-tighter" style={{ color: activeTier.color }}>
                 {hSolv.toFixed(3)}
@@ -291,10 +300,8 @@ export default function UserAccountPanel() {
               }}
             />
           </div>
-          <div className="text-right text-[7px] mt-0.5" style={{ color: activeTier.color + '99' }}>
-            {activeTier.tier === 'I'
-              ? 'Ultra-solvent — all operations permitted'
-              : 'eEURO-only collateral required'}
+          <div className="text-center text-[7px] text-gray-500 mt-1">
+            Ultra-solvent — all operations permitted
           </div>
 
         </div>

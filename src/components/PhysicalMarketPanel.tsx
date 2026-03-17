@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { getMarketData } from '@/data/markets'
 import { getMarketColors } from '@/lib/marketColors'
 
@@ -11,6 +11,28 @@ interface Props {
 export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Props) {
   const colors = getMarketColors(selectedMarketId)
   const marketData = getMarketData(selectedMarketId as any) as any
+  
+  const [timeRemaining, setTimeRemaining] = useState('')
+
+  useEffect(() => {
+    const updateTimer = () => {
+      const now = new Date()
+      const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000)
+      const midnight = new Date(utc)
+      midnight.setUTCHours(24, 0, 0, 0)
+      
+      const diff = midnight.getTime() - utc.getTime()
+      const hours = Math.floor(diff / (1000 * 60 * 60))
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+      
+      setTimeRemaining(`${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`)
+    }
+    
+    updateTimer()
+    const interval = setInterval(updateTimer, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   // Resolve BSSZ data — handle both old format (BS-P-PL) and new format (BS-G-NL)
   let bsszPositions: any[] = []
@@ -78,7 +100,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
         <div className={`mb-3 px-2 py-2 border rounded-sm ${isLocked ? 'border-red-500/60 bg-red-900/10' : colors.border}`}>
           <div className="flex justify-between items-center mb-1">
             <div className={`text-[6px] uppercase tracking-widest ${colors.title}`}>
-              Valid today · {today}
+              Active until: {timeRemaining}
             </div>
             <div className="text-[6px] text-gray-400 tracking-widest">EUR / 100kWh</div>
           </div>
@@ -97,9 +119,6 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
               <span className="text-[7px] text-gray-500 uppercase mb-0">Anchor (a)</span>
               <span className="text-sm text-gray-300 leading-tight font-normal">
                 {currentAnchor.toFixed(2)}
-              </span>
-              <span className="text-[6px] text-gray-700 uppercase tracking-widest mt-0.5">
-                Physical Meridian
               </span>
             </div>
 
@@ -156,51 +175,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
           </div>
         </div>
 
-        {/* ── Anchor Drivers ── */}
-        <div className="px-6 py-4 border-t border-gray-800 bg-black">
-          <div className="flex items-center gap-3 mb-3">
-            <div className={`text-[10px] tracking-widest font-bold ${colors.title}`}>
-              Anchor Drivers
-            </div>
-            <span className={`text-[10px] uppercase tracking-widest ${colors.label}`}>
-              {selectedMarketId}
-            </span>
-            <span className="text-[8px] text-gray-500 ml-auto">
-              Active
-            </span>
-          </div>
-          <div className="text-[8px] text-gray-400 mb-2 text-center">
-            VALID TODAY
-          </div>
-          <div className="flex justify-between items-center font-mono overflow-hidden">
-            {[
-              { label: 'D-1', value: currentAnchor, changePct: 4.2 },
-              { label: 'W-1', value: currentAnchor * 1.012, changePct: 3.1 },
-              { label: 'M-1', value: currentAnchor * 1.024, changePct: 2.4 },
-              { label: 'Q-1', value: currentAnchor * 1.034, changePct: 1.8 },
-              { label: 'H-1', value: currentAnchor * 1.041, changePct: 1.2 },
-              { label: 'Y-1', value: currentAnchor * 0.933, changePct: -6.7 },
-            ].map((driver, i) => (
-              <div
-                key={driver.label}
-                className={`flex flex-col items-center text-center flex-shrink-0 ${
-                  i > 0
-                    ? 'border-l border-gray-900 px-2'
-                    : 'px-2'
-                }`}
-              >
-                <span className="text-[8px] text-gray-500">{driver.label}</span>
-                <span className="text-[9px] text-gray-400">
-                  {driver.value.toFixed(2)}
-                </span>
-                <span className={`text-[8px] ${driver.changePct >= 0 ? 'text-green-700' : 'text-red-600'}`}>
-                  {driver.changePct >= 0 ? '+' : ''}{driver.changePct.toFixed(1)}%
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
+        
       </div>
     </div>
   )

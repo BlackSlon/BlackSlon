@@ -1,12 +1,8 @@
-# BlackSlon Protocol
-### The New Architecture of European Energy Wholesale Markets
-
-
 ## Preface: The Scale of the Problem
 
 The European wholesale energy market is one of the largest and most consequential financial ecosystems on the planet.
 
-Power alone: approximately **3,570,000,000 MWh** traded annually at an average of **€70/MWh** — a market valued at **~€250 billion** in physical delivery. Natural gas: approximately **2,500,000,000 MWh** equivalent at **€50/MWh** — another **~€250 billion**. Combined physical delivery value: **~€500 billion per year**.
+Power alone: approximately **3,570,000,000 MWh** traded annually at an average of **€70/MWh** — a market valued at **€250 billion** in physical delivery. Natural gas: approximately **5,100,000,000 MWh** equivalent at **€50/MWh** — another **€250 billion**. Combined physical delivery value: **€500 billion per year**.
 
 But physical delivery is only the tip of the iceberg. On the TTF gas hub alone (by far the biggest European energy exchange), physically settled contracts represent an estimated 3–5% of total traded volume. The rest is financial — hedges, spreads, rollovers, and speculative flow. The true notional turnover of European energy markets runs into the **trillions of euros annually**.
 
@@ -146,7 +142,8 @@ The architecture we are replacing was built for a different world: one of centra
 
 BlackSlon draws its design philosophy from an unlikely source: **Kazimierz Malewicz** — the Polish-Russian-Ukrainian artist and founding father of Suprematism, pioneer of the Zero Form.
 
-Malewicz did not simplify painting. He stripped it to its irreducible essence — a black square on white canvas — and in doing so created something more powerful than everything that came before it. **He did not add layers. He removed them.**
+Malewicz did not simplify painting. He stripped it to its irreducible essence — a black square on white canvas — and in doing so created something more powerful than everything that came before it. 
+**He did not add layers. He removed them.**
 
 This is exactly what BlackSlon does to energy trading.
 
@@ -162,8 +159,6 @@ Traditional energy markets are buried under layers of manufactured complexity: e
 
 **Zero Entry Barrier.** 100 kWh minimum. Any participant. Anywhere. Any time.
 
-**BlackSlon doesn't add layers of complexity. It strip them away.**
-
 ## Founder's Heritage: Forged by the Markets He's Replacing
 
 BlackSlon was not built in a venture capital office. It was built by me - energy trader who spent 2 decades inside the system that BlackSlon is now replacing.
@@ -175,6 +170,24 @@ I have traded Natural Gas, Power, Crude Oil, Refined Products, Carbon Emissions 
 Most critically: **I operated in the frontier markets of Eastern Europe before digital benchmarks or centralised exchanges existed.** Price discovery happened over phone calls and through boots-on-the-ground intelligence networks. That era taught me something no Bloomberg terminal can: how markets really work when the infrastructure fails, the regulator intervenes, and the counterparty disappears.
 
 That intelligence — boots-on-the-ground, relationship-driven, battle-tested across 20 years of European energy transformation — is the edge that no algorithm alone can replicate. And it is the foundation upon which BlackSlon's protocol is built.
+
+**Energy as the Base Currency of Macro Arbitrage**
+
+Despite the systemic failures I have witnessed over the years, I hold a radical conviction that Energy has transcended its role as a mere commodity/product to become the New Ultimate Base Currency of the Global Economy. While fiat systems fluctuate under political pressure, a kWh remains a universal constant of value. 
+
+I believe that Energy will dictate economic trends for decades to come, functioning as a currency through several critical dimensions:
+
+- Substitution of Labour: In the AI - dominated landscape, energy has emerged as the ultimate substitute for human labour, transforming electricity/gas and other energy commodities into primary driver of service sector inflation. The transition makes modern digital services, with data centres, like the heavy industries of the 21st century. That is hyper-dependent on power prices. Consequently, the global economy is entering a phase where power costs, rather than labour, dictates the final price of digital and professional services.
+
+- Global Standard: While fiat currencies can be printed, energy must be extracted or generated, it defines the boundaries of growth and the real value of assets in a shifting geopolitical landscape.
+
+- Digital Anchor: As the foundational cost and the ultimate validator of the cryptocurrency ecosystem, primarily within the Bitcoin network. Energy is not just a cost, it is the raw material converted into security and financial sovereignty, where Bitcoin mining acts as a direct arbitrage between global electricity prices and digital asset value.
+
+- The Ultimate Inflation Driver: Energy is no longer just a raw material but the primary driver of inflation and the cost of production for everything from food to industrial metals.
+
+- Carbon-Backed Value: Through emission trading systems, energy has become a dual-monetary system where CO2 costs act as a global tax on production and capital flow.
+
+In my view, energy flow may be the pure geometry of the modern market, yet its complexity has kept it out of reach for too many, for too long. BlackSlon changes this by bringing transparency and liquidity to regional energy pricing. It's opening the gates for everyone - from individual participants to small and big enterprises - allowing them to gain direct exposure and hedge against energy price movements. By removing the barriers that once made these markets invisible to the public, BlackSlon empowers every user to navigate energy volatility using a simple, tokenized standard that was previously reserved only for global institutions.
 
 I am an alumnus of the University of Warsaw (UW), St. Petersburg State University (SPbGU), and Moscow State University of International Relations (MGIMO) in International Relations, as well as PhD studies at the University of Warsaw.
 
@@ -195,3 +208,10 @@ This is not a flaw in the European energy market architecture. **It is the archi
 **BlackSlon is not an optimization of this system. It is its replacement.**
 
 and it has happened before. In 1973, Marc Rich executed the first spot oil trade — a direct, bilateral crude transaction that bypassed the long-term contract structures that had governed oil markets since their inception. The established players called it reckless. Regulators called it destabilising. Within a decade, the spot market he created **is** the oil market — and every benchmark, every futures contract, every hedge traded by the institutions that once dismissed him is priced against it.
+
+**Just as Marc Rich didn't wait for the oil market to change in the 1970s,**
+**and created the oil spot market from scratch,**
+**BlackSlon is engineering the new wholesale energy trading ecosystem,**
+**but BlackSlon doesn't reflect markets**
+
+**BlackSlon is the Market**
