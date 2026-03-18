@@ -20,7 +20,7 @@ export default function ExecutiveSummaryPage() {
               <img src="/BS_image.jpg" alt="BlackSlon" className="h-60 w-auto hover:opacity-80 transition-opacity" />
             </a>
           </div>
-          <h1 className="text-4xl mb-6 text-amber-600 text-center">BlackSlon - Executive Summary</h1>
+          <h1 className="text-4xl mb-6 text-amber-600 text-center">BlackSlon<br/>Executive Summary</h1>
           <p className="text-gray-400 text-center">The New Architecture of European Energy Wholesale Markets</p>
         </div>
 

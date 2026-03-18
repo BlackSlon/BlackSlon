@@ -20,7 +20,7 @@ export default function WhitepaperPage() {
               <img src="/BS_image.jpg" alt="BlackSlon" className="h-60 w-auto hover:opacity-80 transition-opacity" />
             </a>
           </div>
-          <h1 className="text-4xl mb-6 text-amber-600 text-center">BlackSlon - White Paper</h1>
+          <h1 className="text-4xl mb-6 text-amber-600 text-center">BlackSlon<br/>White Paper</h1>
           <p className="text-gray-400 text-center">Protocol Documentation & Technical Specifications</p>
         </div>
 
