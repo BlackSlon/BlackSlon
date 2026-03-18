@@ -91,9 +91,6 @@ export default function MarketPanel() {
       {/* ── 4-panel grid ── */}
       <div className="flex-grow grid grid-cols-[22%_26%_20%_28%] divide-x divide-gray-900 mb-4 overflow-hidden">
         <div className="overflow-y-auto no-scrollbar">
-          <PhysicalMarketPanel />
-        </div>
-        <div className="overflow-y-auto no-scrollbar">
           <VirtualMarketPanel />
         </div>
         <div className="overflow-y-auto no-scrollbar">
@@ -101,6 +98,9 @@ export default function MarketPanel() {
         </div>
         <div className="overflow-y-auto no-scrollbar">
           <UserAccountPanel />
+        </div>
+        <div className="overflow-y-auto no-scrollbar">
+          <PhysicalMarketPanel />
         </div>
       </div>
 

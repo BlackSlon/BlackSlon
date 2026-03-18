@@ -49,8 +49,8 @@ export default function MarketsPage() {
               <div className="w-20 h-20 mx-auto mb-3">
                 <Image src="/BSblue_image.png" alt="Gas Market" width={80} height={80} />
               </div>
-              <p className="text-blue-400 text-sm">{getCountryName(market.name)}</p>
-              <p className="text-blue-400 text-[10px] opacity-80">{getMarketType(market.name)}</p>
+              <p className="text-cyan-400 text-sm">{getCountryName(market.name)}</p>
+              <p className="text-cyan-400 text-[10px] opacity-80">{getMarketType(market.name)}</p>
             </div>
           </Link>
         ))}

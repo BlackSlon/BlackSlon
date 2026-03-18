@@ -201,7 +201,7 @@ export default function UserAccountPanel() {
               <div className="text-[8px] text-gray-600 uppercase tracking-widest mb-0.5">
                 H-Factor (H<sub>user</sub>)
               </div>
-              <div className="text-sm font-black tracking-tighter" style={{ color: healthZone.color }}>
+              <div className="text-sm font-normal tracking-tighter" style={{ color: healthZone.color }}>
                 {hFactor.toFixed(3)}
               </div>
             </div>
@@ -270,7 +270,7 @@ export default function UserAccountPanel() {
               <div className="text-[10px] tracking-widest text-amber-700 font-bold mb-0.5">
                 Hsolv Index
               </div>
-              <div className="text-sm font-black tracking-tighter" style={{ color: activeTier.color }}>
+              <div className="text-sm font-normal tracking-tighter" style={{ color: activeTier.color }}>
                 {hSolv.toFixed(3)}
               </div>
             </div>
