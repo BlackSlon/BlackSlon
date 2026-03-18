@@ -87,8 +87,8 @@ export default function MarketPage() {
                 className={`text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-sm border transition-all ${
                   ic.isGas
                     ? isActive
-                      ? 'border-blue-300 bg-blue-500 text-black shadow-[0_0_12px_rgba(59,130,246,0.38)]'
-                      : 'border-blue-500/50 bg-blue-500/5 text-blue-400 hover:border-blue-400 hover:bg-blue-500/10 hover:text-blue-300'
+                      ? 'border-cyan-300 bg-cyan-400 text-black shadow-[0_0_12px_rgba(34,211,238,0.38)]'
+                      : 'border-cyan-400/50 bg-cyan-400/5 text-cyan-400 hover:border-cyan-300 hover:bg-cyan-400/10 hover:text-cyan-300'
                     : isActive
                       ? 'border-yellow-300 bg-yellow-500 text-black shadow-[0_0_12px_rgba(234,179,8,0.34)]'
                       : 'border-yellow-500/50 bg-yellow-500/5 text-yellow-400 hover:border-yellow-400 hover:bg-yellow-500/10 hover:text-yellow-300'
@@ -99,17 +99,6 @@ export default function MarketPage() {
               </button>
             )
           })}
-          <span className="text-[7px] text-gray-700 self-center mx-1">|</span>
-          {dormantMarkets.map(inst => (
-            <button
-              key={inst.id}
-              disabled
-              className="text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-sm border border-gray-900 text-gray-800 cursor-not-allowed opacity-50"
-              title={inst.name}
-            >
-              {inst.id}
-            </button>
-          ))}
         </div>
         <div className="flex items-center gap-2 ml-auto shrink-0">
           <div className="w-1.5 h-1.5 rounded-full bg-green-700 animate-pulse"></div>
