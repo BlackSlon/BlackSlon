@@ -63,7 +63,7 @@ export default function UserAccountPanel() {
   } = useUserAccount()
 
   const [convertAmount, setConvertAmount] = useState('')
-  const [convertDirection, setConvertDirection] = useState<'BSR_TO_EURO' | 'EURO_TO_BSR'>('BSR_TO_EURO')
+  const [convertDirection, setConvertDirection] = useState<'BSR_TO_EURO' | 'EURO_TO_BSR'>('EURO_TO_BSR')
   const [convertError, setConvertError] = useState<string | null>(null)
   const [convertSuccess, setConvertSuccess] = useState(false)
   const [liquidationRisk, setLiquidationRisk] = useState<boolean | null>(null)
@@ -123,17 +123,17 @@ export default function UserAccountPanel() {
               <div className="text-[7px] text-amber-700 uppercase tracking-widest mb-0">€BSR Balance</div>
               <div className="text-[11px] text-amber-700 leading-tight font-normal">{fmt(user.bsrBalance)}</div>
             </div>
-            <div className="border border-cyan-400/50 rounded-sm py-1 px-3 w-fit">
-              <div className="text-[7px] text-cyan-400 uppercase tracking-widest mb-0"><span className="normal-case">e</span>EURO Balance</div>
-              <div className="text-[11px] text-cyan-400 leading-tight font-normal">{fmt(user.eEuroBalance)}</div>
+            <div className="border border-[#003399]/50 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[7px] text-[#003399] uppercase tracking-widest mb-0"><span className="normal-case">e</span>EURO Balance</div>
+              <div className="text-[11px] text-[#003399] leading-tight font-normal">{fmt(user.eEuroBalance)}</div>
             </div>
             <div className="border border-amber-700 rounded-sm py-1 px-3 w-fit">
               <div className="text-[7px] text-amber-700 uppercase tracking-widest mb-0">Locked €BSR</div>
               <div className="text-[11px] text-amber-700 tracking-tighter leading-tight">{fmt(vault.lockedBSR)}</div>
             </div>
-            <div className="border border-cyan-400/50 rounded-sm py-1 px-3 w-fit">
-              <div className="text-[7px] text-cyan-400 uppercase tracking-widest mb-0">Locked <span className="normal-case">e</span>EURO</div>
-              <div className="text-[11px] text-cyan-400 tracking-tighter leading-tight">{fmt(vault.lockedEuro)}</div>
+            <div className="border border-[#003399]/50 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[7px] text-[#003399] uppercase tracking-widest mb-0">Locked <span className="normal-case">e</span>EURO</div>
+              <div className="text-[11px] text-[#003399] tracking-tighter leading-tight">{fmt(vault.lockedEuro)}</div>
             </div>
           </div>
         </div>
@@ -159,10 +159,10 @@ export default function UserAccountPanel() {
             </div>
           </div>
           
-          <div className="grid grid-cols-6 text-[6px] text-gray-500 uppercase px-2 py-0.5 border-b border-gray-900">
+          <div className="grid grid-cols-6 text-[7px] uppercase text-gray-400 pb-1 border-b border-gray-900 mb-1">
             <div className="tracking-widest">Token</div>
             <div className="text-center tracking-widest">Units</div>
-            <div className="text-center tracking-widest normal-case">Vol (kWh)</div>
+            <div className="text-center tracking-widest">Vol (kWh)</div>
             <div className="text-center tracking-widest">Avg P.</div>
             <div className="text-center tracking-widest">Last Trade</div>
             <div className="text-right tracking-widest">PnL (EUR)</div>
@@ -221,7 +221,7 @@ export default function UserAccountPanel() {
               }}
             />
           </div>
-          <div className="flex justify-between text-[6px] text-gray-600">
+          <div className="flex justify-between text-[6px] text-gray-400">
             <span>0.90</span>
             <span>1.00</span>
             <span>1.10</span>
@@ -259,7 +259,7 @@ export default function UserAccountPanel() {
               }}
             />
           </div>
-          <div className="flex justify-between text-[6px] text-gray-600">
+          <div className="flex justify-between text-[6px] text-gray-400">
             <span>0.90</span>
             <span>1.00</span>
             <span>1.15</span>
@@ -279,7 +279,7 @@ export default function UserAccountPanel() {
               <span className="text-[8px] text-amber-700 uppercase tracking-widest">LIVE</span>
               <span className="text-[11px] text-amber-700 tracking-tighter">1 €BSR</span>
               <span className="text-[11px] text-gray-600">=</span>
-              <span className="text-[11px] text-cyan-400 tracking-tighter">{bsrEuroRate.toFixed(2)} eEURO</span>
+              <span className="text-[11px] text-[#003399] tracking-tighter">{bsrEuroRate.toFixed(2)} eEURO</span>
             </div>
             {/* Exchange row */}
             <div className="flex gap-1.5 items-center">
@@ -301,7 +301,7 @@ export default function UserAccountPanel() {
                 {convertDirection === 'BSR_TO_EURO' ? '€BSR → eEURO' : 'eEURO → €BSR'}
               </button>
               <span className="text-[8px] text-gray-600">
-                Receive: <span className={convertDirection === 'BSR_TO_EURO' ? 'text-cyan-400' : 'text-amber-700'}>
+                Receive: <span className={convertDirection === 'BSR_TO_EURO' ? 'text-[#003399]' : 'text-amber-700'}>
                   {convertAmount && !isNaN(parseFloat(convertAmount))
                     ? convertDirection === 'BSR_TO_EURO'
                       ? `${(parseFloat(convertAmount) * bsrEuroRate).toFixed(2)} eEURO`
@@ -326,8 +326,8 @@ export default function UserAccountPanel() {
                 }}
                 className={`ml-auto px-2 py-0.5 text-[7px] uppercase tracking-widest border transition-all rounded-sm ${
                   convertDirection === 'BSR_TO_EURO'
-                    ? 'border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black'
-                    : 'border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-black'
+                    ? 'border-[#003399] text-[#003399] hover:bg-[#003399] hover:text-white'
+                    : 'border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white'
                 }`}
               >
                 CONVERT

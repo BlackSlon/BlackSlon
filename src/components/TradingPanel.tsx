@@ -106,7 +106,8 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
       // Get current cycle data for this market
       const cycleData = getCurrentCycleData(selectedMarketId)
       if (cycleData) {
-        return (cycleData.anchor / 10).toFixed(2)
+        // Use DA (Day-Ahead) price as last trade price
+        return (cycleData.DA / 10).toFixed(2)
       }
       // Fallback to market data
       const md = getMarketData(selectedMarketId as any) as any
@@ -384,11 +385,11 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
             </div>
 
             {/* Fee info for selected tier */}
-            <div className="mt-1.5 text-[7px] text-gray-500 text-center">
+            <div className="mt-1.5 text-[7px] text-gray-400 text-center">
               <span>
-                Fee: <span className="text-gray-500">{(currentTierData.fee * 100).toFixed(2)}%</span>
+                Fee: <span className="text-gray-400">{(currentTierData.fee * 100).toFixed(2)}%</span>
                 {pendingOrder && (
-                  <span className="text-gray-600"> ({(parseFloat(price.replace(',', '.')) * quantity * currentTierData.fee).toFixed(2)} eEURO)</span>
+                  <span className="text-gray-400"> ({(parseFloat(price.replace(',', '.')) * quantity * currentTierData.fee).toFixed(2)} eEURO)</span>
                 )}
               </span>
             </div>
@@ -397,8 +398,8 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
           {/* eEURO display (read-only) */}
           <div className="px-2 py-1 rounded-sm border border-gray-900">
             <div className="flex justify-between text-[9px] tracking-[0.2em]">
-              <span className="text-cyan-400">eEURO RATIO</span>
-              <span className="text-cyan-400">{euroStake}%</span>
+              <span className="text-[#003399]">eEURO RATIO</span>
+              <span className="text-[#003399]">{euroStake}%</span>
             </div>
           </div>
         </div>
@@ -418,9 +419,9 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
                 {pendingOrder ? `${pendingOrder.marginPct}%` : '—'}
               </div>
             </div>
-            <div className="border border-cyan-400/50 rounded-sm py-1 px-3 w-fit">
-              <div className="text-[8px] text-cyan-400 uppercase tracking-widest mb-0"><span className="normal-case">e</span>EURO Deposit</div>
-              <div className="text-[11px] text-cyan-400 tracking-tighter leading-tight">
+            <div className="border border-[#003399]/50 rounded-sm py-1 px-3 w-fit">
+              <div className="text-[8px] text-[#003399] uppercase tracking-widest mb-0"><span className="normal-case">e</span>EURO Deposit</div>
+              <div className="text-[11px] text-[#003399] tracking-tighter leading-tight">
                 {pendingOrder ? `${pendingOrder.eEuroDeposit.toFixed(2)} EUR` : '—'}
               </div>
             </div>

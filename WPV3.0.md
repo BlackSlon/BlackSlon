@@ -185,6 +185,12 @@ BlackSlon is the first decentralised protocol built specifically for the Europea
 
 We reduce the minimum entry threshold by four orders of magnitude. Instead of €744,600 for the smallest German yearly power contract at wholesale market (1 MW Baseload × 8,760 hours × €85/MWh), participation begins at **100 kWh** — the price of a small energy unit. The same market, accessible to any participant, anywhere, at any time.
 
+**No Physical Delivery Clauses**
+
+Most of gas and power supply agreements carry strict Physical Delivery Clauses. Whether you are QatarGas signing a 15-year LNG offtake or a regional glass manufacturer locking in a 3-year gas or power supply contract — you do not own the price. When wholesale power or gas prices rally +100% and your supply contract is deeply In-the-Money, that value is structurally trapped into a specific geographic location. You cannot monetise it. You cannot transfer it.
+
+BlackSlon breaks this trap. BS-G/P tokens hedge price exposure without delivery point, without volume obligation, without counterparty credit risks. For the first time, the economic value of energy locked inside BS-G/P tokens becomes liquid.
+
 **The Democratisation of the Forward Curve**
 
 The BS-P and BS-G token price operates within a corridor anchored to physical market reality through the Physical Meridian — a weighted basket that permanently embeds 25% Calendar Year exposure into every token, regardless of size. Critically, both Cal+1 and Cal+2 are active components of this basket from July 1st — when the Dormant ADR activates and begins its weekly migration from Cal+1 toward Cal+2. The protocol is continuously rolling into the cheapest part of the forward curve, mechanically and without friction, harvesting the backwardation discount that institutional players spend millions in capital and legal overhead to access manually. When you buy 100 kWh of power token (ie. BS-P-DE) for a few euros, you are not buying spot-price exposure. You are buying utility token that already contains the structural discount of the forward curve — the same economic advantage that Goldman Sachs and Shell extract through multi-million euro Cal+1 and Cal+2 positions — compressed into a single token, accessible without a credit rating, without a bank guarantee, and without a six-month onboarding process.
@@ -1014,7 +1020,7 @@ Phase 1 is deliberately scoped as a liquidity-building period — the primary ob
 
 **Phase 2 — Physical Liquidity (Maturity)**
 
-In Phase 2, liquidity gains a physical dimension as BS-P/G tokens become redeemable for physical energy delivery for eligible industrial consumers (minimum 1MW annual baseload offtake capacity — establishing the operational and regulatory framework for progressive expansion to SMEs and, ultimately, individual households. The end state is a single open market accessible to every energy consumer and producer in Europe, regardless of scale.)
+In Phase 2, liquidity gains a physical dimension as BS-P/G tokens become redeemable for physical energy delivery for eligible industrial consumers (minimum 1MW annual baseload offtake capacity — establishing the operational and regulatory framework for progressive expansion to SMEs and, ultimately, individual households.) The end state is a single open market accessible to every energy consumer and producer in Europe, regardless of scale.
 
 - PLPs evolve from market makers into physical delivery counterparties — a fundamental expansion of their role and revenue base
 - Physical hedge positions become verified protocol assets, strengthening the $H_{solv}$ capital base

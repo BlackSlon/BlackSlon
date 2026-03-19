@@ -274,7 +274,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
 
         {/* ── FM Comparison Table ── */}
         <div className="mt-3 border-t border-gray-800 pt-3">
-          <div className={`text-[10px] tracking-widest font-bold mb-1 text-center ${colors.title}`}>
+          <div className={`text-[9px] tracking-wider font-bold mb-1 text-center ${colors.title}`}>
             Anchor (BSSZ) vs Physical Forward Market (FM)
           </div>
           <div className="grid grid-cols-12 text-[9px] uppercase pb-1 border-b border-gray-900 mb-1">
