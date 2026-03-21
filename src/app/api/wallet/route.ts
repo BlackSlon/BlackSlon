@@ -81,20 +81,37 @@ export async function POST(req: NextRequest) {
     if (body.action === 'verify') {
       const { email, code } = body
       if (!email || !code) return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
+      const normalizedEmail = email.toLowerCase().trim()
+
+      // Strategy 1: check in-memory (works when same lambda handles both requests)
+      let matched = false
       const otps = readOtps().filter(o => o.expires > Date.now())
-      const match = otps.find(o => o.email === email.toLowerCase().trim() && o.code === code)
-      if (!match) return NextResponse.json({ error: 'Invalid or expired code' }, { status: 400 })
+      const memMatch = otps.find(o => o.email === normalizedEmail && o.code === code)
+      if (memMatch) matched = true
+
+      // Strategy 2: cookie-based fallback (works across different lambdas on Vercel)
+      if (!matched) {
+        const cookieVal = req.cookies.get('bs_otp')?.value
+        if (cookieVal) {
+          const [cEmail, cCode] = cookieVal.split(':')
+          if (cEmail === normalizedEmail && cCode === code) matched = true
+        }
+      }
+
+      if (!matched) return NextResponse.json({ error: 'Invalid or expired code' }, { status: 400 })
+
       // Mark email as verified in DB
       const entries = readDb()
-      const idx = entries.findIndex(e => e.email === email.toLowerCase().trim())
+      const idx = entries.findIndex(e => e.email === normalizedEmail)
       if (idx >= 0) entries[idx].verified = true
-      // Remove used OTP
-      const normalizedEmail = email.toLowerCase().trim()
+      // Remove used OTP from memory
       for (let i = memOtps.length - 1; i >= 0; i--) {
         if (memOtps[i].email === normalizedEmail) memOtps.splice(i, 1)
       }
       persistToDisk()
-      return NextResponse.json({ ok: true })
+      const resp = NextResponse.json({ ok: true })
+      resp.cookies.delete('bs_otp')
+      return resp
     }
 
     // ── Register & send OTP ─────────────────────────────────────────────────
@@ -131,7 +148,16 @@ export async function POST(req: NextRequest) {
     const resendKey = process.env.RESEND_API_KEY
     if (!resendKey) {
       // Dev mode: no email sent, return code directly so UI can show it
-      return NextResponse.json({ ok: true, devCode: code })
+      // Also set HttpOnly cookie so verification works across serverless lambdas
+      const resp = NextResponse.json({ ok: true, devCode: code })
+      resp.cookies.set('bs_otp', `${normalEmail}:${code}`, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 900, // 15 min
+        path: '/api/wallet',
+        sameSite: 'strict',
+      })
+      return resp
     }
 
     const { Resend } = await import('resend')
