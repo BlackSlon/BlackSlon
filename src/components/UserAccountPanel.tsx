@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useUserAccount } from '@/store/blackslon'
+import { useUserAccount, useInsufficientFundsAlert } from '@/store/blackslon'
 import Tooltip from '@/components/Tooltip'
 import { STATIC_TOOLTIPS } from '@/lib/marketTooltips'
 import WalletConnect from '@/components/WalletConnect'
@@ -77,6 +77,8 @@ export default function UserAccountPanel() {
     checkLiquidation,
     convertTokens,
   } = useUserAccount()
+
+  const fundsAlert = useInsufficientFundsAlert(s => s.active)
 
   const [convertAmount, setConvertAmount] = useState('')
   const [convertDirection, setConvertDirection] = useState<'BSR_TO_EURO' | 'EURO_TO_BSR'>('EURO_TO_BSR')
@@ -324,7 +326,7 @@ export default function UserAccountPanel() {
               </div>
             </Tooltip>
           </div>
-          <div className="border border-gray-900 rounded-sm px-3 py-1.5">
+          <div className={`border rounded-sm px-3 py-1.5 transition-all ${fundsAlert ? 'border-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.4)]' : 'border-gray-900'}`}>
             {/* Live rate */}
             <div className="flex items-center gap-2 mb-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-amber-700 animate-pulse shrink-0" />
@@ -332,10 +334,6 @@ export default function UserAccountPanel() {
               <span className="text-[11px] text-amber-700 tracking-tighter">1 €BSR</span>
               <span className="text-[11px] text-gray-400">=</span>
               <span className="text-[11px] text-[#003399] tracking-tighter">{bsrEuroRate.toFixed(2)} eEURO</span>
-            </div>
-            {/* Info hint */}
-            <div className="text-[7px] text-gray-400 mb-1.5 leading-relaxed">
-              To trade, you need <span className="text-amber-700 font-bold">€BSR</span> collateral. Convert your <span className="text-[#003399] font-bold">eEURO</span> to <span className="text-amber-700 font-bold">€BSR</span> below.
             </div>
             {/* Exchange row */}
             <div className="flex gap-1.5 items-center">

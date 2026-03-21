@@ -24,6 +24,21 @@ export const useDealConfirmation = create<DealConfirmationState>((set) => ({
   clearDeal: () => set({ deal: null }),
 }))
 
+interface InsufficientFundsAlertState {
+  active: boolean
+  trigger: () => void
+  clear: () => void
+}
+
+export const useInsufficientFundsAlert = create<InsufficientFundsAlertState>((set) => ({
+  active: false,
+  trigger: () => {
+    set({ active: true })
+    setTimeout(() => set({ active: false }), 4000)
+  },
+  clear: () => set({ active: false }),
+}))
+
 export const useMarketPanel = create<MarketPanelState>((set, get) => ({
   currentPrice: 9.938, // BS-P-PL default
   activeMarketId: 'BS-P-PL',

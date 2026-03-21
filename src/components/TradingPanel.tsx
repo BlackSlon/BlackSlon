@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTrading, useVirtual, useUserAccount } from '@/store/blackslon'
+import { useTrading, useVirtual, useUserAccount, useInsufficientFundsAlert } from '@/store/blackslon'
 import { getMarketData } from '@/data/markets'
 import { getMarketColors } from '@/lib/marketColors'
 import { getCurrentCycleData } from '@/lib/marketCycle'
@@ -241,6 +241,9 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
     const error = placeOrder(side, p, quantity, effectiveBsrStake, selectedMarketId || 'BS-P-PL')
     if (error) {
       setOrderError(error)
+      if (error.includes('Insufficient')) {
+        useInsufficientFundsAlert.getState().trigger()
+      }
     } else {
       setOrderSuccess(true)
       setTimeout(() => setOrderSuccess(false), 2500)

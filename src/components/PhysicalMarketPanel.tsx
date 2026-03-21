@@ -408,14 +408,14 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
                     <div className="col-span-2 text-[11px] text-gray-400 text-center">{row.fm!.toFixed(2)}</div>
                     <div className="col-span-2 text-[11px] text-gray-400 text-center">{row.anchor.toFixed(2)}</div>
                     <div className={`col-span-2 text-[11px] text-center ${
-                      spreadPct >= 0 ? 'text-green-600' : 'text-red-500'
+                      spreadPct >= 0 ? 'text-green-700' : 'text-red-600'
                     }`}>
-                      {spreadPct >= 0 ? '+' : ''}{spreadPct.toFixed(2)}%
+                      {spreadPct >= 0 ? '▲' : '▼'} {Math.abs(spreadPct).toFixed(1)}%
                     </div>
                     <div className={`col-span-2 text-[11px] text-right ${
-                      spreadNominal >= 0 ? 'text-green-600' : 'text-red-500'
+                      spreadNominal >= 0 ? 'text-green-700' : 'text-red-600'
                     }`}>
-                      {spreadNominal >= 0 ? '+' : ''}{spreadNominal.toFixed(3)}
+                      {spreadNominal >= 0 ? '▲' : '▼'} {Math.abs(spreadNominal).toFixed(2)}
                     </div>
                   </div>
                 )
