@@ -1,9 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
-
-const DB_PATH = path.join(process.cwd(), 'data', 'wallet_emails.json')
-const OTP_PATH = path.join(process.cwd(), 'data', 'wallet_otps.json')
 
 interface WalletEntry {
   email: string
@@ -19,31 +14,58 @@ interface OtpEntry {
   expires: number
 }
 
-function ensureDbExists() {
-  const dir = path.dirname(DB_PATH)
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
-  if (!fs.existsSync(DB_PATH)) fs.writeFileSync(DB_PATH, '[]', 'utf-8')
-  if (!fs.existsSync(OTP_PATH)) fs.writeFileSync(OTP_PATH, '[]', 'utf-8')
+// ── Storage layer: in-memory (works everywhere incl. serverless) ──────────────
+// On Vercel / serverless the filesystem is read-only, so fs.writeFileSync
+// would throw → "Server error".  In-memory maps are sufficient because
+// OTPs are short-lived (15 min) and the email list is only for demo/prototype.
+// For persistence across cold starts, swap this with a real DB (e.g. Neon).
+const memDb: WalletEntry[] = []
+const memOtps: OtpEntry[] = []
+
+// Try to seed from disk on first load (works in dev, no-op in serverless)
+let seeded = false
+function seedFromDisk() {
+  if (seeded) return
+  seeded = true
+  try {
+    const fs = require('fs')
+    const path = require('path')
+    const DB_PATH = path.join(process.cwd(), 'data', 'wallet_emails.json')
+    const OTP_PATH = path.join(process.cwd(), 'data', 'wallet_otps.json')
+    if (fs.existsSync(DB_PATH)) {
+      const data = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'))
+      if (Array.isArray(data)) memDb.push(...data)
+    }
+    if (fs.existsSync(OTP_PATH)) {
+      const data = JSON.parse(fs.readFileSync(OTP_PATH, 'utf-8'))
+      if (Array.isArray(data)) memOtps.push(...data)
+    }
+  } catch { /* serverless — ignore */ }
+}
+
+function persistToDisk() {
+  try {
+    const fs = require('fs')
+    const path = require('path')
+    const dir = path.join(process.cwd(), 'data')
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+    fs.writeFileSync(path.join(dir, 'wallet_emails.json'), JSON.stringify(memDb, null, 2), 'utf-8')
+    fs.writeFileSync(path.join(dir, 'wallet_otps.json'), JSON.stringify(memOtps, null, 2), 'utf-8')
+  } catch { /* serverless — ignore */ }
 }
 
 function readDb(): WalletEntry[] {
-  ensureDbExists()
-  try { return JSON.parse(fs.readFileSync(DB_PATH, 'utf-8')) } catch { return [] }
-}
-
-function writeDb(entries: WalletEntry[]) {
-  ensureDbExists()
-  fs.writeFileSync(DB_PATH, JSON.stringify(entries, null, 2), 'utf-8')
+  seedFromDisk()
+  return memDb
 }
 
 function readOtps(): OtpEntry[] {
-  ensureDbExists()
-  try { return JSON.parse(fs.readFileSync(OTP_PATH, 'utf-8')) } catch { return [] }
-}
-
-function writeOtps(otps: OtpEntry[]) {
-  ensureDbExists()
-  fs.writeFileSync(OTP_PATH, JSON.stringify(otps, null, 2), 'utf-8')
+  seedFromDisk()
+  // Purge expired
+  for (let i = memOtps.length - 1; i >= 0; i--) {
+    if (memOtps[i].expires <= Date.now()) memOtps.splice(i, 1)
+  }
+  return memOtps
 }
 
 function generateOtp(): string {
@@ -66,9 +88,12 @@ export async function POST(req: NextRequest) {
       const entries = readDb()
       const idx = entries.findIndex(e => e.email === email.toLowerCase().trim())
       if (idx >= 0) entries[idx].verified = true
-      writeDb(entries)
       // Remove used OTP
-      writeOtps(otps.filter(o => o.email !== email.toLowerCase().trim()))
+      const normalizedEmail = email.toLowerCase().trim()
+      for (let i = memOtps.length - 1; i >= 0; i--) {
+        if (memOtps[i].email === normalizedEmail) memOtps.splice(i, 1)
+      }
+      persistToDisk()
       return NextResponse.json({ ok: true })
     }
 
@@ -79,24 +104,26 @@ export async function POST(req: NextRequest) {
     }
     const normalEmail = email.toLowerCase().trim()
 
-    // Upsert into DB
+    // Upsert into DB (in-memory)
     const entries = readDb()
     if (!entries.find(e => e.email === normalEmail)) {
-      entries.push({
+      memDb.push({
         email: normalEmail,
         timestamp: new Date().toISOString(),
         verified: false,
         ip: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || undefined,
         userAgent: req.headers.get('user-agent') || undefined,
       })
-      writeDb(entries)
     }
 
     const code = generateOtp()
     const expires = Date.now() + 15 * 60 * 1000 // 15 minutes
-    const otps = readOtps().filter(o => o.email !== normalEmail && o.expires > Date.now())
-    otps.push({ email: normalEmail, code, expires })
-    writeOtps(otps)
+    // Remove old OTPs for this email
+    for (let i = memOtps.length - 1; i >= 0; i--) {
+      if (memOtps[i].email === normalEmail) memOtps.splice(i, 1)
+    }
+    memOtps.push({ email: normalEmail, code, expires })
+    persistToDisk()
 
     console.log(`[BlackSlon Wallet] OTP for ${normalEmail}: ${code}`)
 

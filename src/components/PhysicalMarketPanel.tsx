@@ -317,7 +317,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
               </div>
             </div>
           </div>
-          <div className="space-y-0.5">
+          <div className="space-y-1.5">
             {(() => {
               // FM data for each market
               const fmData: Record<string, Array<{label: string; date: string; anchor: number; fm: number}>> = {
@@ -402,7 +402,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
                 const spreadNominal = row.fm - row.anchor
                 
                 return (
-                  <div key={row.label} className="grid grid-cols-12 items-center py-0.25 border-b border-gray-900/30">
+                  <div key={row.label} className="grid grid-cols-12 items-center py-1 border-b border-gray-900/30">
                     <div className="col-span-2 text-[11px] text-gray-300">
                       {row.label}
                     </div>
