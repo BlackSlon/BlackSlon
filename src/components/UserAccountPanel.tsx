@@ -193,7 +193,7 @@ export default function UserAccountPanel() {
               <div className="text-center text-[10px] text-gray-400">{item.quantity.toLocaleString('fr-FR').replace(/\u202f/g, ' ')}</div>
               <div className="text-center text-[10px] text-gray-400">{item.avgPrice.toFixed(2)}</div>
               <div className="text-center text-[10px] text-gray-400">{item.lastPrice.toFixed(2)}</div>
-              <div className={`text-right text-[10px] ${item.pnl >= 0 ? 'text-green-700' : 'text-red-600'}`}>
+              <div className={`text-right text-[10px] ${item.pnl >= 0 ? 'text-green-600' : 'text-red-500'}`}>
                 {item.pnl >= 0 ? '+' : ''}{item.pnl.toFixed(2)}
               </div>
             </div>
@@ -204,8 +204,8 @@ export default function UserAccountPanel() {
               <span className="text-[8px] text-gray-500 uppercase tracking-widest">P&L Total</span>
               <span className={`text-[9px] font-bold ${
                 inventory.filter(item => item.units !== 0).reduce((sum, item) => sum + item.pnl, 0) >= 0
-                  ? 'text-green-700'
-                  : 'text-red-600'
+                  ? 'text-green-600'
+                  : 'text-red-500'
               }`}>
                 {inventory.filter(item => item.units !== 0).reduce((sum, item) => sum + item.pnl, 0) >= 0 ? '+' : ''}
                 {inventory.filter(item => item.units !== 0).reduce((sum, item) => sum + item.pnl, 0).toFixed(2)} EUR
@@ -227,7 +227,7 @@ export default function UserAccountPanel() {
           {/* H_user value + zone - compact */}
           <div className="flex justify-between items-center mb-1">
             <div className="flex items-baseline gap-2">
-              <span className="text-[7px] text-gray-600 uppercase">H-Factor</span>
+              <span className="text-[7px] text-gray-400 uppercase">H-Factor</span>
               <span className="text-[9px] font-bold tracking-tighter" style={{ color: healthZone.color }}>
                 {hFactor.toFixed(3)}
               </span>
@@ -280,7 +280,7 @@ export default function UserAccountPanel() {
           {/* H_solv value + tier - compact */}
           <div className="flex justify-between items-center mb-1">
             <div className="flex items-baseline gap-2">
-              <span className="text-[7px] text-gray-600 uppercase">H<sub>solv</sub></span>
+              <span className="text-[7px] text-gray-400 uppercase">H<sub>solv</sub></span>
               <span className="text-[9px] font-bold tracking-tighter" style={{ color: activeTier.color }}>
                 {hSolv.toFixed(3)}
               </span>
@@ -330,11 +330,11 @@ export default function UserAccountPanel() {
               <div className="w-1.5 h-1.5 rounded-full bg-amber-700 animate-pulse shrink-0" />
               <span className="text-[8px] text-amber-700 uppercase tracking-widest">LIVE</span>
               <span className="text-[11px] text-amber-700 tracking-tighter">1 €BSR</span>
-              <span className="text-[11px] text-gray-600">=</span>
+              <span className="text-[11px] text-gray-400">=</span>
               <span className="text-[11px] text-[#003399] tracking-tighter">{bsrEuroRate.toFixed(2)} eEURO</span>
             </div>
             {/* Info hint */}
-            <div className="text-[7px] text-gray-600 mb-1.5 leading-relaxed">
+            <div className="text-[7px] text-gray-400 mb-1.5 leading-relaxed">
               To trade, you need <span className="text-amber-700 font-bold">€BSR</span> collateral. Convert your <span className="text-[#003399] font-bold">eEURO</span> to <span className="text-amber-700 font-bold">€BSR</span> below.
             </div>
             {/* Exchange row */}
@@ -379,7 +379,7 @@ export default function UserAccountPanel() {
               >
                 CONVERT
               </button>
-              {convertSuccess && <span className="text-[7px] text-green-700">✓</span>}
+              {convertSuccess && <span className="text-[7px] text-green-500">✓</span>}
               <span className="text-[7px] text-gray-500 ml-1">Receive:</span>
               <span className={`text-[11px] font-bold tracking-tight ${convertDirection === 'BSR_TO_EURO' ? 'text-[#003399]' : 'text-amber-700'}`}>
                 {convertAmount && !isNaN(parseFloat(convertAmount))
@@ -390,7 +390,7 @@ export default function UserAccountPanel() {
               </span>
             </div>
             {convertError && (
-              <div className="text-[7px] text-red-600 mt-1">{convertError}</div>
+              <div className="text-[7px] text-red-500 mt-1">{convertError}</div>
             )}
           </div>
         </div>

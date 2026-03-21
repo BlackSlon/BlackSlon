@@ -43,7 +43,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
     ? {
         title: 'text-cyan-400',
         value: 'text-cyan-400',
-        label: 'text-cyan-700',
+        label: 'text-cyan-400',
         border: 'border-cyan-800/30',
         pulse: 'bg-cyan-700',
         isGas: true,
@@ -53,7 +53,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
     : {
         title: 'text-yellow-600',
         value: 'text-yellow-500',
-        label: 'text-yellow-700',
+        label: 'text-yellow-500',
         border: 'border-yellow-800/30',
         pulse: 'bg-yellow-700',
         isGas: false,
@@ -317,7 +317,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
             <div className="text-[8px] text-red-500 uppercase tracking-widest animate-pulse">
               ⛔ Tier IV Safeguard — Reduce-Only Mode Active
             </div>
-            <div className="text-[7px] text-red-700 mt-0.5">
+            <div className="text-[7px] text-red-500 mt-0.5">
               New positions are blocked. You may only reduce existing positions.
             </div>
           </div>
@@ -327,7 +327,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
             <div className="text-[8px] text-amber-500 uppercase tracking-widest">
               ⚠ Tier III — eEURO-Only Collateral Required
             </div>
-            <div className="text-[7px] text-amber-700 mt-0.5">
+            <div className="text-[7px] text-amber-500 mt-0.5">
               BSR stake disabled. New positions require 100% eEURO collateral.
             </div>
           </div>
@@ -337,7 +337,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
             <div className="text-[8px] text-red-500 uppercase tracking-widest animate-pulse">
               🔒 Emergency Collateral Lock Active
             </div>
-            <div className="text-[7px] text-red-700 mt-0.5">
+            <div className="text-[7px] text-red-500 mt-0.5">
               €BSR collateral frozen at T-24h price. Anti-Death-Spiral rule engaged.
             </div>
           </div>
@@ -350,7 +350,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
             disabled={isBlocked}
             className={`flex-1 py-1.5 border font-normal uppercase tracking-widest text-[9px] transition-all duration-200 rounded-sm disabled:opacity-30 disabled:cursor-not-allowed ${
               side === 'BUY' 
-                ? 'border-green-700 bg-green-700/10 text-green-700' 
+                ? 'border-green-600 bg-green-600/10 text-green-600' 
                 : 'border-gray-900 text-gray-500 hover:border-green-500 hover:bg-green-500/20 hover:text-green-400 hover:shadow-green-500/20'
             }`}
           >BUY</button>
@@ -373,18 +373,18 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
           </div>
           <div className="flex items-center justify-center">
             <div className={`bg-zinc-800/70 border rounded-sm flex items-center w-fit mx-auto transition-colors ${priceOutOfBSSZ ? 'border-red-600' : 'border-gray-700'}`}>
-              <button onClick={() => handlePriceStep(-0.01)} className="text-sm text-gray-600 hover:text-white px-2 py-1">−</button>
+              <button onClick={() => handlePriceStep(-0.01)} className="text-sm text-gray-400 hover:text-white px-2 py-1">−</button>
               <input
                 type="text"
                 value={price}
                 onChange={(e) => { setPrice(e.target.value); setOrderError(null) }}
                 className="bg-transparent text-sm text-white tracking-tighter leading-none text-center outline-none w-16 py-1"
               />
-              <button onClick={() => handlePriceStep(+0.01)} className="text-sm text-gray-600 hover:text-white px-2 py-1">+</button>
+              <button onClick={() => handlePriceStep(+0.01)} className="text-sm text-gray-400 hover:text-white px-2 py-1">+</button>
             </div>
           </div>
           {priceOutOfBSSZ && (
-            <div className="text-[7px] text-red-600 text-center mt-1">
+            <div className="text-[7px] text-red-500 text-center mt-1">
               Price outside BSSZ corridor — order will be rejected
             </div>
           )}
@@ -397,21 +397,21 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
           </div>
           <div className="flex items-center justify-center">
             <div className="bg-zinc-800/70 border border-gray-700 rounded-sm flex items-center w-fit mx-auto">
-              <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="text-sm text-gray-600 hover:text-white px-2 py-1">−</button>
+              <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="text-sm text-gray-400 hover:text-white px-2 py-1">−</button>
               <input
                 type="number"
                 value={quantity}
                 onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
                 className="bg-transparent text-sm text-white tracking-tighter leading-none text-center outline-none w-16 py-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
-              <button onClick={() => setQuantity(q => q + 1)} className="text-sm text-gray-600 hover:text-white px-2 py-1">+</button>
+              <button onClick={() => setQuantity(q => q + 1)} className="text-sm text-gray-400 hover:text-white px-2 py-1">+</button>
             </div>
           </div>
                   </div>
 
         {/* Confirm */}
         {orderSuccess ? (
-          <div className="w-full py-2 mb-4 border border-green-700 text-green-700 text-center uppercase tracking-[0.3em] text-[10px] rounded-sm animate-pulse">
+          <div className="w-full py-2 mb-4 border border-green-600 text-green-600 text-center uppercase tracking-[0.3em] text-[10px] rounded-sm animate-pulse">
             ✓ ORDER PLACED
           </div>
         ) : (
@@ -420,8 +420,8 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
             disabled={isBlocked || priceOutOfBSSZ}
             className={`w-full py-2 mb-4 border uppercase tracking-[0.3em] text-[10px] transition-all duration-300 rounded-sm shrink-0 disabled:opacity-30 disabled:cursor-not-allowed ${
               side === 'BUY'
-                ? 'border-green-700 text-green-700 hover:bg-green-700 hover:text-black'
-                : 'border-red-600 text-red-600 hover:bg-red-600 hover:text-white'
+                ? 'border-green-600 text-green-600 hover:bg-green-600 hover:text-black'
+                : 'border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
             }`}
           >
             CONFIRM {side} ORDER
@@ -476,7 +476,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
                       className={`flex-1 py-1 text-[7px] rounded-sm border transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
                         bsrTier === tier && !isForcedEuroOnly
                           ? 'border-amber-700 bg-amber-700/20 text-amber-700'
-                          : 'border-gray-800 text-gray-600 hover:border-amber-700/50 hover:text-amber-800'
+                          : 'border-gray-800 text-gray-400 hover:border-amber-700/50 hover:text-amber-500'
                       }`}
                     >
                       {tier}%
@@ -551,7 +551,7 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <span className={`text-[8px] font-bold tracking-widest ${
-                        order.side === 'BUY' ? 'text-green-700' : 'text-red-600'
+                        order.side === 'BUY' ? 'text-green-500' : 'text-red-500'
                       }`}>
                         {order.side}
                       </span>

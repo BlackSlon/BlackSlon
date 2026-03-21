@@ -80,7 +80,7 @@ export default function WalletConnect() {
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <span className="text-[9px] text-green-500 font-bold tracking-wider">BLACKSLON WALLET</span>
           </div>
-          <button onClick={handleDisconnect} className="text-[7px] text-gray-600 hover:text-red-500 uppercase tracking-widest transition-colors">
+          <button onClick={handleDisconnect} className="text-[7px] text-gray-400 hover:text-red-500 uppercase tracking-widest transition-colors">
             Disconnect
           </button>
         </div>
@@ -88,7 +88,7 @@ export default function WalletConnect() {
           {user.walletAddress?.slice(0, 6)}...{user.walletAddress?.slice(-4)}
         </div>
         {user.walletEmail && (
-          <div className="text-[7px] text-gray-600 mt-0.5">{user.walletEmail}</div>
+          <div className="text-[7px] text-gray-400 mt-0.5">{user.walletEmail}</div>
         )}
       </div>
     )
@@ -130,7 +130,7 @@ export default function WalletConnect() {
               className="w-full bg-gray-900 border border-gray-700 rounded-sm px-3 py-2 text-[10px] text-white placeholder-gray-600 outline-none focus:border-amber-700 transition-colors mb-2"
               onKeyDown={e => e.key === 'Enter' && handleSendOtp()}
             />
-            {error && <div className="text-[8px] text-red-600 mb-2">{error}</div>}
+            {error && <div className="text-[8px] text-red-500 mb-2">{error}</div>}
             <button
               onClick={handleSendOtp}
               disabled={loading}
@@ -180,7 +180,7 @@ export default function WalletConnect() {
               className="w-full bg-gray-900 border border-gray-700 rounded-sm px-3 py-2 text-[16px] text-white text-center tracking-[0.5em] placeholder-gray-700 outline-none focus:border-amber-700 transition-colors mb-2"
               onKeyDown={e => e.key === 'Enter' && handleVerifyOtp()}
             />
-            {error && <div className="text-[8px] text-red-600 mb-2 text-center">{error}</div>}
+            {error && <div className="text-[8px] text-red-500 mb-2 text-center">{error}</div>}
             <button
               onClick={handleVerifyOtp}
               disabled={loading || otp.length !== 6}
@@ -190,7 +190,7 @@ export default function WalletConnect() {
             </button>
             <button
               onClick={() => { setStep('email'); setOtp(''); setDevCode(null); setError(null) }}
-              className="w-full mt-2 py-1.5 text-[8px] text-gray-600 hover:text-gray-400 uppercase tracking-widest transition-colors"
+              className="w-full mt-2 py-1.5 text-[8px] text-gray-400 hover:text-gray-200 uppercase tracking-widest transition-colors"
             >
               ← Back
             </button>
