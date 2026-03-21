@@ -150,16 +150,22 @@ export function generateBSEIHistory(anchor: number, marketId: string) {
 }
 
 /**
- * Generates liquidity snapshots
+ * Generates liquidity snapshots scaled by market liquidity tier
  */
-export function generateLiquiditySnapshots() {
-  return [
-    { label: 'D-1', value: 127400 },
-    { label: 'D-2', value: 189600 },
-    { label: 'D-3', value: 214300 },
-    { label: 'D-4', value: 245800 },
-    { label: 'D-5', value: 268100 },
-    { label: 'D-6', value: 285400 },
-    { label: 'W-1', value: 302700 },
-  ]
+export function generateLiquiditySnapshots(marketId?: string) {
+  // Base volumes for high-liquidity markets (BS-G-NL, BS-P-DE)
+  const base = [127400, 189600, 214300, 245800, 268100, 285400, 302700]
+  const labels = ['D-1', 'D-2', 'D-3', 'D-4', 'D-5', 'D-6', 'W-1']
+
+  let scale = 1.0
+  if (marketId) {
+    if (['BS-G-NL', 'BS-P-DE'].includes(marketId))            scale = 1.0   // high
+    else if (['BS-G-DE', 'BS-P-UK', 'BS-P-NO'].includes(marketId)) scale = 0.45  // medium
+    else scale = 0.15  // low: BS-P-PL, BS-G-PL, BS-G-BG
+  }
+
+  return labels.map((label, i) => ({
+    label,
+    value: Math.round(base[i] * scale * (0.9 + Math.random() * 0.2)),
+  }))
 }

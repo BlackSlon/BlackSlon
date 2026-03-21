@@ -429,8 +429,8 @@ export default function TradingPanel({ selectedMarketId = 'BS-P-PL' }: Props) {
         )}
 
         {orderError && (
-          <div className="mb-3 px-2 py-1.5 border border-red-500/30 bg-red-900/10 rounded-sm">
-            <div className="text-[7px] text-red-500 leading-relaxed">{orderError}</div>
+          <div className="mb-3 px-2 py-2 border border-red-500/30 bg-red-900/10 rounded-sm animate-pulse">
+            <div className="text-[10px] text-red-500 leading-relaxed font-bold">{orderError}</div>
           </div>
         )}
 

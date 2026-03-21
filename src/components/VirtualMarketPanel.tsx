@@ -135,7 +135,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
     d2: bseiStatic.d2,
   }
 
-  const displayLiquidity = generateLiquiditySnapshots()
+  const displayLiquidity = generateLiquiditySnapshots(selectedMarketId)
   const displayMarketId = selectedMarketId
   const bseiVol24hTokens = Math.round(displayLastTrade.volume / 100)
 

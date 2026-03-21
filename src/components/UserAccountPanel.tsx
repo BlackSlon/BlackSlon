@@ -348,7 +348,7 @@ export default function UserAccountPanel() {
                   setConvertError(null)
                   setConvertSuccess(false)
                 }}
-                className="bg-zinc-900 border border-gray-800 text-[10px] text-gray-300 text-center outline-none w-16 py-0.5 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                className={`bg-zinc-900 border text-[10px] text-gray-300 text-center outline-none w-16 py-0.5 rounded-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${convertError ? 'border-red-500 animate-pulse shadow-[0_0_6px_rgba(239,68,68,0.5)]' : 'border-gray-800'}`}
               />
               <button
                 onClick={() => setConvertDirection(d => d === 'BSR_TO_EURO' ? 'EURO_TO_BSR' : 'BSR_TO_EURO')}
@@ -390,7 +390,7 @@ export default function UserAccountPanel() {
               </span>
             </div>
             {convertError && (
-              <div className="text-[7px] text-red-500 mt-1">{convertError}</div>
+              <div className="text-[9px] text-red-500 mt-1 font-bold animate-pulse">{convertError}</div>
             )}
           </div>
         </div>
