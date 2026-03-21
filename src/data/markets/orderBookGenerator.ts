@@ -1,15 +1,23 @@
 import { Order } from '@/store/types'
 
+// Liquidity depth: how many static resting orders per side
+function getStaticDepth(marketId: string): number {
+  if (['BS-G-NL', 'BS-P-DE'].includes(marketId))            return 8  // high liquidity
+  if (['BS-G-DE', 'BS-P-UK', 'BS-P-NO'].includes(marketId)) return 5  // medium liquidity
+  return 2 // low liquidity: BS-P-PL, BS-G-PL, BS-G-BG
+}
+
 /**
- * Generates mock order book data for a market based on anchor price
+ * Generates mock order book data for a market based on anchor price.
+ * Depth varies by market liquidity tier.
  */
 export function generateOrderBook(anchor: number, marketId: string): { bids: Order[], asks: Order[] } {
-  const spread = 0.01 // 1% spread around anchor
-  
   const r2 = (v: number) => Math.round(v * 100) / 100
   const a = r2(anchor)
   const baseTime = Date.now()
-  const bids: Order[] = [
+  const depth = getStaticDepth(marketId)
+
+  const allBids: Order[] = [
     { id: `${marketId}-bid-1`, price: r2(a - 0.04), units: 150, volume: 15000, ownedByUser: false, timestamp: baseTime - 8000 },
     { id: `${marketId}-bid-2`, price: r2(a - 0.05), units: 120, volume: 12000, ownedByUser: false, timestamp: baseTime - 7000 },
     { id: `${marketId}-bid-3`, price: r2(a - 0.06), units: 180, volume: 18000, ownedByUser: false, timestamp: baseTime - 6000 },
@@ -20,7 +28,7 @@ export function generateOrderBook(anchor: number, marketId: string): { bids: Ord
     { id: `${marketId}-bid-8`, price: r2(a - 0.11), units: 110, volume: 11000, ownedByUser: false, timestamp: baseTime - 1000 },
   ]
 
-  const asks: Order[] = [
+  const allAsks: Order[] = [
     { id: `${marketId}-ask-1`, price: r2(a + 0.01), units: 110, volume: 11000, ownedByUser: false, timestamp: baseTime - 8000 },
     { id: `${marketId}-ask-2`, price: r2(a + 0.02), units: 85, volume: 8500, ownedByUser: false, timestamp: baseTime - 7000 },
     { id: `${marketId}-ask-3`, price: r2(a + 0.03), units: 140, volume: 14000, ownedByUser: false, timestamp: baseTime - 6000 },
@@ -31,7 +39,7 @@ export function generateOrderBook(anchor: number, marketId: string): { bids: Ord
     { id: `${marketId}-ask-8`, price: r2(a + 0.08), units: 105, volume: 10500, ownedByUser: false, timestamp: baseTime - 1000 },
   ]
 
-  return { bids, asks }
+  return { bids: allBids.slice(0, depth), asks: allAsks.slice(0, depth) }
 }
 
 /**
