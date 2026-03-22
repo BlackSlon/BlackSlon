@@ -129,7 +129,8 @@ export default function UserAccountPanel() {
 
         {/* ── Section: Available Liquidity & Vault ── */}
         <div className="pt-3">
-          <div className="grid grid-cols-2 gap-4 mb-2">
+          {/* Desktop: side-by-side headers */}
+          <div className="hidden md:grid grid-cols-2 gap-4 mb-2">
             <div className="flex justify-center">
               <Tooltip content={STATIC_TOOLTIPS.availableLiquidity}>
                 <div className="text-[10px] tracking-widest text-amber-700 font-bold text-center">
@@ -145,7 +146,8 @@ export default function UserAccountPanel() {
               </Tooltip>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          {/* Desktop: flex-wrap all 4 boxes */}
+          <div className="hidden md:flex flex-wrap gap-2">
             <div className="border border-amber-700 rounded-sm py-1 px-3 w-fit">
               <div className="text-[7px] text-amber-700 uppercase tracking-widest mb-0">€BSR Balance</div>
               <div className="text-[11px] text-amber-700 leading-tight font-normal">{fmt(user.bsrBalance)}</div>
@@ -161,6 +163,50 @@ export default function UserAccountPanel() {
             <div className="border border-[#003399]/50 rounded-sm py-1 px-3 w-fit">
               <div className="text-[7px] text-[#003399] uppercase tracking-widest mb-0">Locked <span className="normal-case">e</span>EURO</div>
               <div className="text-[11px] text-[#003399] tracking-tighter leading-tight">{fmt(vault.lockedEuro)}</div>
+            </div>
+          </div>
+
+          {/* Mobile: 2x2 grid layout */}
+          <div className="md:hidden">
+            {/* Available Liquidity section */}
+            <div className="mb-3">
+              <div className="flex justify-center mb-2">
+                <Tooltip content={STATIC_TOOLTIPS.availableLiquidity}>
+                  <div className="text-[10px] tracking-widest text-amber-700 font-bold text-center">
+                    Available Liquidity
+                  </div>
+                </Tooltip>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="border border-amber-700 rounded-sm py-1 px-3">
+                  <div className="text-[7px] text-amber-700 uppercase tracking-widest mb-0">€BSR Balance</div>
+                  <div className="text-[11px] text-amber-700 leading-tight font-normal">{fmt(user.bsrBalance)}</div>
+                </div>
+                <div className="border border-[#003399]/50 rounded-sm py-1 px-3">
+                  <div className="text-[7px] text-[#003399] uppercase tracking-widest mb-0"><span className="normal-case">e</span>EURO Balance</div>
+                  <div className="text-[11px] text-[#003399] leading-tight font-normal">{fmt(user.eEuroBalance)}</div>
+                </div>
+              </div>
+            </div>
+            {/* Vault section */}
+            <div>
+              <div className="flex justify-center mb-2">
+                <Tooltip content={STATIC_TOOLTIPS.vault}>
+                  <div className="text-[10px] tracking-widest text-amber-700 font-bold text-center">
+                    BlackSlon Vault
+                  </div>
+                </Tooltip>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="border border-amber-700 rounded-sm py-1 px-3">
+                  <div className="text-[7px] text-amber-700 uppercase tracking-widest mb-0">Locked €BSR</div>
+                  <div className="text-[11px] text-amber-700 tracking-tighter leading-tight">{fmt(vault.lockedBSR)}</div>
+                </div>
+                <div className="border border-[#003399]/50 rounded-sm py-1 px-3">
+                  <div className="text-[7px] text-[#003399] uppercase tracking-widest mb-0">Locked <span className="normal-case">e</span>EURO</div>
+                  <div className="text-[11px] text-[#003399] tracking-tighter leading-tight">{fmt(vault.lockedEuro)}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

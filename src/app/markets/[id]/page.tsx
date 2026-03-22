@@ -117,32 +117,32 @@ export default function MarketPage() {
 
       <div className="w-full max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[22%_26%_20%_28%] gap-4 items-start py-2 pointer-events-auto">
         
-        {/* PANEL 1: PHYSICAL (BSTZ) */}
-        <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/40 rounded-sm overflow-hidden flex flex-col`}>
+        {/* PANEL 1: PHYSICAL (BSTZ) — mobile: order-4 (last), desktop: order-1 */}
+        <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/40 rounded-sm overflow-hidden flex flex-col order-4 lg:order-1`}>
           <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <PanelLogo />
           </div>
           <PhysicalMarketPanel selectedMarketId={selectedInstrument} />
         </section>
 
-        {/* PANEL 2: VIRTUAL (Order Book) */}
-        <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/40 rounded-sm flex flex-col`}>
+        {/* PANEL 2: VIRTUAL (Order Book) — mobile: order-1 (first), desktop: order-2 */}
+        <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/40 rounded-sm flex flex-col order-1 lg:order-2`}>
           <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <PanelLogo />
           </div>
           <VirtualMarketPanel selectedMarketId={selectedInstrument} />
         </section>
 
-        {/* PANEL 3: TRADING */}
-        <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/80 rounded-sm text-xs relative z-50 flex flex-col`}>
+        {/* PANEL 3: TRADING — mobile: order-2, desktop: order-3 */}
+        <section className={`border ${mColors.isGas ? 'border-blue-500/30' : 'border-yellow-600/30'} bg-black/80 rounded-sm text-xs relative z-50 flex flex-col order-2 lg:order-3`}>
           <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <PanelLogo />
           </div>
           <TradingPanel selectedMarketId={selectedInstrument} />
         </section>
 
-        {/* PANEL 4: PORTFOLIO */}
-        <section className="border border-amber-700/30 bg-black/40 rounded-sm text-xs flex flex-col">
+        {/* PANEL 4: PORTFOLIO — mobile: order-3, desktop: order-4 */}
+        <section className="border border-amber-700/30 bg-black/40 rounded-sm text-xs flex flex-col order-3 lg:order-4">
           <div className="flex items-center justify-center px-3 py-3 border-b border-gray-900/60">
             <MainLogo />
           </div>
