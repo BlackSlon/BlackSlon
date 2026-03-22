@@ -240,7 +240,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
 
             <div className="flex flex-col items-center">
               <Tooltip content={tt.cap}>
-                <span className="text-[7px] text-gray-500 uppercase mb-0">Cap (+20%)</span>
+                <span className="text-[7px] text-gray-500 uppercase mb-0">Ceiling (+20%)</span>
               </Tooltip>
               <span className={`text-sm leading-tight font-normal ${colors.value}`}>
                 {currentCap.toFixed(2)}
@@ -256,7 +256,7 @@ export default function PhysicalDimension({ selectedMarketId = 'BS-P-PL' }: Prop
             <div className="col-span-2 text-gray-400 font-bold">Date</div>
             <div className="col-span-2 text-center text-gray-500 font-bold">Floor</div>
             <div className="col-span-2 text-center text-gray-400 font-normal">Anchor</div>
-            <div className="col-span-2 text-center text-gray-500 font-bold">Cap</div>
+            <div className="col-span-2 text-center text-gray-500 font-bold">Ceiling</div>
             <div className="col-span-2 text-right text-gray-500 font-bold">Trend</div>
           </div>
 

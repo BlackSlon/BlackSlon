@@ -12,7 +12,7 @@ Unlike crude oil, copper, gasoline or any other major commodity — no platform 
 
 ## The Answer
 
-BlackSlon is not designed to replicate these markets. It is a new infrastructure layer built alongside them — blockchain-settled, algorithmically governed, physically anchored, and open to every participant the legacy system excludes.
+**BlackSlon is not an optimization of this system. It is not designed to replicate legacy energy markets. It is a new dimension of them.** - a new infrastructure layer built alongside them — blockchain-settled, algorithmically governed, physically anchored, and open to every participant the legacy system excludes.
 
 **Zero Expiry. Zero Barriers. 100 kWh = 1 Token.**
 

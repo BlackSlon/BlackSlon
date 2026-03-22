@@ -226,23 +226,25 @@ The protocol operates a dual-layer risk framework: individual account health mon
 
 **Physical Market Tether** 
 
-BlackSlon is not a purely synthetic protocol. The BSSZ — anchored daily to physical exchanges' prices via the weighted forward curve and Settlement Anchor — ensures that virtual token prices can never decouple from physical market reality. Physical Liquidity Providers — licensed European energy trading entities with direct access to TTF, EEX, EPEX, CEGH and TGE — will underpin every market. In Phase 2, BS-P/G tokens become redeemable for physical energy delivery. The virtual and physical markets are not separated — they are the same market, accessed through different interfaces.
+BlackSlon is not a purely synthetic protocol. The BSSZ — anchored daily to physical exchanges' prices via the weighted forward curve and Settlement Anchor — ensures that virtual token prices can never decouple from physical market reality. Physical Liquidity Providers — licensed European energy trading entities with direct access to energy hubs & exchanges — will underpin every market. In Phase 2, BS-P/G tokens become redeemable for physical energy delivery. The virtual and physical markets are not separated — they are the same market, accessed through different interfaces.
 
 ---
 
 ## 5. The Philosophy: Kazimierz Malewicz and the Zero Form
 
-BlackSlon draws its design philosophy from **Kazimierz Malewicz** — the Polish-Russian-Ukrainian artist and founding father of Suprematism, pioneer of the Zero Form.
+The philosophical foundation of BlackSlon comes from an unlikely place: not from energy markets or blockchain technology, but from **Kazimierz Malewicz** — the Polish-Russian-Ukrainian artist and founding father of Suprematism, pioneer of the Zero Form.
 
 Malewicz did not simplify painting. He stripped it to its irreducible essence — a black square on white canvas — and in doing so created something more powerful than everything that came before it. He did not add layers. He removed them.
 
+For decades, K. Malewicz worked within the established movements of his time — Impressionism, Symbolism, Cubism, Futurism — a respected artist operating within the rules of existing systems. Then, in 1915, he did something no one expected: he abandoned everything he had built and exhibited the Black Square, stripping art to its irreducible zero form. The critics called it a provocation. The art world called it the end of painting. **It was, in fact, its reinvention.**
+
 **BlackSlon strips energy trading to its irreducible essence:**
 
-**Zero Expiry.** BS-P/G tokens never expire. No forced rolls, no year-end liquidity crunch, no December 31st panic. A position opened today is valid indefinitely — its price reflecting the mathematical synthesis of spot reality, forward expectations, and the infinite horizon of the market simultaneously.
+**Zero Expiry.** BS-P/G tokens never expire. No forced rolls, no year-end liquidity crunch. A position opened today is valid indefinitely — its price reflecting the mathematical synthesis of spot reality, forward expectations, and the infinite horizon of the market simultaneously.
 
-**Zero Curve.** We collapse the fragmented forward curve — intraday, day-ahead, month, quarter, year — into a single, perpetual Token. No contango. No backwardation. If your analysis says energy prices will rise over the next three years, you buy the Token. One instrument. One truth.
+**Zero Curve.** We collapse the fragmented forward curve — intraday, day-ahead, month, quarter, year — into a single, perpetual Token. No contango. No backwardation. If your analysis says energy prices will rise over the next three years, you buy the Token. One instrument. That's all.
 
-**Zero Counterparty Risk.** The protocol is the counterparty. Not a bank, not a clearing house, not a trading company, producer or end-user. A trustless, mathematically governed system — immutable, transparent, always solvent by design.
+**Zero Counterparty Risk.** The protocol is the counterparty. Not a bank, not a clearing house, not a trading company, producer or end-user. A trustless, mathematically governed system — immutable, transparent, solvent by design.
 
 **Zero Entry Barrier.** 100 kWh minimum, from w few euros. Any participant. Anywhere. Any time.
 
@@ -256,7 +258,7 @@ BlackSlon was not built in a venture capital office. It was built by me - energy
 
 I emerged from the **post-Soviet energy frontier** — Central - Eastern Europe (CEE), a landscape defined by tectonic shifts. In the span of a few decades, I witnessed the dissolution of the Soviet Union and Czechoslovakia, the reunification of Germany, the collapse of Yugoslavia, and the War in Ukraine. This is not a region where stability is taken for granted. It is a region where legacy systems collapse under pressure.
 
-I have traded Natural Gas, Power, Oil Refined Products, Carbon Emissions Allowances, Green Certificates, and complex cross-commodity spreads — as Trader, Originator, Partner, and CEO in tier-one global trading houses. I have operated on ICE, EEX, EPEX Spot and TGE. For years, I was one of the largest natural gas suppliers from the European Union to Ukraine. I have navigated the chronic illiquidity of CEE/SEE markets and the deep liquidity of North-Western Europe (NWE) to capture the profound anomalies that exist in the space between them.
+I have traded Natural Gas, Power, Oil Refined Products, Carbon Emissions Allowances, Green Certificates, and complex cross-commodity spreads — as Trader, Originator, Director and Partner, in state-owned, private and global trading houses. I have operated on ICE, EEX, EPEX Spot and TGE. For years, I was one of the largest natural gas suppliers from the European Union to Ukraine. I have navigated the chronic illiquidity of CEE/SEE markets and the deep liquidity of North-Western Europe (NWE) to capture the profound anomalies that exist in the space between them.
 
 Most critically: **I operated in the frontier markets of Eastern Europe before digital benchmarks or centralised exchanges existed.** Price discovery happened over phone calls and through boots-on-the-ground intelligence networks. Two decades ago, I was part of the first private challenger to enter a market under the 100% stranglehold of a state - owned incumbent. I saw firsthand how a legacy system—fortified by regulators, state officials, and a dominant monopolist — desperately fights to preserve an old order that is structurally broken and inevitably destined to collapse. That era taught me something no Bloomberg terminal can: how markets really work when the power structures are rigged to block change, and why the old guard is always the last to admit that the paradigm has already shifted.
 
@@ -264,19 +266,19 @@ That intelligence — boots-on-the-ground, relationship-driven, battle-tested ac
 
 **Energy as the Base Currency of Macro Arbitrage**
 
-Despite the systemic failures I have witnessed over the years, I hold a radical conviction that Energy has transcended its role as a mere commodity/product to become the New Ultimate Base Currency of the Global Economy. While fiat systems fluctuate under political pressure, a kWh remains a universal constant of value. 
+Despite the systemic failures I have witnessed over the years, I hold a radical conviction that **Energy has transcended its role as a mere commodity/product to become the New Ultimate Base Currency of the Global Economy.** While fiat systems fluctuate under political pressure, a kWh remains a universal constant of value. 
 
 I believe that Energy will dictate economic trends for decades to come, functioning as a currency through several critical dimensions:
 
-- Substitution of Labour: In the AI - dominated landscape, energy has emerged as the ultimate substitute for human labour, transforming electricity/gas and other energy commodities into primary driver of service sector inflation. The transition makes modern digital services, with data centres, like the heavy industries of the 21st century. That is hyper-dependent on power prices. Consequently, the global economy is entering a phase where power costs, rather than labour, dictates the final price of digital and professional services.
+- **Substitution of Labour:** In the AI - dominated landscape, energy has emerged as the ultimate substitute for human labour, transforming electricity/gas and other energy commodities into primary driver of service sector inflation. The transition makes modern digital services, with data centres, like the heavy industries of the 21st century. That is hyper-dependent on power prices. Consequently, the global economy is entering a phase where power costs, rather than labour, dictates the final price of digital and professional services.
 
-- Global Standard: While fiat currencies can be printed, energy must be extracted or generated, it defines the boundaries of growth and the real value of assets in a shifting geopolitical landscape.
+- **Global Standard:** While fiat currencies can be printed, energy must be extracted or generated, it defines the boundaries of growth and the real value of assets in a shifting geopolitical landscape.
 
-- Digital Anchor: As the foundational cost and the ultimate validator of the cryptocurrency ecosystem, primarily within the Bitcoin network. Energy is not just a cost, it is the raw material converted into security and financial sovereignty, where Bitcoin mining acts as a direct arbitrage between global electricity prices and digital asset value.
+- **Digital Anchor:** As the foundational cost and the ultimate validator of the cryptocurrency ecosystem, primarily within the Bitcoin network. Energy is not just a cost, it is the raw material converted into security and financial sovereignty, where Bitcoin mining acts as a direct arbitrage between global electricity prices and digital asset value.
 
-- The Ultimate Inflation Driver: Energy is no longer just a raw material but the primary driver of inflation and the cost of production for everything from food to industrial metals.
+- **The Ultimate Inflation Driver:** Energy is no longer just a raw material but the primary driver of inflation and the cost of production for everything from food to industrial metals.
 
-- Carbon-Backed Value: Through emission trading systems, energy has become a dual-monetary system where CO2 costs act as a global tax on production and capital flow.
+- **Carbon-Backed Value:** Through emission trading systems, energy has become a dual-monetary system where CO2 costs act as a global tax on production and capital flow.
 
 In my view, energy flow may be the pure geometry of the modern market, yet its complexity has kept it out of reach for too many, for too long. BlackSlon changes this by bringing transparency and liquidity to regional energy pricing. It's opening the gates for everyone - from individual participants to small and big enterprises - allowing them to gain direct exposure and hedge against energy price movements. By removing the barriers that once made these markets invisible to the public, BlackSlon empowers every user to navigate energy volatility using a simple, tokenized standard that was previously reserved only for global institutions.
 
@@ -296,9 +298,9 @@ The **Black Elephant** — the massive, obvious risk that everyone in the room c
 
 While the industry chases Black Swans, BlackSlon focuses on the Elephants. The risks are not hidden. They are hiding in plain sight — in the architecture of a market that was never built to withstand what the 21st century has delivered.
 
-**BlackSlon is not an optimization of this system. It is its replacement.**
+**BlackSlon is not an optimization of this system. It is not designed to replicate legacy energy markets. It is s a new dimension of them.**
 
-It has happened before. In 1973, Marc Rich executed the first spot oil trade — a direct, bilateral crude transaction that bypassed the long-term contract structures that had governed oil markets since their inception. The established players called it reckless. Regulators called it destabilising. Within a decade, the spot market he created is the oil market — and every benchmark, every futures contract, every hedge traded by the institutions that once dismissed him is priced against it.
+It has happened before. In 1973, Marc Rich executed the first spot oil trade — a direct, bilateral crude transaction that bypassed the long-term contract structures that had governed oil markets since their inception. The established players called it reckless. Regulators called it destabilising. Within a decade, the spot market he created **is** the oil market — and every benchmark, every futures contract, every hedge traded by the institutions that once dismissed him is priced against it.
 
 ---
 
@@ -382,6 +384,8 @@ $$BSSZ_{Range} = [A - 10\%, A + 20\%]$$
 
 - **BSSZ Ceiling ($+20\%$):** The upper boundary is wider by design. Energy prices spike upward far more violently than they collapse — a participant who wants to buy at elevated prices may do so within the corridor. If the physical market sustains that move, the Anchor will follow over subsequent days, and the ceiling will shift accordingly. The asymmetry is not arbitrary — it reflects the asymmetric nature of energy price shocks, while ensuring the protocol is never exposed to single-session irrational squeezes on either side.
 
+This Ceiling is not a price cap in the regulatory sense — it bears no resemblance to the artificial €180/MWh ceiling imposed by the European Commission in 2022, a blunt instrument that distorted market signals without addressing a single structural cause of the crisis. The BSSZ ceiling does not suppress price increases. If gas and power prices rise sustainably on physical markets, the Settlement Anchor rises with them — and the ceiling moves up accordingly, day by day, in a manner that is algorithmic, logical, and fully predictable. It constrains only the irrational — single-session panic spikes that the physical market itself corrects within days.
+
 **Intra-Zone:** Full operational support — transaction validation and settlement enabled.
 
 **Extra-Zone:** Orders outside the corridor are rejected at the point of entry — the trading terminal blocks out-of-range submissions before they reach the matching engine. There is no system lockout; the market continues to operate normally within the corridor.
@@ -392,7 +396,7 @@ Each national/regional market operates within its own isolated BSSZ, allowing th
 
 The Physical Meridian and Settlement Anchor are designed to be transitional references — not permanent dependencies.
 
-In Phase 1, the BSSZ is tethered to physical exchange/OTC data (ICE, TTF, EEX, EPEX, TGE, etc.) because the BlackSlon Protocol is building its liquidity base and establishing market trust. Exchange/OTC-sourced prices represent the most credible and manipulation-resistant external reference available, with no risk of data unavailability given continuous exchange quotation obligations.
+In Phase 1, the BSSZ is tethered to physical exchange/hubs data (ICE, TTF, EEX, EPEX, TGE, etc.) because the BlackSlon Protocol is building its liquidity base and establishing market trust. Exchange/hubs-sourced prices represent the most credible and manipulation-resistant external reference available, with no risk of data unavailability given continuous exchange quotation obligations.
 
 As the BlackSlon Ecosystem matures and the BlackSlon Protocol accumulates sufficient trading volume and participant depth, the protocol anticipates a natural inversion: **the BSEI itself becomes the benchmark** — a more liquid, transparent, and accessible reference than the underlying physical markets it was originally derived from.
 

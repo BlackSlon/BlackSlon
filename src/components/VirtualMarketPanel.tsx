@@ -321,21 +321,25 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
             {/* BSEI + Liquidity — right column */}
             <div className="flex-1 flex flex-col gap-2">
 
-              {/* BSEI box — right side */}
+              {/* BSEI header — outside box, matching Last Trades style */}
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shrink-0" />
+                  <Tooltip content={tt.bsei}>
+                    <span className={`text-[9px] tracking-wider font-bold ${colors.title}`}>BSEI</span>
+                  </Tooltip>
+                  <div className={`px-2 py-0.5 rounded text-[7px] uppercase tracking-widest font-bold border ${colors.badgeBorder} ${colors.badgeText}`}>
+                    {displayMarketId}
+                  </div>
+                </div>
+                {/* BSEI values box */}
                 <div
                   className={`border rounded-sm px-2.5 py-2 ${
                     colors.isGas ? 'border-cyan-700/60 bg-cyan-900/10' : 'border-yellow-700/60 bg-yellow-900/10'
                   }`}
                   style={{ boxShadow: colors.isGas ? '0 0 14px rgba(34,211,238,0.07)' : '0 0 14px rgba(202,138,4,0.09)' }}
                 >
-                  <div className="flex items-center gap-1 mb-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shrink-0" />
-                    <Tooltip content={tt.bsei}>
-                      <span className={`text-[8px] uppercase tracking-[0.2em] font-black ${colors.title}`}>BSEI</span>
-                    </Tooltip>
-                    <span className="text-[7px] text-gray-400 normal-case">BlackSlon Energy Index</span>
-                  </div>
-                  <div className="mt-1 grid grid-cols-3 gap-x-1 text-center">
+                  <div className="grid grid-cols-3 gap-x-1 text-center">
                     <div>
                       <div className="text-[7px] text-gray-500 uppercase mb-0.5">NOW</div>
                       <div className={`text-sm font-normal leading-none ${colors.value}`}>{displayBsei.It.toFixed(2)}</div>
@@ -350,6 +354,7 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
                     </div>
                   </div>
                 </div>
+              </div>
 
               {/* Liquidity */}
               <div>
