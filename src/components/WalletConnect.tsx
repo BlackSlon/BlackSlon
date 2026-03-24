@@ -92,9 +92,10 @@ export default function WalletConnect() {
       {step === 'idle' && (
         <button
           onClick={() => setStep('email')}
-          className="w-full text-[9px] py-2 border border-gray-700 bg-gray-900 text-gray-400 hover:border-amber-700 hover:text-amber-600 transition-all rounded-sm uppercase tracking-widest"
+          className="w-full py-2 border border-gray-700 bg-gray-900 hover:border-amber-700 transition-all rounded-sm flex flex-col items-center gap-0.5"
         >
-          Connect Wallet
+          <span className="text-[9px] text-gray-400 hover:text-amber-600 uppercase tracking-widest">Connect Wallet</span>
+          <span className="text-[8px] text-amber-600/70">and get €BSR 1,000 for demo trading</span>
         </button>
       )}
 
@@ -111,8 +112,11 @@ export default function WalletConnect() {
               </div>
               <button onClick={closeModal} className="text-gray-500 hover:text-gray-300 text-[16px]">×</button>
             </div>
-            <div className="text-[8px] text-gray-500 mb-3">
+            <div className="text-[8px] text-gray-500 mb-1">
               Enter your email. A 6-digit verification code will be sent to confirm your identity.
+            </div>
+            <div className="text-[8px] text-amber-600/80 font-bold mb-3">
+              You will receive €BSR 1,000 for demo trading upon activation.
             </div>
             <input
               type="email"
