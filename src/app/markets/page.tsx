@@ -22,11 +22,11 @@ export default function MarketsPage() {
       <div className="h-20 md:h-36" />
 
       {/* ── Active Markets — Power ── */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto mb-10 md:mb-16">
         {activePower.map((market, i) => (
           <Link key={market.id} href={`/markets/${market.id}`}>
-            <div className="bg-black p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center">
-              <div className="flex items-center justify-center w-[90px] h-[90px] md:w-[120px] md:h-[120px]">
+            <div className="bg-black p-2 md:p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center">
+              <div className="flex items-center justify-center scale-[0.7] md:scale-100" style={{ width: 120, height: 120 }}>
                 <MarketCube marketId={market.id} marketName={market.name} type="Power" size={120} idx={i} />
               </div>
             </div>
@@ -35,11 +35,11 @@ export default function MarketsPage() {
       </div>
 
       {/* ── Active Markets — Gas ── */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto mb-10 md:mb-16">
         {activeGas.map((market, i) => (
           <Link key={market.id} href={`/markets/${market.id}`}>
-            <div className="bg-black p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center">
-              <div className="flex items-center justify-center w-[90px] h-[90px] md:w-[120px] md:h-[120px]">
+            <div className="bg-black p-2 md:p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center">
+              <div className="flex items-center justify-center scale-[0.7] md:scale-100" style={{ width: 120, height: 120 }}>
                 <MarketCube marketId={market.id} marketName={market.name} type="Gas" size={120} idx={[6, 5, 7, 4][i] ?? i + 4} />
               </div>
             </div>
