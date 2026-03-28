@@ -124,29 +124,31 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
         @keyframes ${electricAnim} {
           0%   { opacity: 0;   text-shadow: 0 0 0px rgba(253,224,71,0); }
           7%   { opacity: 0;   text-shadow: 0 0 0px rgba(253,224,71,0); }
-          9%   { opacity: 1;   text-shadow: 0 0 14px #fff, 0 0 28px rgba(253,224,71,0.9), 0 0 45px rgba(251,191,36,0.5); }
-          12%  { opacity: 0.85; text-shadow: 0 0 2px rgba(253,224,71,0.5), 4px -2px 2px rgba(253,224,71,0.7), -3px 1px 1px rgba(251,191,36,0.4); }
-          18%  { opacity: 1;   text-shadow: 0 0 3px #fff, 6px -3px 3px rgba(253,224,71,0.9), -2px 4px 2px rgba(253,224,71,0.6), 0 0 8px rgba(251,191,36,0.3); }
-          20%  { opacity: 0.7; text-shadow: 0 0 1px rgba(253,224,71,0.3), -4px -1px 0 rgba(255,255,255,0); }
-          35%  { opacity: 0.85; text-shadow: 0 0 1px rgba(253,224,71,0.4), -2px 3px 2px rgba(253,224,71,0.6), 3px -2px 1px rgba(251,191,36,0.3); }
-          37%  { opacity: 1;   text-shadow: 0 0 4px #fff, -5px 2px 3px rgba(253,224,71,0.8), 4px -3px 2px rgba(253,224,71,0.7), 0 0 10px rgba(251,191,36,0.4); }
-          39%  { opacity: 0.75; text-shadow: 0 0 1px rgba(253,224,71,0.2); }
-          55%  { opacity: 0.8; text-shadow: 0 0 1px rgba(253,224,71,0.3), 3px 2px 1px rgba(253,224,71,0.5); }
-          57%  { opacity: 1;   text-shadow: 0 0 3px #fff, -3px -3px 3px rgba(253,224,71,0.8), 5px 1px 2px rgba(253,224,71,0.6), 0 0 12px rgba(251,191,36,0.3); }
-          59%  { opacity: 0.7; text-shadow: 0 0 1px rgba(253,224,71,0.2); }
-          72%  { opacity: 0.85; text-shadow: 0 0 2px rgba(253,224,71,0.4), 2px -1px 1px rgba(253,224,71,0.5); }
-          74%  { opacity: 1;   text-shadow: 0 0 14px #fff, 0 0 28px rgba(253,224,71,0.9), 0 0 45px rgba(251,191,36,0.5); }
+          9%   { opacity: 1;   text-shadow: 0 0 20px #fff, 0 0 40px rgba(253,224,71,1), 0 0 80px rgba(251,191,36,0.7), 0 0 120px rgba(251,191,36,0.3); }
+          12%  { opacity: 0.85; text-shadow: 0 0 3px rgba(253,224,71,0.6), 5px -3px 3px rgba(253,224,71,0.8), -4px 2px 2px rgba(251,191,36,0.5); }
+          18%  { opacity: 1;   text-shadow: 0 0 4px #fff, 8px -4px 4px rgba(253,224,71,1), -3px 5px 3px rgba(253,224,71,0.7), 0 0 12px rgba(251,191,36,0.4); }
+          20%  { opacity: 0.6; text-shadow: 0 0 1px rgba(253,224,71,0.2); }
+          28%  { opacity: 0.8; text-shadow: 0 0 2px rgba(253,224,71,0.4), -3px 2px 2px rgba(253,224,71,0.5); }
+          30%  { opacity: 1;   text-shadow: 0 0 30px #fff, 0 0 60px rgba(253,224,71,1), -10px 5px 8px rgba(253,224,71,0.9), 12px -6px 10px rgba(251,191,36,0.8), 0 0 100px rgba(251,191,36,0.4); }
+          32%  { opacity: 0.5; text-shadow: 0 0 1px rgba(253,224,71,0.1); }
+          45%  { opacity: 0.85; text-shadow: 0 0 2px rgba(253,224,71,0.5), 4px 3px 2px rgba(253,224,71,0.6); }
+          47%  { opacity: 1;   text-shadow: 0 0 5px #fff, -6px -4px 4px rgba(253,224,71,0.9), 7px 2px 3px rgba(253,224,71,0.7), 0 0 15px rgba(251,191,36,0.5); }
+          49%  { opacity: 0.65; text-shadow: 0 0 1px rgba(253,224,71,0.2); }
+          62%  { opacity: 0.8; text-shadow: 0 0 2px rgba(253,224,71,0.4), 3px -2px 2px rgba(253,224,71,0.5); }
+          64%  { opacity: 1;   text-shadow: 0 0 25px #fff, 0 0 50px rgba(253,224,71,1), 8px -8px 6px rgba(253,224,71,0.9), -10px 4px 8px rgba(251,191,36,0.7), 0 0 90px rgba(251,191,36,0.3); }
+          66%  { opacity: 0.55; text-shadow: 0 0 1px rgba(253,224,71,0.15); }
+          74%  { opacity: 1;   text-shadow: 0 0 20px #fff, 0 0 40px rgba(253,224,71,1), 0 0 80px rgba(251,191,36,0.6); }
           77%  { opacity: 0;   text-shadow: 0 0 0px rgba(253,224,71,0); }
           100% { opacity: 0;   text-shadow: 0 0 0px rgba(253,224,71,0); }
         }
         @keyframes ${gasAnim} {
-          0%   { opacity: 0.1;  filter: blur(5px);  letter-spacing: 0.2em;  text-shadow: 0 0 20px rgba(56,189,248,0.2); transform: scale(0.95); }
-          10%  { opacity: 0.6;  filter: blur(1.5px);letter-spacing: 0.1em;  text-shadow: 0 0 12px rgba(56,189,248,0.5); transform: scale(0.98); }
-          20%  { opacity: 0.9;  filter: blur(0.3px);letter-spacing: 0.05em; text-shadow: 0 0 6px rgba(56,189,248,0.7), 0 0 14px rgba(56,189,248,0.3); transform: scale(1); }
-          65%  { opacity: 0.9;  filter: blur(0px);  letter-spacing: 0.04em; text-shadow: 0 0 4px rgba(56,189,248,0.6), 0 0 10px rgba(56,189,248,0.2); transform: scale(1); }
-          80%  { opacity: 0.5;  filter: blur(2px);  letter-spacing: 0.12em; text-shadow: 0 -4px 15px rgba(56,189,248,0.3); transform: scale(1.02); }
-          92%  { opacity: 0.15; filter: blur(5px);  letter-spacing: 0.2em;  text-shadow: 0 -8px 20px rgba(56,189,248,0.1); transform: scale(1.05); }
-          100% { opacity: 0.1;  filter: blur(5px);  letter-spacing: 0.2em;  text-shadow: 0 0 20px rgba(56,189,248,0.2); transform: scale(0.95); }
+          0%   { opacity: 0.1;  filter: blur(4px);  letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(56,189,248,0.3), 0 2px 4px rgba(56,189,248,0.2), 0 -2px 4px rgba(100,200,255,0.2); transform: scale(0.96); }
+          12%  { opacity: 0.7;  filter: blur(0.8px);letter-spacing: 0.08em; text-shadow: 0 0 10px rgba(56,189,248,0.6), 2px 3px 6px rgba(30,144,220,0.5), -2px -2px 6px rgba(100,210,255,0.4), 0 4px 8px rgba(56,189,248,0.3); transform: scale(0.99); }
+          22%  { opacity: 1;    filter: blur(0px);  letter-spacing: 0.04em; text-shadow: 0 0 6px rgba(56,189,248,0.8), 2px 3px 4px rgba(30,144,220,0.6), -2px -2px 4px rgba(100,210,255,0.5), 0 5px 10px rgba(56,189,248,0.3), 3px 1px 3px rgba(80,180,240,0.4), -3px 2px 3px rgba(80,180,240,0.4); transform: scale(1); }
+          60%  { opacity: 1;    filter: blur(0px);  letter-spacing: 0.04em; text-shadow: 0 0 5px rgba(56,189,248,0.7), 2px 3px 4px rgba(30,144,220,0.5), -2px -2px 4px rgba(100,210,255,0.4), 0 4px 8px rgba(56,189,248,0.25), 3px 1px 3px rgba(80,180,240,0.35), -3px 2px 3px rgba(80,180,240,0.35); transform: scale(1); }
+          78%  { opacity: 0.6;  filter: blur(1.5px);letter-spacing: 0.1em;  text-shadow: 0 -3px 12px rgba(56,189,248,0.4), 0 3px 8px rgba(30,144,220,0.3), 2px 0px 6px rgba(100,210,255,0.3); transform: scale(1.01); }
+          92%  { opacity: 0.15; filter: blur(4px);  letter-spacing: 0.15em; text-shadow: 0 -6px 18px rgba(56,189,248,0.15), 0 4px 10px rgba(56,189,248,0.1); transform: scale(1.04); }
+          100% { opacity: 0.1;  filter: blur(4px);  letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(56,189,248,0.3), 0 2px 4px rgba(56,189,248,0.2), 0 -2px 4px rgba(100,200,255,0.2); transform: scale(0.96); }
         }
       `}</style>
       <div
@@ -183,9 +185,9 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
               WebkitBackfaceVisibility: 'hidden',
             }}>
               <span style={{
-                color: isPower ? 'rgba(253,224,71,0.85)' : '#38bdf8',
+                color: isPower ? 'rgba(253,224,71,0.85)' : '#b8e8ff',
                 fontSize: size * 0.145,
-                fontWeight: isPower ? 100 : 700,
+                fontWeight: isPower ? 100 : 900,
                 fontFamily: 'var(--font-raleway), sans-serif',
                 letterSpacing: '0.04em',
                 textAlign: 'center',
@@ -193,6 +195,10 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
                 animation: isPower
                   ? `${electricAnim} 3s ease-in-out infinite`
                   : `${gasAnim} 7s ease-in-out infinite`,
+                ...(isPower ? {} : {
+                  WebkitTextStroke: `${size * 0.012}px rgba(56,189,248,0.7)`,
+                  paintOrder: 'stroke fill' as const,
+                }),
               }}>100 kWh</span>
             </div>
           ))}
