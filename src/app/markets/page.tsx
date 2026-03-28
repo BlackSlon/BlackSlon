@@ -81,6 +81,34 @@ export default function MarketsPage() {
           box-shadow: 0 0 6px 1px rgba(180,80,40,0.15), inset -2px -1px 3px rgba(50,15,5,0.4);
         }
         .mars::after { display: none; }
+        @keyframes cubeFloat1 {
+          0%   { transform: translate(0, 0) scale(1); }
+          25%  { transform: translate(4px, -6px) scale(1.01); }
+          50%  { transform: translate(-3px, -10px) scale(1.02); }
+          75%  { transform: translate(5px, -4px) scale(1.01); }
+          100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes cubeFloat2 {
+          0%   { transform: translate(0, 0) scale(1); }
+          25%  { transform: translate(-5px, -4px) scale(1.02); }
+          50%  { transform: translate(3px, -8px) scale(1.01); }
+          75%  { transform: translate(-4px, -5px) scale(1.02); }
+          100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes cubeFloat3 {
+          0%   { transform: translate(0, 0) scale(1); }
+          25%  { transform: translate(6px, -3px) scale(1.01); }
+          50%  { transform: translate(-2px, -7px) scale(1.02); }
+          75%  { transform: translate(3px, -9px) scale(1.01); }
+          100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes cubeFloat4 {
+          0%   { transform: translate(0, 0) scale(1); }
+          25%  { transform: translate(-3px, -8px) scale(1.02); }
+          50%  { transform: translate(5px, -5px) scale(1.01); }
+          75%  { transform: translate(-6px, -3px) scale(1.02); }
+          100% { transform: translate(0, 0) scale(1); }
+        }
       `}</style>
       <div className="stars-sm" />
       <div className="stars-md" />
@@ -98,7 +126,7 @@ export default function MarketsPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto mb-10 md:mb-16">
         {activePower.map((market, i) => (
           <Link key={market.id} href={`/markets/${market.id}`}>
-            <div className="bg-black p-2 md:p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center">
+            <div className="bg-black p-2 md:p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center" style={{ animation: `cubeFloat${(i % 4) + 1} ${6 + i * 1.5}s ease-in-out infinite`, animationDelay: `${i * 0.8}s` }}>
               <div className="flex items-center justify-center scale-[0.7] md:scale-100" style={{ width: 120, height: 120 }}>
                 <MarketCube marketId={market.id} marketName={market.name} type="Power" size={120} direction={i % 2 === 0 ? 'left' : 'down'} duration={[20, 22, 18, 24][i]} />
               </div>
@@ -111,7 +139,7 @@ export default function MarketsPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto mb-10 md:mb-16">
         {activeGas.map((market, i) => (
           <Link key={market.id} href={`/markets/${market.id}`}>
-            <div className="bg-black p-2 md:p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center">
+            <div className="bg-black p-2 md:p-4 text-center transition-all hover:scale-110 cursor-pointer flex flex-col items-center" style={{ animation: `cubeFloat${((i + 2) % 4) + 1} ${7 + i * 1.3}s ease-in-out infinite`, animationDelay: `${i * 1.1}s` }}>
               <div className="flex items-center justify-center scale-[0.7] md:scale-100" style={{ width: 120, height: 120 }}>
                 <MarketCube marketId={market.id} marketName={market.name} type="Gas" size={120} direction={i % 2 === 0 ? 'down' : 'left'} duration={[24, 20, 22, 18][i]} />
               </div>
