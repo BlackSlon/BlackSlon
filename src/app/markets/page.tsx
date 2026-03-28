@@ -243,12 +243,7 @@ export default function MarketsPage() {
         </Link>
       </div>
 
-      {/* ── Footer ── */}
-      <div className="max-w-5xl mx-auto pt-4 border-t border-gray-900">
-        <p className="text-center text-[7px] text-gray-800 uppercase tracking-[0.3em]">
-          BlackSlon Protocol · European Gas & Power Markets · All dormant markets subject to regulatory approval
-        </p>
-      </div>
+      {/* ── Footer removed ── */}
 
       </div>{/* end z-10 content wrapper */}
     </div>
