@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 
 interface MarketCubeProps {
   marketId: string
@@ -11,23 +11,45 @@ interface MarketCubeProps {
   duration?: number
 }
 
-// Single-axis rotation keyframes
-const SPIN_LEFT = (n: string) => `@keyframes ${n} {
-  0%   { transform: rotateY(0deg); }
-  100% { transform: rotateY(-360deg); }
-}`
-const SPIN_DOWN = (n: string) => `@keyframes ${n} {
-  0%   { transform: rotateX(0deg); }
-  100% { transform: rotateX(-360deg); }
-}`
+// Chaotic multi-axis rotation keyframes — each cube gets a unique variant
+const SPIN_CHAOTIC = (n: string, v: number) => {
+  const paths = [
+    `@keyframes ${n} {
+      0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+      25%  { transform: rotateX(90deg) rotateY(180deg) rotateZ(45deg); }
+      50%  { transform: rotateX(200deg) rotateY(360deg) rotateZ(-30deg); }
+      75%  { transform: rotateX(310deg) rotateY(180deg) rotateZ(60deg); }
+      100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg); }
+    }`,
+    `@keyframes ${n} {
+      0%   { transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+      20%  { transform: rotateY(120deg) rotateX(-60deg) rotateZ(30deg); }
+      40%  { transform: rotateY(200deg) rotateX(-180deg) rotateZ(-45deg); }
+      60%  { transform: rotateY(280deg) rotateX(-270deg) rotateZ(20deg); }
+      80%  { transform: rotateY(340deg) rotateX(-340deg) rotateZ(-15deg); }
+      100% { transform: rotateY(360deg) rotateX(-360deg) rotateZ(0deg); }
+    }`,
+    `@keyframes ${n} {
+      0%   { transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg); }
+      30%  { transform: rotateZ(-50deg) rotateX(130deg) rotateY(100deg); }
+      50%  { transform: rotateZ(30deg) rotateX(180deg) rotateY(220deg); }
+      70%  { transform: rotateZ(-40deg) rotateX(280deg) rotateY(300deg); }
+      100% { transform: rotateZ(0deg) rotateX(360deg) rotateY(360deg); }
+    }`,
+    `@keyframes ${n} {
+      0%   { transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg); }
+      25%  { transform: rotateX(-100deg) rotateZ(40deg) rotateY(90deg); }
+      50%  { transform: rotateX(-180deg) rotateZ(-20deg) rotateY(200deg); }
+      75%  { transform: rotateX(-280deg) rotateZ(50deg) rotateY(300deg); }
+      100% { transform: rotateX(-360deg) rotateZ(0deg) rotateY(360deg); }
+    }`,
+  ]
+  return paths[v % paths.length]
+}
 
 export default function MarketCube({ marketId, marketName, type, size = 120, direction = 'left', duration = 20 }: MarketCubeProps) {
-  const [phase, setPhase] = useState(0)
-  const handleAnimEnd = useCallback(() => setPhase(p => p + 1), [])
-
-  // Alternate direction each phase
-  const isLeftPhase = direction === 'left' ? phase % 2 === 0 : phase % 2 !== 0
-  const phaseDuration = duration / 2
+  // Simple hash from marketId for variant selection
+  const variant = marketId.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
 
   const h = size / 2
   const country = marketName.split(' ')[0]
@@ -49,9 +71,7 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
   const textColor     = isPower ? 'rgba(253,224,71,0.95)'   : 'rgba(103,232,249,0.95)'
   const glowColor     = isPower ? 'rgba(251,191,36,0.12)'   : 'rgba(34,211,238,0.12)'
 
-  const leftAnimName = `mc-left-${marketId.replace(/-/g, '')}`
-  const downAnimName = `mc-down-${marketId.replace(/-/g, '')}`
-  const currentAnimName = isLeftPhase ? leftAnimName : downAnimName
+  const spinAnimName = `mc-spin-${marketId.replace(/-/g, '')}`
 
   const faceSize = size + 2
   const faceOffset = -1
@@ -104,14 +124,22 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
 
   const faceTransforms = [
     `translateZ(${h}px)`,
-    isLeftPhase ? `rotateY(180deg) translateZ(${h}px)` : `rotateX(180deg) translateZ(${h}px)`,
+    `rotateY(180deg) translateZ(${h}px)`,
     `rotateY(90deg) translateZ(${h}px)`,
     `rotateY(-90deg) translateZ(${h}px)`,
     `rotateX(90deg) translateZ(${h}px)`,
     `rotateX(-90deg) translateZ(${h}px)`,
   ]
 
-  const labelOrientations = isLeftPhase ? ['', 'rotateY(180deg)'] : ['', 'rotateX(180deg)']
+  // Labels on all 6 orientations so 100kWh is always visible from any angle
+  const labelOrientations = [
+    '',
+    'rotateY(180deg)',
+    'rotateY(90deg)',
+    'rotateY(-90deg)',
+    'rotateX(90deg)',
+    'rotateX(-90deg)',
+  ]
 
   const electricAnim = `mc-zap-${marketId.replace(/-/g, '')}`
   const electronSweep = `mc-electron-${marketId.replace(/-/g, '')}`
@@ -120,8 +148,7 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
   return (
     <>
       <style>{`
-        ${SPIN_LEFT(leftAnimName)}
-        ${SPIN_DOWN(downAnimName)}
+        ${SPIN_CHAOTIC(spinAnimName, variant)}
         @keyframes ${electronSweep} {
           0%   { background-position: -100% 0; }
           40%  { background-position: 200% 0; }
@@ -170,10 +197,9 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
             width: size,
             height: size,
             transformStyle: 'preserve-3d',
-            animation: `${currentAnimName} ${phaseDuration}s linear 1`,
+            animation: `${spinAnimName} ${duration}s linear infinite`,
             position: 'relative',
           }}
-          onAnimationEnd={handleAnimEnd}
         >
           {/* 100 kWh labels — front + back matched to current rotation axis */}
           {labelOrientations.map((rot, li) => (

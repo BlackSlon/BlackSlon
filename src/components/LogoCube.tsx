@@ -1,35 +1,27 @@
 'use client'
 
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 
 interface LogoCubeProps {
   size?: number
   duration?: number
 }
 
-const SPIN_LEFT = (n: string) => `@keyframes ${n} {
-  0%   { transform: rotateY(0deg); }
-  100% { transform: rotateY(-360deg); }
-}`
-const SPIN_DOWN = (n: string) => `@keyframes ${n} {
-  0%   { transform: rotateX(0deg); }
-  100% { transform: rotateX(-360deg); }
+const SPIN_CHAOTIC = (n: string) => `@keyframes ${n} {
+  0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  20%  { transform: rotateX(70deg) rotateY(140deg) rotateZ(35deg); }
+  40%  { transform: rotateX(170deg) rotateY(250deg) rotateZ(-25deg); }
+  60%  { transform: rotateX(260deg) rotateY(300deg) rotateZ(50deg); }
+  80%  { transform: rotateX(320deg) rotateY(200deg) rotateZ(-15deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg); }
 }`
 
 export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
-  const [phase, setPhase] = useState(0)
-  const handleAnimEnd = useCallback(() => setPhase(p => p + 1), [])
-
-  const isLeftPhase = phase % 2 === 0
-  const phaseDuration = duration / 2
-
   const h = size / 2
   const faceSize = size + 2
   const faceOffset = -1
 
-  const leftAnim = 'logo-spin-left'
-  const downAnim = 'logo-spin-down'
-  const currentAnim = isLeftPhase ? leftAnim : downAnim
+  const spinAnim = 'logo-spin-chaotic'
 
   const borderColor = 'rgba(200,180,120,0.3)'
   const glowColor = 'rgba(200,180,120,0.08)'
@@ -60,7 +52,7 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
 
   const faceTransforms = [
     `translateZ(${h}px)`,
-    isLeftPhase ? `rotateY(180deg) translateZ(${h}px)` : `rotateX(180deg) translateZ(${h}px)`,
+    `rotateY(180deg) translateZ(${h}px)`,
     `rotateY(90deg) translateZ(${h}px)`,
     `rotateY(-90deg) translateZ(${h}px)`,
     `rotateX(90deg) translateZ(${h}px)`,
@@ -75,8 +67,7 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
   return (
     <>
       <style>{`
-        ${SPIN_LEFT(leftAnim)}
-        ${SPIN_DOWN(downAnim)}
+        ${SPIN_CHAOTIC(spinAnim)}
         @keyframes ${floatAnim} {
           0%   { transform: translate(0, 0); }
           25%  { transform: translate(3px, -5px); }
@@ -97,10 +88,9 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
             width: size,
             height: size,
             transformStyle: 'preserve-3d',
-            animation: `${currentAnim} ${phaseDuration}s linear 1`,
+            animation: `${spinAnim} ${duration}s linear infinite`,
             position: 'relative',
           }}
-          onAnimationEnd={handleAnimEnd}
         >
           {faceTransforms.map((transform, i) => (
             faces[i] === 'LOGO'
