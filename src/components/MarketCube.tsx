@@ -114,6 +114,7 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
   const labelOrientations = isLeftPhase ? ['', 'rotateY(180deg)'] : ['', 'rotateX(180deg)']
 
   const electricAnim = `mc-zap-${marketId.replace(/-/g, '')}`
+  const electronSweep = `mc-electron-${marketId.replace(/-/g, '')}`
   const gasAnim = `mc-vapor-${marketId.replace(/-/g, '')}`
 
   return (
@@ -121,6 +122,11 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
       <style>{`
         ${SPIN_LEFT(leftAnimName)}
         ${SPIN_DOWN(downAnimName)}
+        @keyframes ${electronSweep} {
+          0%   { background-position: -100% 0; }
+          40%  { background-position: 200% 0; }
+          100% { background-position: 200% 0; }
+        }
         @keyframes ${electricAnim} {
           0%   { opacity: 0;   text-shadow: 0 0 0px rgba(253,224,71,0); }
           7%   { opacity: 0;   text-shadow: 0 0 0px rgba(253,224,71,0); }
@@ -185,21 +191,28 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
               WebkitBackfaceVisibility: 'hidden',
             }}>
               <span style={{
-                color: isPower ? 'rgba(253,224,71,0.85)' : '#b8e8ff',
                 fontSize: size * 0.145,
-                fontWeight: isPower ? 100 : 900,
                 fontFamily: 'var(--font-raleway), sans-serif',
                 letterSpacing: '0.04em',
                 textAlign: 'center',
                 lineHeight: 1.2,
-                animation: isPower
-                  ? `${electricAnim} 3s ease-in-out infinite`
-                  : `${gasAnim} 7s ease-in-out infinite`,
-                ...(isPower ? {} : {
+                ...(isPower ? {
+                  fontWeight: 100,
+                  background: 'linear-gradient(90deg, rgba(253,224,71,0.85) 0%, rgba(253,224,71,0.85) 35%, #fff 48%, rgba(255,255,200,1) 50%, #fff 52%, rgba(253,224,71,0.85) 65%, rgba(253,224,71,0.85) 100%)',
+                  backgroundSize: '300% 100%',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  animation: `${electricAnim} 3s ease-in-out infinite, ${electronSweep} 1.8s ease-in-out infinite`,
+                  filter: 'drop-shadow(0 0 3px rgba(253,224,71,0.6))',
+                } : {
+                  color: '#b8e8ff',
+                  fontWeight: 900,
                   WebkitTextStroke: `${size * 0.012}px rgba(56,189,248,0.7)`,
                   paintOrder: 'stroke fill' as const,
+                  animation: `${gasAnim} 7s ease-in-out infinite`,
                 }),
-              }}>100 kWh</span>
+              } as React.CSSProperties}>100 kWh</span>
             </div>
           ))}
 
