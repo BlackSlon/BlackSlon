@@ -11,14 +11,18 @@ interface MarketCubeProps {
   duration?: number
 }
 
-// Clean single-axis rotations
-const SPIN_LEFT = (n: string) => `@keyframes ${n} {
-  0%   { transform: rotateY(0deg); }
-  100% { transform: rotateY(-360deg); }
+// Alternating rotations: one full spin LEFT then one full spin DOWN (and vice versa)
+const SPIN_LEFT_FIRST = (n: string) => `@keyframes ${n} {
+  0%      { transform: rotateY(0deg); }
+  49.99%  { transform: rotateY(-360deg); }
+  50%     { transform: rotateX(0deg); }
+  100%    { transform: rotateX(-360deg); }
 }`
-const SPIN_DOWN = (n: string) => `@keyframes ${n} {
-  0%   { transform: rotateX(0deg); }
-  100% { transform: rotateX(-360deg); }
+const SPIN_DOWN_FIRST = (n: string) => `@keyframes ${n} {
+  0%      { transform: rotateX(0deg); }
+  49.99%  { transform: rotateX(-360deg); }
+  50%     { transform: rotateY(0deg); }
+  100%    { transform: rotateY(-360deg); }
 }`
 
 export default function MarketCube({ marketId, marketName, type, size = 120, direction = 'left', duration = 20 }: MarketCubeProps) {
@@ -98,7 +102,7 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
     `rotateX(-90deg) translateZ(${h}px)`,
   ]
 
-  const spinFn = direction === 'left' ? SPIN_LEFT : SPIN_DOWN
+  const spinFn = direction === 'left' ? SPIN_LEFT_FIRST : SPIN_DOWN_FIRST
 
   const electricAnim = `mc-zap-${marketId.replace(/-/g, '')}`
   const gasAnim = `mc-vapor-${marketId.replace(/-/g, '')}`
@@ -154,8 +158,9 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
               width: size,
               height: size,
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'flex-start',
               justifyContent: 'center',
+              paddingTop: size * 0.2,
               pointerEvents: 'none',
               transform: rot || undefined,
               backfaceVisibility: 'hidden',
