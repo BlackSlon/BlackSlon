@@ -131,16 +131,7 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
     `rotateX(-90deg) translateZ(${h}px)`,
   ]
 
-  // Labels placed ON each face surface (with translateZ) so backfaceVisibility works correctly
-  // Only the face pointing at the viewer will show its label — 1 at a time
-  const labelTransforms = [
-    `translateZ(${h}px)`,
-    `rotateY(180deg) translateZ(${h}px)`,
-    `rotateY(90deg) translateZ(${h}px)`,
-    `rotateY(-90deg) translateZ(${h}px)`,
-    `rotateX(90deg) translateZ(${h}px)`,
-    `rotateX(-90deg) translateZ(${h}px)`,
-  ]
+  // Single label floating in the center of the cube
 
   const electricAnim = `mc-zap-${marketId.replace(/-/g, '')}`
   const electronSweep = `mc-electron-${marketId.replace(/-/g, '')}`
@@ -202,46 +193,41 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
             position: 'relative',
           }}
         >
-          {/* 100 kWh labels — front + back matched to current rotation axis */}
-          {labelTransforms.map((t, li) => (
-            <div key={`label-${li}`} style={{
-              position: 'absolute',
-              width: size,
-              height: size,
-              display: 'flex',
-              alignItems: 'flex-start',
-              justifyContent: 'center',
-              paddingTop: size * 0.2,
-              pointerEvents: 'none',
-              transform: t,
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden',
-            }}>
-              <span style={{
-                fontSize: size * 0.145,
-                fontFamily: 'var(--font-raleway), sans-serif',
-                letterSpacing: '0.04em',
-                textAlign: 'center',
-                lineHeight: 1.2,
-                ...(isPower ? {
-                  fontWeight: 100,
-                  background: 'linear-gradient(90deg, rgba(253,224,71,0.85) 0%, rgba(253,224,71,0.85) 35%, #fff 48%, rgba(255,255,200,1) 50%, #fff 52%, rgba(253,224,71,0.85) 65%, rgba(253,224,71,0.85) 100%)',
-                  backgroundSize: '300% 100%',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  animation: `${electricAnim} 3s ease-in-out infinite, ${electronSweep} 1.8s ease-in-out infinite`,
-                  filter: 'drop-shadow(0 0 3px rgba(253,224,71,0.6))',
-                } : {
-                  color: '#b8e8ff',
-                  fontWeight: 900,
-                  WebkitTextStroke: `${size * 0.012}px rgba(56,189,248,0.7)`,
-                  paintOrder: 'stroke fill' as const,
-                  animation: `${gasAnim} 7s ease-in-out infinite`,
-                }),
-              } as React.CSSProperties}>100 kWh</span>
-            </div>
-          ))}
+          {/* Single 100 kWh label floating in the center of the cube */}
+          <div style={{
+            position: 'absolute',
+            width: size,
+            height: size,
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+            paddingTop: size * 0.2,
+            pointerEvents: 'none',
+          }}>
+            <span style={{
+              fontSize: size * 0.145,
+              fontFamily: 'var(--font-raleway), sans-serif',
+              letterSpacing: '0.04em',
+              textAlign: 'center',
+              lineHeight: 1.2,
+              ...(isPower ? {
+                fontWeight: 100,
+                background: 'linear-gradient(90deg, rgba(253,224,71,0.85) 0%, rgba(253,224,71,0.85) 35%, #fff 48%, rgba(255,255,200,1) 50%, #fff 52%, rgba(253,224,71,0.85) 65%, rgba(253,224,71,0.85) 100%)',
+                backgroundSize: '300% 100%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                animation: `${electricAnim} 3s ease-in-out infinite, ${electronSweep} 1.8s ease-in-out infinite`,
+                filter: 'drop-shadow(0 0 3px rgba(253,224,71,0.6))',
+              } : {
+                color: '#b8e8ff',
+                fontWeight: 900,
+                WebkitTextStroke: `${size * 0.012}px rgba(56,189,248,0.7)`,
+                paintOrder: 'stroke fill' as const,
+                animation: `${gasAnim} 7s ease-in-out infinite`,
+              }),
+            } as React.CSSProperties}>100 kWh</span>
+          </div>
 
           {faceTransforms.map((transform, i) => (
             faces[i] === 'LOGO'
