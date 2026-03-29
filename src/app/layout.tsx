@@ -32,7 +32,7 @@ export default function RootLayout({
           {children}
           <footer className="w-full border-t border-gray-800 py-3 mt-8">
             <div className="flex flex-col items-center gap-1">
-              <p className="text-[8px] text-gray-500 uppercase tracking-[0.25em]">
+              <p className="text-[8px] text-gray-500 tracking-[0.25em]">
                 © {new Date().getFullYear()} BlackSlon Protocol · All Rights Reserved
               </p>
               <p className="text-[8px] text-gray-500 tracking-wide">

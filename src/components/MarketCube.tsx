@@ -182,8 +182,46 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
           height: size,
           perspective: 5000,
           perspectiveOrigin: '50% 50%',
+          position: 'relative',
         }}
       >
+        {/* Single 100 kWh label — flat overlay OUTSIDE the 3D container */}
+        <div style={{
+          position: 'absolute',
+          width: size,
+          height: size,
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          paddingTop: size * 0.2,
+          pointerEvents: 'none',
+          zIndex: 10,
+        }}>
+          <span style={{
+            fontSize: size * 0.145,
+            fontFamily: 'var(--font-raleway), sans-serif',
+            letterSpacing: '0.04em',
+            textAlign: 'center',
+            lineHeight: 1.2,
+            ...(isPower ? {
+              fontWeight: 100,
+              background: 'linear-gradient(90deg, rgba(253,224,71,0.85) 0%, rgba(253,224,71,0.85) 35%, #fff 48%, rgba(255,255,200,1) 50%, #fff 52%, rgba(253,224,71,0.85) 65%, rgba(253,224,71,0.85) 100%)',
+              backgroundSize: '300% 100%',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              animation: `${electricAnim} 3s ease-in-out infinite, ${electronSweep} 1.8s ease-in-out infinite`,
+              filter: 'drop-shadow(0 0 3px rgba(253,224,71,0.6))',
+            } : {
+              color: '#b8e8ff',
+              fontWeight: 900,
+              WebkitTextStroke: `${size * 0.012}px rgba(56,189,248,0.7)`,
+              paintOrder: 'stroke fill' as const,
+              animation: `${gasAnim} 7s ease-in-out infinite`,
+            }),
+          } as React.CSSProperties}>100 kWh</span>
+        </div>
+
         <div
           style={{
             width: size,
@@ -193,42 +231,6 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
             position: 'relative',
           }}
         >
-          {/* Single 100 kWh label floating in the center of the cube */}
-          <div style={{
-            position: 'absolute',
-            width: size,
-            height: size,
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            paddingTop: size * 0.2,
-            pointerEvents: 'none',
-          }}>
-            <span style={{
-              fontSize: size * 0.145,
-              fontFamily: 'var(--font-raleway), sans-serif',
-              letterSpacing: '0.04em',
-              textAlign: 'center',
-              lineHeight: 1.2,
-              ...(isPower ? {
-                fontWeight: 100,
-                background: 'linear-gradient(90deg, rgba(253,224,71,0.85) 0%, rgba(253,224,71,0.85) 35%, #fff 48%, rgba(255,255,200,1) 50%, #fff 52%, rgba(253,224,71,0.85) 65%, rgba(253,224,71,0.85) 100%)',
-                backgroundSize: '300% 100%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                animation: `${electricAnim} 3s ease-in-out infinite, ${electronSweep} 1.8s ease-in-out infinite`,
-                filter: 'drop-shadow(0 0 3px rgba(253,224,71,0.6))',
-              } : {
-                color: '#b8e8ff',
-                fontWeight: 900,
-                WebkitTextStroke: `${size * 0.012}px rgba(56,189,248,0.7)`,
-                paintOrder: 'stroke fill' as const,
-                animation: `${gasAnim} 7s ease-in-out infinite`,
-              }),
-            } as React.CSSProperties}>100 kWh</span>
-          </div>
-
           {faceTransforms.map((transform, i) => (
             faces[i] === 'LOGO'
               ? <div key={i} style={{ ...logoFaceStyle, transform }}>
