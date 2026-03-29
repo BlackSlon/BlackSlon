@@ -31,25 +31,22 @@ export default function WhitepaperPage() {
             components={{
               h1: ({ children, ...props }) => {
                 const id = children?.toString().toLowerCase()
-                  .replace(/\s*&\s*/g, '-')
-                  .replace(/\s*\/\s*/g, '-')
-                  .replace(/[^a-z0-9]+/g, '-')
+                  .replace(/[^\w\s\u0080-\uFFFF-]/g, '')
+                  .replace(/ /g, '-')
                   .replace(/^-+|-+$/g, '');
                 return <h1 id={id} {...props}>{children}</h1>;
               },
               h2: ({ children, ...props }) => {
                 const id = children?.toString().toLowerCase()
-                  .replace(/\s*&\s*/g, '-')
-                  .replace(/\s*\/\s*/g, '-')
-                  .replace(/[^a-z0-9]+/g, '-')
+                  .replace(/[^\w\s\u0080-\uFFFF-]/g, '')
+                  .replace(/ /g, '-')
                   .replace(/^-+|-+$/g, '');
                 return <h2 id={id} {...props}>{children}</h2>;
               },
               h3: ({ children, ...props }) => {
                 const id = children?.toString().toLowerCase()
-                  .replace(/\s*&\s*/g, '-')
-                  .replace(/\s*\/\s*/g, '-')
-                  .replace(/[^a-z0-9]+/g, '-')
+                  .replace(/[^\w\s\u0080-\uFFFF-]/g, '')
+                  .replace(/ /g, '-')
                   .replace(/^-+|-+$/g, '');
                 return <h3 id={id} {...props}>{children}</h3>;
               },

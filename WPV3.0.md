@@ -20,7 +20,7 @@ Language: English | Classification: Public*
 7. [The Name: Black Swan × Black Elephant](#7-the-name-black-swan-×-black-elephant)
 8. [BSSZ Framework: The Physical Energy Foundation](#8-blackslon-settlement-zone-bssz-the-physical-energy-framework-for-virtual-energy-trading)
 9. [BSEI Benchmark: The Virtual Settlement Index](#9-blackslon-energy-index-bsei-the-rolling-valuation--risk-benchmark)
-10. [BS-P & BS-G Token Specification](#10-bs-p-bs-g-token-specification)
+10. [BS-P & BS-G Token Specification](#10-bs-p--bs-g-token-specification)
 11. [Economic Equilibrium & Treasury Governance](#11-economic-equilibrium--treasury-governance)
 12. [Protocol Solvency: Macro Level](#12-protocol-solvency-macro-system-level)
 13. [Risk Management: Micro Level](#13-risk-management-user-level-portfolio-protection)
@@ -198,7 +198,7 @@ BlackSlon tokens are perpetual virtual instruments tracking the real-time value 
 
 **No Physical Delivery Clauses**
 
-Most of gas and power supply agreements carry strict Physical Delivery Clauses. Whether you are QatarGas signing a 15-year LNG offtake or a regional glass manufacturer locking in a 3-year gas or power supply contract — you do not own the price. When wholesale power or gas prices rally +100% and your supply contract is deeply In-the-Money, that value is structurally trapped into a specific geographic location. You cannot monetise it. You cannot transfer it.
+Most of gas and power supply agreements carry strict Physical Delivery Clauses. Whether you are QatarGas signing a 15-year LNG offtake or a regional glass manufacturer locking in a 3-year gas or power supply contract — you do not own the price. When power or gas prices rally +100% and your supply contract is deeply In-the-Money, that value is structurally trapped into a specific geographic location. You cannot monetise it. You cannot transfer it.
 
 BlackSlon breaks this trap. BS-G/P tokens hedge price exposure without delivery point, without volume obligation, without counterparty credit risks. For the first time, the economic value of energy locked inside BS-G/P tokens becomes liquid.
 
