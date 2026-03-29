@@ -131,14 +131,15 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
     `rotateX(-90deg) translateZ(${h}px)`,
   ]
 
-  // Labels on all 6 orientations so 100kWh is always visible from any angle
-  const labelOrientations = [
-    '',
-    'rotateY(180deg)',
-    'rotateY(90deg)',
-    'rotateY(-90deg)',
-    'rotateX(90deg)',
-    'rotateX(-90deg)',
+  // Labels placed ON each face surface (with translateZ) so backfaceVisibility works correctly
+  // Only the face pointing at the viewer will show its label — 1 at a time
+  const labelTransforms = [
+    `translateZ(${h}px)`,
+    `rotateY(180deg) translateZ(${h}px)`,
+    `rotateY(90deg) translateZ(${h}px)`,
+    `rotateY(-90deg) translateZ(${h}px)`,
+    `rotateX(90deg) translateZ(${h}px)`,
+    `rotateX(-90deg) translateZ(${h}px)`,
   ]
 
   const electricAnim = `mc-zap-${marketId.replace(/-/g, '')}`
@@ -202,7 +203,7 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
           }}
         >
           {/* 100 kWh labels — front + back matched to current rotation axis */}
-          {labelOrientations.map((rot, li) => (
+          {labelTransforms.map((t, li) => (
             <div key={`label-${li}`} style={{
               position: 'absolute',
               width: size,
@@ -212,7 +213,7 @@ export default function MarketCube({ marketId, marketName, type, size = 120, dir
               justifyContent: 'center',
               paddingTop: size * 0.2,
               pointerEvents: 'none',
-              transform: rot || undefined,
+              transform: t,
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
             }}>
