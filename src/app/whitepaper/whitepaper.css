@@ -1,3 +1,8 @@
+/* Anchor scroll offset — keeps heading below viewport top edge */
+h1, h2, h3 {
+  scroll-margin-top: 80px;
+}
+
 /* Fix KaTeX formula rendering */
 .katex {
   font-size: 1em !important;
