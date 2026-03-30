@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useVirtual } from '@/store/blackslon'
 import { useBotOrders } from '@/store/blackslon'
 import { getMarketData } from '@/data/markets'
@@ -164,7 +164,14 @@ export default function VirtualDimension({ selectedMarketId = 'BS-P-PL' }: Props
     d2: bseiStatic.d2,
   }
 
-  const displayLiquidity = generateLiquiditySnapshots(selectedMarketId)
+  const [displayLiquidity, setDisplayLiquidity] = useState(() => generateLiquiditySnapshots(selectedMarketId))
+  useEffect(() => {
+    setDisplayLiquidity(generateLiquiditySnapshots(selectedMarketId))
+    const liqInterval = setInterval(() => {
+      setDisplayLiquidity(generateLiquiditySnapshots(selectedMarketId))
+    }, 10000)
+    return () => clearInterval(liqInterval)
+  }, [selectedMarketId])
   const displayMarketId = selectedMarketId
   const bseiVol24hTokens = Math.round(displayLastTrade.volume / 100)
 
