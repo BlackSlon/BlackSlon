@@ -9,8 +9,8 @@
  * Requires: AIAdvisor.tsx in the same /components folder
  */
 
-import { useState } from "react";
-import AIAdvisor, { ProfileId } from "@/components/AIAdvisor";
+import { useRouter } from "next/navigation";
+import type { ProfileId } from "@/components/AIAdvisor";
 
 // ─── Profile definitions ──────────────────────────────────────────────────────
 
@@ -24,6 +24,7 @@ interface ProfileDef {
   hoverBorder: string;      // symbol box border on hover
   symbolColor: string;      // SVG stroke/fill color (hex)
   symbol: React.ReactNode;
+  defaultMarket: string;
 }
 
 const PROFILES: ProfileDef[] = [
@@ -36,6 +37,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#e05a4e] text-[#e05a4e]",
     hoverBorder: "group-hover:border-[#e05a4e]",
     symbolColor: "#e05a4e",
+    defaultMarket: "BS-G-NL",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <line x1="10" y1="10" x2="50" y2="50" stroke="#e05a4e" strokeWidth="4" strokeLinecap="square"/>
@@ -52,6 +54,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#e07a2f] text-[#e07a2f]",
     hoverBorder: "group-hover:border-[#e07a2f]",
     symbolColor: "#e07a2f",
+    defaultMarket: "BS-P-DE",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <polyline points="6,44 20,20 34,32 48,10" stroke="#e07a2f" strokeWidth="3.5" fill="none" strokeLinecap="square" strokeLinejoin="miter"/>
@@ -67,6 +70,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#3cb371] text-[#3cb371]",
     hoverBorder: "group-hover:border-[#3cb371]",
     symbolColor: "#3cb371",
+    defaultMarket: "BS-P-DE",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <polygon points="30,8 54,50 6,50" stroke="#3cb371" strokeWidth="3.5" fill="none" strokeLinejoin="miter"/>
@@ -82,6 +86,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#4a90d9] text-[#4a90d9]",
     hoverBorder: "group-hover:border-[#4a90d9]",
     symbolColor: "#4a90d9",
+    defaultMarket: "BS-P-DE",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <rect x="10" y="24" width="40" height="14" fill="#4a90d9"/>
@@ -97,6 +102,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#e8a020] text-[#e8a020]",
     hoverBorder: "group-hover:border-[#e8a020]",
     symbolColor: "#e8a020",
+    defaultMarket: "BS-G-NL",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <rect x="8"  y="12" width="44" height="9"  fill="#e8a020"/>
@@ -114,6 +120,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#9b59b6] text-[#9b59b6]",
     hoverBorder: "group-hover:border-[#9b59b6]",
     symbolColor: "#9b59b6",
+    defaultMarket: "BS-P-DE",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <circle cx="30" cy="30" r="20" stroke="#9b59b6" strokeWidth="3.5"/>
@@ -130,6 +137,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#27ae60] text-[#27ae60]",
     hoverBorder: "group-hover:border-[#27ae60]",
     symbolColor: "#27ae60",
+    defaultMarket: "BS-G-NL",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <line x1="30" y1="8"  x2="30" y2="52" stroke="#27ae60" strokeWidth="4" strokeLinecap="square"/>
@@ -146,6 +154,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#1abc9c] text-[#1abc9c]",
     hoverBorder: "group-hover:border-[#1abc9c]",
     symbolColor: "#1abc9c",
+    defaultMarket: "BS-G-NL",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <rect x="10" y="10" width="34" height="34" stroke="#1abc9c" strokeWidth="3.5" fill="none"/>
@@ -165,6 +174,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#e91e8c] text-[#e91e8c]",
     hoverBorder: "group-hover:border-[#e91e8c]",
     symbolColor: "#e91e8c",
+    defaultMarket: "BS-G-NL",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <rect x="8"  y="8"  width="44" height="44" stroke="#e91e8c" strokeWidth="3.5" fill="none"/>
@@ -181,6 +191,7 @@ const PROFILES: ProfileDef[] = [
     tagColor: "border-[#00bcd4] text-[#00bcd4]",
     hoverBorder: "group-hover:border-[#00bcd4]",
     symbolColor: "#00bcd4",
+    defaultMarket: "BS-P-DE",
     symbol: (
       <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
         <rect x="6"  y="30" width="18" height="22" fill="#00bcd4"/>
@@ -194,38 +205,12 @@ const PROFILES: ProfileDef[] = [
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ProfilePage() {
-  const [selected, setSelected] = useState<ProfileId | null>(null);
+  const router = useRouter();
 
-  if (selected) {
-    return (
-      <div className="min-h-screen bg-black flex flex-col">
-        {/* Top bar */}
-        <div className="border-b border-[#111] px-6 py-2 flex items-center justify-between sticky top-0 z-50 bg-black/95 backdrop-blur-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 border border-yellow-500/50 flex items-center justify-center text-[9px] text-yellow-400">
-              八
-            </div>
-            <span className="text-[8px] tracking-[3px] uppercase text-[#333]">
-              BlackSlon Protocol
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-800 animate-pulse" />
-            <span className="text-[8px] tracking-widest text-[#333] uppercase">Live</span>
-          </div>
-        </div>
-
-        {/* AI Advisor — full page for selected profile */}
-        <div className="flex-1 max-w-3xl mx-auto w-full flex flex-col" style={{ height: "calc(100vh - 41px)" }}>
-          <AIAdvisor
-            profileId={selected}
-            mode="page"
-            onClose={() => setSelected(null)}
-          />
-        </div>
-      </div>
-    );
-  }
+  const handleSelect = (p: ProfileDef) => {
+    localStorage.setItem('bs_profile', p.id);
+    router.push(`/markets/${p.defaultMarket}?profile=${p.id}`);
+  };
 
   return (
     <main className="min-h-screen bg-black text-white font-mono">
@@ -324,13 +309,13 @@ export default function ProfilePage() {
                     AI Advisor
                   </div>
                   <button
-                    onClick={() => setSelected(p.id)}
-                    className={`
+                    onClick={() => handleSelect(p)}
+                    className="
                       w-full text-[7px] tracking-[2px] uppercase py-1.5
                       border border-[#111] text-[#222]
                       transition-all duration-150
-                      hover:text-[${p.symbolColor}] hover:border-[${p.symbolColor}]/40
-                    `}
+                      hover:text-yellow-400 hover:border-yellow-500/40
+                    "
                   >
                     Enter →
                   </button>
