@@ -16,37 +16,40 @@ const SPIN_CHAOTIC = (n: string) => `@keyframes ${n} {
   100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg); }
 }`
 
-const TOKENS: { type: 'gas' | 'power'; x: number; y: number; z: number; delay: number; dur: number; spin: number }[] = [
-  // Gas (cyan/blue)
-  { type: 'gas',   x: -60, y: -70, z: 40,  delay: 0,   dur: 6,   spin: 0 },
-  { type: 'gas',   x: 70,  y: 30,  z: -50, delay: 1.5, dur: 7,   spin: 1 },
-  { type: 'gas',   x: -30, y: 80,  z: 60,  delay: 0.8, dur: 5.5, spin: 2 },
-  { type: 'gas',   x: 80,  y: -40, z: -30, delay: 2.2, dur: 6.5, spin: 3 },
-  { type: 'gas',   x: -75, y: 15,  z: -60, delay: 3,   dur: 7.5, spin: 4 },
-  { type: 'gas',   x: 40,  y: -80, z: 50,  delay: 1,   dur: 6,   spin: 5 },
-  { type: 'gas',   x: -50, y: 55,  z: -70, delay: 2.5, dur: 5,   spin: 0 },
-  { type: 'gas',   x: 20,  y: -10, z: 80,  delay: 3.8, dur: 6.8, spin: 3 },
-  { type: 'gas',   x: -85, y: -50, z: -10, delay: 0.4, dur: 5.8, spin: 1 },
-  { type: 'gas',   x: 55,  y: 70,  z: 35,  delay: 2.8, dur: 7.2, spin: 4 },
-  { type: 'gas',   x: -15, y: -90, z: -55, delay: 1.6, dur: 6.4, spin: 2 },
-  { type: 'gas',   x: 90,  y: 10,  z: 20,  delay: 3.4, dur: 5.6, spin: 5 },
-  { type: 'gas',   x: -40, y: 40,  z: 85,  delay: 0.2, dur: 7.8, spin: 3 },
-  { type: 'gas',   x: 30,  y: -65, z: -80, delay: 4.2, dur: 6.2, spin: 1 },
-  // Power (yellow)
-  { type: 'power', x: 55,  y: -55, z: -40, delay: 0.5, dur: 7,   spin: 2 },
-  { type: 'power', x: -65, y: 40,  z: 55,  delay: 2,   dur: 6,   spin: 5 },
-  { type: 'power', x: 25,  y: 65,  z: -65, delay: 1.2, dur: 5.5, spin: 0 },
-  { type: 'power', x: -40, y: -25, z: 75,  delay: 3.5, dur: 7.5, spin: 4 },
-  { type: 'power', x: 75,  y: 50,  z: 25,  delay: 0.3, dur: 6.5, spin: 1 },
-  { type: 'power', x: -55, y: -70, z: -35, delay: 2.8, dur: 5,   spin: 3 },
-  { type: 'power', x: 10,  y: 75,  z: 45,  delay: 1.8, dur: 7.2, spin: 5 },
-  { type: 'power', x: -80, y: -5,  z: -15, delay: 4,   dur: 6.2, spin: 2 },
-  { type: 'power', x: 85,  y: -30, z: 60,  delay: 0.7, dur: 5.4, spin: 0 },
-  { type: 'power', x: -20, y: 85,  z: -45, delay: 3.2, dur: 6.8, spin: 4 },
-  { type: 'power', x: 45,  y: -85, z: -20, delay: 1.4, dur: 7.6, spin: 3 },
-  { type: 'power', x: -70, y: 60,  z: 30,  delay: 2.6, dur: 5.2, spin: 1 },
-  { type: 'power', x: 65,  y: 15,  z: -75, delay: 3.9, dur: 6.6, spin: 5 },
-  { type: 'power', x: -90, y: -40, z: 50,  delay: 0.9, dur: 7.4, spin: 2 },
+// orient: 'front' = faces Z axis (front/back), 'side' = faces X axis (left/right), 'top' = faces Y axis (top/bottom)
+// At any cube rotation, ~1/3 of tokens face the viewer
+const TOKENS: { type: 'gas' | 'power'; x: number; y: number; z: number; delay: number; dur: number; orient: 'front' | 'side' | 'top' }[] = [
+  // ── Front/back oriented (visible when front or back faces viewer) ──
+  { type: 'gas',   x: -100, y: -100, z: 20,   delay: 0,   dur: 6,   orient: 'front' },
+  { type: 'gas',   x: 105,  y: 95,   z: -15,  delay: 1.8, dur: 7,   orient: 'front' },
+  { type: 'gas',   x: -95,  y: 90,   z: 30,   delay: 0.6, dur: 5.5, orient: 'front' },
+  { type: 'gas',   x: 100,  y: -95,  z: -25,  delay: 3.2, dur: 6.5, orient: 'front' },
+  { type: 'gas',   x: 0,    y: -105, z: 10,   delay: 2.4, dur: 7.5, orient: 'front' },
+  { type: 'power', x: -105, y: 0,    z: -20,  delay: 0.4, dur: 6.2, orient: 'front' },
+  { type: 'power', x: 95,   y: 0,    z: 35,   delay: 1.2, dur: 5.8, orient: 'front' },
+  { type: 'power', x: 0,    y: 100,  z: -30,  delay: 2.8, dur: 7.2, orient: 'front' },
+  { type: 'power', x: -50,  y: -50,  z: 25,   delay: 3.6, dur: 6.8, orient: 'front' },
+  { type: 'power', x: 55,   y: 50,   z: -10,  delay: 4.2, dur: 5.4, orient: 'front' },
+  // ── Side oriented (visible when left or right faces viewer) ──
+  { type: 'gas',   x: 20,   y: -105, z: -100, delay: 0.3, dur: 6.4, orient: 'side' },
+  { type: 'gas',   x: -15,  y: 100,  z: 105,  delay: 2.1, dur: 7.6, orient: 'side' },
+  { type: 'gas',   x: 30,   y: 95,   z: -95,  delay: 1.4, dur: 5.2, orient: 'side' },
+  { type: 'gas',   x: -25,  y: -95,  z: 100,  delay: 3.8, dur: 6.6, orient: 'side' },
+  { type: 'power', x: 10,   y: 0,    z: -105, delay: 0.8, dur: 7.4, orient: 'side' },
+  { type: 'power', x: -20,  y: 0,    z: 100,  delay: 2.6, dur: 5.6, orient: 'side' },
+  { type: 'power', x: 35,   y: -50,  z: 50,   delay: 1.6, dur: 6.2, orient: 'side' },
+  { type: 'power', x: -30,  y: 50,   z: -55,  delay: 3.4, dur: 7.8, orient: 'side' },
+  { type: 'power', x: 25,   y: 105,  z: 95,   delay: 4.0, dur: 5.8, orient: 'side' },
+  // ── Top/bottom oriented (visible when top or bottom faces viewer) ──
+  { type: 'gas',   x: -100, y: 20,   z: -100, delay: 0.5, dur: 7.2, orient: 'top' },
+  { type: 'gas',   x: 105,  y: -15,  z: 95,   delay: 2.2, dur: 5.4, orient: 'top' },
+  { type: 'gas',   x: -95,  y: 30,   z: 100,  delay: 1.0, dur: 6.8, orient: 'top' },
+  { type: 'gas',   x: 100,  y: -25,  z: -95,  delay: 3.6, dur: 7.6, orient: 'top' },
+  { type: 'power', x: 0,    y: 10,   z: -105, delay: 0.2, dur: 6.0, orient: 'top' },
+  { type: 'power', x: 0,    y: -20,  z: 100,  delay: 2.0, dur: 5.2, orient: 'top' },
+  { type: 'power', x: -50,  y: 35,   z: 55,   delay: 1.8, dur: 7.4, orient: 'top' },
+  { type: 'power', x: 55,   y: -30,  z: -50,  delay: 3.0, dur: 6.4, orient: 'top' },
+  { type: 'power', x: -105, y: 25,   z: 0,    delay: 4.4, dur: 5.6, orient: 'top' },
 ]
 
 export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
@@ -129,12 +132,8 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
           66%  { transform: translate3d(8px,4px,-5px); opacity:0.5; }
           100% { transform: translate3d(0,0,0); opacity:0.6; }
         }
-        @keyframes tkn-spin-0 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(360deg); } }
-        @keyframes tkn-spin-1 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(-360deg); } }
-        @keyframes tkn-spin-2 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(360deg); } }
-        @keyframes tkn-spin-3 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(-360deg); } }
-        @keyframes tkn-spin-4 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(360deg); } }
-        @keyframes tkn-spin-5 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(-360deg); } }
+        @keyframes tkn-spin-cw  { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
+        @keyframes tkn-spin-ccw { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(-360deg); } }
       `}</style>
       <div style={{
         width: size,
@@ -168,7 +167,10 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
           {/* Floating 100 kWh tokens — no border, pure glowing text, self-spinning */}
           {TOKENS.map((t, i) => {
             const isGas = t.type === 'gas'
-            const spinDur = 4 + (i % 5) * 1.5
+            const spinDur = 5 + (i % 5) * 1.4
+            const orientTransform =
+              t.orient === 'side'  ? 'rotateY(90deg)' :
+              t.orient === 'top'   ? 'rotateX(90deg)' : ''
             return (
               <div
                 key={`tkn-${i}`}
@@ -176,7 +178,7 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
                   position: 'absolute',
                   left: '50%',
                   top: '50%',
-                  transform: `translate3d(${t.x}px, ${t.y}px, ${t.z}px)`,
+                  transform: `translate3d(${t.x}px, ${t.y}px, ${t.z}px) ${orientTransform}`,
                   transformStyle: 'preserve-3d',
                   pointerEvents: 'none',
                 }}
@@ -187,7 +189,7 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
                   transformStyle: 'preserve-3d',
                 }}>
                   <div style={{
-                    animation: `tkn-spin-${t.spin} ${spinDur}s linear infinite`,
+                    animation: `${i % 2 === 0 ? 'tkn-spin-cw' : 'tkn-spin-ccw'} ${spinDur}s linear infinite`,
                     animationDelay: `${t.delay * 0.5}s`,
                   }}>
                     <span style={{
