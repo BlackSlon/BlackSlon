@@ -10,6 +10,7 @@
  */
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import type { ProfileId } from "@/components/AIAdvisor";
 
 // ─── Profile definitions ──────────────────────────────────────────────────────
@@ -215,38 +216,27 @@ export default function ProfilePage() {
   return (
     <main className="min-h-screen bg-black text-white font-mono">
 
-      {/* ── Top bar ── */}
-      <div className="border-b border-[#111] px-6 py-2 flex items-center justify-between sticky top-0 z-50 bg-black/95 backdrop-blur-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 border border-yellow-500/50 flex items-center justify-center text-[9px] text-yellow-400">
-            八
-          </div>
-          <span className="text-[8px] tracking-[3px] uppercase text-[#333]">
-            BlackSlon Protocol
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-800 animate-pulse" />
-          <span className="text-[8px] tracking-widest text-[#333] uppercase">Live</span>
-        </div>
+      {/* ── Top bar with centered logo ── */}
+      <div className="border-b border-[#222] px-6 py-3 flex items-center justify-center sticky top-0 z-50 bg-black/95 backdrop-blur-sm">
+        <Image src="/BS_image.jpg" alt="BlackSlon" width={120} height={40} className="object-contain" />
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 py-14">
 
         {/* ── Header ── */}
         <div className="text-center mb-14">
-          <p className="text-[8px] tracking-[4px] uppercase text-[#333] mb-6">
+          <p className="text-[10px] tracking-[4px] uppercase text-[#888] mb-6">
             BlackSlon Protocol — Profile Selection
           </p>
           <h1 className="text-5xl font-light tracking-wider mb-3">
             Who are <span className="text-yellow-400 font-semibold">you</span>?
           </h1>
-          <p className="text-[9px] tracking-[3px] uppercase text-[#333] mb-10">
+          <p className="text-[10px] tracking-[3px] uppercase text-[#999] mb-10">
             Select your profile — your AI advisor adapts to your needs
           </p>
 
           {/* Protocol strip */}
-          <div className="inline-flex border border-[#111] divide-x divide-[#111] text-[8px] tracking-widest uppercase">
+          <div className="inline-flex border border-[#333] divide-x divide-[#333] text-[9px] tracking-widest uppercase">
             {[
               { k: "Token",     v: "1 BS = 100 kWh" },
               { k: "Contract",  v: "2-Year Rolling Delivery" },
@@ -254,7 +244,7 @@ export default function ProfilePage() {
               { k: "Market",    v: "Local · Isolated · 24/7" },
             ].map(({ k, v }) => (
               <div key={k} className="px-6 py-2 text-center">
-                <div className="text-[#222] mb-1">{k}</div>
+                <div className="text-[#888] mb-1">{k}</div>
                 <div className="text-yellow-400">{v}</div>
               </div>
             ))}
@@ -262,63 +252,59 @@ export default function ProfilePage() {
         </div>
 
         {/* ── Profile Grid ── */}
-        <div className="grid grid-cols-5 gap-0 border border-[#111]">
+        <div className="grid grid-cols-5 gap-0 border border-[#333]">
           {PROFILES.map((p) => (
             <div
               key={p.id}
-              className="group relative border-r border-b border-[#111] last:border-r-0 cursor-pointer bg-black hover:bg-[#060606] transition-colors"
-              style={{ borderRight: "1px solid #111", borderBottom: "1px solid #111" }}
+              onClick={() => handleSelect(p)}
+              className="group relative cursor-pointer bg-black transition-all duration-200 hover:bg-[#0a0a0a]"
+              style={{ borderRight: "1px solid #333", borderBottom: "1px solid #333" }}
             >
               {/* Card content */}
               <div className="flex flex-col items-center text-center p-6 gap-4">
 
                 {/* Number */}
-                <span className="text-[8px] tracking-[2px] text-[#1a1a1a] self-start">
+                <span className="text-[9px] tracking-[2px] text-[#666] self-start">
                   {p.num}
                 </span>
 
                 {/* Symbol box */}
                 <div
-                  className={`
-                    w-[120px] h-[120px] border border-[#1a1a1a] flex items-center justify-center
-                    transition-all duration-200
-                    ${p.hoverBorder}
-                  `}
+                  className="w-[120px] h-[120px] border border-[#333] flex items-center justify-center transition-all duration-200 group-hover:border-yellow-500/60"
                 >
                   {p.symbol}
                 </div>
 
                 {/* Name */}
-                <div className="text-[9px] tracking-[2px] text-[#888] uppercase leading-relaxed">
+                <div className="text-[10px] tracking-[2px] text-[#ccc] uppercase leading-relaxed group-hover:text-white transition-colors">
                   {p.name}
                 </div>
 
                 {/* Tag */}
-                <div className={`text-[7px] tracking-[2px] uppercase border px-2 py-0.5 ${p.tagColor}`}>
+                <div className={`text-[8px] tracking-[2px] uppercase border px-2 py-0.5 ${p.tagColor}`}>
                   {p.tag}
                 </div>
 
                 {/* Sub */}
-                <p className="text-[9px] text-[#2a2a2a] leading-relaxed tracking-wide">
+                <p className="text-[10px] text-[#888] leading-relaxed tracking-wide">
                   {p.sub}
                 </p>
 
-                {/* AI label */}
-                <div className="w-full pt-2 border-t border-[#0d0d0d]">
-                  <div className="text-[7px] tracking-[2px] text-[#1a1a1a] uppercase mb-1">
+                {/* Enter button */}
+                <div className="w-full pt-2 border-t border-[#222]">
+                  <div className="text-[8px] tracking-[2px] text-[#666] uppercase mb-1">
                     AI Advisor
                   </div>
-                  <button
-                    onClick={() => handleSelect(p)}
+                  <div
                     className="
-                      w-full text-[7px] tracking-[2px] uppercase py-1.5
-                      border border-[#111] text-[#222]
+                      w-full text-[8px] tracking-[2px] uppercase py-1.5 text-center
+                      border border-[#444] text-[#999]
                       transition-all duration-150
-                      hover:text-yellow-400 hover:border-yellow-500/40
+                      group-hover:text-yellow-400 group-hover:border-yellow-500/60
                     "
                   >
                     Enter →
-                  </button>
+                  </div>
                 </div>
 
               </div>
@@ -327,7 +313,7 @@ export default function ProfilePage() {
         </div>
 
         {/* ── Footer strip ── */}
-        <div className="mt-0 border border-t-0 border-[#111] grid grid-cols-4 divide-x divide-[#111]">
+        <div className="mt-0 border border-t-0 border-[#333] grid grid-cols-4 divide-x divide-[#333]">
           {[
             { k: "Settlement", v: "eEURO · MiCA Compliant" },
             { k: "Margin",     v: "25% → 50% · €BSR Tiered" },
@@ -335,21 +321,21 @@ export default function ProfilePage() {
             { k: "Access",     v: "100 kWh Minimum · Any Wallet" },
           ].map(({ k, v }) => (
             <div key={k} className="px-4 py-3 text-center">
-              <div className="text-[7px] tracking-[2px] text-[#1a1a1a] uppercase mb-1">{k}</div>
-              <div className="text-[8px] tracking-widest text-[#2a2a2a] uppercase">{v}</div>
+              <div className="text-[8px] tracking-[2px] text-[#888] uppercase mb-1">{k}</div>
+              <div className="text-[9px] tracking-widest text-[#aaa] uppercase">{v}</div>
             </div>
           ))}
         </div>
 
         {/* ── Guest entry ── */}
         <div className="text-center mt-10">
-          <p className="text-[8px] tracking-[3px] uppercase text-[#1a1a1a] mb-3">
+          <p className="text-[10px] tracking-[3px] uppercase text-[#888] mb-3">
             Or enter directly without profile — full terminal access
           </p>
           <a
             href="/markets/BS-P-DE"
-            className="text-[8px] tracking-[2px] uppercase px-8 py-2.5 border border-[#111] text-[#222]
-              hover:border-yellow-500/40 hover:text-yellow-400 transition-colors inline-block"
+            className="text-[10px] tracking-[2px] uppercase px-8 py-2.5 border border-[#555] text-[#ccc]
+              hover:border-yellow-500/60 hover:text-yellow-400 transition-colors inline-block"
           >
             Enter Markets →
           </a>
