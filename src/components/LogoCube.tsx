@@ -52,7 +52,7 @@ const TOKENS: { type: 'gas' | 'power'; x: number; y: number; z: number; delay: n
   { type: 'power', x: -105, y: 25,   z: 0,    delay: 4.4, dur: 5.6, orient: 'top' },
 ]
 
-export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
+export default function LogoCube({ size = 300, duration = 42 }: LogoCubeProps) {
   const h = size / 2
   const faceSize = size + 2
   const faceOffset = -1
@@ -108,32 +108,36 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
           75%  { transform: translate(4px, -3px); }
           100% { transform: translate(0, 0); }
         }
-        @keyframes tkn-bob-0 {
-          0%   { transform: translate3d(0,0,0); opacity:0.7; }
-          33%  { transform: translate3d(6px,-10px,4px); opacity:0.95; }
-          66%  { transform: translate3d(-4px,5px,-6px); opacity:0.5; }
-          100% { transform: translate3d(0,0,0); opacity:0.7; }
-        }
-        @keyframes tkn-bob-1 {
-          0%   { transform: translate3d(0,0,0); opacity:0.65; }
-          33%  { transform: translate3d(-8px,6px,-5px); opacity:0.9; }
-          66%  { transform: translate3d(5px,-8px,7px); opacity:0.45; }
-          100% { transform: translate3d(0,0,0); opacity:0.65; }
-        }
-        @keyframes tkn-bob-2 {
-          0%   { transform: translate3d(0,0,0); opacity:0.75; }
-          33%  { transform: translate3d(7px,8px,-4px); opacity:0.5; }
-          66%  { transform: translate3d(-6px,-6px,8px); opacity:0.95; }
-          100% { transform: translate3d(0,0,0); opacity:0.75; }
-        }
-        @keyframes tkn-bob-3 {
-          0%   { transform: translate3d(0,0,0); opacity:0.6; }
-          33%  { transform: translate3d(-5px,-7px,6px); opacity:0.85; }
-          66%  { transform: translate3d(8px,4px,-5px); opacity:0.5; }
-          100% { transform: translate3d(0,0,0); opacity:0.6; }
-        }
         @keyframes tkn-spin-cw  { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
         @keyframes tkn-spin-ccw { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(-360deg); } }
+        @keyframes tkn-zap {
+          0%   { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
+          7%   { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
+          9%   { opacity: 1;    text-shadow: 0 0 12px #fff, 0 0 24px rgba(253,224,71,1), 0 0 48px rgba(251,191,36,0.7); }
+          12%  { opacity: 0.85; text-shadow: 0 0 2px rgba(253,224,71,0.6), 3px -2px 2px rgba(253,224,71,0.8); }
+          18%  { opacity: 1;    text-shadow: 0 0 3px #fff, 5px -3px 3px rgba(253,224,71,1), -2px 3px 2px rgba(253,224,71,0.7); }
+          20%  { opacity: 0.5;  text-shadow: 0 0 1px rgba(253,224,71,0.2); }
+          28%  { opacity: 0.8;  text-shadow: 0 0 2px rgba(253,224,71,0.4); }
+          30%  { opacity: 1;    text-shadow: 0 0 18px #fff, 0 0 36px rgba(253,224,71,1), 0 0 60px rgba(251,191,36,0.4); }
+          32%  { opacity: 0.4;  text-shadow: 0 0 1px rgba(253,224,71,0.1); }
+          45%  { opacity: 0.85; text-shadow: 0 0 2px rgba(253,224,71,0.5); }
+          47%  { opacity: 1;    text-shadow: 0 0 4px #fff, -4px -3px 3px rgba(253,224,71,0.9), 5px 2px 2px rgba(253,224,71,0.7); }
+          49%  { opacity: 0.55; text-shadow: 0 0 1px rgba(253,224,71,0.2); }
+          64%  { opacity: 1;    text-shadow: 0 0 15px #fff, 0 0 30px rgba(253,224,71,1), 0 0 50px rgba(251,191,36,0.3); }
+          66%  { opacity: 0.45; text-shadow: 0 0 1px rgba(253,224,71,0.15); }
+          74%  { opacity: 1;    text-shadow: 0 0 12px #fff, 0 0 24px rgba(253,224,71,1); }
+          77%  { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
+          100% { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
+        }
+        @keyframes tkn-vapor {
+          0%   { opacity: 0.08; filter: blur(3px); letter-spacing: 0.14em; text-shadow: 0 0 12px rgba(56,189,248,0.3); transform: scale(0.96); }
+          12%  { opacity: 0.6;  filter: blur(0.6px); letter-spacing: 0.07em; text-shadow: 0 0 8px rgba(56,189,248,0.6), 2px 2px 4px rgba(30,144,220,0.5); transform: scale(0.99); }
+          22%  { opacity: 1;    filter: blur(0px); letter-spacing: 0.04em; text-shadow: 0 0 5px rgba(56,189,248,0.8), 2px 2px 3px rgba(30,144,220,0.6), -2px -2px 3px rgba(100,210,255,0.5); transform: scale(1); }
+          60%  { opacity: 1;    filter: blur(0px); letter-spacing: 0.04em; text-shadow: 0 0 4px rgba(56,189,248,0.7), 2px 2px 3px rgba(30,144,220,0.5); transform: scale(1); }
+          78%  { opacity: 0.5;  filter: blur(1.2px); letter-spacing: 0.09em; text-shadow: 0 -2px 8px rgba(56,189,248,0.4); transform: scale(1.01); }
+          92%  { opacity: 0.12; filter: blur(3px); letter-spacing: 0.14em; text-shadow: 0 -4px 12px rgba(56,189,248,0.15); transform: scale(1.03); }
+          100% { opacity: 0.08; filter: blur(3px); letter-spacing: 0.14em; text-shadow: 0 0 12px rgba(56,189,248,0.3); transform: scale(0.96); }
+        }
       `}</style>
       <div style={{
         width: size,
@@ -164,10 +168,11 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
               : <div key={i} style={{ ...faceBase, transform }} />
           ))}
 
-          {/* Floating 100 kWh tokens — no border, pure glowing text, self-spinning */}
+          {/* Floating 100 kWh tokens — market-style effects */}
           {TOKENS.map((t, i) => {
             const isGas = t.type === 'gas'
-            const spinDur = 5 + (i % 5) * 1.4
+            const spinDur = 12 + (i % 5) * 2
+            const effectDur = isGas ? 7 + (i % 3) * 1.5 : 3.5 + (i % 4) * 0.8
             const orientTransform =
               t.orient === 'side'  ? 'rotateY(90deg)' :
               t.orient === 'top'   ? 'rotateX(90deg)' : ''
@@ -184,29 +189,29 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
                 }}
               >
                 <div style={{
-                  animation: `tkn-bob-${i % 4} ${t.dur}s ease-in-out infinite`,
-                  animationDelay: `${t.delay}s`,
-                  transformStyle: 'preserve-3d',
+                  animation: `${i % 2 === 0 ? 'tkn-spin-cw' : 'tkn-spin-ccw'} ${spinDur}s linear infinite`,
+                  animationDelay: `${t.delay * 0.5}s`,
                 }}>
-                  <div style={{
-                    animation: `${i % 2 === 0 ? 'tkn-spin-cw' : 'tkn-spin-ccw'} ${spinDur}s linear infinite`,
-                    animationDelay: `${t.delay * 0.5}s`,
-                  }}>
-                    <span style={{
-                      fontSize: 14,
-                      fontFamily: 'monospace',
-                      fontWeight: 700,
-                      color: isGas ? 'rgba(103,232,249,0.95)' : 'rgba(253,224,71,0.95)',
-                      textShadow: isGas
-                        ? '0 0 8px rgba(34,211,238,0.8), 0 0 16px rgba(34,211,238,0.4), 0 0 30px rgba(34,211,238,0.2)'
-                        : '0 0 8px rgba(251,191,36,0.8), 0 0 16px rgba(251,191,36,0.4), 0 0 30px rgba(251,191,36,0.2)',
-                      letterSpacing: '0.04em',
-                      whiteSpace: 'nowrap' as const,
-                      userSelect: 'none' as const,
-                    }}>
-                      100 kWh
-                    </span>
-                  </div>
+                  <span style={{
+                    fontSize: 14,
+                    fontFamily: 'var(--font-raleway), sans-serif',
+                    whiteSpace: 'nowrap' as const,
+                    userSelect: 'none' as const,
+                    display: 'inline-block',
+                    animation: `${isGas ? 'tkn-vapor' : 'tkn-zap'} ${effectDur}s ease-in-out infinite`,
+                    animationDelay: `${t.delay}s`,
+                    ...(isGas ? {
+                      color: '#b8e8ff',
+                      fontWeight: 900,
+                      WebkitTextStroke: '0.3px rgba(56,189,248,0.7)',
+                      paintOrder: 'stroke fill' as const,
+                    } : {
+                      fontWeight: 100,
+                      color: 'rgba(253,224,71,0.85)',
+                    }),
+                  } as React.CSSProperties}>
+                    100 kWh
+                  </span>
                 </div>
               </div>
             )
