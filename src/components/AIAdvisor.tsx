@@ -447,6 +447,17 @@ export default function AIAdvisor({ profileId, onClose, mode = "panel" }: AIAdvi
     inputRef.current?.focus();
   }, [profileId]);
 
+  // ESC key to close
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', handleEsc);
+    return () => document.removeEventListener('keydown', handleEsc);
+  }, [onClose]);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -538,7 +549,8 @@ export default function AIAdvisor({ profileId, onClose, mode = "panel" }: AIAdvi
           {onClose && (
             <button
               onClick={onClose}
-              className="text-[#1a1a1a] hover:text-[#555] text-xs transition-colors font-mono"
+              className="text-[#666] hover:text-[#999] text-base transition-colors font-mono bg-[#f5f5f5] hover:bg-[#e8e8e8] rounded-full w-6 h-6 flex items-center justify-center"
+              title="Close (ESC)"
             >
               ✕
             </button>
