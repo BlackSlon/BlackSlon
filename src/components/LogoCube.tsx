@@ -129,12 +129,12 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
           66%  { transform: translate3d(8px,4px,-5px); opacity:0.5; }
           100% { transform: translate3d(0,0,0); opacity:0.6; }
         }
-        @keyframes tkn-spin-0 { 0% { transform: rotateY(0deg); }   100% { transform: rotateY(360deg); } }
-        @keyframes tkn-spin-1 { 0% { transform: rotateX(0deg); }   100% { transform: rotateX(360deg); } }
-        @keyframes tkn-spin-2 { 0% { transform: rotateZ(0deg); }   100% { transform: rotateZ(360deg); } }
-        @keyframes tkn-spin-3 { 0% { transform: rotateY(0deg) rotateX(0deg); }   100% { transform: rotateY(360deg) rotateX(180deg); } }
-        @keyframes tkn-spin-4 { 0% { transform: rotateX(0deg) rotateZ(0deg); }   100% { transform: rotateX(360deg) rotateZ(-180deg); } }
-        @keyframes tkn-spin-5 { 0% { transform: rotateZ(0deg) rotateY(0deg); }   100% { transform: rotateZ(-360deg) rotateY(180deg); } }
+        @keyframes tkn-spin-0 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(360deg); } }
+        @keyframes tkn-spin-1 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(-360deg); } }
+        @keyframes tkn-spin-2 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(360deg); } }
+        @keyframes tkn-spin-3 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(-360deg); } }
+        @keyframes tkn-spin-4 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(360deg); } }
+        @keyframes tkn-spin-5 { 0% { transform: rotateZ(0deg); }     100% { transform: rotateZ(-360deg); } }
       `}</style>
       <div style={{
         width: size,
@@ -191,13 +191,13 @@ export default function LogoCube({ size = 300, duration = 24 }: LogoCubeProps) {
                     animationDelay: `${t.delay * 0.5}s`,
                   }}>
                     <span style={{
-                      fontSize: 7,
+                      fontSize: 14,
                       fontFamily: 'monospace',
                       fontWeight: 700,
-                      color: isGas ? 'rgba(103,232,249,0.9)' : 'rgba(253,224,71,0.9)',
+                      color: isGas ? 'rgba(103,232,249,0.95)' : 'rgba(253,224,71,0.95)',
                       textShadow: isGas
-                        ? '0 0 6px rgba(34,211,238,0.6), 0 0 12px rgba(34,211,238,0.3), 0 0 20px rgba(34,211,238,0.15)'
-                        : '0 0 6px rgba(251,191,36,0.6), 0 0 12px rgba(251,191,36,0.3), 0 0 20px rgba(251,191,36,0.15)',
+                        ? '0 0 8px rgba(34,211,238,0.8), 0 0 16px rgba(34,211,238,0.4), 0 0 30px rgba(34,211,238,0.2)'
+                        : '0 0 8px rgba(251,191,36,0.8), 0 0 16px rgba(251,191,36,0.4), 0 0 30px rgba(251,191,36,0.2)',
                       letterSpacing: '0.04em',
                       whiteSpace: 'nowrap' as const,
                       userSelect: 'none' as const,
