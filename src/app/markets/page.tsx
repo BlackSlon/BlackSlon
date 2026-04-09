@@ -223,24 +223,20 @@ export default function MarketsPage() {
 
       {/* ── Documentation Links ── */}
       <div className="grid grid-cols-2 md:grid-cols-2 gap-4 max-w-5xl mx-auto mb-16">
-        <Link href="/whitepaper">
-          <div className="bg-black p-4 text-center transition-all hover:scale-110 cursor-pointer border border-gray-800 rounded-lg h-48 w-full flex flex-col justify-center">
-            <div className="w-20 h-20 mx-auto mb-3">
-              <Image src="/BS_image.jpg" alt="Whitepaper" width={80} height={80} />
-            </div>
-            <p className="text-amber-600 text-sm font-semibold">White<br/>Paper</p>
-            <p className="text-gray-400 text-[10px] opacity-80">Protocol Documentation</p>
+        <div className="bg-black p-4 text-center border border-gray-800 rounded-lg h-48 w-full flex flex-col justify-center opacity-60">
+          <div className="w-20 h-20 mx-auto mb-3">
+            <Image src="/BS_image.jpg" alt="Whitepaper" width={80} height={80} />
           </div>
-        </Link>
-        <Link href="/executive-summary">
-          <div className="bg-black p-4 text-center transition-all hover:scale-110 cursor-pointer border border-gray-800 rounded-lg h-48 w-full flex flex-col justify-center">
-            <div className="w-20 h-20 mx-auto mb-3">
-              <Image src="/BS_image.jpg" alt="Executive Summary" width={80} height={80} />
-            </div>
-            <p className="text-amber-600 text-sm font-semibold">Executive Summary</p>
-            <p className="text-gray-400 text-[10px] opacity-80">Project Overview</p>
+          <p className="text-gray-500 text-sm font-semibold">White<br/>Paper</p>
+          <p className="text-gray-600 text-[10px]">Under Revision</p>
+        </div>
+        <div className="bg-black p-4 text-center border border-gray-800 rounded-lg h-48 w-full flex flex-col justify-center opacity-60">
+          <div className="w-20 h-20 mx-auto mb-3">
+            <Image src="/BS_image.jpg" alt="Executive Summary" width={80} height={80} />
           </div>
-        </Link>
+          <p className="text-gray-500 text-sm font-semibold">Executive Summary</p>
+          <p className="text-gray-600 text-[10px]">Under Revision</p>
+        </div>
       </div>
 
       {/* ── Footer removed ── */}
