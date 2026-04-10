@@ -111,32 +111,38 @@ export default function LogoCube({ size = 300, duration = 42 }: LogoCubeProps) {
         @keyframes tkn-spin-cw  { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
         @keyframes tkn-spin-ccw { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(-360deg); } }
         @keyframes tkn-zap {
-          0%   { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
-          7%   { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
-          9%   { opacity: 1;    text-shadow: 0 0 12px #fff, 0 0 24px rgba(253,224,71,1), 0 0 48px rgba(251,191,36,0.7); }
-          12%  { opacity: 0.85; text-shadow: 0 0 2px rgba(253,224,71,0.6), 3px -2px 2px rgba(253,224,71,0.8); }
-          18%  { opacity: 1;    text-shadow: 0 0 3px #fff, 5px -3px 3px rgba(253,224,71,1), -2px 3px 2px rgba(253,224,71,0.7); }
-          20%  { opacity: 0.5;  text-shadow: 0 0 1px rgba(253,224,71,0.2); }
-          28%  { opacity: 0.8;  text-shadow: 0 0 2px rgba(253,224,71,0.4); }
-          30%  { opacity: 1;    text-shadow: 0 0 18px #fff, 0 0 36px rgba(253,224,71,1), 0 0 60px rgba(251,191,36,0.4); }
-          32%  { opacity: 0.4;  text-shadow: 0 0 1px rgba(253,224,71,0.1); }
-          45%  { opacity: 0.85; text-shadow: 0 0 2px rgba(253,224,71,0.5); }
-          47%  { opacity: 1;    text-shadow: 0 0 4px #fff, -4px -3px 3px rgba(253,224,71,0.9), 5px 2px 2px rgba(253,224,71,0.7); }
-          49%  { opacity: 0.55; text-shadow: 0 0 1px rgba(253,224,71,0.2); }
-          64%  { opacity: 1;    text-shadow: 0 0 15px #fff, 0 0 30px rgba(253,224,71,1), 0 0 50px rgba(251,191,36,0.3); }
-          66%  { opacity: 0.45; text-shadow: 0 0 1px rgba(253,224,71,0.15); }
-          74%  { opacity: 1;    text-shadow: 0 0 12px #fff, 0 0 24px rgba(253,224,71,1); }
-          77%  { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
-          100% { opacity: 0;    text-shadow: 0 0 0px rgba(253,224,71,0); }
+          0%   { opacity: 1;    color: #fde047; text-shadow: 0 0 8px #fff, 0 0 20px rgba(253,224,71,1), 0 0 40px rgba(251,191,36,0.8); }
+          3%   { opacity: 0.15; color: #fde047; text-shadow: 0 0 1px rgba(253,224,71,0.2); }
+          5%   { opacity: 1;    color: #fff;    text-shadow: 0 0 30px #fff, 0 0 60px rgba(253,224,71,1), -8px 4px 6px rgba(253,224,71,0.9), 10px -5px 8px rgba(251,191,36,0.8), 0 0 100px rgba(251,191,36,0.4); }
+          8%   { opacity: 0.9;  color: #fde047; text-shadow: 0 0 6px rgba(253,224,71,0.7), 4px -3px 3px rgba(253,224,71,0.6); }
+          15%  { opacity: 1;    color: #fde047; text-shadow: 0 0 10px #fff, 0 0 25px rgba(253,224,71,1), 0 0 50px rgba(251,191,36,0.6); }
+          18%  { opacity: 0.1;  color: #fde047; text-shadow: none; }
+          20%  { opacity: 1;    color: #fff;    text-shadow: 0 0 25px #fff, 0 0 50px rgba(253,224,71,1), 6px -6px 5px rgba(253,224,71,0.9), -8px 3px 6px rgba(251,191,36,0.7); }
+          23%  { opacity: 0.85; color: #fde047; text-shadow: 0 0 8px rgba(253,224,71,0.8), -3px 2px 3px rgba(253,224,71,0.5); }
+          35%  { opacity: 1;    color: #fde047; text-shadow: 0 0 12px #fff, 0 0 30px rgba(253,224,71,1), 0 0 60px rgba(251,191,36,0.5); }
+          37%  { opacity: 0.05; color: #fde047; text-shadow: none; }
+          39%  { opacity: 0.9;  color: #fde047; text-shadow: 0 0 6px rgba(253,224,71,0.7); }
+          41%  { opacity: 0.1;  color: #fde047; text-shadow: none; }
+          43%  { opacity: 1;    color: #fff;    text-shadow: 0 0 35px #fff, 0 0 70px rgba(253,224,71,1), -12px 6px 10px rgba(253,224,71,0.9), 14px -7px 12px rgba(251,191,36,0.8), 0 0 120px rgba(251,191,36,0.3); }
+          50%  { opacity: 0.9;  color: #fde047; text-shadow: 0 0 10px rgba(253,224,71,0.9), 5px -4px 4px rgba(253,224,71,0.6); }
+          60%  { opacity: 1;    color: #fde047; text-shadow: 0 0 8px #fff, 0 0 20px rgba(253,224,71,1), 0 0 45px rgba(251,191,36,0.6); }
+          62%  { opacity: 0.08; color: #fde047; text-shadow: none; }
+          64%  { opacity: 1;    color: #fff;    text-shadow: 0 0 30px #fff, 0 0 55px rgba(253,224,71,1), 8px -8px 6px rgba(253,224,71,0.9), -10px 4px 8px rgba(251,191,36,0.7), 0 0 90px rgba(251,191,36,0.3); }
+          70%  { opacity: 0.85; color: #fde047; text-shadow: 0 0 6px rgba(253,224,71,0.7), -4px 3px 3px rgba(253,224,71,0.5); }
+          80%  { opacity: 1;    color: #fde047; text-shadow: 0 0 10px #fff, 0 0 25px rgba(253,224,71,1), 0 0 50px rgba(251,191,36,0.5); }
+          83%  { opacity: 0.12; color: #fde047; text-shadow: none; }
+          85%  { opacity: 1;    color: #fde047; text-shadow: 0 0 8px rgba(253,224,71,0.8); }
+          92%  { opacity: 0.9;  color: #fde047; text-shadow: 0 0 6px rgba(253,224,71,0.6), 3px -2px 3px rgba(253,224,71,0.4); }
+          100% { opacity: 1;    color: #fde047; text-shadow: 0 0 8px #fff, 0 0 20px rgba(253,224,71,1), 0 0 40px rgba(251,191,36,0.8); }
         }
         @keyframes tkn-vapor {
-          0%   { opacity: 0.08; filter: blur(3px); letter-spacing: 0.14em; text-shadow: 0 0 12px rgba(56,189,248,0.3); transform: scale(0.96); }
-          12%  { opacity: 0.6;  filter: blur(0.6px); letter-spacing: 0.07em; text-shadow: 0 0 8px rgba(56,189,248,0.6), 2px 2px 4px rgba(30,144,220,0.5); transform: scale(0.99); }
-          22%  { opacity: 1;    filter: blur(0px); letter-spacing: 0.04em; text-shadow: 0 0 5px rgba(56,189,248,0.8), 2px 2px 3px rgba(30,144,220,0.6), -2px -2px 3px rgba(100,210,255,0.5); transform: scale(1); }
-          60%  { opacity: 1;    filter: blur(0px); letter-spacing: 0.04em; text-shadow: 0 0 4px rgba(56,189,248,0.7), 2px 2px 3px rgba(30,144,220,0.5); transform: scale(1); }
-          78%  { opacity: 0.5;  filter: blur(1.2px); letter-spacing: 0.09em; text-shadow: 0 -2px 8px rgba(56,189,248,0.4); transform: scale(1.01); }
-          92%  { opacity: 0.12; filter: blur(3px); letter-spacing: 0.14em; text-shadow: 0 -4px 12px rgba(56,189,248,0.15); transform: scale(1.03); }
-          100% { opacity: 0.08; filter: blur(3px); letter-spacing: 0.14em; text-shadow: 0 0 12px rgba(56,189,248,0.3); transform: scale(0.96); }
+          0%   { opacity: 0.1;  filter: blur(4px);  letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(56,189,248,0.3), 0 2px 4px rgba(56,189,248,0.2), 0 -2px 4px rgba(100,200,255,0.2); transform: scale(0.96); }
+          12%  { opacity: 0.7;  filter: blur(0.8px);letter-spacing: 0.08em; text-shadow: 0 0 10px rgba(56,189,248,0.6), 2px 3px 6px rgba(30,144,220,0.5), -2px -2px 6px rgba(100,210,255,0.4), 0 4px 8px rgba(56,189,248,0.3); transform: scale(0.99); }
+          22%  { opacity: 1;    filter: blur(0px);  letter-spacing: 0.04em; text-shadow: 0 0 6px rgba(56,189,248,0.8), 2px 3px 4px rgba(30,144,220,0.6), -2px -2px 4px rgba(100,210,255,0.5), 0 5px 10px rgba(56,189,248,0.3), 3px 1px 3px rgba(80,180,240,0.4), -3px 2px 3px rgba(80,180,240,0.4); transform: scale(1); }
+          60%  { opacity: 1;    filter: blur(0px);  letter-spacing: 0.04em; text-shadow: 0 0 5px rgba(56,189,248,0.7), 2px 3px 4px rgba(30,144,220,0.5), -2px -2px 4px rgba(100,210,255,0.4), 0 4px 8px rgba(56,189,248,0.25), 3px 1px 3px rgba(80,180,240,0.35), -3px 2px 3px rgba(80,180,240,0.35); transform: scale(1); }
+          78%  { opacity: 0.6;  filter: blur(1.5px);letter-spacing: 0.1em;  text-shadow: 0 -3px 12px rgba(56,189,248,0.4), 0 3px 8px rgba(30,144,220,0.3), 2px 0px 6px rgba(100,210,255,0.3); transform: scale(1.01); }
+          92%  { opacity: 0.15; filter: blur(4px);  letter-spacing: 0.15em; text-shadow: 0 -6px 18px rgba(56,189,248,0.15), 0 4px 10px rgba(56,189,248,0.1); transform: scale(1.04); }
+          100% { opacity: 0.1;  filter: blur(4px);  letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(56,189,248,0.3), 0 2px 4px rgba(56,189,248,0.2), 0 -2px 4px rgba(100,200,255,0.2); transform: scale(0.96); }
         }
       `}</style>
       <div style={{
@@ -198,16 +204,17 @@ export default function LogoCube({ size = 300, duration = 42 }: LogoCubeProps) {
                     whiteSpace: 'nowrap' as const,
                     userSelect: 'none' as const,
                     display: 'inline-block',
-                    animation: `${isGas ? 'tkn-vapor' : 'tkn-zap'} ${effectDur}s ease-in-out infinite`,
                     animationDelay: `${t.delay}s`,
                     ...(isGas ? {
                       color: '#b8e8ff',
                       fontWeight: 900,
                       WebkitTextStroke: '0.3px rgba(56,189,248,0.7)',
                       paintOrder: 'stroke fill' as const,
+                      animation: `tkn-vapor ${effectDur}s ease-in-out infinite`,
                     } : {
+                      color: '#fde047',
                       fontWeight: 100,
-                      color: 'rgba(253,224,71,0.85)',
+                      animation: `tkn-zap ${2.5 + (i % 3) * 0.5}s linear infinite`,
                     }),
                   } as React.CSSProperties}>
                     100 kWh
