@@ -894,7 +894,7 @@ In Slavic languages, *Slon / Слон* means **Elephant**.
 
 The **Black Swan** — the unpredictable catastrophe that models cannot anticipate: the pandemic, the war, the NS2 explosion, Germany's nuclear phase-out.
 
-The **Black Elephant** — the massive, obvious risk that everyone in the room can see and everyone chooses to ignore: the clearing infrastructure designed to cannibalize its own participants under stress. The death of the forward curve. The €500 billion market controlled by 200 entities.
+The **Black Elephant** — we ignore the fact that Bitcoin is only a temporary, inefficient "patch" for fiat. It is a resource-heavy system with zero physical utility. BlackSlon provides the only thermodynamic alternative, where the value of money is directly anchored to the energy reality of the local grid.
 
 These are not hidden risks. **They are hiding in plain sight.**
 

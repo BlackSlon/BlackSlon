@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import LogoCube from '@/components/LogoCube'
+import Image from 'next/image'
 
 export default function LandingPage() {
   return (
@@ -91,12 +91,24 @@ export default function LandingPage() {
       <div className="hp-mars" />
       <div className="hp-saturn" />
 
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col items-center gap-6">
+        <span className="text-white text-5xl font-thin tracking-[0.25em] select-none" style={{ fontFamily: 'var(--font-raleway)' }}>
+          BlackSlon
+        </span>
         <Link href="/markets">
-          <div className="cursor-pointer transition-transform hover:scale-105">
-            <LogoCube size={300} duration={24} />
+          <div className="cursor-pointer transition-opacity hover:opacity-80">
+            <Image
+              src="/BS_image.jpg"
+              alt="BlackSlon Logo"
+              width={380}
+              height={380}
+              priority
+            />
           </div>
         </Link>
+        <span className="text-white/50 text-base font-thin tracking-[0.35em] select-none" style={{ fontFamily: 'var(--font-raleway)' }}>
+          energy ecosystem
+        </span>
       </div>
     </div>
   )
